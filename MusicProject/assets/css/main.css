@@ -129,12 +129,13 @@
     display: inline;
 }
 
-.released__artist-name a + a::before {
-    content: ",";
-    display: inline;
-    position: relative;
-    left: -0.3rem;
-}
+    .released__artist-name a + a::before {
+        content: ",";
+        display: inline;
+        position: relative;
+        left: -0.1rem;
+        padding-right: 2px;
+    }
 
 .released__date {
     margin-top: 0.8rem;

@@ -1,4 +1,4 @@
-appMusic.controller('CollectionController', function ($scope, $rootScope, $http, $routeParams, $location) {
+appMusic.controller('CollectionController', function ($scope, $rootScope, $http, $routeParams, $location, $window) {
     $rootScope.currentIndex = 3
     $rootScope.currentSubIndex = 5
     $scope.pickedCollections = []
@@ -9,6 +9,7 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
     $scope.topics = $rootScope.collections.filter(collection => collection.KindofCollection == 4)
 
     $scope.pickedCollections = $rootScope.collections.filter(collection => collection.CollectionID == $routeParams.tl || collection.CollectionID == $routeParams.tt || collection.CollectionID == $routeParams.kc || collection.CollectionID == $routeParams.cd)
+
     if ($scope.pickedCollections.length > 0) {
         $scope.showpickedCollection = true;
     } else {

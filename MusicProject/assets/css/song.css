@@ -87,12 +87,13 @@
     text-transform: capitalize;
 }
 
-.song__artist span + span::before {
-    content: ",";
-    display: inline;
-    position: relative;
-    left: -0.3rem;
-}
+    .song__artist span + span::before {
+        content: ",";
+        display: inline;
+        position: relative;
+        left: -0.1rem;
+        padding-right: 2px;
+    }
 
 .song__artist span {
     line-height: 24px;

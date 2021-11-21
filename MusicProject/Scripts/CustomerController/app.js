@@ -205,11 +205,11 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         alert("Failed to get collections!")
     })
 
-    $window.onload = function () {
+    $window.addEventListener('load', function () {
         let loading = document.querySelector('.loading')
         loading.classList.add('hidden')
         loading.addEventListener('animationend', function () {
             this.style.display = 'none'
         })
-    }
+    })
 })

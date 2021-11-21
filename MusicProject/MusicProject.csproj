@@ -178,15 +178,22 @@
     <Content Include="assets\html\T_myplaylist.html" />
     <Content Include="assets\html\T_user.html" />
     <Content Include="assets\html\upgrade.html" />
+    <Content Include="assets\img\album\Post_Malone_Hollywood%27s_Bleeding.png" />
     <Content Include="assets\img\playlist\admin\ban-than-oi-minh-di-thoi.jpg" />
+    <Content Include="assets\img\song\All Too Well - Taylor Swift.mp3" />
+    <Content Include="assets\img\song\Chay_ngay_di.png" />
+    <Content Include="assets\img\song\circles-postmalone.jpg" />
     <Content Include="assets\img\song\easy-on-me-adele.jpg" />
     <Content Include="assets\img\song\myuniverse-coldplay.jpg" />
     <Content Include="assets\img\song\oldtownroad-lilnasx.jpg" />
     <Content Include="assets\img\song\tides-edsheeran.jpg" />
     <Content Include="assets\img\song\vivalavida-coldplay.jpg" />
+    <Content Include="assets\mp3\All Too Well - Taylor Swift.mp3" />
+    <Content Include="assets\mp3\Chay Ngay Di Run Now_ - Son Tung M-TP_.mp3" />
     <Content Include="assets\mp3\easy-on-me-adele.mp3" />
     <Content Include="assets\mp3\myuniverse-coldplay.mp3" />
     <Content Include="assets\mp3\oldtownroad-lilnasx.mp3" />
+    <Content Include="assets\mp3\Post Malone  Circles.mp3" />
     <Content Include="assets\mp3\tides-edsheeran.mp3" />
     <Content Include="assets\mp3\vivalavida-coldplay.mp3" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1027,7 +1034,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\img\album\" />
     <Folder Include="assets\img\artist\" />
     <Folder Include="assets\img\default\" />
     <Folder Include="assets\img\playlist\user\" />
