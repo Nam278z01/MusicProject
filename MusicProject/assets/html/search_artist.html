@@ -1,0 +1,155 @@
+<form ng-submit="searchInput(name.song)" id="search">
+    <div class="search-icon" ng-click="searchInput(name.song)">
+        <i class='bx bx-search'></i>
+    </div>
+    <div class="search-input">
+        <input type="text" placeholder="Tìm kiếm bài hát, playlist, album, nghệ sĩ..." ng-model="searchValue"
+            ng-change="changeInput()">
+    </div>
+    <div class="search-delete" ng-show="isChange" ng-click="deleteInput()">
+        <i class='bx bx-x'></i>
+    </div>
+</form>
+
+<div class="nav">
+    <ul class="nav-list">
+        <li class="nav-item">
+            <p class="nav-item-link" ng-click="searchInput(name.song)">Bài hát</p>
+        </li>
+        <li class="nav-item">
+            <p class="nav-item-link" ng-click="searchInput(name.playlist)">Playlist</p>
+        </li>
+        <li class="nav-item">
+            <p ng-click="searchInput(name.album)" class="nav-item-link">Album</p>
+        </li>
+        <li class="nav-item">
+            <p class="active nav-item-link">Nghệ sĩ</p>
+        </li>
+    </ul>
+</div>
+
+<div class="content">
+    <div class="list-playlist">
+        <div class="list-playlist__header">
+            <h3 class="list-playlist__name">
+                Nghệ sĩ
+                <span>(Có 21.1231 kết quả)</span>
+            </h3>
+        </div>
+        <div class="list-playlist__slide">
+            <div class="grid">
+                <div class="row sm-gutter">
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1631509112943_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1631509319362_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-layout">
+        <ul class="pagination">
+            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
+        </ul>
+    </div>
+</div>

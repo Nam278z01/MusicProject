@@ -1,0 +1,209 @@
+:root {
+    --bg-color: #f5f5f5;
+    --bg-color2: #f0f0f0;
+    --white-color: #ffffff;
+    --red-color: #ff0000;
+    --bg-color-blur: rgba(28, 30, 32, 0.02);
+    --bg-color-blur2: rgba(28, 30, 32, 0.05);
+    --bg-color-blur3: rgba(28, 30, 32, 0.15);
+    --bg-color-blur4: rgba(28, 30, 32, 0.1);
+    --text-color: rgba(28, 30, 32, 0.88);
+    --text-color-blur: rgba(28, 30, 32, 0.5);
+    --main-color: #0ca3ef;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --scroll-color: #cecece;
+    --border-color: rgba(28, 30, 32, 0.05);
+    --border-color-blur: rgba(28, 30, 32, 0.2);
+    --white-color-blur : rgba(255, 255, 255, 0.4);
+    --song-hover-color: #eaeaea;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-weight: 500;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+body.no-scroll {
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+/* body::-webkit-scrollbar {
+    width: 4px;
+    background-color: var(--bg-color);
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    width: 4px;
+    background-color: var(--scroll-color);
+} */
+
+a {
+    text-decoration: none;
+    color: unset;
+    display: inline-block;
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+input {
+    outline: none;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    background-color: var(--bg-color-blur);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+input.warning {
+    border-color: var(--red-color);
+    box-shadow: 0 0 5px var(--red-color);
+}
+
+input:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 5px var(--main-color);
+}
+
+p.input-warning {
+    font-size: 1.3rem;
+    color: var(--red-color);
+    text-align: right;
+    padding-top: 4px;
+}
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--text-color);
+    transition: background-color linear 0.35s;
+    padding: 8px 16px;
+}
+
+.btn.btn--primary {
+    font-size: 1.3rem;
+    color: var(--text-color-blur);
+    border-radius: 30px;
+    transition: all 100ms linear;
+    border-color: var(--border-color-blur);
+}
+
+.btn.btn--primary:hover {
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+
+.btn.disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.btn.btn-outline {
+    border-width: 1px;
+    border-style: solid;
+}
+
+.btn i {
+    font-size: 2.4rem;
+}
+
+.btn span {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding-left: 8px;
+}
+
+.btn--circle {
+    padding: 0;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+}
+
+.ratio16-9 {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+}
+
+.ratio1-1 {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+}
+
+.ratio10-4 {
+    position: relative;
+    width: 100%;
+    padding-bottom: 30%;
+    overflow: hidden;
+}
+
+.ratioIn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes backgroundScale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,55 @@
+<div class="nav">
+    
+    <ul class="nav-list">
+        <li class="nav-item"><a href="#!/kham-pha/nghe-si?&g=1" ng-class="{active:isActiveNav(undefined)}" class="nav-item-link">
+                Hot</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/nghe-si?n=vn&g=1" ng-class="{active:isActiveNav('vn')}" class="nav-item-link">Việt
+                Nam</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/nghe-si?n=usuk&g=1" ng-class="{active:isActiveNav('usuk')}"
+                class="nav-item-link">Âu Mỹ</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/nghe-si?n=ca&g=1" ng-class="{active:isActiveNav('ca')}"
+                class="nav-item-link">Châu Á</a></li>
+    </ul>
+</div>
+
+<ul class="sub-nav-list">
+    <li class="sub-nav-item" ng-class="{active:isGenderorisBand('1')}" ng-click="changeGenderorisBand(1)"><p >Nam</p></li>
+    <li class="sub-nav-item" ng-class="{active:isGenderorisBand('0')}" ng-click="changeGenderorisBand(0)"><p>Nữ</p></li>
+    <li class="sub-nav-item" ng-class="{active:isGenderorisBand('3')}" ng-click="changeGenderorisBand(3)"><p>Nhóm nhạc</p></li>
+</ul>
+
+<div class="content">
+    <div class="list-playlist">
+        <div class="list-playlist__slide">
+            <div class="grid">
+                <div class="row sm-gutter">
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="margin-bottom: 24px; cursor: pointer;">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd" style="border-radius: 50%;">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-artist artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-layout">
+        <ul class="pagination">
+            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
+        </ul>
+    </div>
+</div>

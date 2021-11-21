@@ -1,0 +1,121 @@
+<div class="nav">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="#!/kham-pha/playlist" ng-class="{active:isActiveNav(undefined)}"
+                class="nav-item-link">Mới</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/playlist?n=vn&col=Col0000001" ng-class="{active:isActiveNav('vn')}"
+                class="nav-item-link">Việt Nam</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/playlist?n=usuk&col=Col0000003" ng-class="{active:isActiveNav('usuk')}"
+                class="nav-item-link">Âu Mỹ</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/playlist?n=ca&col=Col0000073" ng-class="{active:isActiveNav('ca')}"
+                class="nav-item-link">Châu Á</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/playlist?n=k&col=Col0000011" ng-class="{active:isActiveNav('k')}"
+                class="nav-item-link">Khác</a></li>
+    </ul>
+</div>
+
+<ul class="sub-nav-list" ng-show="isActiveNav('vn')">
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000001')}"><a
+            href="#!/kham-pha/playlist?n=vn&col=Col0000001">Nhạc Trẻ</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000013')}"><a
+            href="#!/kham-pha/playlist?n=vn&col=Col0000013">Trữ tình</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000070')}"><a
+            href="#!/kham-pha/playlist?n=vn&col=Col0000070">Remix Việt</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000006')}"><a
+            href="#!/kham-pha/playlist?n=vn&col=Col0000006">Rap Việt</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000071')}"><a
+            href="#!/kham-pha/playlist?n=vn&col=Col0000071">Rock Việt</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000009')}"><a
+            href="#!/kham-pha/playlist?n=vn&col=Col0000009">Cách mạng</a></li>
+</ul>
+<ul class="sub-nav-list" ng-show="isActiveNav('ca')">
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000073')}"><a
+            href="#!/kham-pha/playlist?n=ca&col=Col0000073">Nhạc Hàn</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000074')}"><a
+            href="#!/kham-pha/playlist?n=ca&col=Col0000074">Nhạc Hoa</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000076')}"><a
+            href="#!/kham-pha/playlist?n=ca&col=Col0000076">Nhạc Nhật</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000075')}"><a
+            href="#!/kham-pha/playlist?n=ca&col=Col0000075">Nhạc Thái</a></li>
+</ul>
+<ul class="sub-nav-list" ng-show="isActiveNav('usuk')">
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000003')}"><a
+            href="#!/kham-pha/playlist?n=usuk&col=Col0000003">Pop</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000005')}"><a
+            href="#!/kham-pha/playlist?n=usuk&col=Col0000005">Rock</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000002')}"><a
+            href="#!/kham-pha/playlist?n=usuk&col=Col0000002">Electronic/Dance</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000016')}"><a
+            href="#!/kham-pha/playlist?n=usuk&col=Col0000016">R&B/Hip hop/Rap</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000072')}"><a
+            href="#!/kham-pha/playlist?n=usuk&col=Col0000072">Blues/Jazz</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000004')}"><a
+            href="#!/kham-pha/playlist?n=usuk&col=Col0000004">Country</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000017')}"><a
+            href="#!/kham-pha/playlist?n=usuk&col=Col0000017">Latin</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000015')}"><a
+            href="#!/kham-pha/playlist?n=usuk&col=Col0000015">Indie</a></li>
+</ul>
+<ul class="sub-nav-list" ng-show="isActiveNav('k')">
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000011')}"><a
+            href="#!/kham-pha/playlist?n=k&col=Col0000011">Thiếu Nhi</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000007')}"><a
+            href="#!/kham-pha/playlist?n=k&col=Col0000007">Không Lời</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000077')}"><a
+            href="#!/kham-pha/playlist?n=k&col=Col0000077">Nhạc Phim</a></li>
+</ul>
+
+<div class="content">
+    <div class="list-playlist">
+        <div class="list-playlist__header" ng-show="isActiveNav(undefined)">
+            <h3 class="list-playlist__name">
+                Mới
+            </h3>
+        </div>
+        <div class="list-playlist__slide">
+            <div class="grid">
+                <div class="row sm-gutter">
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                            <div class="decorative"></div>
+                            <div class="decorative"></div>
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                                <div class="ratioIn list-playlist__item-feature">
+                                    <button class="btn btn-like btn--circle" title="Yêu thích">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <div class="list-playlist__item-play">
+                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
+                                            <i class='bx bxs-right-arrow'></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn btn--more btn--circle" title="Khác">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-name" title="Hit-Maker Việt">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-layout">
+        <ul class="pagination">
+            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
+        </ul>
+    </div>
+</div>

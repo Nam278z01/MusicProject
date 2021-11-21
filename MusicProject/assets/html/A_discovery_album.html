@@ -1,0 +1,81 @@
+<div class="nav">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="#!/kham-pha/album" ng-class="{active:isActiveNav(undefined)}"
+                class="nav-item-link">Mới &
+                Hot</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/album?n=vn" ng-class="{active:isActiveNav('vn')}"
+                class="nav-item-link">Việt Nam</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/album?n=usuk" ng-class="{active:isActiveNav('usuk')}"
+                class="nav-item-link">Âu Mỹ</a></li>
+        <li class="nav-item"><a href="#!/kham-pha/album?n=ca" ng-class="{active:isActiveNav('ca')}"
+                class="nav-item-link">Châu Á</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    <div class="list-playlist">
+        <div class="list-playlist__header">
+            <h3 class="list-playlist__name" ng-show="isActiveNav(undefined)">
+                Mới & Hot
+            </h3>
+            <h3 class="list-playlist__name" ng-show="isActiveNav('vn')">
+                Việt Nam
+            </h3>
+            <h3 class="list-playlist__name" ng-show="isActiveNav('usuk')">
+                Âu Mỹ
+            </h3>
+            <h3 class="list-playlist__name" ng-show="isActiveNav('ca')">
+                Châu Á
+            </h3>
+        </div>
+        <div class="list-playlist__slide">
+            <div class="grid">
+                <div class="row sm-gutter">
+                    <div class="col l-2">
+                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                            <div class="decorative"></div>
+                            <div class="decorative"></div>
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd">
+                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                </div>
+                                <div class="ratioIn list-playlist__item-feature">
+                                    <button class="btn btn-like btn--circle" title="Yêu thích">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <div class="list-playlist__item-play">
+                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
+                                            <i class='bx bxs-right-arrow'></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn btn--more btn--circle" title="Khác">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-name" title="Hit-Maker Việt">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                            <div class="list-playlist__item-artist">
+                                <a href="#">Hit-Maker Việt</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-layout">
+        <ul class="pagination">
+            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
+            <li><a href="#" class="active">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
+        </ul>
+    </div>
+</div>

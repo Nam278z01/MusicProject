@@ -1,0 +1,58 @@
+<div class="nav">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="#!/da-thích/bai-hat" class="nav-item-link active">Bài hát</a></li>
+        <li class="nav-item"><a href="#!/da-thich/playlist" class="nav-item-link">Playlist</a></li>
+        <li class="nav-item"><a href="#!/da-thich/album" class="nav-item-link">Album</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    <div class="list-playlist">
+        <div class="list-playlist__header">
+            <h3 class="list-playlist__name">
+                Bài hát
+            </h3>
+        </div>
+        <div class="list-playlist__slide">
+            <div class="grid">
+                <div class="row sm-gutter">
+                    <div class="col l-2" dir-paginate="s in songs | itemsPerPage: pageSize"
+                        total-items="totalCount" current-page="pageIndex">
+                        <div class="list-playlist__item" style="margin-bottom: 24px">
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd">
+                                    <img src="./assets/img/Song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+                                </div>
+                                <div class="ratioIn list-playlist__item-feature">
+                                    <button class="btn btn-like btn--circle" title="Yêu thích">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <div class="list-playlist__item-play">
+                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
+                                            <i class='bx bxs-right-arrow'></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn btn--more btn--circle" title="Khác">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-name" title="{{s.Song.SongName}}">
+                                <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}"
+                                    ng-click="GetSong(s.Song.SongID)">{{s.Song.SongName}}</a>
+                            </div>
+                            <div class="list-playlist__item-artist">
+                                <a href="#" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-layout">
+        <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)">
+        </dir-pagination-controls>
+    </div>
+</div>

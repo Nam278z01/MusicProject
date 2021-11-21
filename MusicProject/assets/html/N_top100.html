@@ -1,0 +1,117 @@
+<div class="nav">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="#!/top-100?n=vn&col=Col0000001" ng-class="{active:isActiveNav('vn')}"
+                class="nav-item-link">Việt Nam</a></li>
+        <li class="nav-item"><a href="#!/top-100?n=usuk&col=Col0000003" ng-class="{active:isActiveNav('usuk')}"
+                class="nav-item-link">Âu Mỹ</a></li>
+        <li class="nav-item"><a href="#!/top-100?n=ca&col=Col0000073" ng-class="{active:isActiveNav('ca')}"
+                class="nav-item-link">Châu Á</a></li>
+        <li class="nav-item"><a href="#!/top-100?n=k&col=Col0000011" ng-class="{active:isActiveNav('k')}"
+                class="nav-item-link">Khác</a></li>
+    </ul>
+</div>
+
+<ul class="sub-nav-list" ng-show="isActiveNav('vn')">
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000001')}"><a
+            href="#!/top-100?n=vn&col=Col0000001">Nhạc Trẻ</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000013')}"><a
+            href="#!/top-100?n=vn&col=Col0000013">Trữ tình</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000070')}"><a
+            href="#!/top-100?n=vn&col=Col0000070">Remix Việt</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000006')}"><a
+            href="#!/top-100?n=vn&col=Col0000006">Rap Việt</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000071')}"><a
+            href="#!/top-100?n=vn&col=Col0000071">Rock Việt</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000009')}"><a
+            href="#!/top-100?n=vn&col=Col0000009">Cách mạng</a></li>
+</ul>
+<ul class="sub-nav-list" ng-show="isActiveNav('ca')">
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000073')}"><a
+            href="#!/top-100?n=ca&col=Col0000073">Nhạc Hàn</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000074')}"><a
+            href="#!/top-100?n=ca&col=Col0000074">Nhạc Hoa</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000076')}"><a
+            href="#!/top-100?n=ca&col=Col0000076">Nhạc Nhật</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000075')}"><a
+            href="#!/top-100?n=ca&col=Col0000075">Nhạc Thái</a></li>
+</ul>
+<ul class="sub-nav-list" ng-show="isActiveNav('usuk')">
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000003')}"><a
+            href="#!/top-100?n=usuk&col=Col0000003">Pop</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000005')}"><a
+            href="#!/top-100?n=usuk&col=Col0000005">Rock</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000002')}"><a
+            href="#!/top-100?n=usuk&col=Col0000002">Electronic/Dance</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000016')}"><a
+            href="#!/top-100?n=usuk&col=Col0000016">R&B/Hip hop/Rap</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000072')}"><a
+            href="#!/top-100?n=usuk&col=Col0000072">Blues/Jazz</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000004')}"><a
+            href="#!/top-100?n=usuk&col=Col0000004">Country</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000017')}"><a
+            href="#!/top-100?n=usuk&col=Col0000017">Latin</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000015')}"><a
+            href="#!/top-100?n=usuk&col=Col0000015">Indie</a></li>
+</ul>
+<ul class="sub-nav-list" ng-show="isActiveNav('k')">
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000011')}"><a
+            href="#!/top-100?n=k&col=Col0000011">Thiếu Nhi</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000007')}"><a
+            href="#!/top-100?n=k&col=Col0000007">Không Lời</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000077')}"><a
+            href="#!/top-100?n=k&col=Col0000077">Nhạc Phim</a></li>
+</ul>
+
+<div class="top100-header">
+    <div class="top100-header__titler">
+        <p>Top 100</p>
+        <p>Nhạc Trẻ</p>
+    </div>
+    <button class="btn-top100 btn btn--primary btn-outline">
+        Phát tất cả
+    </button>
+</div>
+
+<div class="top100-main" style="margin-bottom: 70px;">
+    <div class="list-song-main">
+        <div class="grid">
+            <div class="row sm-gutter">
+                <div class="col l-12">
+                    <div class="song__wraper">
+                        <div class="song_order-number">
+                            1
+                        </div>
+                        <div class="song top100">
+                            <div class="song__img">
+                                <img src="./assets/img/Song/easy-on-me-edele.jpg" alt="">
+                            </div>
+                            <div class="song__info">
+                                <div class="song__name">
+                                    Easy on me
+                                </div>
+                                <div class="song__artist">
+                                    <span>Adele</span>
+                                    <span>Adele</span>
+                                </div>
+                            </div>
+                            <div class="song__like">
+                                <button class="btn btn--circle btn-song-like">
+                                    <i class='bx bx-heart'></i>
+                                </button>
+                            </div>
+                            <div class="song__more">
+                                <button class="btn btn--circle btn-song-more">
+                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                </button>
+                            </div>
+                            <div class="song__listens">
+                                <i class='bx bx-headphone'></i>
+                                <span>48.9k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
