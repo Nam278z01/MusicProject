@@ -195,6 +195,16 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         alert('Failed to get Account!')
     })
 
+    $rootScope.collections = []
+    $http({
+        method: 'get',
+        url: '/Collection/GetCollections'
+    }).then(function (res) {
+        $rootScope.collections = res.data
+    }, function (err) {
+        alert("Failed to get collections!")
+    })
+
     $window.onload = function () {
         let loading = document.querySelector('.loading')
         loading.classList.add('hidden')

@@ -2,24 +2,18 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
     $rootScope.currentIndex = 3
     $rootScope.currentSubIndex = 5
     $scope.pickedCollections = []
-    $http({
-        method: 'get',
-        url: './assets/js/dataCollection.json'
-    }).then(function (res) {
-        $scope.collections = res.data
-        $scope.genres = $scope.collections.filter(collection => collection.KindofCollection == 1)
-        $scope.moods = $scope.collections.filter(collection => collection.KindofCollection == 2)
-        $scope.scenes = $scope.collections.filter(collection => collection.KindofCollection == 3)
-        $scope.topics = $scope.collections.filter(collection => collection.KindofCollection == 4)
-        $scope.pickedCollections = $scope.collections.filter(collection => collection.CollectionID == $routeParams.tl || collection.CollectionID == $routeParams.tt || collection.CollectionID == $routeParams.kc || collection.CollectionID == $routeParams.cd)
-        if ($scope.pickedCollections.length > 0) {
-            $scope.showpickedCollection = true;
-        } else {
-            $scope.showpickedCollection = false;
-        }
-    }, function (err) {
-        alert("Failed to get collections!")
-    })
+
+    $scope.genres = $rootScope.collections.filter(collection => collection.KindofCollection == 1)
+    $scope.moods = $rootScope.collections.filter(collection => collection.KindofCollection == 2)
+    $scope.scenes = $rootScope.collections.filter(collection => collection.KindofCollection == 3)
+    $scope.topics = $rootScope.collections.filter(collection => collection.KindofCollection == 4)
+
+    $scope.pickedCollections = $rootScope.collections.filter(collection => collection.CollectionID == $routeParams.tl || collection.CollectionID == $routeParams.tt || collection.CollectionID == $routeParams.kc || collection.CollectionID == $routeParams.cd)
+    if ($scope.pickedCollections.length > 0) {
+        $scope.showpickedCollection = true;
+    } else {
+        $scope.showpickedCollection = false;
+    }
 
     $scope.pickedCollection2 = function (col) {
         return $scope.pickedCollections.indexOf(col) != -1
@@ -59,6 +53,5 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
         if (e.target.closest('.collection__pick-item-show')) {
             e.target.closest('.collection__pick-item-show').nextElementSibling.classList.add('show')
         }
-    }
-    )
+    })
 })

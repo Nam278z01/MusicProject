@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionBus.cs" />
+    <Compile Include="Interface\ICollectionBus.cs" />
     <Compile Include="Interface\ILoginBus.cs" />
     <Compile Include="Interface\ISongBus.cs" />
     <Compile Include="LoginBus.cs" />

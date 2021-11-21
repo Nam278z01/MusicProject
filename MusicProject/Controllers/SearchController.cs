@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace MusicProject.Controllers
 {
-    public class SongController : Controller
+    public class SearchController : Controller
     {
-        // GET: Song
+        // GET: Search
         public ActionResult Index()
         {
             return View();

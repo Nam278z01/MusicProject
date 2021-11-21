@@ -48,8 +48,8 @@
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-2" dir-paginate="s in songs | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
-                        <div class="list-playlist__item">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="s in songs | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
+                        <div class="list-playlist__item" style="margin-bottom: 24px">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
                                     <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />

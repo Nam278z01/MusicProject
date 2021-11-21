@@ -127,10 +127,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="Controllers\DiscoveryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\SongController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1031,8 +1033,10 @@
     <Folder Include="assets\img\playlist\user\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\AdminController\" />
+    <Folder Include="Views\Collection\" />
     <Folder Include="Views\Discovery\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\Search\" />
     <Folder Include="Views\Song\" />
   </ItemGroup>
   <ItemGroup>
