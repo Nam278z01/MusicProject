@@ -8,7 +8,12 @@ namespace MusicObj
 {
     public class SongwithArtist
     {
-        public Song Song;
-        public List<Artist> Artists;
+        public Song Song { get; set; }
+        public List<Artist> Artists { get; set; }
+        public SongwithArtist()
+        {
+            Song = new Song();
+            Artists = new List<Artist>();
+        }
     }
 }

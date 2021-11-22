@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MusicObj;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace MusicDao
 {
-    public interface ISongDao
+    public class AdminDao
     {
-        ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function);
     }
 }

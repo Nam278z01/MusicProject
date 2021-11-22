@@ -7,8 +7,8 @@ using MusicObj;
 
 namespace MusicBus
 {
-    public interface ISongBus
+    public interface IAlbumBus
     {
-        ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function);
+        List<AlbumwithArtist> GetAlbumsPage(int pageIndex, int pageSize, int nation, out int totalCount);
     }
 }

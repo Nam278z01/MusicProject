@@ -7,8 +7,8 @@ using MusicObj;
 
 namespace MusicDao
 {
-    public interface ISongDao
+    public interface IAlbumDao
     {
-        ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function);
+        List<AlbumwithArtist> GetAlbumsPage(int pageIndex, int pageSize, int nation, out int totalCount);
     }
 }

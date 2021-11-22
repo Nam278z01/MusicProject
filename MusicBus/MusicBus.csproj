@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumBus.cs" />
+    <Compile Include="ArtistBus.cs" />
     <Compile Include="CollectionBus.cs" />
+    <Compile Include="Interface\IAlbumBus.cs" />
+    <Compile Include="Interface\IArtistBus.cs" />
     <Compile Include="Interface\ICollectionBus.cs" />
     <Compile Include="Interface\ILoginBus.cs" />
     <Compile Include="Interface\IPlaylistAdminBus.cs" />

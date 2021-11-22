@@ -52,8 +52,13 @@ namespace MusicDao
         public List<PlaylistAdmin> GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID, out int totalCount)
         {
             totalCount = 0;
-            List<PlaylistAdmin> playlistAdmins = new List<PlaylistAdmin>();
             SqlDataReader dr = dh.StoreReaders("GetPlaylistsByCollectionPage", pageIndex, pageSize, collectionID);
+            while (dr.Read())
+            {
+                totalCount = int.Parse(dr["totalCount"].ToString());
+            }
+            dr.NextResult();
+            List<PlaylistAdmin> playlistAdmins = new List<PlaylistAdmin>();
             while (dr.Read())
             {
                 PlaylistAdmin playlistAdmin = new PlaylistAdmin();
@@ -65,11 +70,6 @@ namespace MusicDao
                 playlistAdmin.Image = dr["Image"].ToString();
                 playlistAdmin.isPublic = bool.Parse(dr["isPublic"].ToString());
                 playlistAdmins.Add(playlistAdmin);
-            }
-            dr.NextResult();
-            while (dr.Read())
-            {
-                totalCount = int.Parse(dr["totalCount"].ToString());
             }
             dh.Close();
             return playlistAdmins;

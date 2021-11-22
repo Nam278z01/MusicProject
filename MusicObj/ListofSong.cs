@@ -8,7 +8,11 @@ namespace MusicObj
 {
     public class ListofSong
     {
-        public List<SongwithArtist> songs;
-        public int totalCount;
+        public List<SongwithArtist> songs { get; set; }
+        public int totalCount { get; set; }
+        public ListofSong()
+        {
+            songs = new List<SongwithArtist>();
+        }
     }
 }

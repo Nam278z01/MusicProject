@@ -13,25 +13,25 @@
 </div>
 
 <ul class="sub-nav-list">
-    <li class="sub-nav-item" ng-class="{active:isGenderorisBand('1')}" ng-click="changeGenderorisBand(1)"><p >Nam</p></li>
+    <li class="sub-nav-item" ng-class="{active:isGenderorisBand('1')}" ng-click="changeGenderorisBand(1)"><p>Nam</p></li>
     <li class="sub-nav-item" ng-class="{active:isGenderorisBand('0')}" ng-click="changeGenderorisBand(0)"><p>Nữ</p></li>
     <li class="sub-nav-item" ng-class="{active:isGenderorisBand('3')}" ng-click="changeGenderorisBand(3)"><p>Nhóm nhạc</p></li>
 </ul>
 
-<div class="content">
+<div class="content" ng-controller="ArtistDiscoveryController">
     <div class="list-playlist">
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-2">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in artists | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
                         <div class="list-playlist__item" style="margin-bottom: 24px; cursor: pointer;">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd" style="border-radius: 50%;">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                    <img src="../../assets/img/artist/{{a.Image}}" alt="{{a.ArtistName}}">
                                 </div>
                             </div>
                             <div class="list-playlist__item-artist artist">
-                                <a href="#">Hit-Maker Việt</a>
+                                <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}">{{a.ArtistName}}</a>
                             </div>
                         </div>
                     </div>
@@ -41,15 +41,6 @@
     </div>
 
     <div class="wrap-layout">
-        <ul class="pagination">
-            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
-        </ul>
+        <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

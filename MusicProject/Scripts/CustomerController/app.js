@@ -123,6 +123,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.currentSubIndex = -1
     $rootScope.songIsPlayed = {}
     $rootScope.logged = false
+    $rootScope.song = {}
 
     $http({
         method: 'get',

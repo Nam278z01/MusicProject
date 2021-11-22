@@ -16,12 +16,6 @@ namespace MusicProject.Controllers
             IPlaylistAdminBus plbus = new PlaylistAdminBus();
             return Json(plbus.GetPlaylistAdminByCollection(CollectionID), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID)
-        {
-            IPlaylistAdminBus plbus = new PlaylistAdminBus();
-            int totalCount;
-            List<PlaylistAdmin> playlistAdmins = plbus.GetPlaylistAdminsPage(pageIndex, pageSize, collectionID, out totalCount);
-            return Json(new {playlistAdmins = playlistAdmins, totalCount = totalCount}, JsonRequestBehavior.AllowGet);
-        }
+        
     }
 }

@@ -12,7 +12,7 @@
     </ul>
 </div>
 
-<div class="content">
+<div class="content" ng-controller="AlbumDiscoveryController">
     <div class="list-playlist">
         <div class="list-playlist__header">
             <h3 class="list-playlist__name" ng-show="isActiveNav(undefined)">
@@ -31,13 +31,13 @@
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-2">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in albums | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
                         <div class="list-playlist__item" style="padding-bottom: 24px;">
                             <div class="decorative"></div>
                             <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                    <img src="../../assets/img/album/{{a.Album.Image}}" alt="{{a.Album.AlbumName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
@@ -53,11 +53,11 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="Hit-Maker Việt">
-                                <a href="#">Hit-Maker Việt</a>
+                            <div class="list-playlist__item-name" title="{{a.Album.AlbumName}}">
+                                <a href="#!/chi-tiet/album?id={{a.Album.AlbumID}}">{{a.Album.AlbumName}}</a>
                             </div>
                             <div class="list-playlist__item-artist">
-                                <a href="#">Hit-Maker Việt</a>
+                                <a href="#!/chi-tiet/nghe-si?id={{a.Artist.ArtistID}}">{{a.Artist.ArtistName}}</a>
                             </div>
                         </div>
                     </div>
@@ -67,15 +67,6 @@
     </div>
 
     <div class="wrap-layout">
-        <ul class="pagination">
-            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
-        </ul>
+        <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

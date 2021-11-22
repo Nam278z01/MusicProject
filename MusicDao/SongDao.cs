@@ -16,10 +16,23 @@ namespace MusicDao
         {
             dh = new DataHelper();
         }
-        public ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation)
+        public ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function)
         {
+            SqlDataReader dr;
+            if (function == "search")
+            {
+                dr = dh.StoreReaders("GetSongsSearch", pageIndex, pageSize, textSearch);
+            }
+            else
+            {
+                dr = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation);
+            }
             ListofSong los = new ListofSong();
-            SqlDataReader dr = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation);
+            while (dr.Read())
+            {
+                los.totalCount = int.Parse(dr["totalCount"].ToString());
+            }
+            dr.NextResult();
             //Start: Lấy bài hát cùng các nghệ sĩ
             List<SongwithArtist> songs = new List<SongwithArtist>();
             string songID = null;
@@ -38,6 +51,8 @@ namespace MusicDao
                     s.ReleaseDate = dr["ReleaseDate"].ToString() != "" ? DateTime.Parse(dr["ReleaseDate"].ToString()) : s.ReleaseDate;
                     s.Image = dr["Image"].ToString();
                     s.SongPath = dr["SongPath"].ToString();
+                    s.Nation = int.Parse(dr["Nation"].ToString());
+                    s.MV = dr["MV"].ToString();
                     s.isVip = bool.Parse(dr["isVip"].ToString());
                     swa.Song = s;
                     Artist artist = new Artist();
@@ -58,11 +73,6 @@ namespace MusicDao
             }
             los.songs = songs;
             //End: Lấy bài hát cùng các nghệ sĩ
-            dr.NextResult();
-            while (dr.Read())
-            {
-                los.totalCount = int.Parse(dr["totalCount"].ToString());
-            }
             dh.Close();
             return los;
         }
