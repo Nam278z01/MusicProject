@@ -23,7 +23,7 @@ namespace MusicObj
         public string PersonID { get; set; }
         public string Image { get; set; }
         public string PersonName { get; set; }
-        public byte Gender { get; set; }
+        public Nullable<byte> Gender { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
     }

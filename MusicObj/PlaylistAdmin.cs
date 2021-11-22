@@ -27,7 +27,9 @@ namespace MusicObj
         public string PlaylistName { get; set; }
         public string Description { get; set; }
         public System.DateTime DateCreated { get; set; }
+        public string Image { get; set; }
         public string AccountName { get; set; }
+        public Nullable<bool> isPublic { get; set; }
     
         public virtual AccountAdmin AccountAdmin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

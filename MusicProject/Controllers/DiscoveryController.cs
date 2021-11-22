@@ -31,8 +31,7 @@ namespace MusicProject.Controllers
                 nationInt = 4;
             }
             ISongBus sbus = new SongBus();
-            ListofSong los = sbus.GetSongsPage(pageIndex, pageSize, collectionID, nationInt);
-            return Json(los, JsonRequestBehavior.AllowGet);
+            return Json(sbus.GetSongsPage(pageIndex, pageSize, collectionID, nationInt), JsonRequestBehavior.AllowGet);
         }
     }
 }

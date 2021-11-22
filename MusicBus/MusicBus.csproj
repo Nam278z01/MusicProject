@@ -44,8 +44,10 @@
     <Compile Include="CollectionBus.cs" />
     <Compile Include="Interface\ICollectionBus.cs" />
     <Compile Include="Interface\ILoginBus.cs" />
+    <Compile Include="Interface\IPlaylistAdminBus.cs" />
     <Compile Include="Interface\ISongBus.cs" />
     <Compile Include="LoginBus.cs" />
+    <Compile Include="PlaylistAdminBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongBus.cs" />
   </ItemGroup>

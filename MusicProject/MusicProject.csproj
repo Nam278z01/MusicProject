@@ -131,6 +131,7 @@
     <Compile Include="Controllers\DiscoveryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PlaylistAdminController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1042,6 +1043,7 @@
     <Folder Include="Views\Collection\" />
     <Folder Include="Views\Discovery\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\PlaylistAdmin\" />
     <Folder Include="Views\Search\" />
     <Folder Include="Views\Song\" />
   </ItemGroup>

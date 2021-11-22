@@ -63,6 +63,7 @@ namespace MusicDao
             {
                 los.totalCount = int.Parse(dr["totalCount"].ToString());
             }
+            dh.Close();
             return los;
         }
     }

@@ -27,6 +27,7 @@ namespace MusicObj
         public string Description { get; set; }
         public System.DateTime DateCreated { get; set; }
         public string AccountName { get; set; }
+        public string Image { get; set; }
         public bool isPublic { get; set; }
     
         public virtual AccountUser AccountUser { get; set; }

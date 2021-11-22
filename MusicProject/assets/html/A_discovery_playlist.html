@@ -24,8 +24,8 @@
             href="#!/kham-pha/playlist?n=vn&col=Col0000006">Rap Việt</a></li>
     <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000071')}"><a
             href="#!/kham-pha/playlist?n=vn&col=Col0000071">Rock Việt</a></li>
-    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000009')}"><a
-            href="#!/kham-pha/playlist?n=vn&col=Col0000009">Cách mạng</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000078')}"><a
+            href="#!/kham-pha/playlist?n=vn&col=Col0000078">Pop Việt</a></li>
 </ul>
 <ul class="sub-nav-list" ng-show="isActiveNav('ca')">
     <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000073')}"><a
@@ -56,15 +56,21 @@
             href="#!/kham-pha/playlist?n=usuk&col=Col0000015">Indie</a></li>
 </ul>
 <ul class="sub-nav-list" ng-show="isActiveNav('k')">
-    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000011')}"><a
-            href="#!/kham-pha/playlist?n=k&col=Col0000011">Thiếu Nhi</a></li>
-    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000007')}"><a
-            href="#!/kham-pha/playlist?n=k&col=Col0000007">Không Lời</a></li>
-    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000077')}"><a
-            href="#!/kham-pha/playlist?n=k&col=Col0000077">Nhạc Phim</a></li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000011')}">
+        <a href="#!/kham-pha/playlist?n=k&col=Col0000011">Thiếu Nhi</a>
+    </li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000007')}">
+        <a href="#!/kham-pha/playlist?n=k&col=Col0000007">Không Lời</a>
+    </li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('Col0000077')}">
+        <a href="#!/kham-pha/playlist?n=k&col=Col0000077">Nhạc Phim</a>
+    </li>
+    <li class="sub-nav-item" ng-class="{active:isActiveCollection('ngd')}">
+        <a href="#!/kham-pha/playlist?n=k&col=ngd">Người dùng tạo</a>
+    </li>
 </ul>
 
-<div class="content">
+<div class="content" ng-controller="PlaylistDiscoveryController">
     <div class="list-playlist">
         <div class="list-playlist__header" ng-show="isActiveNav(undefined)">
             <h3 class="list-playlist__name">
@@ -74,13 +80,13 @@
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-2">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="p in playlistAdmins | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
                         <div class="list-playlist__item" style="padding-bottom: 24px;">
                             <div class="decorative"></div>
                             <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                    <img src="../../assets/img/playlist/admin/{{p.Image}}" alt="{{p.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
@@ -96,8 +102,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="Hit-Maker Việt">
-                                <a href="#">Hit-Maker Việt</a>
+                            <div class="list-playlist__item-name" title="{{p.PlaylistName}}">
+                                <a href="#!/chi-tiet/playlistad/pl={{p.PlaylistID}}">{{p.PlaylistName}}</a>
                             </div>
                         </div>
                     </div>
@@ -107,15 +113,6 @@
     </div>
 
     <div class="wrap-layout">
-        <ul class="pagination">
-            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
-        </ul>
+        <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

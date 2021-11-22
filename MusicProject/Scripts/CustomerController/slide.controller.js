@@ -169,16 +169,29 @@ appMusic.controller('SlideController', function ($scope) {
     app.start()
 })
 
-appMusic.controller('SlideClickController', function ($scope) {
+appMusic.controller('SlideClickController', function ($scope, $window) {
     function Slide(options) {
         let btnNext = options.selector.querySelector('.list-playlist__btn-next')
         let btnPrev = options.selector.querySelector('.list-playlist__btn-prev')
         let slide = options.selector.querySelector('.list-playlist__slide > .grid')
 
         let currentIdx = 0
-        let eleInViewOfThisSlide = 6
+
+        let eleInViewOfThisSlide
+        if (window.innerWidth < 740) {
+            eleInViewOfThisSlide = 2
+        } else if (window.innerWidth < 1113) {
+            eleInViewOfThisSlide = 4
+        } else if (window.innerWidth < 1800) {
+            eleInViewOfThisSlide = 5
+        } else {
+            eleInViewOfThisSlide = 6
+        }
+
         let countEleSlide = slide.children[0].childElementCount
         let jump = (countEleSlide % eleInViewOfThisSlide) / eleInViewOfThisSlide * 100
+
+       
 
         // Next slide
         btnNext.onclick = () => {
@@ -217,6 +230,19 @@ appMusic.controller('SlideClickController', function ($scope) {
                 fill: 'forwards'
             })
         }
+
+        $window.addEventListener('resize', () => {
+            if (window.innerWidth < 740) {
+                eleInViewOfThisSlide = 2
+            } else if (document.body.clientWidth < 1113) {
+                eleInViewOfThisSlide = 4
+            } else if (document.body.clientWidth < 1800) {
+                eleInViewOfThisSlide = 5
+            } else {
+                eleInViewOfThisSlide = 6
+            }
+            jump = (countEleSlide % eleInViewOfThisSlide) / eleInViewOfThisSlide * 100
+        })
     }
 
     let slideOne = document.querySelector('#slide-one')

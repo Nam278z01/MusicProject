@@ -59,36 +59,33 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
     }
 })
 
-//app.controller('DetailsController', function ($scope, $rootScope, $http, $routeParams) {
-//    $rootScope.currentIndex = -1
-//    $rootScope.currentSubIndex = -1
-//    $http({
-//        method: 'get',
-//        url: '/Detail/GetSongByID',
-//        params: { songid: $routeParams.song }
-//    }).then(function (response) {
-//        $scope.song = response.data
-//        //start: Title
-//        $rootScope.title = $scope.song.Song.SongName + " | "
-//        var length = $scope.song.Artists.length
-//        for (var i = 0; i < length; i++) {
-//            $rootScope.title += $scope.song.Artists[i].ArtistName
-//            if (i != length - 1) {
-//                $rootScope.title += ", "
-//            }
-//        }
-//        $rootScope.title += " | MyMusic"
-//        //end: Title
-//    }, function (error) {
-//        alert('Failed to get the song!')
-//    })
+appMusic.controller('PlaylistDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {
+    $rootScope.currentIndex = 2
+    $rootScope.currentSubIndex = 2
+    $scope.playlists = []
+    $scope.totalCount = 0
+    $scope.pageSize = 24
+    $scope.maxSize = 5
+    $scope.pageIndex = $routeParams.page || 1
 
-//    $http({
-//        method: 'get',
-//        url: '/Discovery/GetSongswithArtist'
-//    }).then(function (response) {
-//        $scope.songs = response.data
-//    }, function (error) {
-//        alert('Failed to get the songs!')
-//    })
-//})
+    getResultsPage($scope.pageIndex)
+
+    $scope.pageChanged = function (newPage) {
+        getResultsPage(newPage);
+        $location.search("page", newPage)
+    };
+
+    function getResultsPage(index) {
+        $scope.pageIndex = index
+        $http({
+            method: 'get',
+            url: '/PlaylistAdmin/GetPlaylistAdminsPage',
+            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, collectionID: $routeParams.col}
+        }).then(function (response) {
+            $scope.playlistAdmins = response.data.playlistAdmins
+            $scope.totalCount = response.data.totalCount
+        }, function (error) {
+            alert('Failed to get the playlists!')
+        })
+    }
+})
