@@ -11,11 +11,6 @@ namespace MusicProject.Controllers
     public class PlaylistAdminController : Controller
     {
         // GET: PlaylistAdmin
-        public JsonResult GetPlaylistAdminByCollection(string CollectionID)
-        {
-            IPlaylistAdminBus plbus = new PlaylistAdminBus();
-            return Json(plbus.GetPlaylistAdminByCollection(CollectionID), JsonRequestBehavior.AllowGet);
-        }
         
     }
 }

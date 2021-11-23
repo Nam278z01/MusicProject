@@ -9,6 +9,6 @@ namespace MusicDao
 {
     public interface IAlbumDao
     {
-        List<AlbumwithArtist> GetAlbumsPage(int pageIndex, int pageSize, int nation, out int totalCount);
+        List<Album> GetAlbumsPage(int pageIndex, int pageSize, int nation, string textSearch, string function, out int totalCount);
     }
 }

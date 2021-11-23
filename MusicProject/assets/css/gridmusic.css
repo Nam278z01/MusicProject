@@ -159,7 +159,7 @@
     text-transform: capitalize;
 }
 
-.list-playlist__item-artist {
+.list-playlist__item-artist, .list-playlist__item-admin {
     font-size: 1.3rem;
     text-transform: capitalize;
     color: var(--text-color-blur);
@@ -191,3 +191,14 @@
     left: -0.1rem;
     padding-right: 2px;
 }
+
+.list-playlist__item-admin {
+    text-transform: initial;
+}
+
+    .list-playlist__item-admin span {
+        margin-left: 6px;
+        text-transform: capitalize;
+    }
+
+    

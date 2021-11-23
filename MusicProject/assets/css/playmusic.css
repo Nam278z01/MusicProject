@@ -142,7 +142,7 @@
 }
 
 .controls__player .btn:nth-child(3) i {
-    font-size: 7rem;
+    font-size: 5rem;
 }
 
 .controls__player .btn:first-child i,
@@ -180,7 +180,7 @@
 }
 
 .controls-extend {
-    width: 30%;
+    width: 25%;
     margin-left: 50px;
     display: flex;
     align-items: center;

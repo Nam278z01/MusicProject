@@ -86,7 +86,7 @@
                             <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="../../assets/img/playlist/admin/{{p.Image}}" alt="{{p.PlaylistName}}">
+                                    <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
@@ -102,8 +102,11 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="{{p.PlaylistName}}">
-                                <a href="#!/chi-tiet/playlistad/pl={{p.PlaylistID}}">{{p.PlaylistName}}</a>
+                            <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
+                                <a href="#!/chi-tiet/playlistad/pl={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                            </div>
+                            <div class="list-playlist__item-admin">
+                                <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
                             </div>
                         </div>
                     </div>

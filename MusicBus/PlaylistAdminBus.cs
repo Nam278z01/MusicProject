@@ -15,11 +15,7 @@ namespace MusicBus
         {
             pldao = new PlaylistAdminDao();
         }
-        public List<PlaylistAdmin> GetPlaylistAdminByCollection(string collectionID)
-        {
-            return pldao.GetPlaylistAdminByCollection(collectionID);
-        }
-        public List<PlaylistAdmin> GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID, out int totalCount)
+        public List<PlaylistAdminwithAdmin> GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID, out int totalCount)
         {
             return pldao.GetPlaylistAdminsPage(pageIndex, pageSize, collectionID, out totalCount);
         }

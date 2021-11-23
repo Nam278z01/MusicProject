@@ -9,6 +9,6 @@ namespace MusicDao
 {
     public interface ISongDao
     {
-        ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function);
+        List<SongwithArtist> GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function, out int totalCount);
     }
 }

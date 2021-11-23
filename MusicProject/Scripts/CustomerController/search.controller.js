@@ -89,7 +89,7 @@ appMusic.controller('ArtistSearchController', function ($scope, $rootScope, $loc
     getResultsPage($scope.pageIndex)
 
     $scope.pageChanged = function (newPage) {
-        $location.path('/tim-kiem/bai-hat').search("page", newPage)
+        $location.path('/tim-kiem/nghe-si').search("page", newPage)
         getResultsPage(newPage);
     };
 
@@ -104,6 +104,71 @@ appMusic.controller('ArtistSearchController', function ($scope, $rootScope, $loc
             $scope.totalCount = res.data.totalCount
         }, function (err) {
             alert("Failed to get artists!")
+        })
+    }
+})
+
+
+appMusic.controller('AlbumSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
+    $rootScope.title = $routeParams.q + " | Tìm kiếm Album " + $routeParams.q
+    $rootScope.currentSubIndex = 1
+
+    $scope.songs = []
+    $scope.totalCount = 0
+    $scope.pageSize = 5
+    $scope.maxSize = 5
+    $scope.pageIndex = $routeParams.page
+
+    getResultsPage($scope.pageIndex)
+
+    $scope.pageChanged = function (newPage) {
+        $location.path('/tim-kiem/album').search("page", newPage)
+        getResultsPage(newPage);
+    };
+
+    function getResultsPage(index) {
+        $scope.pageIndex = index
+        $http({
+            method: 'get',
+            url: '/Search/GetAlbumsSearch',
+            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, textSearch: $routeParams.q }
+        }).then(function (res) {
+            $scope.albums = res.data.albums
+            $scope.totalCount = res.data.totalCount
+        }, function (err) {
+            alert("Failed to get albums!")
+        })
+    }
+})
+
+appMusic.controller('PlaylistSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
+    $rootScope.title = $routeParams.q + " | Tìm kiếm Playlist " + $routeParams.q
+    $rootScope.currentSubIndex = 1
+
+    $scope.songs = []
+    $scope.totalCount = 0
+    $scope.pageSize = 5
+    $scope.maxSize = 5
+    $scope.pageIndex = $routeParams.page
+
+    getResultsPage($scope.pageIndex)
+
+    $scope.pageChanged = function (newPage) {
+        $location.path('/tim-kiem/playlist').search("page", newPage)
+        getResultsPage(newPage);
+    };
+
+    function getResultsPage(index) {
+        $scope.pageIndex = index
+        $http({
+            method: 'get',
+            url: '/Search/GetPlaylistsSearch',
+            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, textSearch: $routeParams.q }
+        }).then(function (res) {
+            $scope.playlists = res.data.playlists
+            $scope.totalCount = res.data.totalCount
+        }, function (err) {
+            alert("Failed to get playlists!")
         })
     }
 })

@@ -16,22 +16,31 @@ namespace MusicDao
         {
             dh = new DataHelper();
         }
-        public List<AlbumwithArtist> GetAlbumsPage(int pageIndex, int pageSize, int nation, out int totalCount)
+        public List<Album> GetAlbumsPage(int pageIndex, int pageSize, int nation, string textSearch, string function, out int totalCount)
         {
             totalCount = 0;
-            SqlDataReader dr = dh.StoreReaders("GetAlbumsPage", pageIndex, pageSize, nation);
+            SqlDataReader dr;
+            if (function == "discovery")
+            {
+                dr = dh.StoreReaders("GetAlbumsPage", pageIndex, pageSize, nation);
+            }
+            else
+            {
+                dr = dh.StoreReaders("GetAlbumsSearch", pageIndex, pageSize, textSearch);
+            }
             while (dr.Read())
             {
                 totalCount = int.Parse(dr["totalCount"].ToString());
             }
             dr.NextResult();
-            List<AlbumwithArtist> albums = new List<AlbumwithArtist>();
+            List<Album> albums = new List<Album>();
             while (dr.Read())
             {
-                AlbumwithArtist album = new AlbumwithArtist();
-                album.Album.AlbumID = dr["AlbumID"].ToString();
-                album.Album.AlbumName = dr["AlbumName"].ToString();
-                album.Album.Image = dr["Image"].ToString();
+                Album album = new Album();
+                album.AlbumID = dr["AlbumID"].ToString();
+                album.AlbumName = dr["AlbumName"].ToString();
+                album.Image = dr["Image"].ToString();
+                album.Artist = new Artist();
                 album.Artist.ArtistID = dr["ArtistID"].ToString();
                 album.Artist.ArtistName = dr["ArtistName"].ToString();
                 albums.Add(album);

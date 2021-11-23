@@ -16,8 +16,70 @@ namespace MusicDao
         {
             dh = new DataHelper();
         }
-        public ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function)
+        //public ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function)
+        //{
+        //    SqlDataReader dr;
+        //    if (function == "search")
+        //    {
+        //        dr = dh.StoreReaders("GetSongsSearch", pageIndex, pageSize, textSearch);
+        //    }
+        //    else
+        //    {
+        //        dr = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation);
+        //    }
+        //    ListofSong los = new ListofSong();
+        //    while (dr.Read())
+        //    {
+        //        los.totalCount = int.Parse(dr["totalCount"].ToString());
+        //    }
+        //    dr.NextResult();
+        //    //Start: Lấy bài hát cùng các nghệ sĩ
+        //    List<SongwithArtist> songs = new List<SongwithArtist>();
+        //    string songID = null;
+        //    SongwithArtist swa;
+        //    List<Artist> artists = new List<Artist>();
+        //    while (dr.Read())
+        //    {
+        //        Song s = new Song();
+        //        s.SongID = dr["SongID"].ToString();
+        //        if (songID != s.SongID)
+        //        {
+        //            artists = new List<Artist>();
+        //            swa = new SongwithArtist();
+        //            s.SongName = dr["SongName"].ToString();
+        //            s.Lyric = dr["Lyric"].ToString();
+        //            s.ReleaseDate = dr["ReleaseDate"].ToString() != "" ? DateTime.Parse(dr["ReleaseDate"].ToString()) : s.ReleaseDate;
+        //            s.Image = dr["Image"].ToString();
+        //            s.SongPath = dr["SongPath"].ToString();
+        //            s.Nation = int.Parse(dr["Nation"].ToString());
+        //            s.MV = dr["MV"].ToString();
+        //            s.isVip = bool.Parse(dr["isVip"].ToString());
+        //            swa.Song = s;
+        //            Artist artist = new Artist();
+        //            artist.ArtistID = dr["ArtistID"].ToString();
+        //            artist.ArtistName = dr["ArtistName"].ToString();
+        //            artists.Add(artist);
+        //            swa.Artists = artists;
+        //            songs.Add(swa);
+        //            songID = s.SongID;
+        //        }
+        //        else
+        //        {
+        //            Artist artist = new Artist();
+        //            artist.ArtistID = dr["ArtistID"].ToString();
+        //            artist.ArtistName = dr["ArtistName"].ToString();
+        //            artists.Add(artist);
+        //        }
+        //    }
+        //    los.songs = songs;
+        //    //End: Lấy bài hát cùng các nghệ sĩ
+        //    dh.Close();
+        //    return los;
+        //}
+
+        public List<SongwithArtist> GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function, out int totalCount)
         {
+            totalCount = 0;
             SqlDataReader dr;
             if (function == "search")
             {
@@ -27,10 +89,9 @@ namespace MusicDao
             {
                 dr = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation);
             }
-            ListofSong los = new ListofSong();
             while (dr.Read())
             {
-                los.totalCount = int.Parse(dr["totalCount"].ToString());
+                totalCount = int.Parse(dr["totalCount"].ToString());
             }
             dr.NextResult();
             //Start: Lấy bài hát cùng các nghệ sĩ
@@ -71,10 +132,9 @@ namespace MusicDao
                     artists.Add(artist);
                 }
             }
-            los.songs = songs;
             //End: Lấy bài hát cùng các nghệ sĩ
             dh.Close();
-            return los;
+            return songs;
         }
     }
 }

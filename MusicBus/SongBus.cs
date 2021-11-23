@@ -15,9 +15,9 @@ namespace MusicBus
         {
             sdao = new SongDao();
         }
-        public ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function)
+        public List<SongwithArtist> GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function, out int totalCount)
         {
-            return sdao.GetSongsPage(pageIndex, pageSize, collectionID, nation, textSearch, function);
+            return sdao.GetSongsPage(pageIndex, pageSize, collectionID, nation, textSearch, function, out totalCount);
         }
     }
 }

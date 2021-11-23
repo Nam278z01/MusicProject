@@ -9,7 +9,6 @@ namespace MusicBus
 {
     public interface IPlaylistAdminBus
     {
-        List<PlaylistAdmin> GetPlaylistAdminByCollection(string collectionID);
-        List<PlaylistAdmin> GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID, out int totalCount);
+        List<PlaylistAdminwithAdmin> GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID, out int totalCount);
     }
 }

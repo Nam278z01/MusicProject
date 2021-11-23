@@ -31,15 +31,16 @@ namespace MusicProject.Controllers
                 nationInt = 4;
             }
             ISongBus sbus = new SongBus();
-            ListofSong songs = sbus.GetSongsPage(pageIndex, pageSize, collectionID, nationInt, "", "discovery");
-            return Json(songs, JsonRequestBehavior.AllowGet);
+            int totalCount;
+            List<SongwithArtist> songs = sbus.GetSongsPage(pageIndex, pageSize, collectionID, nationInt, "", "discovery", out totalCount);
+            return Json(new { songs, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID)
         {
             IPlaylistAdminBus plbus = new PlaylistAdminBus();
             int totalCount;
-            List<PlaylistAdmin> playlistAdmins = plbus.GetPlaylistAdminsPage(pageIndex, pageSize, collectionID, out totalCount);
-            return Json(new { playlistAdmins, totalCount = totalCount }, JsonRequestBehavior.AllowGet);
+            List<PlaylistAdminwithAdmin> playlistAdmins = plbus.GetPlaylistAdminsPage(pageIndex, pageSize, collectionID, out totalCount);
+            return Json(new { playlistAdmins, totalCount }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetArtistsPage(int pageIndex, int pageSize, string nation, int genderorband)
@@ -64,7 +65,7 @@ namespace MusicProject.Controllers
             IArtistBus atbus = new ArtistBus();
             int totalCount;
             List<Artist> artists = atbus.GetArtistsPage(pageIndex, pageSize, nationInt, genderorband, "", "discovery", out totalCount);
-            return Json(new { artists, totalCount = totalCount }, JsonRequestBehavior.AllowGet);
+            return Json(new { artists, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetAlbumsPage(int pageIndex, int pageSize, string nation)
         {
@@ -87,8 +88,8 @@ namespace MusicProject.Controllers
             }
             IAlbumBus albus = new AlbumBus();
             int totalCount;
-            List<AlbumwithArtist> albums = albus.GetAlbumsPage(pageIndex, pageSize, nationInt, out totalCount);
-            return Json(new { albums, totalCount = totalCount }, JsonRequestBehavior.AllowGet);
+            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, nationInt, "", "discovery", out totalCount);
+            return Json(new { albums, totalCount }, JsonRequestBehavior.AllowGet);
         }
     }
 }
