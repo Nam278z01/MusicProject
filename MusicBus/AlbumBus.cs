@@ -15,9 +15,9 @@ namespace MusicBus
         {
             aldao = new AlbumDao();
         }
-        public List<Album> GetAlbumsPage(int pageIndex, int pageSize, int nation, string textSearch, string function, out int totalCount)
+        public List<Album> GetAlbumsPage(int pageIndex, int pageSize, int nation, string textSearch, string function, string accountName, out int totalCount)
         {
-            return aldao.GetAlbumsPage(pageIndex, pageSize, nation,textSearch, function, out totalCount);
+            return aldao.GetAlbumsPage(pageIndex, pageSize, nation,textSearch, function,accountName, out totalCount);
         }
     }
 }

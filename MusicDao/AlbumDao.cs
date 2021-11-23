@@ -16,17 +16,17 @@ namespace MusicDao
         {
             dh = new DataHelper();
         }
-        public List<Album> GetAlbumsPage(int pageIndex, int pageSize, int nation, string textSearch, string function, out int totalCount)
+        public List<Album> GetAlbumsPage(int pageIndex, int pageSize, int nation, string textSearch, string function,string accountName, out int totalCount)
         {
             totalCount = 0;
             SqlDataReader dr;
             if (function == "discovery")
             {
-                dr = dh.StoreReaders("GetAlbumsPage", pageIndex, pageSize, nation);
+                dr = dh.StoreReaders("GetAlbumsPage", pageIndex, pageSize, nation, accountName);
             }
             else
             {
-                dr = dh.StoreReaders("GetAlbumsSearch", pageIndex, pageSize, textSearch);
+                dr = dh.StoreReaders("GetAlbumsSearch", pageIndex, pageSize, textSearch, accountName);
             }
             while (dr.Read())
             {
@@ -40,6 +40,7 @@ namespace MusicDao
                 album.AlbumID = dr["AlbumID"].ToString();
                 album.AlbumName = dr["AlbumName"].ToString();
                 album.Image = dr["Image"].ToString();
+                album.Liked = int.Parse(dr["Liked"].ToString());
                 album.Artist = new Artist();
                 album.Artist.ArtistID = dr["ArtistID"].ToString();
                 album.Artist.ArtistName = dr["ArtistName"].ToString();

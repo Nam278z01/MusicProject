@@ -15,7 +15,13 @@ namespace MusicProject.Controllers
         {
             ISongBus sbus = new SongBus();
             int totalCount;
-            List<SongwithArtist> songs = sbus.GetSongsPage(pageIndex, pageSize, "", 1, textSearch, "search", out totalCount);
+            GetUser_Result user = (GetUser_Result)Session["user"];
+            string accountName = "";
+            if (user != null)
+            {
+                accountName = user.AccountName;
+            }
+            List<SongwithArtist> songs = sbus.GetSongsPage(pageIndex, pageSize, "", 1, textSearch, "search", accountName, out totalCount);
             return Json(new { songs, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetArtistsSearch(int pageIndex, int pageSize, string textSearch)

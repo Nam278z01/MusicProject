@@ -344,7 +344,8 @@
                             </div>
                         </div>
                         <div class="auth-form__controls">
-                            <button class="btn btn-outline auth-form__controls-back">Quay lại</button>
+                            @* Button ko có type nằm trong form thì mặc định là submit hết *@
+                            <button type='button' class="btn btn-outline auth-form__controls-back">Quay lại</button>
                             <button type="submit" ng-class={disabled:LoginForm.$invalid} ng-disabled="LoginForm.$invalid" class="btn btn--primary btn-outline btn-login" ng-click="loginSubmit()">Đăng nhập</button>
                         </div>
                     </div>

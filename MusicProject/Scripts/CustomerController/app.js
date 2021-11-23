@@ -164,6 +164,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             }
             body.addEventListener('click', function (e) {
                 if (e.target.classList.contains('modal__body') || e.target.closest('.auth-form__controls-back')) {
+                    console.log(e.target.closest('.auth-form__controls-back'), e.target)
                     document.body.classList.remove('no-scroll')
                     document.querySelector('html').scrollTop = scrollTop
                     body.style.top = '0px'

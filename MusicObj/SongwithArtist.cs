@@ -10,6 +10,8 @@ namespace MusicObj
     {
         public Song Song { get; set; }
         public List<Artist> Artists { get; set; }
+        public int Views { get; set; }
+        public int Liked { get; set; }
         public SongwithArtist()
         {
             Song = new Song();

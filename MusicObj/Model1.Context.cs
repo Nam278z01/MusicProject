@@ -53,7 +53,7 @@ namespace MusicObj
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<View> Views { get; set; }
     
-        public virtual int GetSongsByCollectionPage(Nullable<int> pageIndex, Nullable<int> pageSize, string collectionID, Nullable<int> nation)
+        public virtual int GetSongsByCollectionPage(Nullable<int> pageIndex, Nullable<int> pageSize, string collectionID, Nullable<int> nation, string accountName)
         {
             var pageIndexParameter = pageIndex.HasValue ?
                 new ObjectParameter("pageIndex", pageIndex) :
@@ -71,7 +71,11 @@ namespace MusicObj
                 new ObjectParameter("nation", nation) :
                 new ObjectParameter("nation", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetSongsByCollectionPage", pageIndexParameter, pageSizeParameter, collectionIDParameter, nationParameter);
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetSongsByCollectionPage", pageIndexParameter, pageSizeParameter, collectionIDParameter, nationParameter, accountNameParameter);
         }
     
         public virtual ObjectResult<GetUser_Result> GetUser(string accountName, string passWord)
@@ -85,6 +89,270 @@ namespace MusicObj
                 new ObjectParameter("PassWord", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", accountNameParameter, passWordParameter);
+        }
+    
+        public virtual int GetAlbumsPage(Nullable<int> pageIndex, Nullable<int> pageSize, Nullable<int> nation)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var nationParameter = nation.HasValue ?
+                new ObjectParameter("nation", nation) :
+                new ObjectParameter("nation", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAlbumsPage", pageIndexParameter, pageSizeParameter, nationParameter);
+        }
+    
+        public virtual int GetAlbumsSearch(Nullable<int> pageIndex, Nullable<int> pageSize, string textSearch)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var textSearchParameter = textSearch != null ?
+                new ObjectParameter("textSearch", textSearch) :
+                new ObjectParameter("textSearch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAlbumsSearch", pageIndexParameter, pageSizeParameter, textSearchParameter);
+        }
+    
+        public virtual int GetArtistsPage(Nullable<int> pageIndex, Nullable<int> pageSize, Nullable<int> nation, Nullable<int> genderorband)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var nationParameter = nation.HasValue ?
+                new ObjectParameter("nation", nation) :
+                new ObjectParameter("nation", typeof(int));
+    
+            var genderorbandParameter = genderorband.HasValue ?
+                new ObjectParameter("genderorband", genderorband) :
+                new ObjectParameter("genderorband", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetArtistsPage", pageIndexParameter, pageSizeParameter, nationParameter, genderorbandParameter);
+        }
+    
+        public virtual int GetArtistsSearch(Nullable<int> pageIndex, Nullable<int> pageSize, string textSearch)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var textSearchParameter = textSearch != null ?
+                new ObjectParameter("textSearch", textSearch) :
+                new ObjectParameter("textSearch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetArtistsSearch", pageIndexParameter, pageSizeParameter, textSearchParameter);
+        }
+    
+        public virtual int GetPlaylistsByCollectionPage(Nullable<int> pageIndex, Nullable<int> pageSize, string collectionID)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var collectionIDParameter = collectionID != null ?
+                new ObjectParameter("collectionID", collectionID) :
+                new ObjectParameter("collectionID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPlaylistsByCollectionPage", pageIndexParameter, pageSizeParameter, collectionIDParameter);
+        }
+    
+        public virtual int GetPlaylistsByCollectionsPage(Nullable<int> pageIndex, Nullable<int> pageSize, string genre, string mood, string scene, string topic)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var genreParameter = genre != null ?
+                new ObjectParameter("genre", genre) :
+                new ObjectParameter("genre", typeof(string));
+    
+            var moodParameter = mood != null ?
+                new ObjectParameter("mood", mood) :
+                new ObjectParameter("mood", typeof(string));
+    
+            var sceneParameter = scene != null ?
+                new ObjectParameter("scene", scene) :
+                new ObjectParameter("scene", typeof(string));
+    
+            var topicParameter = topic != null ?
+                new ObjectParameter("topic", topic) :
+                new ObjectParameter("topic", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPlaylistsByCollectionsPage", pageIndexParameter, pageSizeParameter, genreParameter, moodParameter, sceneParameter, topicParameter);
+        }
+    
+        public virtual int GetPlaylistsSearch(Nullable<int> pageIndex, Nullable<int> pageSize, string textSearch)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var textSearchParameter = textSearch != null ?
+                new ObjectParameter("textSearch", textSearch) :
+                new ObjectParameter("textSearch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPlaylistsSearch", pageIndexParameter, pageSizeParameter, textSearchParameter);
+        }
+    
+        public virtual int GetSongsSearch(Nullable<int> pageIndex, Nullable<int> pageSize, string textSearch)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var textSearchParameter = textSearch != null ?
+                new ObjectParameter("textSearch", textSearch) :
+                new ObjectParameter("textSearch", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetSongsSearch", pageIndexParameter, pageSizeParameter, textSearchParameter);
+        }
+    
+        public virtual ObjectResult<GetTop100Songs_Result> GetTop100Songs(string accountName)
+        {
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetTop100Songs_Result>("GetTop100Songs", accountNameParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

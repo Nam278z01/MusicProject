@@ -16,85 +16,37 @@ namespace MusicDao
         {
             dh = new DataHelper();
         }
-        //public ListofSong GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function)
-        //{
-        //    SqlDataReader dr;
-        //    if (function == "search")
-        //    {
-        //        dr = dh.StoreReaders("GetSongsSearch", pageIndex, pageSize, textSearch);
-        //    }
-        //    else
-        //    {
-        //        dr = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation);
-        //    }
-        //    ListofSong los = new ListofSong();
-        //    while (dr.Read())
-        //    {
-        //        los.totalCount = int.Parse(dr["totalCount"].ToString());
-        //    }
-        //    dr.NextResult();
-        //    //Start: Lấy bài hát cùng các nghệ sĩ
-        //    List<SongwithArtist> songs = new List<SongwithArtist>();
-        //    string songID = null;
-        //    SongwithArtist swa;
-        //    List<Artist> artists = new List<Artist>();
-        //    while (dr.Read())
-        //    {
-        //        Song s = new Song();
-        //        s.SongID = dr["SongID"].ToString();
-        //        if (songID != s.SongID)
-        //        {
-        //            artists = new List<Artist>();
-        //            swa = new SongwithArtist();
-        //            s.SongName = dr["SongName"].ToString();
-        //            s.Lyric = dr["Lyric"].ToString();
-        //            s.ReleaseDate = dr["ReleaseDate"].ToString() != "" ? DateTime.Parse(dr["ReleaseDate"].ToString()) : s.ReleaseDate;
-        //            s.Image = dr["Image"].ToString();
-        //            s.SongPath = dr["SongPath"].ToString();
-        //            s.Nation = int.Parse(dr["Nation"].ToString());
-        //            s.MV = dr["MV"].ToString();
-        //            s.isVip = bool.Parse(dr["isVip"].ToString());
-        //            swa.Song = s;
-        //            Artist artist = new Artist();
-        //            artist.ArtistID = dr["ArtistID"].ToString();
-        //            artist.ArtistName = dr["ArtistName"].ToString();
-        //            artists.Add(artist);
-        //            swa.Artists = artists;
-        //            songs.Add(swa);
-        //            songID = s.SongID;
-        //        }
-        //        else
-        //        {
-        //            Artist artist = new Artist();
-        //            artist.ArtistID = dr["ArtistID"].ToString();
-        //            artist.ArtistName = dr["ArtistName"].ToString();
-        //            artists.Add(artist);
-        //        }
-        //    }
-        //    los.songs = songs;
-        //    //End: Lấy bài hát cùng các nghệ sĩ
-        //    dh.Close();
-        //    return los;
-        //}
-
-        public List<SongwithArtist> GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function, out int totalCount)
+        public List<SongwithArtist> GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function, string accountName, out int totalCount)
         {
             totalCount = 0;
             SqlDataReader dr;
             if (function == "search")
             {
-                dr = dh.StoreReaders("GetSongsSearch", pageIndex, pageSize, textSearch);
+                dr = dh.StoreReaders("GetSongsSearch", pageIndex, pageSize, textSearch, accountName);
             }
             else
             {
-                dr = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation);
+                dr = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation, accountName);
             }
             while (dr.Read())
             {
                 totalCount = int.Parse(dr["totalCount"].ToString());
             }
             dr.NextResult();
-            //Start: Lấy bài hát cùng các nghệ sĩ
+            List<SongwithArtist> songs = SongToList(dr, 0);
+            dh.Close();
+            return songs;
+        }
+        public List<SongwithArtist> GetTop100Songs(string accountName, string collectionID, int nation)
+        {
+            SqlDataReader dr = dh.StoreReaders("GetTop100Songs", accountName, collectionID, nation);
+            List<SongwithArtist> songs = SongToList(dr, 1);
+            dh.Close();
+            return songs;
+        }
+
+        public List<SongwithArtist> SongToList(SqlDataReader dr, int kind)
+        {
             List<SongwithArtist> songs = new List<SongwithArtist>();
             string songID = null;
             SongwithArtist swa;
@@ -116,6 +68,11 @@ namespace MusicDao
                     s.MV = dr["MV"].ToString();
                     s.isVip = bool.Parse(dr["isVip"].ToString());
                     swa.Song = s;
+                    swa.Liked = int.Parse(dr["Liked"].ToString());
+                    if(kind == 1)
+                    {
+                        swa.Views = int.Parse(dr["Views"].ToString());
+                    }
                     Artist artist = new Artist();
                     artist.ArtistID = dr["ArtistID"].ToString();
                     artist.ArtistName = dr["ArtistName"].ToString();
@@ -132,8 +89,6 @@ namespace MusicDao
                     artists.Add(artist);
                 }
             }
-            //End: Lấy bài hát cùng các nghệ sĩ
-            dh.Close();
             return songs;
         }
     }
