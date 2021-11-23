@@ -48,10 +48,10 @@ namespace MusicDao
         //    }
         //    return playlistAdmins;
         //}
-        public List<PlaylistAdminwithAdmin> GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID, out int totalCount)
+        public List<PlaylistAdminwithAdmin> GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID, string accountName, out int totalCount)
         {
             totalCount = 0;
-            SqlDataReader dr = dh.StoreReaders("GetPlaylistsByCollectionPage", pageIndex, pageSize, collectionID);
+            SqlDataReader dr = dh.StoreReaders("GetPlaylistsByCollectionPage", pageIndex, pageSize, collectionID, accountName);
             while (dr.Read())
             {
                 totalCount = int.Parse(dr["totalCount"].ToString());
@@ -69,6 +69,7 @@ namespace MusicDao
                 pwa.PlaylistAdmin.Image = dr["Image"].ToString();
                 pwa.PlaylistAdmin.isPublic = bool.Parse(dr["isPublic"].ToString());
                 pwa.Admin.PersonName = dr["PersonName"].ToString();
+                pwa.Liked = int.Parse(dr["Liked"].ToString());
                 playlistAdmins.Add(pwa);
             }
             dh.Close();

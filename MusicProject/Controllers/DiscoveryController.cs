@@ -45,7 +45,13 @@ namespace MusicProject.Controllers
         {
             IPlaylistAdminBus plbus = new PlaylistAdminBus();
             int totalCount;
-            List<PlaylistAdminwithAdmin> playlistAdmins = plbus.GetPlaylistAdminsPage(pageIndex, pageSize, collectionID, out totalCount);
+            GetUser_Result user = (GetUser_Result)Session["user"];
+            string accountName = "";
+            if (user != null)
+            {
+                accountName = user.AccountName;
+            }
+            List<PlaylistAdminwithAdmin> playlistAdmins = plbus.GetPlaylistAdminsPage(pageIndex, pageSize, collectionID, accountName, out totalCount);
             return Json(new { playlistAdmins, totalCount }, JsonRequestBehavior.AllowGet);
         }
 
@@ -94,7 +100,13 @@ namespace MusicProject.Controllers
             }
             IAlbumBus albus = new AlbumBus();
             int totalCount;
-            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, nationInt, "", "discovery", out totalCount);
+            GetUser_Result user = (GetUser_Result)Session["user"];
+            string accountName = "";
+            if (user != null)
+            {
+                accountName = user.AccountName;
+            }
+            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, nationInt, "", "discovery", accountName, out totalCount);
             return Json(new { albums, totalCount }, JsonRequestBehavior.AllowGet);
         }
     }

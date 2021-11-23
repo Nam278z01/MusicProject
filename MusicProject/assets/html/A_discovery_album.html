@@ -41,7 +41,8 @@
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
+                                        <i class='bx bx-heart' ng-if="a.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="a.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">

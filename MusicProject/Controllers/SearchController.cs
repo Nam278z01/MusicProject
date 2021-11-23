@@ -35,7 +35,13 @@ namespace MusicProject.Controllers
         {
             IAlbumBus albus = new AlbumBus();
             int totalCount;
-            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, 1, textSearch, "search", out totalCount);
+            GetUser_Result user = (GetUser_Result)Session["user"];
+            string accountName = "";
+            if (user != null)
+            {
+                accountName = user.AccountName;
+            }
+            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, 1, textSearch, "search", accountName, out totalCount);
             return Json(new { albums, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetPlaylistsSearch(int pageIndex, int pageSize, string textSearch)

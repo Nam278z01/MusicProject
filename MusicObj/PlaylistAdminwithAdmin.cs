@@ -10,6 +10,7 @@ namespace MusicObj
     {
         public PlaylistAdmin PlaylistAdmin { get; set; }
         public Admin Admin { get; set; }
+        public int Liked { get; set; }
         public PlaylistAdminwithAdmin()
         {
             PlaylistAdmin = new PlaylistAdmin();
