@@ -28,18 +28,24 @@
 
 .list-playlist__btn-prev {
     height: 30px;
-    padding: 4px;
+    width: 30px;
+    border-radius: 50%;
 }
 
 .list-playlist__btn-next {
     height: 30px;
-    padding: 4px;
+    width: 30px;
+    border-radius: 50%;
 }
 
-.list-playlist__slide {
-    margin: 16px 32px 0;
-    overflow: hidden;
-}
+    .list-playlist__btn-next:not(.disabled):active, .list-playlist__btn-prev:not(.disabled):active {
+        background-color: var(--bg-color-blur3);
+    }
+
+    .list-playlist__slide {
+        margin: 16px 32px 0;
+        overflow: hidden;
+    }
 
 .list-playlist__item {
     position: relative;

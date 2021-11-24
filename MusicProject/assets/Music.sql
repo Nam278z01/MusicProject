@@ -1,7 +1,13 @@
 USE [master]
 GO
-/****** Object:  Database [Music]    Script Date: 11/24/2021 2:10:12 PM ******/
+/****** Object:  Database [Music]    Script Date: 11/24/2021 11:44:40 PM ******/
 CREATE DATABASE [Music]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Music', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\Music.mdf' , SIZE = 73728KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'Music_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\DATA\Music_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
 GO
 ALTER DATABASE [Music] SET COMPATIBILITY_LEVEL = 150
 GO
@@ -74,22 +80,22 @@ ALTER DATABASE [Music] SET QUERY_STORE = OFF
 GO
 USE [Music]
 GO
-/****** Object:  FullTextCatalog [album_search]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  FullTextCatalog [album_search]    Script Date: 11/24/2021 11:44:40 PM ******/
 CREATE FULLTEXT CATALOG [album_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  FullTextCatalog [artist_search]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  FullTextCatalog [artist_search]    Script Date: 11/24/2021 11:44:40 PM ******/
 CREATE FULLTEXT CATALOG [artist_search] WITH ACCENT_SENSITIVITY = ON
 GO
-/****** Object:  FullTextCatalog [playlist_search]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  FullTextCatalog [playlist_search]    Script Date: 11/24/2021 11:44:40 PM ******/
 CREATE FULLTEXT CATALOG [playlist_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  FullTextCatalog [playlistus_search]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  FullTextCatalog [playlistus_search]    Script Date: 11/24/2021 11:44:40 PM ******/
 CREATE FULLTEXT CATALOG [playlistus_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  FullTextCatalog [song_search]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  FullTextCatalog [song_search]    Script Date: 11/24/2021 11:44:40 PM ******/
 CREATE FULLTEXT CATALOG [song_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  Table [dbo].[AccountAdmin]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[AccountAdmin]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +114,7 @@ CREATE TABLE [dbo].[AccountAdmin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AccountUser]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[AccountUser]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,7 +135,7 @@ CREATE TABLE [dbo].[AccountUser](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Admin]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[Admin]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -146,7 +152,7 @@ CREATE TABLE [dbo].[Admin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Album]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[Album]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -164,7 +170,7 @@ CREATE TABLE [dbo].[Album](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AlbumLiked]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[AlbumLiked]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -180,7 +186,7 @@ CREATE TABLE [dbo].[AlbumLiked](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AlbumListened]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[AlbumListened]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,7 +202,7 @@ CREATE TABLE [dbo].[AlbumListened](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Artist]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[Artist]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -215,7 +221,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Collection]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[Collection]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -230,7 +236,7 @@ CREATE TABLE [dbo].[Collection](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Comment]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[Comment]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -247,7 +253,7 @@ CREATE TABLE [dbo].[Comment](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PaymentHistory]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PaymentHistory]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -266,7 +272,7 @@ CREATE TABLE [dbo].[PaymentHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdmin]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdmin]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -285,7 +291,7 @@ CREATE TABLE [dbo].[PlaylistAdmin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdmin_Collection]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdmin_Collection]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -300,7 +306,7 @@ CREATE TABLE [dbo].[PlaylistAdmin_Collection](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdmin_Song]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdmin_Song]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -316,7 +322,7 @@ CREATE TABLE [dbo].[PlaylistAdmin_Song](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdminLiked]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdminLiked]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -332,7 +338,7 @@ CREATE TABLE [dbo].[PlaylistAdminLiked](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdminListened]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdminListened]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -348,7 +354,7 @@ CREATE TABLE [dbo].[PlaylistAdminListened](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistUser]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistUser]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -367,7 +373,7 @@ CREATE TABLE [dbo].[PlaylistUser](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistUser_Song]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistUser_Song]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -383,7 +389,7 @@ CREATE TABLE [dbo].[PlaylistUser_Song](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistUserLiked]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistUserLiked]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -399,7 +405,7 @@ CREATE TABLE [dbo].[PlaylistUserLiked](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistUserListened]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[PlaylistUserListened]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -415,7 +421,7 @@ CREATE TABLE [dbo].[PlaylistUserListened](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ServiceVip]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[ServiceVip]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -431,7 +437,7 @@ CREATE TABLE [dbo].[ServiceVip](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Song]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[Song]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -453,7 +459,7 @@ CREATE TABLE [dbo].[Song](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Song_Artist]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[Song_Artist]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -469,7 +475,7 @@ CREATE TABLE [dbo].[Song_Artist](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Song_Collection]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[Song_Collection]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -484,7 +490,7 @@ CREATE TABLE [dbo].[Song_Collection](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SongLiked]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[SongLiked]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -500,7 +506,7 @@ CREATE TABLE [dbo].[SongLiked](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SongListened]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[SongListened]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -516,7 +522,7 @@ CREATE TABLE [dbo].[SongListened](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[User]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -533,7 +539,7 @@ CREATE TABLE [dbo].[User](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[View]    Script Date: 11/24/2021 2:10:13 PM ******/
+/****** Object:  Table [dbo].[View]    Script Date: 11/24/2021 11:44:40 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1619,7 +1625,176 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[View] CHECK CONSTRAINT [FK__SongID_View]
 GO
-/****** Object:  StoredProcedure [dbo].[GetAlbumsPage]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get10AlbumsRandom]    Script Date: 11/24/2021 11:44:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Get10AlbumsRandom](
+	@accountName char(20)
+)
+as
+	begin
+		SELECT TOP 10 al.AlbumID, al.AlbumName, al.[Image], a.ArtistID, a.ArtistName
+		INTO #Results
+		FROM Album al inner join Artist a on al.ArtistID = a.ArtistID
+		ORDER BY NEWID()
+
+		if(@accountName = '')
+		begin
+			SELECT s.*, Liked = 0
+			FROM #Results s
+		end
+		else
+		begin
+			SELECT s.*,
+				case when al.AccountName = @accountName then 1
+						else 0 end as Liked
+			FROM #Results s left join AlbumLiked al on s.AlbumID = al.AlbumID
+		end
+
+		DROP TABLE #Results
+	end
+GO
+/****** Object:  StoredProcedure [dbo].[Get10PlaylistsNewest]    Script Date: 11/24/2021 11:44:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Get10PlaylistsNewest](
+	@accountName char(20)
+)
+AS
+	BEGIN
+		SELECT TOP 10 pl.*, ad.PersonName
+		INTO #Results
+		FROM PlaylistAdmin pl inner join AccountAdmin acd on acd.AccountName = pl.AccountName
+							  inner join [Admin] ad on acd.PersonID = ad.PersonID
+		WHERE pl.isPublic = 1
+		ORDER BY pl.DateCreated DESC
+
+		if(@accountName = '')
+		begin
+			SELECT *, Liked = 0
+			FROM #Results s
+		end
+		else
+		begin
+			SELECT *,
+					case when plal.AccountName = @accountName then 1
+						else 0 end as Liked
+			FROM #Results s left join PlaylistAdminLiked plal on s.PlaylistID = plal.PlaylistID 
+		end
+
+		DROP TABLE #Results
+	END
+GO
+/****** Object:  StoredProcedure [dbo].[Get10PlaylistsRandom]    Script Date: 11/24/2021 11:44:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Get10PlaylistsRandom](
+	@accountName char(20)
+)
+AS
+	BEGIN
+		SELECT TOP 10 pl.*, ad.PersonName
+		INTO #Results
+		FROM PlaylistAdmin pl inner join AccountAdmin acd on acd.AccountName = pl.AccountName
+							  inner join [Admin] ad on acd.PersonID = ad.PersonID
+		WHERE pl.isPublic = 1
+		ORDER BY NEWID()
+
+		if(@accountName = '')
+		begin
+			SELECT *, Liked = 0
+			FROM #Results s
+		end
+		else
+		begin
+			SELECT *,
+					case when plal.AccountName = @accountName then 1
+						else 0 end as Liked
+			FROM #Results s left join PlaylistAdminLiked plal on s.PlaylistID = plal.PlaylistID 
+		end
+
+		DROP TABLE #Results
+	END
+GO
+/****** Object:  StoredProcedure [dbo].[Get10SongsNewest]    Script Date: 11/24/2021 11:44:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Get10SongsNewest](
+	@accountName char(20)
+)
+as
+	begin
+		select top 10 s.*, sum(ISNULL([Views], 0)) as [Views]
+		INTO #Results
+		from Song s left join [View] v on s.SongID = v.SongID
+		group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation, s.[Image], s.SongPath, s.MV, s.isVip, s.AlbumID
+		ORDER BY s.ReleaseDate DESC
+		if(@accountName = '')
+			begin
+				select sn.*, a.ArtistID, a.ArtistName, a.[Image] as [ArtistImage], sa.Own, Liked = 0
+				from #Results sn inner join Song_Artist sa on sn.SongID = sa.SongID 
+							   inner join Artist a on sa.ArtistID = a.ArtistID
+				group by sn.SongID, sn.SongName, sn.Lyric, sn.ReleaseDate, sn.Nation, sn.[Image], sn.SongPath, sn.MV, sn.isVip, sn.AlbumID, sn.[Views], a.ArtistID, a.ArtistName, a.[Image], sa.Own
+			end
+		else
+			begin
+				select sn.*, a.ArtistID, a.ArtistName, a.[Image] as [ArtistImage], sa.Own,
+					   case when sl.AccountName = @accountName then 1
+					   else 0 end as Liked
+				from #Results sn inner join Song_Artist sa on sn.SongID = sa.SongID 
+							   inner join Artist a on sa.ArtistID = a.ArtistID
+							   left join SongLiked sl on sn.SongID = sl.SongID
+				group by sn.SongID, sn.SongName, sn.Lyric, sn.ReleaseDate, sn.Nation, sn.[Image], sn.SongPath, sn.MV, sn.isVip, sn.AlbumID, sn.[Views], sl.AccountName, a.ArtistID, a.ArtistName, a.[Image], sa.Own
+
+			end
+		DROP TABLE #Results
+	end
+GO
+/****** Object:  StoredProcedure [dbo].[Get10SongsRandom]    Script Date: 11/24/2021 11:44:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[Get10SongsRandom](
+	@accountName char(20)
+)
+as
+	begin
+		select top 10 s.*, sum(ISNULL([Views], 0)) as [Views]
+		INTO #Results
+		from Song s left join [View] v on s.SongID = v.SongID
+		group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation, s.[Image], s.SongPath, s.MV, s.isVip, s.AlbumID
+		ORDER BY NEWID()
+		if(@accountName = '')
+			begin
+				select sn.*, a.ArtistID, a.ArtistName, sa.Own, Liked = 0
+				from #Results sn inner join Song_Artist sa on sn.SongID = sa.SongID 
+							   inner join Artist a on sa.ArtistID = a.ArtistID
+				group by sn.SongID, sn.SongName, sn.Lyric, sn.ReleaseDate, sn.Nation, sn.[Image], sn.SongPath, sn.MV, sn.isVip, sn.AlbumID, sn.[Views], a.ArtistID, a.ArtistName, sa.Own
+			end
+		else
+			begin
+				select sn.*, a.ArtistID, a.ArtistName, sa.Own,
+					   case when sl.AccountName = @accountName then 1
+					   else 0 end as Liked
+				from #Results sn inner join Song_Artist sa on sn.SongID = sa.SongID 
+							   inner join Artist a on sa.ArtistID = a.ArtistID
+							   left join SongLiked sl on sn.SongID = sl.SongID
+				group by sn.SongID, sn.SongName, sn.Lyric, sn.ReleaseDate, sn.Nation, sn.[Image], sn.SongPath, sn.MV, sn.isVip, sn.AlbumID, sn.[Views], sl.AccountName, a.ArtistID, a.ArtistName, sa.Own
+
+			end
+		DROP TABLE #Results
+	end
+GO
+/****** Object:  StoredProcedure [dbo].[GetAlbumsPage]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1662,7 +1837,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetAlbumsSearch]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetAlbumsSearch]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1705,7 +1880,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetArtistsPage]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetArtistsPage]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1737,7 +1912,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetArtistsSearch]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetArtistsSearch]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1767,7 +1942,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistsByCollectionPage]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistsByCollectionPage]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1812,7 +1987,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistsByCollectionsPage]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistsByCollectionsPage]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2016,7 +2191,7 @@ AS
 		end
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistsSearch]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistsSearch]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2107,7 +2282,7 @@ AS
 		end
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetSongsByCollectionPage]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetSongsByCollectionPage]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2157,7 +2332,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetSongsSearch]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetSongsSearch]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2206,7 +2381,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetTop100Songs]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetTop100Songs]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2247,7 +2422,7 @@ as
 		DROP TABLE #Results
 	end
 GO
-/****** Object:  StoredProcedure [dbo].[GetUser]    Script Date: 11/24/2021 2:10:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetUser]    Script Date: 11/24/2021 11:44:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

@@ -1,14 +1,23 @@
-appMusic.controller('CollectionController', function ($scope, $rootScope, $http, $routeParams, $location, $window) {
+appMusic.controller('CollectionController', function ($scope, $rootScope, $http, $routeParams, $location, $window, $interval) {
     $rootScope.currentIndex = 3
     $rootScope.currentSubIndex = 5
     $scope.pickedCollections = []
 
-    $scope.genres = $rootScope.collections.filter(collection => collection.KindofCollection == 1)
-    $scope.moods = $rootScope.collections.filter(collection => collection.KindofCollection == 2)
-    $scope.scenes = $rootScope.collections.filter(collection => collection.KindofCollection == 3)
-    $scope.topics = $rootScope.collections.filter(collection => collection.KindofCollection == 4)
+    let myInterval = $interval(getSuccessCol, 1000)
 
-    $scope.pickedCollections = $rootScope.collections.filter(collection => collection.CollectionID == $routeParams.tl || collection.CollectionID == $routeParams.tt || collection.CollectionID == $routeParams.kc || collection.CollectionID == $routeParams.cd)
+    getSuccessCol()
+    function getSuccessCol() {
+        if ($rootScope.collections.length != 0) {
+            $scope.genres = $rootScope.collections.filter(collection => collection.KindofCollection == 1)
+            $scope.moods = $rootScope.collections.filter(collection => collection.KindofCollection == 2)
+            $scope.scenes = $rootScope.collections.filter(collection => collection.KindofCollection == 3)
+            $scope.topics = $rootScope.collections.filter(collection => collection.KindofCollection == 4)
+
+            $scope.pickedCollections = $rootScope.collections.filter(collection => collection.CollectionID == $routeParams.tl || collection.CollectionID == $routeParams.tt || collection.CollectionID == $routeParams.kc || collection.CollectionID == $routeParams.cd)
+            $interval.cancel(myInterval)
+        }
+    }
+
 
     if ($scope.pickedCollections.length > 0) {
         $scope.showpickedCollection = true;
@@ -46,13 +55,13 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
 
     let listCollection = document.querySelectorAll('.collection__pick-list-item')
     document.body.addEventListener('click', function (e) {
-        if (e.target.closest('.collection__pick-list-item') == null) {
+        if (e.target.closest('.collection__pick-list-item') == null && e.target.closest('.collection__pick-item-show') == null) {
             listCollection.forEach(ele => {
                 ele.classList.remove('show')
             })
         }
         if (e.target.closest('.collection__pick-item-show')) {
-            e.target.closest('.collection__pick-item-show').nextElementSibling.classList.add('show')
+            e.target.closest('.collection__pick-item-show').nextElementSibling.classList.toggle('show')
         }
     })
 

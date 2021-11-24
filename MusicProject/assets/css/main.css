@@ -89,11 +89,15 @@
     line-height: 1.8rem;
 }
 
-.released__artist {
-    display: flex;
-    align-items: center;
-    margin-top: 0.8rem;
-}
+    .released__name a:hover {
+        color: var(--main-color);
+    }
+
+    .released__artist {
+        display: flex;
+        align-items: center;
+        margin-top: 0.8rem;
+    }
 
 .released__artist-img {
     width: 2.4rem;

@@ -21,12 +21,8 @@ namespace MusicProject.Controllers
 
         public JsonResult GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genre, string mood, string scene, string topic)
         {
-            List<string> collection = new List<string>();
+            List<string> collection = new List<string>() { genre, mood, scene, topic };
             List<string> collectionNew = new List<string>();
-            collection.Add(genre);
-            collection.Add(mood);
-            collection.Add(scene);
-            collection.Add(topic);
             foreach (var item in collection)
             {
                 if(item != null)
@@ -34,25 +30,8 @@ namespace MusicProject.Controllers
                     collectionNew.Add(item);
                 }
             }
-            if(collectionNew.Count == 0)
-            {
-                collectionNew.Add("");
-                collectionNew.Add("");
-                collectionNew.Add("");
-                collectionNew.Add("");
-            }
-            else if(collectionNew.Count == 1)
-            {
-                collectionNew.Add("");
-                collectionNew.Add("");
-                collectionNew.Add("");
-            }
-            else if (collectionNew.Count == 2)
-            {
-                collectionNew.Add("");
-                collectionNew.Add("");
-            }
-            else if (collectionNew.Count == 4)
+            int length = collection.Count - collectionNew.Count;
+            for (int i = 0; i < length; i++)
             {
                 collectionNew.Add("");
             }

@@ -87,7 +87,7 @@
                             </div>
                             <div class="song__info">
                                 <div class="song__name">
-                                    {{s.Song.SongName}}
+                                    <a href="#!/Detail/Song?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
                                 </div>
                                 <div class="song__artist">
                                     <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>

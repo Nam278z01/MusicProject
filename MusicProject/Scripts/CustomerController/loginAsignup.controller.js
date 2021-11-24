@@ -35,11 +35,11 @@ appMusic.controller('LoginController', function ($scope, $rootScope, $http, $win
 
     let sidebarSetting = document.querySelector('.sidebar__setting')
     document.body.addEventListener('click', function (e) {
-        if (e.target.closest('.sidebar__setting') == null ) {
-            sidebarSetting.style.display = 'none'
+        if (e.target.closest('.sidebar__setting') == null && e.target.closest('.sidebar__btn-setting') == null) {
+            sidebarSetting.classList.remove('show')
         }
         if (e.target.closest('.sidebar__btn-setting')) {
-            sidebarSetting.style.display = 'block'
+            sidebarSetting.classList.toggle('show')
         }
     })
 })

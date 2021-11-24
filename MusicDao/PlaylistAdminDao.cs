@@ -74,7 +74,20 @@ namespace MusicDao
             dh.Close();
             return playlistAdmins;
         }
-
+        public List<PlaylistAdminwithAdmin> Get10PlaylistsNewest(string accountName)
+        {
+            SqlDataReader dr = dh.StoreReaders("Get10PlaylistsNewest", accountName);
+            List<PlaylistAdminwithAdmin> playlists = PlaylistAdminToList(dr);
+            dh.Close();
+            return playlists;
+        }
+        public List<PlaylistAdminwithAdmin> Get10PlaylistsRandom(string accountName)
+        {
+            SqlDataReader dr = dh.StoreReaders("Get10PlaylistsRandom", accountName);
+            List<PlaylistAdminwithAdmin> playlists = PlaylistAdminToList(dr);
+            dh.Close();
+            return playlists;
+        }
         public List<PlaylistAdminwithAdmin> PlaylistAdminToList(SqlDataReader dr)
         {
             List<PlaylistAdminwithAdmin> playlistAdmins = new List<PlaylistAdminwithAdmin>();

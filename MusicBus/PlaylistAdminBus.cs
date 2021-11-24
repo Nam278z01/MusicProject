@@ -23,5 +23,13 @@ namespace MusicBus
         {
             return pldao.GetPlaylistsByCollectionsPage(pageIndex, pageSize, genre, mood, scene, topic, accountName, out totalCount);
         }
+        public List<PlaylistAdminwithAdmin> Get10PlaylistsNewest(string accountName)
+        {
+            return pldao.Get10PlaylistsNewest(accountName);
+        }
+        public List<PlaylistAdminwithAdmin> Get10PlaylistsRandom(string accountName)
+        {
+            return pldao.Get10PlaylistsRandom(accountName);
+        }
     }
 }

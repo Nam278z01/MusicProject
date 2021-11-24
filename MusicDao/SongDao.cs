@@ -33,19 +33,34 @@ namespace MusicDao
                 totalCount = int.Parse(dr["totalCount"].ToString());
             }
             dr.NextResult();
-            List<SongwithArtist> songs = SongToList(dr, 0);
+            List<SongwithArtist> songs = SongToList(dr, 0, 0);
             dh.Close();
             return songs;
         }
         public List<SongwithArtist> GetTop100Songs(string accountName, string collectionID, int nation)
         {
             SqlDataReader dr = dh.StoreReaders("GetTop100Songs", accountName, collectionID, nation);
-            List<SongwithArtist> songs = SongToList(dr, 1);
+            List<SongwithArtist> songs = SongToList(dr, 1, 0);
             dh.Close();
             return songs;
         }
 
-        public List<SongwithArtist> SongToList(SqlDataReader dr, int kind)
+        public List<SongwithArtist> Get10SongsRandom(string accountName)
+        {
+            SqlDataReader dr = dh.StoreReaders("Get10SongsRandom", accountName);
+            List<SongwithArtist> songs = SongToList(dr, 1, 0);
+            dh.Close();
+            return songs;
+        }
+        public List<SongwithArtist> Get10SongsNewest(string accountName)
+        {
+            SqlDataReader dr = dh.StoreReaders("Get10SongsNewest", accountName);
+            List<SongwithArtist> songs = SongToList(dr, 1, 1);
+            dh.Close();
+            return songs;
+        }
+
+        public List<SongwithArtist> SongToList(SqlDataReader dr, int kind, int kind2)
         {
             List<SongwithArtist> songs = new List<SongwithArtist>();
             string songID = null;
@@ -76,6 +91,10 @@ namespace MusicDao
                     Artist artist = new Artist();
                     artist.ArtistID = dr["ArtistID"].ToString();
                     artist.ArtistName = dr["ArtistName"].ToString();
+                    if(kind2 == 1)
+                    {
+                        artist.Image = dr["ArtistImage"].ToString();
+                    }
                     artists.Add(artist);
                     swa.Artists = artists;
                     songs.Add(swa);
@@ -86,6 +105,10 @@ namespace MusicDao
                     Artist artist = new Artist();
                     artist.ArtistID = dr["ArtistID"].ToString();
                     artist.ArtistName = dr["ArtistName"].ToString();
+                    if (kind2 == 1)
+                    {
+                        artist.Image = dr["ArtistImage"].ToString();
+                    }
                     artists.Add(artist);
                 }
             }

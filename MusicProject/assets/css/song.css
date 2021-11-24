@@ -80,12 +80,16 @@
     -webkit-box-orient: vertical;
 }
 
-.song__artist {
-    font-size: 1.3rem;
-    color: var(--text-color-blur);
-    margin-top: 2px;
-    text-transform: capitalize;
-}
+    .song__name a:hover {
+        color: var(--main-color);
+    }
+
+    .song__artist {
+        font-size: 1.3rem;
+        color: var(--text-color-blur);
+        margin-top: 2px;
+        text-transform: capitalize;
+    }
 
     .song__artist a + a::before {
         content: ",";

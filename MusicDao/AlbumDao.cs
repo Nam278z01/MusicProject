@@ -33,6 +33,19 @@ namespace MusicDao
                 totalCount = int.Parse(dr["totalCount"].ToString());
             }
             dr.NextResult();
+            List<Album> albums = AlbumToList(dr);
+            dh.Close();
+            return albums;
+        }
+        public List<Album> Get10AlbumsRandom(string accountName)
+        {
+            SqlDataReader dr = dh.StoreReaders("Get10AlbumsRandom", accountName);
+            List<Album> albums = AlbumToList(dr);
+            dh.Close();
+            return albums;
+        }
+        public List<Album> AlbumToList(SqlDataReader dr)
+        {
             List<Album> albums = new List<Album>();
             while (dr.Read())
             {
@@ -46,7 +59,6 @@ namespace MusicDao
                 album.Artist.ArtistName = dr["ArtistName"].ToString();
                 albums.Add(album);
             }
-            dh.Close();
             return albums;
         }
     }
