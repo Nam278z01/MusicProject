@@ -8,9 +8,9 @@ using MusicBus;
 
 namespace MusicProject.Controllers
 {
-    public class SongController : Controller
+    public class Top100Controller : Controller
     {
-        // GET: Song
+        // GET: Top100
         public JsonResult GetTop100Songs(string collectionID, string nation)
         {
             int nationInt;

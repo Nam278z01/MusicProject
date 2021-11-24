@@ -76,27 +76,27 @@
     <div class="list-song-main">
         <div class="grid">
             <div class="row sm-gutter">
-                <div class="col l-12">
+                <div class="col c-12 m-6 l-6" ng-repeat="s in songs">
                     <div class="song__wraper">
                         <div class="song_order-number">
-                            1
+                            {{$index + 1}}
                         </div>
                         <div class="song top100">
                             <div class="song__img">
-                                <img src="./assets/img/Song/easy-on-me-edele.jpg" alt="">
+                                <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
                             </div>
                             <div class="song__info">
                                 <div class="song__name">
-                                    Easy on me
+                                    {{s.Song.SongName}}
                                 </div>
                                 <div class="song__artist">
-                                    <span>Adele</span>
-                                    <span>Adele</span>
+                                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
                                 </div>
                             </div>
                             <div class="song__like">
                                 <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
+                                    <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                    <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
                                 </button>
                             </div>
                             <div class="song__more">
@@ -106,7 +106,8 @@
                             </div>
                             <div class="song__listens">
                                 <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
+                                <span ng-if="s.Views > 999">{{s.Views / 1000 | number:1}}k</span>
+                                <span ng-if="s.Views < 1000">{{s.Views}}</span>
                             </div>
                         </div>
                     </div>

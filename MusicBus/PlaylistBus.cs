@@ -15,9 +15,9 @@ namespace MusicBus
         {
             pldao = new PlaylistDao();
         }
-        public List<PlaylistwithPerson> GetPlaylistSearch(int pageIndex, int pageSize, string textSearch, out int totalCount)
+        public List<PlaylistwithPerson> GetPlaylistSearch(int pageIndex, int pageSize, string textSearch, string accountName, out int totalCount)
         {
-            return pldao.GetPlaylistSearch(pageIndex, pageSize, textSearch, out totalCount);
+            return pldao.GetPlaylistSearch(pageIndex, pageSize, textSearch, accountName, out totalCount);
         }
     }
 }

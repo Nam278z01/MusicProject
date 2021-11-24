@@ -130,9 +130,14 @@
     <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="Controllers\DiscoveryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LikedController.cs" />
+    <Compile Include="Controllers\ListenedController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MyPlaylistController.cs" />
+    <Compile Include="Controllers\PlaylistAdminController.cs" />
+    <Compile Include="Controllers\RankController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Controllers\SongController.cs" />
+    <Compile Include="Controllers\Top100Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1040,10 +1045,15 @@
     <Folder Include="Scripts\AdminController\" />
     <Folder Include="Views\Collection\" />
     <Folder Include="Views\Discovery\" />
+    <Folder Include="Views\Liked\" />
+    <Folder Include="Views\Listened\" />
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\MyPlaylist\" />
     <Folder Include="Views\PlaylistAdmin\" />
+    <Folder Include="Views\Rank\" />
     <Folder Include="Views\Search\" />
     <Folder Include="Views\Song\" />
+    <Folder Include="Views\Top100\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

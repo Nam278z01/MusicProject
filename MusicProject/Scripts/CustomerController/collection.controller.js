@@ -55,4 +55,31 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
             e.target.closest('.collection__pick-item-show').nextElementSibling.classList.add('show')
         }
     })
+
+    $scope.playlists = []
+    $scope.totalCount = 0
+    $scope.pageSize = 24
+    $scope.maxSize = 5
+    $scope.pageIndex = $routeParams.page || 1
+
+    getResultsPage($scope.pageIndex)
+
+    $scope.pageChanged = function (newPage) {
+        getResultsPage(newPage);
+        $location.search("page", newPage)
+    };
+
+    function getResultsPage(index) {
+        $scope.pageIndex = index
+        $http({
+            method: 'get',
+            url: '/Collection/GetPlaylistsByCollectionsPage',
+            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, genre: $routeParams.tl, mood: $routeParams.tt, scene: $routeParams.kc, topic: $routeParams.cd }
+        }).then(function (response) {
+            $scope.playlistAdmins = response.data.playlistAdmins
+            $scope.totalCount = response.data.totalCount
+        }, function (error) {
+            alert('Failed to get the playlists!')
+        })
+    }
 })

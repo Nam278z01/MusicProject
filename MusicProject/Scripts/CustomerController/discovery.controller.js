@@ -98,7 +98,7 @@ appMusic.controller('PlaylistDiscoveryController', function ($scope, $rootScope,
 appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {
     $rootScope.currentIndex = 2
     $rootScope.currentSubIndex = 4
-    $scope.playlists = []
+    $scope.artists = []
     $scope.totalCount = 0
     $scope.pageSize = 24
     $scope.maxSize = 5
@@ -129,7 +129,7 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
 appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {
     $rootScope.currentIndex = 2
     $rootScope.currentSubIndex = 4
-    $scope.playlists = []
+    $scope.albums = []
     $scope.totalCount = 0
     $scope.pageSize = 24
     $scope.maxSize = 5

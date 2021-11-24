@@ -10,5 +10,6 @@ namespace MusicDao
     public interface IPlaylistAdminDao
     {
         List<PlaylistAdminwithAdmin> GetPlaylistAdminsPage(int pageIndex, int pageSize, string collectionID, string accountName, out int totalCount);
+        List<PlaylistAdminwithAdmin> GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genres, string mood, string scene, string topic, string accountName, out int totalCount);
     }
 }

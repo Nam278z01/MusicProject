@@ -18,5 +18,19 @@ namespace MusicProject.Controllers
             List<Collection> collectionList = cbus.GetCollections();
             return Json(collectionList, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genres, string mood, string scene, string topic)
+        {
+            IPlaylistAdminBus plabus = new PlaylistAdminBus();
+            int totalCount;
+            GetUser_Result user = (GetUser_Result)Session["user"];
+            string accountName = "";
+            if (user != null)
+            {
+                accountName = user.AccountName;
+            }
+            List<PlaylistAdminwithAdmin> playlistAdmins = plabus.GetPlaylistsByCollectionsPage(pageIndex, pageSize, genres, mood, scene, topic, accountName, out totalCount);
+            return Json(new {playlistAdmins, totalCount}, JsonRequestBehavior.AllowGet);
+        }
     }
 }

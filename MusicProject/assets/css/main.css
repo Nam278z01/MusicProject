@@ -462,16 +462,10 @@
 /* Top 100 */
 .top100-header {
     position: relative;
-    height: 94px;
+    height: 80px;
     width: 100%;
     margin: 44px 0 22px 0;
-    background-image: linear-gradient(
-        45deg,
-        rgb(24, 216, 204) 0%,
-        rgb(210, 23, 83) 33%,
-        rgb(255, 251, 125) 66%,
-        rgb(73, 230, 143) 100%
-    );
+    background-image: linear-gradient( 45deg, rgb(24, 216, 204) 0%, rgb(210, 23, 83) 33%, rgb(24, 216, 204) 66%, rgb(210, 23, 83) 100% );
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -479,6 +473,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+    border-radius: 4px;
 }
 
 .top100-header__titler {
@@ -486,13 +481,15 @@
     font-size: 3rem;
     text-transform: uppercase;
     color: var(--white-color);
+    line-height: 3rem;
 }
 
 .top100-header__titler p:last-child {
     font-size: 1.8rem;
     text-transform: capitalize;
     font-weight: 500;
-    opacity: 0.7;
+    opacity: 0.9;
+    display: none;
 }
 
 .btn-top100.btn.btn--primary {

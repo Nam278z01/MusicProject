@@ -48,7 +48,13 @@ namespace MusicProject.Controllers
         {
             IPlaylistBus plbus = new PlaylistBus();
             int totalCount;
-            List<PlaylistwithPerson> playlists = plbus.GetPlaylistSearch(pageIndex, pageSize, textSearch, out totalCount);
+            GetUser_Result user = (GetUser_Result)Session["user"];
+            string accountName = "";
+            if (user != null)
+            {
+                accountName = user.AccountName;
+            }
+            List<PlaylistwithPerson> playlists = plbus.GetPlaylistSearch(pageIndex, pageSize, textSearch,accountName, out totalCount);
             return Json(new { playlists, totalCount }, JsonRequestBehavior.AllowGet);
         }
     }

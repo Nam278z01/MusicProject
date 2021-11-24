@@ -34,6 +34,7 @@ namespace MusicProject.Controllers
         public JsonResult Logout()
         {
             Session.Clear();
+            Session["login"] = "0";
             return Json(new { login = Session["login"] }, JsonRequestBehavior.AllowGet);
         }
     }

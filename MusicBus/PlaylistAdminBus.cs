@@ -19,5 +19,9 @@ namespace MusicBus
         {
             return pldao.GetPlaylistAdminsPage(pageIndex, pageSize, collectionID, accountName, out totalCount);
         }
+        public List<PlaylistAdminwithAdmin> GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genres, string mood, string scene, string topic, string accountName, out int totalCount)
+        {
+            return pldao.GetPlaylistsByCollectionsPage(pageIndex, pageSize, genres, mood, scene, topic, accountName, out totalCount);
+        }
     }
 }

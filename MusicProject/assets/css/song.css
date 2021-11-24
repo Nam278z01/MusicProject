@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: center;
     background-color: var(--bg-color-blur);
-    margin-right: 10px;
+    /*margin-right: 10px;*/
     font-size: 1.3rem;
     color: var(--text-color-blur);
 }
@@ -87,7 +87,7 @@
     text-transform: capitalize;
 }
 
-    .song__artist span + span::before {
+    .song__artist a + a::before {
         content: ",";
         display: inline;
         position: relative;
@@ -95,11 +95,11 @@
         padding-right: 2px;
     }
 
-.song__artist span {
+.song__artist a {
     line-height: 24px;
 }
 
-.song__artist span:hover {
+.song__artist a:hover {
     color: var(--main-color);
     cursor: pointer;
 }
