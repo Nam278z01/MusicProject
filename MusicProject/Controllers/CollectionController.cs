@@ -19,8 +19,43 @@ namespace MusicProject.Controllers
             return Json(collectionList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genres, string mood, string scene, string topic)
+        public JsonResult GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genre, string mood, string scene, string topic)
         {
+            List<string> collection = new List<string>();
+            List<string> collectionNew = new List<string>();
+            collection.Add(genre);
+            collection.Add(mood);
+            collection.Add(scene);
+            collection.Add(topic);
+            foreach (var item in collection)
+            {
+                if(item != null)
+                {
+                    collectionNew.Add(item);
+                }
+            }
+            if(collectionNew.Count == 0)
+            {
+                collectionNew.Add("");
+                collectionNew.Add("");
+                collectionNew.Add("");
+                collectionNew.Add("");
+            }
+            else if(collectionNew.Count == 1)
+            {
+                collectionNew.Add("");
+                collectionNew.Add("");
+                collectionNew.Add("");
+            }
+            else if (collectionNew.Count == 2)
+            {
+                collectionNew.Add("");
+                collectionNew.Add("");
+            }
+            else if (collectionNew.Count == 4)
+            {
+                collectionNew.Add("");
+            }
             IPlaylistAdminBus plabus = new PlaylistAdminBus();
             int totalCount;
             GetUser_Result user = (GetUser_Result)Session["user"];
@@ -29,7 +64,7 @@ namespace MusicProject.Controllers
             {
                 accountName = user.AccountName;
             }
-            List<PlaylistAdminwithAdmin> playlistAdmins = plabus.GetPlaylistsByCollectionsPage(pageIndex, pageSize, genres, mood, scene, topic, accountName, out totalCount);
+            List<PlaylistAdminwithAdmin> playlistAdmins = plabus.GetPlaylistsByCollectionsPage(pageIndex, pageSize, collectionNew[0], collectionNew[1], collectionNew[2], collectionNew[3], accountName, out totalCount);
             return Json(new {playlistAdmins, totalCount}, JsonRequestBehavior.AllowGet);
         }
     }

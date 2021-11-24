@@ -61,10 +61,10 @@ namespace MusicDao
             dh.Close();
             return playlistAdmins;
         }
-        public List<PlaylistAdminwithAdmin> GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genres, string mood, string scene, string topic, string accountName, out int totalCount)
+        public List<PlaylistAdminwithAdmin> GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genre, string mood, string scene, string topic, string accountName, out int totalCount)
         {
             totalCount = 0;
-            SqlDataReader dr = dh.StoreReaders("GetPlaylistsByCollectionsPage", pageIndex, pageSize, genres, mood, scene, topic, accountName);
+            SqlDataReader dr = dh.StoreReaders("GetPlaylistsByCollectionsPage", pageIndex, pageSize, genre, mood, scene, topic, accountName);
             while (dr.Read())
             {
                 totalCount = int.Parse(dr["totalCount"].ToString());
