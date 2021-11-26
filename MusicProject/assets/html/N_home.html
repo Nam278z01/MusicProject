@@ -234,7 +234,7 @@
                 </div>
                 <div class="released__info">
                     <h4 class="released__name">
-                        <a href="#!/Detail/Song?song={{songNewestpicked.Song.SongID}}">{{songNewestpicked.Song.SongName}}</a>
+                        <a href="#!/chi-tiet/bai-hat?song={{songNewestpicked.Song.SongID}}">{{songNewestpicked.Song.SongName}}</a>
                     </h4>
                     <div class="released__artist">
                         <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" class="released__artist-img" ng-repeat="a in songNewestpicked.Artists" title="{{a.ArtistName}}" ng-style="{'z-index': {{ 10 - $index}}}">
@@ -245,13 +245,13 @@
                         </div>
                     </div>
                     <div class="released__date">
-                        <i class='bx bx-calendar'></i>Ngày phát hành:
-                        <span>{{songNewestpicked.Song.ReleaseDate.replace('/Date(','').replace(')/','') | date : "dd/MM/yyyy"}}</span>
+                        <i class='bx bx-calendar'></i>
+                        <span> Ngày phát hành:<span>{{songNewestpicked.Song.ReleaseDate.replace('/Date(','').replace(')/','') | date : "dd/MM/yyyy"}}</span></span>
                     </div>
                 </div>
             </div>
             <div class="released__picked">
-                <div class="released__picked-item" ng-repeat="s in songsNewest" ng-class="{picked:pickedSongNewst($index, s)}" ng-click="pickSongNewst($index, s)">
+                <div class="released__picked-item" ng-repeat="s in songsNewest" ng-class="{picked:pickedSongNewst($index, s)}" ng-click="pickSongNewst($index, s)" ng-mouseover="pickSongNewst($index, s)">
                     <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
                     <div class="released__picked-play ratioIn">
                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -473,7 +473,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100blues-jazz.jpg">
+                                    <img src="../../assets/img/Default/top100blues-jazz.jpg">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <a class="list-playlist__item-play" href="#!/top-100?n=usuk&col=Col0000072">
@@ -489,7 +489,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100electonica-dance.jpg">
+                                    <img src="../../assets/img/Default/top100electonica-dance.jpg">
                                 </div>
                                 <a class="ratioIn list-playlist__item-feature" href="#!/top-100?n=usuk&col=Col0000002">
                                     <div class="list-playlist__item-play">
@@ -505,7 +505,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100nhactre.jpg">
+                                    <img src="../../assets/img/Default/top100nhactre.jpg">
                                 </div>
                                 <a class="ratioIn list-playlist__item-feature" href="#!/top-100?n=vn&col=Col0000001">
                                     <div class="list-playlist__item-play">
@@ -521,7 +521,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100rapviet.jpg">
+                                    <img src="../../assets/img/Default/top100rapviet.jpg">
                                 </div>
                                 <a class="ratioIn list-playlist__item-feature" href="#!/top-100?n=vn&col=Col0000006">
                                     <div class="list-playlist__item-play">
@@ -537,7 +537,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100country.jpg">
+                                    <img src="../../assets/img/Default/top100country.jpg">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <a class="list-playlist__item-play" href="#!/top-100?n=usuk&col=Col0000004">
@@ -553,7 +553,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100remixviet.jpg">
+                                    <img src="../../assets/img/Default/top100remixviet.jpg">
                                 </div>
                                 <a class="ratioIn list-playlist__item-feature" href="#!/top-100?n=vn&col=Col0000070">
                                     <div class="list-playlist__item-play">
@@ -569,7 +569,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100rap-hiphop.jpg">
+                                    <img src="../../assets/img/Default/top100rap-hiphop.jpg">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <a class="list-playlist__item-play" href="#!/top-100?n=usuk&col=Col0000016">

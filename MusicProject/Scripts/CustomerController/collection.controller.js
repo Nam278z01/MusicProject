@@ -55,7 +55,7 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
 
     let listCollection = document.querySelectorAll('.collection__pick-list-item')
     document.body.addEventListener('click', function (e) {
-        if (e.target.closest('.collection__pick-list-item') == null && e.target.closest('.collection__pick-item-show') == null) {
+        if (e.target.closest('.collection__pick-list-item') == null) {
             listCollection.forEach(ele => {
                 ele.classList.remove('show')
             })

@@ -184,13 +184,13 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 }
             })
 
-            var restrictedPage = $.inArray($location.path(), ['my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
+            var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
             if (restrictedPage) {
                 $location.path('/')
             }
 
             $rootScope.$on('$routeChangeStart', function (event, next, current) {
-                var restrictedPage = $.inArray($location.path(), ['my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
+                var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
                 if (restrictedPage) {
                     event.preventDefault()
                     $location.path('/')

@@ -4,7 +4,7 @@
             Thể Loại
         </div>
         <div class="collection__pick-item" ng-repeat="col in genres | limitTo:5" ng-click="pickedCollection(col, 'tl')"
-             ng-class="{active:pickedCollection2(col)}">
+             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
             <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
         </div>
         <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(1)}" style="user-select: none">
@@ -15,7 +15,7 @@
                 <div class="row sm-gutter">
                     <div class="col sl-3 l-3" ng-repeat="col in genres.slice(5)">
                         <div class="collection__pick-item" ng-click="pickedCollection(col, 'tl')"
-                             ng-class="{active:pickedCollection2(col)}">
+                             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
                             <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
             Tâm trạng
         </div>
         <div class="collection__pick-item" ng-repeat="col in moods | limitTo:5" ng-click="pickedCollection(col, 'tt')"
-             ng-class="{active:pickedCollection2(col)}">
+             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
             <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
         </div>
         <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(2)}" style="user-select: none">
@@ -39,7 +39,7 @@
                 <div class="row sm-gutter">
                     <div class="col sl-3 l-3" ng-repeat="col in moods.slice(5)">
                         <div class="collection__pick-item" ng-click="pickedCollection(col, 'tt')"
-                             ng-class="{active:pickedCollection2(col)}">
+                             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
                             <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
             Khung cảnh
         </div>
         <div class="collection__pick-item" ng-repeat="col in scenes | limitTo:5" ng-click="pickedCollection(col, 'kc')"
-             ng-class="{active:pickedCollection2(col)}">
+             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
             <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
         </div>
         <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(3)}" style="user-select: none">
@@ -63,7 +63,7 @@
                 <div class="row sm-gutter">
                     <div class="col sl-3 l-3" ng-repeat="col in scenes.slice(5)">
                         <div class="collection__pick-item" ng-click="pickedCollection(col, 'kc')"
-                             ng-class="{active:pickedCollection2(col)}">
+                             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
                             <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
             Chủ đề
         </div>
         <div class="collection__pick-item" ng-repeat="col in topics | limitTo:5" ng-click="pickedCollection(col, 'cd')"
-             ng-class="{active:pickedCollection2(col)}">
+             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
             <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
         </div>
         <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(4)}" style="user-select: none">
@@ -87,7 +87,7 @@
                 <div class="row sm-gutter">
                     <div class="col sl-3 l-3" ng-repeat="col in topics.slice(5)">
                         <div class="collection__pick-item" ng-click="pickedCollection(col, 'cd')"
-                             ng-class="{active:pickedCollection2(col)}">
+                             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
                             <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
                         </div>
                     </div>

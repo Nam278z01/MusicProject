@@ -1,42 +1,45 @@
 <div class="song-detail">
     <div class="song-detail__main">
         <div class="song-detail__img">
-            <img src="./assets/img/easy-on-me-edele.jpg" alt="">
+            <img src="../../assets/img/song/{{song.Song.Image}}" alt="{{song.Song.SongName}}">
             <button class="btn btn--circle btn-play-detail" title="nghe">
                 <i class='bx bxs-right-arrow'></i>
             </button>
-            <button class="btn btn-detail-more btn--circle" title="Khác">
+            <button class="btn btn--circle btn-like" title="Yêu thích" style="top: calc(11% + 36px); left: 3%;">
+                <i class='bx bx-heart' ng-if="song.Liked == 0"></i>
+                <i class='bx bxs-heart' ng-if="song.Liked == 1" style="color: var(--main-color)"></i>
+            </button>
+            <button class="btn  btn--more btn--circle" title="Khác" style="top: 10%; left: 3%;">
                 <i class='bx bx-dots-horizontal-rounded'></i>
             </button>
         </div>
         <div class="song-detail__info">
-            <div class="song-detail__name">Bài hát:<span>Easy on me</span></div>
+            <div class="song-detail__name">Bài hát:<span>{{song.Song.SongName}}</span></div>
             <div class="song-detail__artist released__artist">
-                <a href="" class="released__artist-img">
-                    <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
-                </a>
-                <a href="" class="released__artist-img">
-                    <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
-                </a>
-                <a href="" class="released__artist-img">
-                    <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
+                <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" class="released__artist-img" ng-repeat="a in song.Artists" title="{{a.ArtistName}}" ng-style="{'z-index': {{ 10 - $index}}}">
+                    <img src="../../assets/img/artist/{{a.Image}}" alt="">
                 </a>
                 <div class="released__artist-name">
-                    <a href="">Adele</a>
-                    <a href="">Adele</a>
+                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in song.Artists">{{a.ArtistName}}</a>
                 </div>
             </div>
-            <div class="song-detail__album">
-                Album:<span>Easy</span>
-            </div>
-            <div class="song-detail__view">
-                43.304 lượt nghe
+            <div class="song-detail__album" ng-show="song.Song.Album.AlbumID">
+                Album:<a href="#!/chi-tiet/album?id={{song.Song.Album.AlbumID}}">{{song.Song.Album.AlbumName}}</a>
             </div>
             <div class="song-detail__releasedate">
-                Ngày phát hành: 27/08/2021
+                <i class='bx bx-calendar'></i>
+                <span> Ngày phát hành:<span>{{song.Song.ReleaseDate.replace('/Date(','').replace(')/','') | date : "dd/MM/yyyy"}}</span></span>
             </div>
             <div class="song-detail__desciption">
 
+            </div>
+            <div class="song-detail__view">
+                <i class='bx bx-headphone'></i>
+                <span>{{song.Views}} Lượt nghe</span>
+            </div>
+            <div class="song-detail__view">
+                <i class='bx bxs-heart'></i>
+                <span>{{song.TotalLikes}} Yêu thích</span>
             </div>
         </div>
     </div>
@@ -48,54 +51,10 @@
                 <span>Sao chép</span>
             </button>
         </div>
-        <div class="song-detail__lyric-script">
-            [Verse 1]<br>
-            There ain't no gold in this river<br>
-            That I've been washin' my hands in forever<br>
-            I know there is hope in these waters<br>
-            But I can't bring myself to swim<br>
-            When I am drowning in this silence<br>
-            Baby, let me in<br><br>
-            
-            [Chorus]<br>
-            Go easy on me, baby<br>
-            I was still a child<br>
-            Didn't get the chance to<br>
-            Feel the world around me<br>
-            I had no time to choose what I chose to do<br>
-            So go easy on me<br><br>
-            
-            [Verse 2]<br>
-            There ain't no room for things to change<br>
-            When we are both so deeply stuck in our ways<br>
-            You can't deny how hard I have tried<br>
-            I changed who I was to put you both first<br>
-            But now I give up<br><br>
-            
-            [Chorus]<br>
-            Go easy on mе, baby<br>
-            I was still a child<br>
-            Didn't get the chance to<br>
-            Feel thе world around me<br>
-            Had no time to choose what I chose to do<br>
-            So go easy on me<br><br>
-            
-            [Bridge]<br>
-            I had good intentions<br>
-            And the highest hopes<br>
-            But I know right now<br>
-            It probably doesn't even show<br><br>
-            
-            [Chorus]<br>
-            Go easy on me, baby<br>
-            I was still a child<br>
-            I didn't get the chance to<br>
-            Feel the world around me<br>
-            I had no time to choose what I chose to do<br>
-            So go easy on me<br>
+        <div class="song-detail__lyric-script" ng-class="{shorten:isShorten}" ng-bind-html="song.Song.Lyric">
         </div>
-        <button class="btn btn-view-lyric">
-            Thu gọn
+        <button class="btn btn-view-lyric" ng-click="seeMore()">
+            {{titleShorten}}
         </button>
     </div>
     <div class="list-playlist" style="margin-bottom: 70px">

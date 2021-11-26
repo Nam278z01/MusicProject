@@ -31,5 +31,9 @@ namespace MusicBus
         {
             return sdao.Get10SongsNewest(accountName);
         }
+        public SongwithArtist GetSong(string songID, string accountName)
+        {
+            return sdao.GetSong(songID, accountName);
+        }
     }
 }

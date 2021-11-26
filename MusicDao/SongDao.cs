@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MusicObj;
 using System.Data;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
 
 namespace MusicDao
 {
@@ -19,100 +20,112 @@ namespace MusicDao
         public List<SongwithArtist> GetSongsPage(int pageIndex, int pageSize, string collectionID, int nation, string textSearch, string function, string accountName, out int totalCount)
         {
             totalCount = 0;
-            SqlDataReader dr;
+            SqlDataReader reader;
             if (function == "search")
             {
-                dr = dh.StoreReaders("GetSongsSearch", pageIndex, pageSize, textSearch, accountName);
+                reader = dh.StoreReaders("GetSongsSearch", pageIndex, pageSize, textSearch, accountName);
             }
             else
             {
-                dr = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation, accountName);
+                reader = dh.StoreReaders("GetSongsByCollectionPage", pageIndex, pageSize, collectionID, nation, accountName);
             }
-            while (dr.Read())
+            while (reader.Read())
             {
-                totalCount = int.Parse(dr["totalCount"].ToString());
+                totalCount = int.Parse(reader["totalCount"].ToString());
             }
-            dr.NextResult();
-            List<SongwithArtist> songs = SongToList(dr, 0, 0);
+            reader.NextResult();
+            var jsonResult = new StringBuilder();
+            if (!reader.HasRows)
+            {
+                return new List<SongwithArtist>();
+            }
+            else
+            {
+                while (reader.Read())
+                {
+                    jsonResult.Append(reader.GetValue(0).ToString());
+                }
+            }
+            List<SongwithArtist> songs = JsonConvert.DeserializeObject<List<SongwithArtist>>(jsonResult.ToString());
             dh.Close();
             return songs;
         }
         public List<SongwithArtist> GetTop100Songs(string accountName, string collectionID, int nation)
         {
-            SqlDataReader dr = dh.StoreReaders("GetTop100Songs", accountName, collectionID, nation);
-            List<SongwithArtist> songs = SongToList(dr, 1, 0);
+            SqlDataReader reader = dh.StoreReaders("GetTop100Songs", accountName, collectionID, nation);
+            var jsonResult = new StringBuilder();
+            if (!reader.HasRows)
+            {
+                return new List<SongwithArtist>();
+            }
+            else
+            {
+                while (reader.Read())
+                {
+                    jsonResult.Append(reader.GetValue(0).ToString());
+                }
+            }
+            List<SongwithArtist> songs = JsonConvert.DeserializeObject<List<SongwithArtist>>(jsonResult.ToString());
             dh.Close();
             return songs;
         }
 
         public List<SongwithArtist> Get10SongsRandom(string accountName)
         {
-            SqlDataReader dr = dh.StoreReaders("Get10SongsRandom", accountName);
-            List<SongwithArtist> songs = SongToList(dr, 1, 0);
+            SqlDataReader reader = dh.StoreReaders("Get10SongsRandom", accountName);
+            var jsonResult = new StringBuilder();
+            if (!reader.HasRows)
+            {
+                return new List<SongwithArtist>();
+            }
+            else
+            {
+                while (reader.Read())
+                {
+                    jsonResult.Append(reader.GetValue(0).ToString());
+                }
+            }
+            List<SongwithArtist> songs = JsonConvert.DeserializeObject<List<SongwithArtist>>(jsonResult.ToString());
             dh.Close();
             return songs;
         }
         public List<SongwithArtist> Get10SongsNewest(string accountName)
         {
-            SqlDataReader dr = dh.StoreReaders("Get10SongsNewest", accountName);
-            List<SongwithArtist> songs = SongToList(dr, 1, 1);
+            SqlDataReader reader = dh.StoreReaders("Get10SongsNewest", accountName);
+            var jsonResult = new StringBuilder();
+            if (!reader.HasRows)
+            {
+                return new List<SongwithArtist>();
+            }
+            else
+            {
+                while (reader.Read())
+                {
+                    jsonResult.Append(reader.GetValue(0).ToString());
+                }
+            }
+            List<SongwithArtist> songs = JsonConvert.DeserializeObject<List<SongwithArtist>>(jsonResult.ToString());
             dh.Close();
             return songs;
         }
-
-        public List<SongwithArtist> SongToList(SqlDataReader dr, int kind, int kind2)
+        public SongwithArtist GetSong(string songID, string accountName)
         {
-            List<SongwithArtist> songs = new List<SongwithArtist>();
-            string songID = null;
-            SongwithArtist swa;
-            List<Artist> artists = new List<Artist>();
-            while (dr.Read())
+            SqlDataReader reader = dh.StoreReaders("GetSong", accountName, songID);
+            var jsonResult = new StringBuilder();
+            if (!reader.HasRows)
             {
-                Song s = new Song();
-                s.SongID = dr["SongID"].ToString();
-                if (songID != s.SongID)
+                return new SongwithArtist();
+            }
+            else
+            {
+                while (reader.Read())
                 {
-                    artists = new List<Artist>();
-                    swa = new SongwithArtist();
-                    s.SongName = dr["SongName"].ToString();
-                    s.Lyric = dr["Lyric"].ToString();
-                    s.ReleaseDate = dr["ReleaseDate"].ToString() != "" ? DateTime.Parse(dr["ReleaseDate"].ToString()) : s.ReleaseDate;
-                    s.Image = dr["Image"].ToString();
-                    s.SongPath = dr["SongPath"].ToString();
-                    s.Nation = int.Parse(dr["Nation"].ToString());
-                    s.MV = dr["MV"].ToString();
-                    s.isVip = bool.Parse(dr["isVip"].ToString());
-                    swa.Song = s;
-                    swa.Liked = int.Parse(dr["Liked"].ToString());
-                    if(kind == 1)
-                    {
-                        swa.Views = int.Parse(dr["Views"].ToString());
-                    }
-                    Artist artist = new Artist();
-                    artist.ArtistID = dr["ArtistID"].ToString();
-                    artist.ArtistName = dr["ArtistName"].ToString();
-                    if(kind2 == 1)
-                    {
-                        artist.Image = dr["ArtistImage"].ToString();
-                    }
-                    artists.Add(artist);
-                    swa.Artists = artists;
-                    songs.Add(swa);
-                    songID = s.SongID;
-                }
-                else
-                {
-                    Artist artist = new Artist();
-                    artist.ArtistID = dr["ArtistID"].ToString();
-                    artist.ArtistName = dr["ArtistName"].ToString();
-                    if (kind2 == 1)
-                    {
-                        artist.Image = dr["ArtistImage"].ToString();
-                    }
-                    artists.Add(artist);
+                    jsonResult.Append(reader.GetValue(0).ToString());
                 }
             }
-            return songs;
+            SongwithArtist song = JsonConvert.DeserializeObject<SongwithArtist>(jsonResult.ToString());
+            dh.Close();
+            return song;
         }
     }
 }

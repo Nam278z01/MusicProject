@@ -251,12 +251,12 @@
 }
 
 .rank-main__song:nth-child(4) {
-    left: 68px;
+    left: 84px;
     z-index: 3;
 }
 
 .rank-main__song:nth-child(5) {
-    left: 110px;
+    left: 146px;
     z-index: 2;
 }
 

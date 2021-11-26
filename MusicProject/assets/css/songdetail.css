@@ -15,15 +15,15 @@
     position: relative;
 }
 
-.song-detail__img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    .song-detail__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
 .btn-play-detail {
     position: absolute;
-    top: 80%;
+    top: 83%;
     right: 5%;
     background-color: var(--bg-color);
     outline: 6px solid rgb(0 0 0 / 20%);
@@ -31,24 +31,10 @@
     width: 30px;
 }
 
-.btn-play-detail i{
-    font-size: 1.6rem;
-}
+    .btn-play-detail i {
+        font-size: 1.6rem;
+    }
 
-.btn-detail-more {
-    position: absolute;
-    top: 3%;
-    left: 3%;
-    color: var(--bg-color);
-    transition: background-color 200ms linear 0s;
-    height: 36px;
-    width: 36px;
-}
-
-
-.btn-detail-more:hover {
-    background-color: var(--white-color-blur);
-}
 
 .song-detail__info {
     padding-left: 24px;
@@ -60,13 +46,13 @@
     font-weight: 600;
 }
 
-.song-detail__name span, .song-detail__album span {
-    color: var(--text-color);
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding-left: 6px;
-    text-transform: capitalize;
-}
+    .song-detail__name span, .song-detail__album a {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding-left: 6px;
+        text-transform: capitalize;
+    }
 
 .song-detail__artist {
 }
@@ -77,10 +63,25 @@
     margin-top: 0.8rem;
 }
 
-.song-detail__album span:hover {
-    color: var(--main-color);
-    cursor: pointer;
+    .song-detail__album a:hover {
+        color: var(--main-color);
+        cursor: pointer;
+    }
+
+.song-detail__view, .song-detail__releasedate {
+    color: var(--text-color-blur);
+    display: flex;
+    align-items: center;
 }
+
+    .song-detail__view i, .song-detail__releasedate i {
+        font-size: 2rem;
+        padding-right: 0.4rem;
+    }
+
+    .song-detail__view span, .song-detail__releasedate span {
+        padding-left: 0.4rem;
+    }
 
 .song-detail__lyric {
     margin: 24px 32px 0;
@@ -97,24 +98,29 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-.song-detail__lyric-title span {
-    font-size: 1.5rem;
-    font-weight: 600;
-}
+    .song-detail__lyric-title span {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
 
 .btn-copy {
     color: var(--text-color-blur);
     background-color: var(--bg-color-blur2);
     padding: 8px;
+    border-radius: 4px;
+    transition-duration: 0s;
 }
+    .btn-copy:active {
+        background-color: var(--bg-color-blur3);
+    }
 
 .btn-copy i {
     font-size: 2rem;
 }
 
-.btn-copy span {
-    font-size: 1.3rem;
-}
+    .btn-copy span {
+        font-size: 1.3rem;
+    }
 
 .song-detail__lyric-script {
     margin-top: 24px;
@@ -122,6 +128,10 @@
     line-height: 2.2rem;
     overflow-y: hidden;
 }
+
+    .song-detail__lyric-script.shorten {
+        height: 100px;
+    }
 
 .btn-view-lyric {
     margin-top: 12px;
@@ -131,6 +141,6 @@
     font-weight: 400;
 }
 
-.btn-view-lyric:hover {
-    color: var(--main-color);
-}
+    .btn-view-lyric:hover {
+        color: var(--main-color);
+    }
