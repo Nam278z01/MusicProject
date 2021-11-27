@@ -55,9 +55,26 @@
     position: absolute;
     top: 2%;
     left: 2%;
-    width: 20% !important;
-    height: 8% !important;
-    opacity: 0.9;
+    line-height: 1.5rem;
+    display: inline-block;
+    padding: 0 4px;
+    border-radius: 6px;
+    font-weight: 700;
+    background-image: linear-gradient( 45deg, rgb(24, 216, 204) 0%, rgb(210, 23, 83) 33%, rgb(24, 216, 204) 66%, rgb(210, 23, 83) 100% );
+    color: var(--bg-color);
+    font-size: 1.3rem;
+}
+
+.song_vip_horizontal {
+    margin-left: 6px;
+    line-height: 1.5rem;
+    display: inline-block;
+    padding: 0 4px;
+    border-radius: 6px;
+    font-weight: 700;
+    background-image: linear-gradient( 45deg, rgb(24, 216, 204) 0%, rgb(210, 23, 83) 33%, rgb(24, 216, 204) 66%, rgb(210, 23, 83) 100% );
+    color: var(--bg-color);
+    font-size: 1.3rem;
 }
 
 .decorative:first-child, .decorative:nth-child(2) {
@@ -100,19 +117,30 @@
 .list-playlist__item-feature {
     border-radius: 4px;
     background-color: var(--shadow-color);
-    z-index: 1;
     cursor: pointer;
     display: none;
 }
 
-.list-playlist__item-play {
-    border-radius: 4px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.list-playlist__slide .col:nth-of-type(2n) .feature__more {
+    left: 0;
 }
+
+    .list-playlist__item-feature.focus {
+        display: flex;
+    }
+
+    .list-playlist__item-feature.focus .feature__more {
+        display: block;
+    }
+
+    .list-playlist__item-play {
+        border-radius: 4px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
 .btn-listen {
     color: var(--bg-color);
@@ -145,6 +173,43 @@
 .btn-like:hover {
     background-color: var(--white-color-blur);
 }
+
+.feature__more {
+    position: absolute;
+    background-color: var(--white-color);
+    left: 102%;
+    top: 0;
+    box-shadow: 0 8px 12px rgb(0 0 0 / 20%);
+    width: 90%;
+    font-size: 1.3rem;
+    border-radius: 4px;
+    z-index: 10;
+    display: none;
+    animation: fadeIn 0.4s linear;
+}
+
+.feature__item {
+    cursor: pointer;
+    height: 40px;
+    transition: background-color 0.2s linear;
+    padding: 7px 8px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+    .feature__item i {
+        font-size: 2rem;
+    }
+
+    .feature__item span {
+        flex-grow: 1;
+        margin: 0 10px;
+    }
+
+    .feature__item:hover {
+        background-color: var(--bg-color-blur2);
+    }
 
 .list-playlist__item-name {
     margin-top: 8px;

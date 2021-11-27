@@ -14,14 +14,20 @@ namespace MusicProject.Controllers
         public JsonResult GetSong(string songID)
         {
             ISongBus sbus = new SongBus();
+            SongwithArtist song = sbus.GetSong(songID, GetUserName());
+            List<SongwithArtist> songs = sbus.Get10SongsRandomCollection(GetUserName(), song.Collections[0].CollectionID, songID);
+            return Json( new { song, songs}, JsonRequestBehavior.AllowGet);
+        }
+        public string GetUserName()
+        {
             GetUser_Result user = (GetUser_Result)Session["user"];
             string accountName = "";
             if (user != null)
             {
                 accountName = user.AccountName;
             }
-            SongwithArtist song = sbus.GetSong(songID, accountName);
-            return Json(song, JsonRequestBehavior.AllowGet);
+            return accountName;
         }
+
     }
 }

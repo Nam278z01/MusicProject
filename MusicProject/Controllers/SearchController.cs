@@ -15,13 +15,7 @@ namespace MusicProject.Controllers
         {
             ISongBus sbus = new SongBus();
             int totalCount;
-            GetUser_Result user = (GetUser_Result)Session["user"];
-            string accountName = "";
-            if (user != null)
-            {
-                accountName = user.AccountName;
-            }
-            List<SongwithArtist> songs = sbus.GetSongsPage(pageIndex, pageSize, "", 1, textSearch, "search", accountName, out totalCount);
+            List<SongwithArtist> songs = sbus.GetSongsPage(pageIndex, pageSize, "", 1, textSearch, "search", GetUserName(), out totalCount);
             return Json(new { songs, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetArtistsSearch(int pageIndex, int pageSize, string textSearch)
@@ -35,27 +29,25 @@ namespace MusicProject.Controllers
         {
             IAlbumBus albus = new AlbumBus();
             int totalCount;
-            GetUser_Result user = (GetUser_Result)Session["user"];
-            string accountName = "";
-            if (user != null)
-            {
-                accountName = user.AccountName;
-            }
-            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, 1, textSearch, "search", accountName, out totalCount);
+            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, 1, textSearch, "search", GetUserName(), out totalCount);
             return Json(new { albums, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetPlaylistsSearch(int pageIndex, int pageSize, string textSearch)
         {
             IPlaylistBus plbus = new PlaylistBus();
             int totalCount;
+            List<PlaylistwithPerson> playlists = plbus.GetPlaylistSearch(pageIndex, pageSize, textSearch, GetUserName(), out totalCount);
+            return Json(new { playlists, totalCount }, JsonRequestBehavior.AllowGet);
+        }
+        public string GetUserName()
+        {
             GetUser_Result user = (GetUser_Result)Session["user"];
             string accountName = "";
             if (user != null)
             {
                 accountName = user.AccountName;
             }
-            List<PlaylistwithPerson> playlists = plbus.GetPlaylistSearch(pageIndex, pageSize, textSearch,accountName, out totalCount);
-            return Json(new { playlists, totalCount }, JsonRequestBehavior.AllowGet);
+            return accountName;
         }
     }
 }

@@ -82,7 +82,7 @@
                                 </a>
                             </div>
                             <div class="sidebar__navigation-subitem">
-                                <a href="#!/kham-pha/playlist" class="sidebar__navigation-sublink"
+                                <a href="#!/kham-pha/playlist?n=vn&col=Col0000001" class="sidebar__navigation-sublink"
                                    ng-class="{active:isSubActive(2)}" ng-click="changePage(2); changeSubPage(2)">
                                     <span>Playlist</span>
                                 </a>
@@ -155,7 +155,24 @@
             </div>
         </nav>
         <div class="sidebar__setting">
-            <p ng-click="Logout()" ng-if="logged">Đăng xuất</p>
+            <div class="setting__item">
+                <i class='bx bx-support'></i>
+                <span>Hỗ trợ</span>
+            </div>
+            <div class="setting__item">
+                <i class='bx bx-moon'></i>
+                <span>Chủ đề</span>
+                <i class='bx bx-chevron-right'></i>
+                <div class="setting__subitem">
+                    <p>Nền sáng</p>
+                    <p>Nền tối</p>
+                </div>
+            </div>
+
+            <div class="setting__item" ng-click="Logout()" ng-if="logged">
+                <i class='bx bx-log-in-circle'></i>
+                <span>Đăng xuất</span>
+            </div>
         </div>
 
         <section class="home-main">
@@ -185,7 +202,7 @@
                     </div>
                 </div>
                 <div class="infor">
-                    <p>Website được xây dựng dựa trên nhaccuatui.com bởi 3 thành viên: An, Nam, Tuyết</p>
+                    <p>Website được xây dựng dựa trên Nhaccuatui.com bởi 3 thành viên: An, Nam, Tuyết</p>
                 </div>
             </div>
         </section>

@@ -49,12 +49,12 @@
         animation: flash 700ms infinite;
     }
 
-    .sidebar__upgrade {
-        text-transform: uppercase;
-        font-weight: 600;
-        padding: 4px 12px;
-        margin-right: 15px;
-    }
+.sidebar__upgrade {
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 4px 12px;
+    margin-right: 15px;
+}
 
 .signin-singup {
     font-size: 1.3rem;
@@ -80,31 +80,60 @@
 .sidebar__setting {
     position: fixed;
     background-color: var(--white-color);
-    left: 200px;
-    top: 64px;
+    left: 70px;
+    top: 120px;
     box-shadow: 0 8px 12px rgb(0 0 0 / 20%);
     width: 180px;
     font-size: 1.3rem;
     border-radius: 4px;
     z-index: 10;
     display: none;
+    animation: fadeIn 0.4s linear;
 }
 
     .sidebar__setting.show {
         display: block;
     }
 
-    .sidebar__setting p {
-        cursor: pointer;
-        margin: 2px 0;
-        line-height: 2.8rem;
-        padding: 0 12px;
-        transition: background-color 0.2s linear;
+.setting__item, .setting__subitem p {
+    cursor: pointer;
+    height: 40px;
+    transition: background-color 0.2s linear;
+    padding: 7px 8px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+    .setting__item i {
+        font-size: 2rem;
     }
 
-        .sidebar__setting p:hover {
-            background-color: var(--bg-color-blur2);
+    .setting__item span {
+        flex-grow: 1;
+        margin: 0 10px;
+    }
+
+    .setting__item:hover, .setting__subitem p:hover {
+        background-color: var(--bg-color-blur2);
+    }
+
+        .setting__item:hover .setting__subitem {
+            display: block;
         }
+
+.setting__subitem {
+    position: absolute;
+    background-color: var(--white-color);
+    left: 100%;
+    top: 0;
+    box-shadow: 0 8px 12px rgb(0 0 0 / 20%);
+    width: 130px;
+    font-size: 1.3rem;
+    border-radius: 4px;
+    display: none;
+    animation: fadeIn 0.4s linear;
+}
 
 .sidebar__user {
     display: flex;
@@ -129,10 +158,11 @@
 
     .sidebar__user-name span:last-child {
         display: inline-block;
-        padding: 0 3px;
-        border-radius: 4px;
+        line-height: 1.5rem;
+        padding: 0 4px;
+        border-radius: 6px;
         font-weight: 700;
-        background-color: #f0ad4e;
+        background-image: linear-gradient( 45deg, rgb(24, 216, 204) 0%, rgb(210, 23, 83) 33%, rgb(24, 216, 204) 66%, rgb(210, 23, 83) 100% );
         color: var(--bg-color);
     }
 

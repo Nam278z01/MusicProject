@@ -195,6 +195,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                     event.preventDefault()
                     $location.path('/')
                 }
+                $window.scrollTo(0, 0);
             })
         }
     }, function (err) {
@@ -218,4 +219,55 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             this.style.display = 'none'
         })
     })
+
+
+    $rootScope.getTimes = function (n) {
+        return new Array(n);
+    }  
+
+    $rootScope.eleView
+
+    if (window.innerWidth < 740) {
+        $rootScope.eleView = 2
+    } else if (window.innerWidth < 1113) {
+        $rootScope.eleView = 4
+    } else if (window.innerWidth < 1800) {
+        $rootScope.eleView = 5
+    } else {
+        $rootScope.eleView = 6
+    }
+    $window.addEventListener('resize', () => {
+        if (window.innerWidth < 740) {
+            $rootScope.eleView = 2
+        } else if (window.innerWidth < 1113) {
+            $rootScope.eleView = 4
+        } else if (window.innerWidth < 1800) {
+            $rootScope.eleView = 5
+        } else {
+            $rootScope.eleView = 6
+        }
+    })
+    document.body.addEventListener('click', function (e) {
+        let featureMore = document.querySelectorAll('.list-playlist__item-feature')
+        if (featureMore) {
+            featureMore.forEach(ele => {
+                ele.classList.remove('focus')
+            })
+        }
+        //if (e.target.closest('.list-playlist__item') == null) {
+        //    let featureMore = document.querySelectorAll('.list-playlist__item-feature')
+        //    if (featureMore) {
+        //        featureMore.forEach(ele =>{
+        //            ele.classList.remove('focus')
+        //        })
+        //    }
+        //}
+        if (e.target.closest('.btn--more')) {
+            e.target.closest('.btn--more').parentElement.classList.toggle('focus')
+        }
+    })
+
+    $rootScope.testAlert = function (n) {
+        alert("hehe")
+    }
 })

@@ -70,6 +70,7 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
     $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page || 1
+    $scope.loadSongSuccessfull = false
 
     getResultsPage($scope.pageIndex)
 
@@ -87,6 +88,7 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
         }).then(function (response) {
             $scope.playlistAdmins = response.data.playlistAdmins
             $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
         }, function (error) {
             alert('Failed to get the playlists!')
         })

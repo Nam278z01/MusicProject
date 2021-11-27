@@ -6,7 +6,8 @@
         url: '/Detail/GetSong',
         params: { songID: $routeParams.song }
     }).then(function (response) {
-        $scope.song = response.data
+        $scope.song = response.data.song
+        $scope.songs = response.data.songs
         //start: Title
         $rootScope.title = $scope.song.Song.SongName + " | "
         var length = $scope.song.Artists.length

@@ -35,5 +35,9 @@ namespace MusicBus
         {
             return sdao.GetSong(songID, accountName);
         }
+        public List<SongwithArtist> Get10SongsRandomCollection(string accountName, string colletionID, string songID)
+        {
+            return sdao.Get10SongsRandomCollection(accountName, colletionID, songID);
+        }
     }
 }

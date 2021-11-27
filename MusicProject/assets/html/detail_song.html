@@ -30,6 +30,12 @@
                 <i class='bx bx-calendar'></i>
                 <span> Ngày phát hành:<span>{{song.Song.ReleaseDate.replace('/Date(','').replace(')/','') | date : "dd/MM/yyyy"}}</span></span>
             </div>
+            <div class="released__artist-name" style="margin-top: 0.8rem; font-size: 1.4rem; margin-left: 0; display: flex; align-items: center">
+                <i class='bx bx-category' style="font-size: 2rem; padding-right: 0.4rem;"></i>
+                <span style="padding-left: 0.4rem;">Thể loại:
+                    <a href="#!/tuyen-tap?tt={{c.CollectionID}}" ng-repeat="c in song.Collections">{{c.CollectionName}}</a>
+                </span>
+            </div>
             <div class="song-detail__desciption">
 
             </div>
@@ -51,9 +57,9 @@
                 <span>Sao chép</span>
             </button>
         </div>
-        <div class="song-detail__lyric-script" ng-class="{shorten:isShorten}" ng-bind-html="song.Song.Lyric">
+        <div class="song-detail__lyric-script" ng-class="{shorten:isShorten}" ng-bind-html="song.Song.Lyric" ng-show="song.Song.Lyric">
         </div>
-        <button class="btn btn-view-lyric" ng-click="seeMore()">
+        <button class="btn btn-view-lyric" ng-click="seeMore()" ng-show="song.Song.Lyric">
             {{titleShorten}}
         </button>
     </div>
@@ -66,17 +72,18 @@
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-2">
-                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-repeat="s in songs">
+                        <div class="list-playlist__item" style="margin-bottom: 24px">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                    <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
+                                        <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
-                                    <div class="list-playlist__item-play">
+                                    <div class="list-playlist__item-play" ng-click="playMusic(s)">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
                                             <i class='bx bxs-right-arrow'></i>
                                         </button>
@@ -86,12 +93,12 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="Hit-Maker Việt">
-                                <a href="#">Hit-Maker Việt</a>
+                            <span class="song_vip" ng-show="{{s.Song.isVip}}">VIP</span>
+                            <div class="list-playlist__item-name" title="{{s.Song.SongName}}">
+                                <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
                             </div>
                             <div class="list-playlist__item-artist">
-                                <a href="#">Hit-Maker Việt</a>
-                                <a href="#">Hit-Maker Việt</a>
+                                <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
                             </div>
                         </div>
                     </div>

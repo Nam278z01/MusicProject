@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using MusicObj;
 using System.Data;
 using System.Data.SqlClient;
-using Newtonsoft.Json;
 
 namespace MusicDao
 {
@@ -34,38 +33,14 @@ namespace MusicDao
                 totalCount = int.Parse(reader["totalCount"].ToString());
             }
             reader.NextResult();
-            var jsonResult = new StringBuilder();
-            if (!reader.HasRows)
-            {
-                return new List<SongwithArtist>();
-            }
-            else
-            {
-                while (reader.Read())
-                {
-                    jsonResult.Append(reader.GetValue(0).ToString());
-                }
-            }
-            List<SongwithArtist> songs = JsonConvert.DeserializeObject<List<SongwithArtist>>(jsonResult.ToString());
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
             dh.Close();
             return songs;
         }
         public List<SongwithArtist> GetTop100Songs(string accountName, string collectionID, int nation)
         {
             SqlDataReader reader = dh.StoreReaders("GetTop100Songs", accountName, collectionID, nation);
-            var jsonResult = new StringBuilder();
-            if (!reader.HasRows)
-            {
-                return new List<SongwithArtist>();
-            }
-            else
-            {
-                while (reader.Read())
-                {
-                    jsonResult.Append(reader.GetValue(0).ToString());
-                }
-            }
-            List<SongwithArtist> songs = JsonConvert.DeserializeObject<List<SongwithArtist>>(jsonResult.ToString());
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
             dh.Close();
             return songs;
         }
@@ -73,59 +48,30 @@ namespace MusicDao
         public List<SongwithArtist> Get10SongsRandom(string accountName)
         {
             SqlDataReader reader = dh.StoreReaders("Get10SongsRandom", accountName);
-            var jsonResult = new StringBuilder();
-            if (!reader.HasRows)
-            {
-                return new List<SongwithArtist>();
-            }
-            else
-            {
-                while (reader.Read())
-                {
-                    jsonResult.Append(reader.GetValue(0).ToString());
-                }
-            }
-            List<SongwithArtist> songs = JsonConvert.DeserializeObject<List<SongwithArtist>>(jsonResult.ToString());
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
             dh.Close();
             return songs;
         }
         public List<SongwithArtist> Get10SongsNewest(string accountName)
         {
             SqlDataReader reader = dh.StoreReaders("Get10SongsNewest", accountName);
-            var jsonResult = new StringBuilder();
-            if (!reader.HasRows)
-            {
-                return new List<SongwithArtist>();
-            }
-            else
-            {
-                while (reader.Read())
-                {
-                    jsonResult.Append(reader.GetValue(0).ToString());
-                }
-            }
-            List<SongwithArtist> songs = JsonConvert.DeserializeObject<List<SongwithArtist>>(jsonResult.ToString());
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
             dh.Close();
             return songs;
         }
         public SongwithArtist GetSong(string songID, string accountName)
         {
             SqlDataReader reader = dh.StoreReaders("GetSong", accountName, songID);
-            var jsonResult = new StringBuilder();
-            if (!reader.HasRows)
-            {
-                return new SongwithArtist();
-            }
-            else
-            {
-                while (reader.Read())
-                {
-                    jsonResult.Append(reader.GetValue(0).ToString());
-                }
-            }
-            SongwithArtist song = JsonConvert.DeserializeObject<SongwithArtist>(jsonResult.ToString());
+            SongwithArtist song = Utility.ToList<SongwithArtist>(reader);
             dh.Close();
             return song;
+        }
+        public List<SongwithArtist> Get10SongsRandomCollection(string accountName, string colletionID, string songID)
+        {
+            SqlDataReader reader = dh.StoreReaders("Get10SongsRandomCollection", accountName, colletionID, songID);
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
+            dh.Close();
+            return songs;
         }
     }
 }

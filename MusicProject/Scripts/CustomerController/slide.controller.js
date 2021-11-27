@@ -238,10 +238,10 @@ appMusic.controller('SlideClickController', function ($scope, $window, $interval
                 if (window.innerWidth < 740) {
                     eleInViewOfThisSlide = 2
                     oneJump = slideChildren.offsetWidth + 8
-                } else if (document.body.clientWidth < 1113) {
+                } else if (window.innerWidth < 1113) {
                     eleInViewOfThisSlide = 4
                     oneJump = slideChildren.offsetWidth + 16
-                } else if (document.body.clientWidth < 1800) {
+                } else if (window.innerWidth < 1800) {
                     eleInViewOfThisSlide = 5
                     oneJump = slideChildren.offsetWidth + 16
                 } else {

@@ -36,6 +36,7 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
     $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page || 1
+    $scope.loadSongSuccessfull = false
 
     getResultsPage($scope.pageIndex)
 
@@ -53,6 +54,7 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
         }).then(function (response) {
             $scope.songs = response.data.songs
             $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
         }, function (error) {
             alert('Failed to get the songs!')
         })
@@ -72,6 +74,7 @@ appMusic.controller('PlaylistDiscoveryController', function ($scope, $rootScope,
     $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page || 1
+    $scope.loadSongSuccessfull = false
 
     getResultsPage($scope.pageIndex)
 
@@ -89,6 +92,7 @@ appMusic.controller('PlaylistDiscoveryController', function ($scope, $rootScope,
         }).then(function (response) {
             $scope.playlistAdmins = response.data.playlistAdmins
             $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
         }, function (error) {
             alert('Failed to get the playlists!')
         })
@@ -103,6 +107,7 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
     $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page || 1
+    $scope.loadSongSuccessfull = false
 
     getResultsPage($scope.pageIndex)
 
@@ -120,6 +125,7 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
         }).then(function (response) {
             $scope.artists = response.data.artists
             $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
         }, function (error) {
             alert('Failed to get the artists!')
         })
@@ -134,6 +140,7 @@ appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $h
     $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page || 1
+    $scope.loadSongSuccessfull = false
 
     getResultsPage($scope.pageIndex)
 
@@ -151,6 +158,7 @@ appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $h
         }).then(function (response) {
             $scope.albums = response.data.albums
             $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
         }, function (error) {
             alert('Failed to get the albums!')
         })

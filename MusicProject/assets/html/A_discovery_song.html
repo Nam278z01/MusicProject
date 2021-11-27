@@ -67,9 +67,31 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bxs-playlist'></i>
+                                            <span>Thêm vào playlist</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-add-to-queue'></i>
+                                            <span>Thêm vào chờ phát</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bxs-download'></i>
+                                            <span>Tải xuống</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <img src="./assets/img/Default/vip-label.3dd6ac7e.svg" alt="" class="song_vip" ng-show="{{s.Song.isVip}}">
+                            <span class="song_vip" ng-show="{{s.Song.isVip}}">VIP</span>
                             <div class="list-playlist__item-name" title="{{s.Song.SongName}}">
                                 <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
                             </div>
@@ -77,6 +99,11 @@
                                 <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
                     </div>
                 </div>
             </div>
