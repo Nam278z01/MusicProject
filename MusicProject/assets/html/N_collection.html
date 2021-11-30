@@ -139,10 +139,20 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
-                                <a href="#!/chi-tiet/playlistad/pl={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
                             </div>
                             <div class="list-playlist__item-admin">
                                 <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>

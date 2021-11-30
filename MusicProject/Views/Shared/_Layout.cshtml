@@ -186,10 +186,10 @@
                 <div class="link">
                     <div class="service">
                         <ul class="nav_service">
-                            <li><a href="#!/">Giới Thiệu</a></li>
+                            <li><a href="#!/">Giới thiệu</a></li>
                             <li><a href="#!/">SP-DV</a></li>
-                            <li><a href="#!/">Hỗ Trợ</a></li>
-                            <li><a href="#!/">Thỏa Thuận Người Dùng</a></li>
+                            <li><a href="#!/">Hỗ trợ</a></li>
+                            <li><a href="#!/">Thỏa thuận người dùng</a></li>
                         </ul>
                     </div>
                     <div class="service">
@@ -226,11 +226,11 @@
                         <img src="./assets/img/Song/{{song.Song.Image}}" alt="{{song.Song.SongName}}">
                     </div>
                     <div class="media-content">
-                        <marquee class="song__name">
-                            {{song.Song.SongName}}
-                        </marquee>
+                        <div class="song__name">
+                            <a href="#">{{song.Song.SongName}}</a>
+                        </div>
                         <div class="song__artist">
-                            <span ng-repeat="a in song.Artists">{{a.ArtistName}}</span>
+                            <a ng-repeat="a in song.Artists">{{a.ArtistName}}</a>
                         </div>
                     </div>
                     <div class="media-right">
@@ -252,14 +252,14 @@
                             <i class='bx bx-shuffle'></i>
                         </button>
                         <button class="btn btn--circle">
-                            <i class='bx bx-fast-forward bx-flip-horizontal'></i>
+                            <i class='bx bx-skip-previous'></i>
                         </button>
-                        <button class="btn btn--circle">
-                            <i class='bx bxs-right-arrow' style="font-size: 4rem"></i>
+                        <button class="btn btn--circle btn-outline">
+                            <i class='bx bxs-right-arrow'></i>
                             <!-- <i class='bx bx-pause'></i> -->
                         </button>
                         <button class="btn btn--circle">
-                            <i class='bx bx-fast-forward'></i>
+                            <i class='bx bx-skip-next'></i>
                         </button>
                         <button class="btn btn--circle">
                             <i class='bx bx-transfer'></i>
@@ -377,6 +377,40 @@
                         <button class="btn btn--circle auth-form__socials--google">
                             <img src="./assets/img/Default/gg.png" alt="">
                         </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="modal2" id="playlist">
+            <div class="modal__overlay"></div>
+            <div class="modal__body">
+                <!-- Add playlist form -->
+                <form class="add-form" id="addplaylistForm" novalidate name="addplaylistForm">
+                    <div class="form-title">
+                        <p>Chọn playlist muốn thêm</p>
+                        <button class="btn btn-close-form">
+                            <i class='bx bx-x'></i>
+                        </button>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-item">
+                            <span class="form-item-left">
+                                <span>Duyên</span>
+                                <span style="margin-left: 16px">(0)</span>
+                            </span>
+                            <i class='bx bxs-lock'></i>
+                        </div>
+                    </div>
+                    <div class="form-create">
+                        <div class="form-input">
+                            <input type="text" name="playlistname" value="" placeholder="Nhập tên playlist cần tạo"/>
+                        </div>
+                        <div>
+                            <button class="btn btn-addplaylist">
+                                Tạo playlist
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

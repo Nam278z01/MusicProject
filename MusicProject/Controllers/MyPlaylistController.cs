@@ -3,87 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MusicBus;
+using MusicObj;
 
 namespace MusicProject.Controllers
 {
     public class MyPlaylistController : Controller
     {
         // GET: MyPlaylist
-        public ActionResult Index()
+        public JsonResult GetPlaylistUsers(int pageIndex, int pageSize)
         {
-            return View();
+            IPlaylistUserBus plbus = new PlaylistUserBus();
+            int totalCount;
+            List<PlaylistUser> playlistUsers = plbus.GetPlaylistUsers(pageIndex, pageSize, GetUserName(), out totalCount);
+            return Json(new { playlistUsers, totalCount }, JsonRequestBehavior.AllowGet);
         }
-
-        // GET: MyPlaylist/Details/5
-        public ActionResult Details(int id)
+        public string GetUserName()
         {
-            return View();
-        }
-
-        // GET: MyPlaylist/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MyPlaylist/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            GetUser_Result user = (GetUser_Result)Session["user"];
+            string accountName = "";
+            if (user != null)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                accountName = user.AccountName;
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MyPlaylist/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: MyPlaylist/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MyPlaylist/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MyPlaylist/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return accountName;
         }
     }
 }

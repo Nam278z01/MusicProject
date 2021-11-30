@@ -68,3 +68,38 @@
         copyTextToClipboard(text);
     });
 })
+
+appMusic.controller('PlaylistADetailsController', function ($scope, $rootScope, $http, $routeParams) {
+    $rootScope.currentIndex = -1
+    $rootScope.currentSubIndex = -1
+    $http({
+        method: 'get',
+        url: '/Detail/GetPlaylistAdminwithSongs',
+        params: { playlistID: $routeParams.id }
+    }).then(function (response) {
+        $scope.playlist = response.data.playlist
+        $scope.playlists = response.data.playlists
+        $rootScope.title = "Playlist | " + $scope.playlist.PlaylistAdmin.PlaylistName + " | MyMusic"
+    }, function (error) {
+        alert('Failed to get the playlist!')
+    })
+})
+
+appMusic.controller('PlaylistUDetailsController', function ($scope, $rootScope, $http, $routeParams, $location) {
+    $rootScope.currentIndex = -1
+    $rootScope.currentSubIndex = -1
+    $http({
+        method: 'get',
+        url: '/Detail/GetPlaylistUserwithSongs',
+        params: { playlistID: $routeParams.id }
+    }).then(function (response) {
+        if (response.data.access) {
+            $scope.playlist = response.data.playlist
+            $rootScope.title = "Playlist | " + $scope.playlist.PlaylistUser.PlaylistName + " | MyMusic"
+        } else {
+            $location.path('/')
+        }
+    }, function (error) {
+        alert('Failed to get the playlist!')
+    })
+})

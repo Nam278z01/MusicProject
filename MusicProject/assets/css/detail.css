@@ -1,3 +1,4 @@
+/*Song details*/
 .song-detail {
 }
 
@@ -74,7 +75,7 @@
     align-items: center;
 }
 
-    .song-detail__view i, .song-detail__releasedate i {
+    .song-detail__view i, .song-detail__releasedate i, .song-detail__desciption i {
         font-size: 2rem;
         padding-right: 0.4rem;
     }
@@ -143,4 +144,64 @@
 
     .btn-view-lyric:hover {
         color: var(--main-color);
+    }
+
+/*Playlist details*/
+.playlist-detail__main {
+    display: flex;
+    padding: 0 32px;
+    width: 100%;
+}
+
+.playlist__info {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    position: sticky;
+    align-items: center;
+    top: 24px;
+    height: 100%;
+}
+
+.playlist-detail__info {
+    width: 100%;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.playlist-detail__img {
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+    position: relative;
+}
+    .playlist-detail__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.playlist__detail-creater {
+    margin-top: 0.8rem;
+    font-size: 1.4rem;
+    color: var(--text-color-blur);
+}
+
+.playlist__detail-creater span {
+    margin-left: 6px;
+}
+
+.songinplaylist {
+    width: calc(100% - 300px);
+    margin-left: 24px;
+}
+
+.listsonginplaylist {
+    margin-top: 24px;
+}
+
+    .listsonginplaylist .col:nth-of-type(n) .feature__more {
+        left: 50%;
     }

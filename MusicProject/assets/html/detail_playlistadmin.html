@@ -1,0 +1,164 @@
+﻿<div class="song-detail">
+    <div class="playlist-detail__main">
+        <div class="playlist__info">
+            <div class="playlist-detail__img">
+                <img src="../../assets/img/playlist/admin/{{playlist.PlaylistAdmin.Image}}" alt="{{playlist.PlaylistAdmin.PlaylistName}}">
+                <button class="btn btn--circle btn-play-detail" title="nghe">
+                    <i class='bx bxs-right-arrow'></i>
+                </button>
+                <button class="btn btn--circle btn-like" title="Yêu thích" style="top: calc(11% + 36px); left: 3%;">
+                    <i class='bx bx-heart' ng-if="playlist.Liked == 0"></i>
+                    <i class='bx bxs-heart' ng-if="playlist.Liked == 1" style="color: var(--main-color)"></i>
+                </button>
+                <button class="btn  btn--more btn--circle" title="Khác" style="top: 10%; left: 3%;">
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </button>
+            </div>
+            <div class="playlist-detail__info">
+                <div class="song-detail__name">Playlist:<span>{{playlist.PlaylistAdmin.PlaylistName}}</span></div>
+                <div class="song-detail__releasedate" style="justify-content: center">
+                    <i class='bx bx-calendar'></i>
+                    <span> Ngày tạo:<span>{{playlist.PlaylistAdmin.DateCreated.replace('/Date(','').replace(')/','') | date : "dd/MM/yyyy"}}</span></span>
+                </div>
+                <div class="released__artist-name" style="margin-top: 0.8rem; font-size: 1.4rem; margin-left: 0; display: flex; align-items: center; justify-content: center">
+                    <i class='bx bx-category' style="font-size: 2rem; padding-right: 0.4rem;"></i>
+                    <span style="padding-left: 0.4rem;">
+                        Thể loại:
+                        <a href="#!/tuyen-tap?tt={{c.CollectionID}}" ng-repeat="c in playlist.Collections">{{c.CollectionName}}</a>
+                    </span>
+                </div>
+                <div class="song-detail__view" style="justify-content: center">
+                    <i class='bx bxs-heart'></i>
+                    <span>{{playlist.TotalLikes}} Yêu thích</span>
+                </div>
+                <div class="playlist__detail-creater">
+                    <p>Tạo bởi:<span>{{playlist.Admin.PersonName}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="songinplaylist">
+            <div class="song-detail__desciption">
+                <span>
+                    Lời tựa: <span>{{playlist.PlaylistAdmin.Description}}</span>
+                </span>
+            </div>
+            <div class="listsonginplaylist">
+                <div class="grid">
+                    <div class="row sm-gutter">
+                        <div class="col c-12" ng-repeat="s in playlist.Songs">
+                            <div class="song__wraper">
+                                <div class="song top100">
+                                    <div class="song__img">
+                                        <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+                                    </div>
+                                    <div class="song__info">
+                                        <div class="song__name">
+                                            <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
+                                            <div class="song_vip_horizontal" ng-show={{s.Song.isVip}}>VIP</div>
+                                        </div>
+                                        <div class="song__artist">
+                                            <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="song__like">
+                                        <button class="btn btn--circle btn-song-like">
+                                            <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                            <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
+                                        </button>
+                                    </div>
+                                    <div class="song__more">
+                                        <button class="btn btn--circle btn-song-more">
+                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                        </button>
+                                    </div>
+                                    <div class="song__listens">
+                                        <i class='bx bx-headphone'></i>
+                                        <span ng-if="s.Views > 999">{{s.Views / 1000 | number:1}}k</span>
+                                        <span ng-if="s.Views < 1000">{{s.Views}}</span>
+                                    </div>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bxs-playlist'></i>
+                                            <span>Thêm vào playlist</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-add-to-queue'></i>
+                                            <span>Thêm vào chờ phát</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bxs-download'></i>
+                                            <span>Tải xuống</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-playlist" style="margin-bottom: 70px">
+        <div class="list-playlist__header">
+            <h3 class="list-playlist__name">
+                Có thể bạn cũng thích
+            </h3>
+        </div>
+        <div class="list-playlist__slide">
+            <div class="grid">
+                <div class="row sm-gutter">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-repeat="p in playlists">
+                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                            <div class="decorative"></div>
+                            <div class="decorative"></div>
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd">
+                                    <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
+                                </div>
+                                <div class="ratioIn list-playlist__item-feature">
+                                    <button class="btn btn-like btn--circle" title="Yêu thích">
+                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
+                                    </button>
+                                    <div class="list-playlist__item-play">
+                                        <button class="btn btn-outline btn--circle btn-listen" title="Phát tất cả">
+                                            <i class='bx bxs-right-arrow'></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn btn--more btn--circle" title="Khác">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                            </div>
+                            <div class="list-playlist__item-admin">
+                                <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

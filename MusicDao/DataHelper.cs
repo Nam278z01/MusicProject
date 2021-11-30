@@ -170,7 +170,7 @@ namespace MusicDao
 
         public DataTable ExecuteStoreProcedure(string storeName, params object[] values)
         {
-            Open();
+            //Open();
             SqlCommand cm = new SqlCommand(storeName, con);
             cm.CommandType = CommandType.StoredProcedure;
             SqlCommandBuilder.DeriveParameters(cm);
@@ -181,7 +181,7 @@ namespace MusicDao
             SqlDataAdapter da = new SqlDataAdapter(cm);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            Close();
+            //Close();
             return dt;
         }
 

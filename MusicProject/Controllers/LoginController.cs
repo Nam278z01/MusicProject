@@ -22,6 +22,7 @@ namespace MusicProject.Controllers
             }
             else
             {
+                user.Password = "";
                 Session["login"] = "1";
                 Session["user"] = user;
             }

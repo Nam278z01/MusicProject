@@ -46,7 +46,8 @@
                             <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="../../assets/img/playlist/admin/{{p.Image}}" alt="{{p.PlaylistName}}">
+                                    <img src="../../assets/img/playlist/admin/{{p.Image}}" ng-if="p.KindofPlaylist == 1" alt="{{p.PlaylistName}}">
+                                    <img src="../../assets/img/playlist/user/{{p.Image}}" ng-if="p.KindofPlaylist == 2" alt="{{p.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
@@ -74,8 +75,8 @@
                                 </div>
                             </div>
                             <div class="list-playlist__item-name" title="{{p.PlaylistName}}">
-                                <a href="#!/chi-tiet/playlistad/pl={{p.PlaylistID}}" ng-if="p.KindofPlaylist == 1">{{p.PlaylistName}}</a>
-                                <a href="#!/chi-tiet/playlistnd/pl={{p.PlaylistID}}" ng-if="p.KindofPlaylist == 2">{{p.PlaylistName}}</a>
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistID}}" ng-if="p.KindofPlaylist == 1">{{p.PlaylistName}}</a>
+                                <a href="#!/chi-tiet/playlistnd?id={{p.PlaylistID}}" ng-if="p.KindofPlaylist == 2">{{p.PlaylistName}}</a>
                             </div>
                             <div class="list-playlist__item-admin">
                                 <p>Tạo bởi:<span>{{p.PersonName}}</span></p>

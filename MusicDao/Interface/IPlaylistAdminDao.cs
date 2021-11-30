@@ -13,5 +13,7 @@ namespace MusicDao
         List<PlaylistAdminwithAdmin> GetPlaylistsByCollectionsPage(int pageIndex, int pageSize, string genre, string mood, string scene, string topic, string accountName, out int totalCount);
         List<PlaylistAdminwithAdmin> Get10PlaylistsNewest(string accountName);
         List<PlaylistAdminwithAdmin> Get10PlaylistsRandom(string accountName);
+        PlaylistAdminwithAdmin GetPlaylistAdminwithSongs(string accountName, string playlistID);
+        List<PlaylistAdminwithAdmin> Get10PlaylistsRandomCollection(string accountName, string collectionID, string playlistID);
     }
 }

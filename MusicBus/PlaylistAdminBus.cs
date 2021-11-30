@@ -31,5 +31,13 @@ namespace MusicBus
         {
             return pldao.Get10PlaylistsRandom(accountName);
         }
+        public PlaylistAdminwithAdmin GetPlaylistAdminwithSongs(string accountName, string playlistID)
+        {
+            return pldao.GetPlaylistAdminwithSongs(accountName, playlistID);
+        }
+        public List<PlaylistAdminwithAdmin> Get10PlaylistsRandomCollection(string accountName, string collectionID, string playlistID)
+        {
+            return pldao.Get10PlaylistsRandomCollection(accountName, collectionID, playlistID);
+        }
     }
 }

@@ -14,32 +14,52 @@
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-2">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="p in playlistUsers | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
                         <div class="list-playlist__item" style="padding-bottom: 24px;">
                             <div class="decorative"></div>
                             <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                    <img src="../../assets/img/playlist/user/{{p.Image}}" alt="{{p.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
                                             <i class='bx bxs-right-arrow'></i>
                                         </button>
                                     </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
+                                    <button class="btn btn--more btn--circle" title="Khác" style="top: 15%">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-edit-alt'></i>
+                                            <span>Chỉnh sửa</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-message-square-x'></i>
+                                            <span>Xóa</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="Hit-Maker Việt">
-                                <a href="#">Hit-Maker Việt</a>
+                            <div class="list-playlist__item-name" title="{{p.PlaylistName}}">
+                                <a href="#!/chi-tiet/playlistnd?id={{p.PlaylistID}}">{{p.PlaylistName}}</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
                     </div>
                 </div>
             </div>
@@ -47,15 +67,6 @@
     </div>
 
     <div class="wrap-layout">
-        <ul class="pagination">
-            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
-        </ul>
+        <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

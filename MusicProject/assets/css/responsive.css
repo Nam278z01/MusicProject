@@ -1,23 +1,35 @@
 /*Table*/
 @media (min-width: 740px) {
+    .list-playlist__slide .col:nth-of-type(2n) .feature__more {
+        left: 102%;
+    }
     .list-playlist__slide .col:nth-of-type(4n) .feature__more {
         left: 0;
     }
-    .list-playlist__slide .col:nth-of-type(2n) .feature__more {
+    .list-song-main .col:nth-of-type(n) .feature__more {
         left: 102%;
+    }
+    .list-song-main .col:nth-of-type(2n) .feature__more {
+        left: 50%;
     }
 }
 /* PC medium resolution > */
 @media (min-width: 1113px) {
-    .list-playlist__slide .col:nth-of-type(5n) .feature__more {
-        left: 0;
+    
+    .list-playlist__slide .col:nth-of-type(2n) .feature__more {
+        left: 102%;
     }
     .list-playlist__slide .col:nth-of-type(4n) .feature__more {
         left: 102%;
     }
-
-    .list-playlist__slide .col:nth-of-type(2n) .feature__more {
+    .list-playlist__slide .col:nth-of-type(5n) .feature__more {
+        left: 0;
+    }
+    .list-song-main .col:nth-of-type(n) .feature__more {
         left: 102%;
+    }
+    .list-song-main .col:nth-of-type(2n) .feature__more {
+        left: 50%;
     }
 }
 
@@ -28,18 +40,16 @@
 
 /* PC high resolution > */
 @media (min-width: 1800px) {
-    .list-playlist__slide .col:nth-of-type(6n) .feature__more {
-        left: 0;
+    .list-playlist__slide .col:nth-of-type(2n) .feature__more {
+        left: 102%;
+    }
+    .list-playlist__slide .col:nth-of-type(4n) .feature__more {
+        left: 102%;
     }
     .list-playlist__slide .col:nth-of-type(5n) .feature__more {
         left: 102%;
     }
-
-    .list-playlist__slide .col:nth-of-type(4n) .feature__more {
-        left: 102%;
-    }
-
-    .list-playlist__slide .col:nth-of-type(2n) .feature__more {
-        left: 102%;
+    .list-playlist__slide .col:nth-of-type(6n) .feature__more {
+        left: 0;
     }
 }

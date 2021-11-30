@@ -10,15 +10,15 @@
     right: 0;
 }
 
-.loading.hidden {
-    opacity: 0;
-    animation: fadeOut 0.5s linear;
-}
+    .loading.hidden {
+        opacity: 0;
+        animation: fadeOut 0.5s linear;
+    }
 
-.loading img {
-    width: 100px;
-    margin: auto;
-}
+    .loading img {
+        width: 100px;
+        margin: auto;
+    }
 
 .MuiSkeleton-root {
     height: 1.2em;
@@ -105,7 +105,7 @@
 }
 
 /* Login - Signup */
-.modal {
+.modal, .modal2 {
     position: fixed;
     top: 0;
     right: 0;
@@ -141,7 +141,7 @@
     border-radius: 4px;
     background-color: var(--white-color);
     /* overflow: hidden; */
-    border-top: 3px solid var(--main-color);
+    /*border-top: 3px solid var(--main-color);*/
     display: none;
 }
 
@@ -266,4 +266,117 @@
 
 .auth-form__help-forgot {
     color: var(--main-color);
+}
+
+.add-form {
+    width: 480px;
+    background-color: var(--white-color);
+    margin: auto;
+    border-radius: 4px;
+}
+
+.form-title {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+    .form-title p {
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+.btn-close-form {
+    position: absolute;
+    right: 0;
+}
+
+    .btn-close-form i {
+        font-size: 3rem;
+        color: var(--text-color-blur);
+    }
+
+.form-content {
+    overflow-y: scroll;
+    max-height: 288px;
+}
+
+    .form-content::-webkit-scrollbar {
+        width: 4px;
+        background-color: var(--bg-color);
+    }
+
+    .form-content::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        width: 4px;
+        background-color: var(--scroll-color);
+    }
+
+.form-item {
+    display: flex;
+    font-size: 1.4rem;
+    height: 48px;
+    align-items: center;
+    font-weight: 600;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form-item-left {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    width: 85%;
+}
+
+    .form-item-left span:nth-child(2) {
+        max-width: 80%;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        margin-left: 16px;
+    }
+
+    .form-item:hover {
+        background-color: var(--bg-color-blur2);
+        transition: background-color 0.35s linear;
+        cursor: pointer;
+    }
+
+    .form-item i {
+        font-size: 2rem;
+    }
+
+.form-create {
+    height: 78px;
+    display: flex;
+    margin: 0 20px;
+    align-items: center;
+}
+
+.form-input {
+    flex-grow: 1;
+    margin-right: 16px;
+}
+
+.form-create input {
+    width: 100%;
+    height: 40px;
+    transition: 0.35s;
+    padding: 0 16px;
+    font-size: 1.4rem;
+}
+
+.btn-addplaylist {
+    background-image: linear-gradient(to right,#2F80ED,#00AEEF);
+    color: var(--white-color);
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 12px 32px;
 }

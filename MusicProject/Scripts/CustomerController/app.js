@@ -91,12 +91,12 @@ appMusic.config(function ($routeProvider, $locationProvider) {
             controller: "SongDetailsController"
         })
         .when("/chi-tiet/playlistad", {
-            templateUrl: "../../assets/html/detail_playlist.html",
+            templateUrl: "../../assets/html/detail_playlistadmin.html",
             controller: "PlaylistADetailsController"
         })
         .when("/chi-tiet/playlistnd", {
-            templateUrl: "../../assets/html/detail_playlist.html",
-            controller: "PlaylistADetailsController"
+            templateUrl: "../../assets/html/detail_playlistuser.html",
+            controller: "PlaylistUDetailsController"
         })
         .when("/chi-tiet/album", {
             templateUrl: "../../assets/html/detail_album.html",
@@ -164,7 +164,6 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             }
             body.addEventListener('click', function (e) {
                 if (e.target.classList.contains('modal__body') || e.target.closest('.auth-form__controls-back')) {
-                    console.log(e.target.closest('.auth-form__controls-back'), e.target)
                     document.body.classList.remove('no-scroll')
                     document.querySelector('html').scrollTop = scrollTop
                     body.style.top = '0px'
@@ -195,11 +194,14 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                     event.preventDefault()
                     $location.path('/')
                 }
-                $window.scrollTo(0, 0);
             })
         }
     }, function (err) {
         alert('Failed to get Account!')
+    })
+
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        $window.scrollTo(0, 0);
     })
 
     $rootScope.collections = []
@@ -247,10 +249,33 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             $rootScope.eleView = 6
         }
     })
+    let scrollTop2
+    let modal2 = document.querySelector('#playlist')
+    document.body.addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal__body') || e.target.closest('.btn-close-form')) {
+            document.body.classList.remove('no-scroll')
+            document.querySelector('html').scrollTop = scrollTop2
+            document.body.style.top = '0px'
+            modal2.style.display = 'none'
+        }
+        if (e.target.closest('.btn-add-song-playlist')) {
+            modal2.style.display = 'block'
+            // Ẩn thanh cuộn và giữ vị trí
+            scrollTop2 = document.querySelector('html').scrollTop
+            document.body.classList.add('no-scroll')
+            document.body.style.top = -scrollTop2 + 'px'
+        }
+    })
     document.body.addEventListener('click', function (e) {
         let featureMore = document.querySelectorAll('.list-playlist__item-feature')
         if (featureMore) {
             featureMore.forEach(ele => {
+                ele.classList.remove('focus')
+            })
+        }
+        let featureMore2 = document.querySelectorAll('.song')
+        if (featureMore2) {
+            featureMore2.forEach(ele => {
                 ele.classList.remove('focus')
             })
         }
@@ -264,6 +289,9 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         //}
         if (e.target.closest('.btn--more')) {
             e.target.closest('.btn--more').parentElement.classList.toggle('focus')
+        }
+        if (e.target.closest('.song__more')) {
+            e.target.closest('.song__more').parentElement.classList.toggle('focus')
         }
     })
 

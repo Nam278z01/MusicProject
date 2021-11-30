@@ -69,10 +69,10 @@
             </h3>
             <div class="list-playlist__btn">
                 <button class="btn list-playlist__btn-prev disabled">
-                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-chevrons-left'></i>
                 </button>
                 <button class="btn list-playlist__btn-next">
-                    <i class='bx bx-right-arrow-alt'></i>
+                    <i class='bx bx-chevrons-right'></i>
                 </button>
             </div>
         </div>
@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
-                                <a href="#!/chi-tiet/playlistad/pl={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
                             </div>
                             <div class="list-playlist__item-admin">
                                 <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
@@ -137,10 +137,10 @@
             </h3>
             <div class="list-playlist__btn">
                 <button class="btn list-playlist__btn-prev disabled">
-                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-chevrons-left'></i></i>
                 </button>
                 <button class="btn list-playlist__btn-next">
-                    <i class='bx bx-right-arrow-alt'></i>
+                    <i class='bx bx-chevrons-right'></i></i>
                 </button>
             </div>
         </div>
@@ -181,7 +181,7 @@
                                 </div>
                             </div>
                             <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
-                                <a href="#!/chi-tiet/playlistad/pl={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
                             </div>
                             <div class="list-playlist__item-admin">
                                 <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
@@ -205,10 +205,10 @@
             </h3>
             <div class="list-playlist__btn">
                 <button class="btn list-playlist__btn-prev disabled">
-                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-chevrons-left'></i></i>
                 </button>
                 <button class="btn list-playlist__btn-next">
-                    <i class='bx bx-right-arrow-alt'></i>
+                    <i class='bx bx-chevrons-right'></i></i>
                 </button>
             </div>
         </div>
@@ -236,15 +236,15 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
-                                </div>
-                                <div class="feature__more">
-                                    <div class="feature__item">
-                                        <i class='bx bx-link-alt'></i>
-                                        <span>Sao chép link</span>
-                                    </div>
-                                    <div class="feature__item">
-                                        <i class='bx bx-share-alt'></i>
-                                        <span>Chia sẻ</span>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -490,6 +490,28 @@
                                 <span ng-if="s.Views > 999">{{s.Views / 1000 | number:1}}k</span>
                                 <span ng-if="s.Views < 1000">{{s.Views}}</span>
                             </div>
+                            <div class="feature__more">
+                                <div class="feature__item btn-add-song-playlist">
+                                    <i class='bx bxs-playlist'></i>
+                                    <span>Thêm vào playlist</span>
+                                </div>
+                                <div class="feature__item">
+                                    <i class='bx bx-add-to-queue'></i>
+                                    <span>Thêm vào chờ phát</span>
+                                </div>
+                                <div class="feature__item">
+                                    <i class='bx bxs-download'></i>
+                                    <span>Tải xuống</span>
+                                </div>
+                                <div class="feature__item">
+                                    <i class='bx bx-link-alt'></i>
+                                    <span>Sao chép link</span>
+                                </div>
+                                <div class="feature__item">
+                                    <i class='bx bx-share-alt'></i>
+                                    <span>Chia sẻ</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -504,10 +526,10 @@
             </h3>
             <div class="list-playlist__btn">
                 <button class="btn list-playlist__btn-prev disabled">
-                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-chevrons-left'></i></i>
                 </button>
                 <button class="btn list-playlist__btn-next">
-                    <i class='bx bx-right-arrow-alt'></i>
+                    <i class='bx bx-chevrons-right'></i></i>
                 </button>
             </div>
         </div>

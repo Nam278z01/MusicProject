@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MusicObj;
 
-namespace MusicDao
+namespace MusicBus
 {
-    public interface IPlaylistUserDao
+    public interface IPlaylistUserBus
     {
         List<PlaylistUser> GetPlaylistUsers(int pageIndex, int pageSize, string accountName, out int totalCount);
         PlaylistUserwithUser GetPlaylistUserwithSongs(string accountName, string playlistID);

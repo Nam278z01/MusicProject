@@ -321,6 +321,8 @@
 
 .nav_service li i {
     font-size: 24px;
+    color: var(--text-color-blur);
+    cursor: pointer;
 }
 
 .link .service:nth-child(2) .nav_service li {

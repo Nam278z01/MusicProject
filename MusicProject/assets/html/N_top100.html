@@ -87,7 +87,7 @@
                             </div>
                             <div class="song__info">
                                 <div class="song__name">
-                                    <a href="#!/Detail/Song?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
+                                    <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
                                     <div class="song_vip_horizontal" ng-show={{s.Song.isVip}}>VIP</div>
                                 </div>
                                 <div class="song__artist">
@@ -109,6 +109,28 @@
                                 <i class='bx bx-headphone'></i>
                                 <span ng-if="s.Views > 999">{{s.Views / 1000 | number:1}}k</span>
                                 <span ng-if="s.Views < 1000">{{s.Views}}</span>
+                            </div>
+                            <div class="feature__more">
+                                <div class="feature__item btn-add-song-playlist">
+                                    <i class='bx bxs-playlist'></i>
+                                    <span>Thêm vào playlist</span>
+                                </div>
+                                <div class="feature__item">
+                                    <i class='bx bx-add-to-queue'></i>
+                                    <span>Thêm vào chờ phát</span>
+                                </div>
+                                <div class="feature__item">
+                                    <i class='bx bxs-download'></i>
+                                    <span>Tải xuống</span>
+                                </div>
+                                <div class="feature__item">
+                                    <i class='bx bx-link-alt'></i>
+                                    <span>Sao chép link</span>
+                                </div>
+                                <div class="feature__item">
+                                    <i class='bx bx-share-alt'></i>
+                                    <span>Chia sẻ</span>
+                                </div>
                             </div>
                         </div>
                     </div>
