@@ -84,12 +84,14 @@
     <Compile Include="Interface\ICollectionDao.cs" />
     <Compile Include="Interface\IPlaylistAdminDao.cs" />
     <Compile Include="Interface\IPlaylistDao.cs" />
+    <Compile Include="Interface\IPlaylistUser_SongDao.cs" />
     <Compile Include="Interface\ISongDao.cs" />
     <Compile Include="Interface\IUserDao.cs" />
     <Compile Include="Interface\IPlaylistUserDao.cs" />
     <Compile Include="PlaylistAdminDao.cs" />
     <Compile Include="PlaylistDao.cs" />
     <Compile Include="PlaylistUserDao.cs" />
+    <Compile Include="PlaylistUser_SongDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongDao.cs" />
     <Compile Include="UserDao.cs" />

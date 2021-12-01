@@ -103,3 +103,17 @@ appMusic.controller('PlaylistUDetailsController', function ($scope, $rootScope, 
         alert('Failed to get the playlist!')
     })
 })
+
+appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $http, $routeParams, $location) {
+    $rootScope.currentIndex = -1
+    $rootScope.currentSubIndex = -1
+
+    $scope.isActiveNav = 1
+    $scope.activeNav = function (index) {
+        $scope.isActiveNav = index
+    }
+    $scope.checkActiveNav = function (index) {
+        return $scope.isActiveNav == index
+    }
+    
+})

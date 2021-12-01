@@ -93,7 +93,8 @@
 }
 
 .list-playlist__item > div:hover img {
-    transform: scale(1.15);
+    transform: scale(1.1);
+    will-change: transform;
 }
 
 .list-playlist__item > div:hover .list-playlist__item-feature {
@@ -103,6 +104,8 @@
 .overflow-hd {
     border-radius: 4px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    border: 1px solid var(--bg-color-blur2);
 }
 
 .list-playlist__item img {
@@ -245,6 +248,8 @@
 .list-playlist__item-artist.artist {
     font-size: 1.4rem;
     text-align: center;
+    font-weight: 600;
+    color: var(--text-color);
 }
 
 .list-playlist__item-artist a:hover {
@@ -369,6 +374,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
     .song__name a:hover {

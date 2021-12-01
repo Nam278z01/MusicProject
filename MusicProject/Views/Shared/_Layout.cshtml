@@ -394,12 +394,13 @@
                         </button>
                     </div>
                     <div class="form-content">
-                        <div class="form-item">
+                        <div class="form-item" ng-repeat="p in playlistsforAdd" ng-click="addSongtoPlaylist(songIDforAdd, p.PlaylistUser.PlaylistID)">
                             <span class="form-item-left">
-                                <span>Duyên</span>
-                                <span style="margin-left: 16px">(0)</span>
+                                <span title="{{p.PlaylistUser.PlaylistName}}">{{p.PlaylistUser.PlaylistName}}</span>
+                                <span style="margin-left: 12px">({{p.TotalSongs}})</span>
                             </span>
-                            <i class='bx bxs-lock'></i>
+                            <i class='bx bxs-lock' ng-hide="p.PlaylistUser.isPublic"></i>
+                            <i class='bx bx-globe' ng-show="p.PlaylistUser.isPublic"></i>
                         </div>
                     </div>
                     <div class="form-create">

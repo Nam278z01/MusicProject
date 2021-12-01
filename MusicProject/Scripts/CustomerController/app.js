@@ -136,6 +136,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             document.querySelector('#modal-login-singup').remove()
             document.querySelector('.signin-singup').remove()
         } else {
+            // Login - SignIn
             let btnLogin = document.querySelector('#showlogin')
             let btnSignUp = document.querySelector('#showsignup')
             let modalLoginSignUp = document.querySelector('#modal-login-singup')
@@ -200,10 +201,12 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         alert('Failed to get Account!')
     })
 
+    //Thay đổi url thì cuộn lên đầu
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
         $window.scrollTo(0, 0);
     })
 
+    //Lấy danh sách colletion cho trang tuyển tập
     $rootScope.collections = []
     $http({
         method: 'get',
@@ -222,13 +225,12 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         })
     })
 
-
+    //Lấy để repeat loading
     $rootScope.getTimes = function (n) {
         return new Array(n);
     }  
-
+    //repeat n lần loading
     $rootScope.eleView
-
     if (window.innerWidth < 740) {
         $rootScope.eleView = 2
     } else if (window.innerWidth < 1113) {
@@ -249,6 +251,8 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             $rootScope.eleView = 6
         }
     })
+
+    //Thêm playlist trên giao diện
     let scrollTop2
     let modal2 = document.querySelector('#playlist')
     document.body.addEventListener('click', function (e) {
@@ -266,6 +270,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             document.body.style.top = -scrollTop2 + 'px'
         }
     })
+    //click thanh 3 chấm thì hiện chức năng 
     document.body.addEventListener('click', function (e) {
         let featureMore = document.querySelectorAll('.list-playlist__item-feature')
         if (featureMore) {
@@ -295,6 +300,41 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         }
     })
 
+    //Lấy danh sách playlist để thêm bài hát vào playlist
+    $rootScope.playlistsforAdd = []
+    $http({
+        method: 'get',
+        url: 'MyPlaylist/GetPlaylistsUserBySong'
+    }).then(function (res) {
+        $rootScope.playlistsforAdd = res.data
+    }, function (err) {
+        alert('Adding song to playlist failed!')
+    })
+
+    //Lấy bài hát để thêm vào playlist
+    $rootScope.songIDforAdd
+    $rootScope.getSongforAdd = function (song) {
+        $rootScope.songIDforAdd = song.Song.SongID
+    }
+    //Thêm bài hát vào playlist
+    $rootScope.addSongtoPlaylist = function (songID, playlistID) {
+        $http({
+            method: 'post',
+            url: '/MyPlaylist/AddSongtoPlaylist',
+            datatype: 'json',
+            data: { songID: songID, playlistID: playlistID }
+        }).then(function (res) {
+            if (!res.data) {
+                alert("Successfully added song to playlist!")
+            } else {
+                alert("Adding song to playlist failed!")
+            }
+        }, function () {
+            alert("Adding song to playlist failed!")
+        })
+    }
+
+    //Test
     $rootScope.testAlert = function (n) {
         alert("hehe")
     }

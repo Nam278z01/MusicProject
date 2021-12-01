@@ -24,6 +24,7 @@
     line-height: 48px;
     text-align: center;
     cursor: pointer;
+    display: block;
 }
 
 .nav-item .nav-item-link.active::after {

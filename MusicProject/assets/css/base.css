@@ -154,7 +154,6 @@ p.input-warning {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
-    overflow: hidden;
 }
 
 .ratio1-1 {
@@ -167,7 +166,6 @@ p.input-warning {
     position: relative;
     width: 100%;
     padding-bottom: 30%;
-    overflow: hidden;
 }
 
 .ratioIn {
