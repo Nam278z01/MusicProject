@@ -27,14 +27,14 @@
 }
 
 .list-playlist__btn-prev {
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
 }
 
 .list-playlist__btn-next {
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
 }
 
@@ -81,6 +81,7 @@
     width: 60%;
     height: 6px;
     margin-left: 20%;
+    margin-right: 20%;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     background-color: var(--bg-color-blur2);
@@ -89,6 +90,7 @@
 .decorative:nth-child(2) {
     width: 80%;
     margin-left: 10%;
+    margin-right: 10%;
     background-color: var(--bg-color-blur4);
 }
 
@@ -325,7 +327,7 @@
         background-color: var(--song-hover-color);
     }
 
-        .song:hover .song__like, .song:hover .song__more {
+        .song:hover .song__like, .song:hover .song__more, .song:hover .song__mv {
             display: block;
         }
 
@@ -355,6 +357,8 @@
     border-radius: 4px;
     overflow: hidden;
     margin: 0 8px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    border: 1px solid var(--bg-color-blur2);
 }
 
     .song__img img {
@@ -405,24 +409,19 @@
             cursor: pointer;
         }
 
-.song__like {
+.song__like, .song__more, .song__mv {
     margin-right: 8px;
     display: none;
 }
 
-.btn-song-like, .btn-song-more {
+.btn-song-like, .btn-song-more, .btn-song-mv {
     height: 36px;
     width: 36px;
 }
 
-    .btn-song-more:hover, .btn-song-like:hover {
+    .btn-song-more:hover, .btn-song-like:hover, .btn-song-mv:hover {
         background-color: var(--bg-color-blur3);
     }
-
-.song__more {
-    margin-right: 8px;
-    display: none;
-}
 
 .song__listens {
     font-size: 1.4rem;

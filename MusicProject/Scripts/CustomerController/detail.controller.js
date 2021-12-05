@@ -51,7 +51,6 @@
 
         textArea.style.background = 'transparent';
 
-
         textArea.value = text;
 
         document.body.appendChild(textArea);
@@ -115,5 +114,74 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
     $scope.checkActiveNav = function (index) {
         return $scope.isActiveNav == index
     }
-    
+
+    //Get songs of artist
+    $scope.songsofArtist = []
+    $scope.totalCountArtist = 0
+    $scope.pageSizeArtist = 24
+    $scope.maxSizeArtist = 5
+    $scope.pageIndexArtist = 1
+    $scope.loadSongSuccessfullArtist = false
+    $scope.isGetSongsofArtist = false
+
+    $scope.getSongsofArtist = function () {
+        if (!$scope.isGetSongsofArtist) {
+            getResultsPageArtist(1)
+        }
+    }
+
+    $scope.pageChangedArtist = function (newPage) {
+        getResultsPageArtist(newPage);
+    };
+
+    function getResultsPageArtist(index) {
+        $scope.pageIndexArtist = index
+        $http({
+            method: 'get',
+            url: '/Detail/GetSongsByArtistPage',
+            params: { pageIndex: index, pageSize: $scope.pageSizeArtist, artistID: $routeParams.id }
+        }).then(function (response) {
+            $scope.songsofArtist = response.data.songs
+            $scope.totalCountArtist = response.data.totalCount
+            $scope.loadSongSuccessfullArtist = true
+            $scope.isGetSongsofArtist = true
+        }, function (error) {
+            alert('Failed to get the songs!')
+        })
+    }
+
+    //Get album of artist
+    $scope.albumsofArtist = []
+    $scope.totalCountArtistAlbum = 0
+    $scope.pageSizeArtistAlbum = 24
+    $scope.maxSizeArtistAlbum = 5
+    $scope.pageIndexArtistAlbum = 1
+    $scope.loadSongSuccessfullArtistAlbum = false
+    $scope.isGetSongsofArtistAlbum = false
+
+    $scope.getSongsofArtistAlbum = function () {
+        if (!$scope.isGetSongsofArtistAlbum) {
+            getResultsPageArtistAlbum(1)
+        }
+    }
+
+    $scope.pageChangedArtistAlbum = function (newPage) {
+        getResultsPageArtistAlbum(newPage);
+    };
+
+    function getResultsPageArtistAlbum(index) {
+        $scope.pageIndexArtistAlbum = index
+        $http({
+            method: 'get',
+            url: '/Detail/GetAlbumsByArtist',
+            params: { pageIndex: index, pageSize: $scope.pageSizeArtistAlbum, artistID: $routeParams.id }
+        }).then(function (response) {
+            $scope.albumsofArtist = response.data.albums
+            $scope.totalCountArtistAlbum = response.data.totalCount
+            $scope.loadSongSuccessfullArtistAlbum = true
+            $scope.isGetSongsofArtistAlbum = true
+        }, function (error) {
+            alert('Failed to get the albums!')
+        })
+    }
 })

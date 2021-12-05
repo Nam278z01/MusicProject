@@ -14,29 +14,25 @@ namespace MusicProject.Controllers
         public JsonResult GetSongsSearch(int pageIndex, int pageSize, string textSearch)
         {
             ISongBus sbus = new SongBus();
-            int totalCount;
-            List<SongwithArtist> songs = sbus.GetSongsPage(pageIndex, pageSize, "", 1, textSearch, "search", GetUserName(), out totalCount);
+            List<SongwithArtist> songs = sbus.GetSongsPage(pageIndex, pageSize, "", 1, textSearch, "search", GetUserName(), out int totalCount);
             return Json(new { songs, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetArtistsSearch(int pageIndex, int pageSize, string textSearch)
         {
             IArtistBus atbus = new ArtistBus();
-            int totalCount;
-            List<Artist> artists = atbus.GetArtistsPage(pageIndex, pageSize, 1, 1, textSearch, "search", out totalCount);
+            List<Artist> artists = atbus.GetArtistsPage(pageIndex, pageSize, 1, 1, textSearch, "search", out int totalCount);
             return Json(new { artists, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetAlbumsSearch(int pageIndex, int pageSize, string textSearch)
         {
             IAlbumBus albus = new AlbumBus();
-            int totalCount;
-            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, 1, textSearch, "search", GetUserName(), out totalCount);
+            List<Album> albums = albus.GetAlbumsPage(pageIndex, pageSize, 1, textSearch, "search", GetUserName(), out int totalCount);
             return Json(new { albums, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetPlaylistsSearch(int pageIndex, int pageSize, string textSearch)
         {
             IPlaylistBus plbus = new PlaylistBus();
-            int totalCount;
-            List<PlaylistwithPerson> playlists = plbus.GetPlaylistSearch(pageIndex, pageSize, textSearch, GetUserName(), out totalCount);
+            List<PlaylistwithPerson> playlists = plbus.GetPlaylistSearch(pageIndex, pageSize, textSearch, GetUserName(), out int totalCount);
             return Json(new { playlists, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public string GetUserName()

@@ -15,5 +15,6 @@ namespace MusicDao
         List<SongwithArtist> Get10SongsNewest(string accountName);
         SongwithArtist GetSong(string songID, string accountName);
         List<SongwithArtist> Get10SongsRandomCollection(string accountName, string colletionID, string songID);
+        List<SongwithArtist> GetSongsByArtistPage(int pageIndex, int pageSize, string artistID, string accountName, out int totalCount);
     }
 }

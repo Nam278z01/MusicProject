@@ -18,6 +18,7 @@
 }
 
 .background {
+    display: none;
 }
 
 .background img {
@@ -47,9 +48,9 @@
 }
 
 .play-music.show .play-music__main {
-    --text-color: #ffffff;
+    /*--text-color: #ffffff;
     --text-color-blur: #ffffff;
-    color: var(--white-color);
+    color: var(--white-color);*/
 }
 
 .play-music__main {
@@ -61,12 +62,14 @@
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 20px;
 }
 
 .media {
-    width: 30%;
+    width: 27%;
     display: flex;
+    margin-right: 3%;
     align-items: center;
 }
 
@@ -93,7 +96,6 @@
 .media-right {
     margin-left: 10px;
     width: 80px;
-    margin-right: 50px;
     display: flex;
 }
 
@@ -173,8 +175,8 @@
 }
 
 .controls-extend {
-    width: 25%;
-    margin-left: 50px;
+    width: 27%;
+    margin-left: 3%;
     display: flex;
     align-items: center;
     justify-content: flex-end;

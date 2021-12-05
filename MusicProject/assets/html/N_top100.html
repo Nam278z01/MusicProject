@@ -94,6 +94,11 @@
                                     <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
                                 </div>
                             </div>
+                            <div class="song__mv">
+                                <button class="btn btn--circle btn-song-mv">
+                                    <i class='bx bxs-videos'></i>
+                                </button>
+                            </div>
                             <div class="song__like">
                                 <button class="btn btn--circle btn-song-like">
                                     <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
