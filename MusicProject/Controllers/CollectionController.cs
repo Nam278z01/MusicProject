@@ -36,8 +36,7 @@ namespace MusicProject.Controllers
                 collectionNew.Add("");
             }
             IPlaylistAdminBus plabus = new PlaylistAdminBus();
-            int totalCount;
-            List<PlaylistAdminwithAdmin> playlistAdmins = plabus.GetPlaylistsByCollectionsPage(pageIndex, pageSize, collectionNew[0], collectionNew[1], collectionNew[2], collectionNew[3], GetUserName(), out totalCount);
+            List<PlaylistAdminwithAdmin> playlistAdmins = plabus.GetPlaylistsByCollectionsPage(pageIndex, pageSize, collectionNew[0], collectionNew[1], collectionNew[2], collectionNew[3], GetUserName(), out int totalCount);
             return Json(new {playlistAdmins, totalCount}, JsonRequestBehavior.AllowGet);
         }
         public string GetUserName()

@@ -74,6 +74,7 @@
     width: 16rem;
     height: 16rem;
     box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+    border: 1px solid var(--bg-color-blur2);
 }
 
 .released__img img {
@@ -166,11 +167,12 @@
 }
 
 .released__picked-item {
-    margin: 0 0.8rem;
+    margin: 0 0.4rem;
     position: relative;
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+    border: 1px solid var(--bg-color-blur2);
 }
 
 .released__picked-item.picked .released__picked-play {

@@ -19,7 +19,7 @@ appMusic.controller('HomeController', function ($scope, $rootScope, $location, $
         url: '/Home/Get10PlaylistsNewest'
     }).then(function (res) {
         $scope.playlistsNewest = res.data
-        $scope.loadSongSuccessfull3 = true
+        $scope.loadSongSuccessfull2 = true
     }, function (err) {
         alert('Failed to get playlists!')
     })

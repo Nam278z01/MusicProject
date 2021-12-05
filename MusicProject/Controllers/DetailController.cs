@@ -46,6 +46,18 @@ namespace MusicProject.Controllers
                 }
             }
         }
+        public JsonResult GetSongsByArtistPage(int pageIndex, int pageSize, string artistID)
+        {
+            ISongBus sbus = new SongBus();
+            List<SongwithArtist> songs = sbus.GetSongsByArtistPage(pageIndex, pageSize, artistID, GetUserName(), out int totalCount);
+            return Json(new {songs, totalCount}, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetAlbumsByArtist(int pageIndex, int pageSize, string artistID)
+        {
+            IAlbumBus sbus = new AlbumBus();
+            List<Album> albums = sbus.GetAlbumsByArtist(pageIndex, pageSize, artistID, GetUserName(), out int totalCount);
+            return Json(new { albums, totalCount }, JsonRequestBehavior.AllowGet);
+        }
         public string GetUserName()
         {
             GetUser_Result user = (GetUser_Result)Session["user"];

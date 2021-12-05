@@ -134,7 +134,7 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
 
 appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {
     $rootScope.currentIndex = 2
-    $rootScope.currentSubIndex = 4
+    $rootScope.currentSubIndex = 3
     $scope.albums = []
     $scope.totalCount = 0
     $scope.pageSize = 24

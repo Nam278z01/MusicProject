@@ -15,16 +15,13 @@
     <div class="nav" style="margin-top: 24px">
         <ul class="nav-list">
             <li class="nav-item">
-                <span class="nav-item-link" ng-class="{active:checkActiveNav(1)}" ng-click="activeNav(1)">Tất cả</span>
+                <span class="nav-item-link" ng-class="{active:checkActiveNav(1)}" ng-click="activeNav(1)">Trang chủ</span>
             </li>
             <li class="nav-item">
-                <span class="nav-item-link" ng-class="{active:checkActiveNav(2)}" ng-click="activeNav(2)">Bài hát</span>
+                <span class="nav-item-link" ng-class="{active:checkActiveNav(2)}" ng-click="activeNav(2); getSongsofArtist()">Bài hát</span>
             </li>
             <li class="nav-item">
-                <span class="nav-item-link" ng-class="{active:checkActiveNav(3)}" ng-click="activeNav(3)">Album</span>
-            </li>
-            <li class="nav-item">
-                <span class="nav-item-link" ng-class="{active:checkActiveNav(4)}" ng-click="activeNav(4)">Giới thiệu</span>
+                <span class="nav-item-link" ng-class="{active:checkActiveNav(3)}" ng-click="activeNav(3); getSongsofArtistAlbum()">Album</span>
             </li>
         </ul>
     </div>
@@ -38,7 +35,7 @@
             <div class="list-playlist__slide">
                 <div class="grid">
                     <div class="row sm-gutter">
-                        <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="s in songs | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
+                        <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="s in songsofArtist | itemsPerPage: pageSizeArtist" total-items="totalCountArtist" current-page="pageIndexArtist" pagination-id="song">
                             <div class="list-playlist__item" style="margin-bottom: 24px">
                                 <div class="ratio1-1">
                                     <div class="ratioIn overflow-hd">
@@ -90,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfullArtist" ng-repeat="n in getTimes(eleView) track by $index">
                             <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
                             <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
                             <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
@@ -101,7 +98,7 @@
         </div>
 
         <div class="wrap-layout">
-            <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+            <dir-pagination-controls pagination-id="song" max-size="maxSizeArtist" boundary-links="true" on-page-change="pageChangedArtist(newPageNumber)"></dir-pagination-controls>
         </div>
     </div>
     <div class="content" ng-show="checkActiveNav(3)">
@@ -114,7 +111,7 @@
             <div class="list-playlist__slide">
                 <div class="grid">
                     <div class="row sm-gutter">
-                        <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in albums | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
+                        <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in albumsofArtist | itemsPerPage: pageSizeArtistAlbum" total-items="totalCountArtistAlbum" current-page="pageIndexArtistAlbum" pagination-id="album">
                             <div class="list-playlist__item" style="padding-bottom: 24px;">
                                 <div class="decorative"></div>
                                 <div class="decorative"></div>
@@ -155,7 +152,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfullArtistAlbum" ng-repeat="n in getTimes(eleView) track by $index">
                             <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
                             <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
                             <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
@@ -164,9 +161,8 @@
                 </div>
             </div>
         </div>
-
         <div class="wrap-layout">
-            <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+            <dir-pagination-controls  pagination-id="album" max-size="maxSize" boundary-links="true" on-page-change="pageChangedArtistAlbum(newPageNumber)"></dir-pagination-controls>
         </div>
     </div>
 </div>

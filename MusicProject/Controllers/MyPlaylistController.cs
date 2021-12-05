@@ -14,8 +14,7 @@ namespace MusicProject.Controllers
         public JsonResult GetPlaylistUsers(int pageIndex, int pageSize)
         {
             IPlaylistUserBus plbus = new PlaylistUserBus();
-            int totalCount;
-            List<PlaylistUser> playlistUsers = plbus.GetPlaylistUsers(pageIndex, pageSize, GetUserName(), out totalCount);
+            List<PlaylistUser> playlistUsers = plbus.GetPlaylistUsers(pageIndex, pageSize, GetUserName(), out int totalCount);
             return Json(new { playlistUsers, totalCount }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetPlaylistsUserBySong()

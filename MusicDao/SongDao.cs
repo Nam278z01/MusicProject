@@ -73,5 +73,18 @@ namespace MusicDao
             dh.Close();
             return songs;
         }
+        public List<SongwithArtist> GetSongsByArtistPage(int pageIndex, int pageSize, string artistID, string accountName, out int totalCount)
+        {
+            totalCount = 0;
+            SqlDataReader reader = dh.StoreReaders("GetSongsByArtistPage", pageIndex, pageSize, artistID, accountName);
+            while (reader.Read())
+            {
+                totalCount = int.Parse(reader["totalCount"].ToString());
+            }
+            reader.NextResult();
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
+            dh.Close();
+            return songs;
+        }
     }
 }

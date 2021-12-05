@@ -23,5 +23,9 @@ namespace MusicBus
         {
             return aldao.Get10AlbumsRandom(accountName);
         }
+        public List<Album> GetAlbumsByArtist(int pageIndex, int pageSize, string artistID, string accountName, out int totalCount)
+        {
+            return aldao.GetAlbumsByArtist(pageIndex, pageSize, artistID, accountName, out totalCount);
+        }
     }
 }
