@@ -45,5 +45,26 @@ namespace MusicDao
             dh.Close();
             return artists;
         }
+        public List<Artist> GetArtistsHot(int pageIndex, int pageSize, int time, int genderorband, out int totalCount)
+        {
+            totalCount = 0;
+            SqlDataReader dr = dh.StoreReaders("GetArtistsHot", pageIndex, pageSize, time, genderorband);
+            while (dr.Read())
+            {
+                totalCount = int.Parse(dr["totalCount"].ToString());
+            }
+            dr.NextResult();
+            List<Artist> artists = new List<Artist>();
+            while (dr.Read())
+            {
+                Artist artist = new Artist();
+                artist.ArtistID = dr["ArtistID"].ToString();
+                artist.ArtistName = dr["ArtistName"].ToString();
+                artist.Image = dr["Image"].ToString();
+                artists.Add(artist);
+            }
+            dh.Close();
+            return artists;
+        }
     }
 }

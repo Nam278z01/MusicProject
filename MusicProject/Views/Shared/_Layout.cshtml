@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
-    <link rel="shortcut icon" href="./assets/img/Default/favicon.png">
+    <link rel="shortcut icon" href="./assets/img/Default/favicon2.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
@@ -36,9 +36,9 @@
                 </a>
             </div>
             <div class="sidebar__userAset">
-                <a href="#!/nguoi-dung" class="sidebar__user" ng-click="changePage(-1)" ng-show="logged">
+                <a href="#!/nguoi-dung" class="sidebar__user" ng-click="changePage(-1)" ng-if="logged">
                     <div class="sidebar__user-avatar">
-                        <img src="~/assets/img/user/{{User.user.Image}}" alt="{{User.user.PersonName}}">
+                        <img onerror="this.src='../../assets/img/user/default.png'" src="~/assets/img/user/{{User.user.Image}}" alt="{{User.user.PersonName}}">
                     </div>
                     <div class="sidebar__user-name">
                         <span title="{{User.user.PersonName}}">{{User.user.PersonName}}</span>
@@ -94,7 +94,7 @@
                                 </a>
                             </div>
                             <div class="sidebar__navigation-subitem">
-                                <a href="#!/kham-pha/nghe-si" class="sidebar__navigation-sublink"
+                                <a href="#!/kham-pha/nghe-si?g=1" class="sidebar__navigation-sublink"
                                    ng-class="{active:isSubActive(4)}" ng-click="changePage(2); changeSubPage(4)">
                                     <span>Nghệ sĩ</span>
                                 </a>
@@ -209,21 +209,21 @@
 
         <section class="play-music hidden" ng-controller="PlayMusicController">
             <div class="background">
-                <img src="./assets/img/Default/background10.jpg" alt="">
-                <img src="./assets/img/Default/background1.jpg" alt="">
-                <img src="./assets/img/Default/background2.jpg" alt="">
-                <img src="./assets/img/Default/background3.jpg" alt="">
-                <img src="./assets/img/Default/background4.jpg" alt="">
-                <img src="./assets/img/Default/background5.jpg" alt="">
-                <img src="./assets/img/Default/background6.jpg" alt="">
-                <img src="./assets/img/Default/background7.jpg" alt="">
-                <img src="./assets/img/Default/background8.jpg" alt="">
-                <img src="./assets/img/Default/background9.jpg" alt="">
+                <img src="../../assets/img/Default/background10.jpg" alt="">
+                <img src="../../assets/img/Default/background1.jpg" alt="">
+                <img src="../../assets/img/Default/background2.jpg" alt="">
+                <img src="../../assets/img/Default/background3.jpg" alt="">
+                <img src="../../assets/img/Default/background4.jpg" alt="">
+                <img src="../../assets/img/Default/background5.jpg" alt="">
+                <img src="../../assets/img/Default/background6.jpg" alt="">
+                <img src="../../assets/img/Default/background7.jpg" alt="">
+                <img src="../../assets/img/Default/background8.jpg" alt="">
+                <img src="../../assets/img/Default/background9.jpg" alt="">
             </div>
             <div class="play-music__main">
                 <div class="media">
                     <div class="media-left">
-                        <img src="./assets/img/Song/{{song.Song.Image}}" alt="{{song.Song.SongName}}">
+                        <img src="../../assets/img/Song/{{song.Song.Image}}" alt="{{song.Song.SongName}}">
                     </div>
                     <div class="media-content">
                         <div class="song__name">

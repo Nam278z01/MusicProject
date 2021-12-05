@@ -155,6 +155,7 @@
 
 .btn-listen:hover {
     transform: scale(1.15);
+    will-change: transform;
 }
 
 .btn--more,

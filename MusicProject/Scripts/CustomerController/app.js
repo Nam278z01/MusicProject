@@ -124,6 +124,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.songIsPlayed = {}
     $rootScope.logged = false
     $rootScope.song = {}
+    $rootScope.playlistsforAdd = []
 
     $http({
         method: 'get',
@@ -135,6 +136,17 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             $rootScope.UserVip = ($rootScope.User.user.DueOn || $rootScope.User.user.DueOn > new Date()) ? true : false
             document.querySelector('#modal-login-singup').remove()
             document.querySelector('.signin-singup').remove()
+
+            //Lấy danh sách playlist để thêm bài hát vào playlist
+            $http({
+                method: 'get',
+                url: '/MyPlaylist/GetPlaylistsUserBySong'
+            }).then(function (res) {
+                $rootScope.playlistsforAdd = res.data
+            }, function (err) {
+                alert('Adding song to playlist failed!')
+            })
+
         } else {
             // Login - SignIn
             let btnLogin = document.querySelector('#showlogin')
@@ -298,17 +310,6 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         if (e.target.closest('.song__more')) {
             e.target.closest('.song__more').parentElement.classList.toggle('focus')
         }
-    })
-
-    //Lấy danh sách playlist để thêm bài hát vào playlist
-    $rootScope.playlistsforAdd = []
-    $http({
-        method: 'get',
-        url: 'MyPlaylist/GetPlaylistsUserBySong'
-    }).then(function (res) {
-        $rootScope.playlistsforAdd = res.data
-    }, function (err) {
-        alert('Adding song to playlist failed!')
     })
 
     //Lấy bài hát để thêm vào playlist

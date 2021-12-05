@@ -27,5 +27,9 @@ namespace MusicBus
         {
             return aldao.GetAlbumsByArtist(pageIndex, pageSize, artistID, accountName, out totalCount);
         }
+        public List<Album> GetAlbumsNewAHot(int pageIndex, int pageSize, int time, string accountName, out int totalCount)
+        {
+            return aldao.GetAlbumsNewAHot(pageIndex, pageSize, time, accountName, out totalCount);
+        }
     }
 }

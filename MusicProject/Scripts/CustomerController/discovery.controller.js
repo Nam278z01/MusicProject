@@ -38,10 +38,18 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
     $scope.pageIndex = $routeParams.page || 1
     $scope.loadSongSuccessfull = false
 
-    getResultsPage($scope.pageIndex)
+    if ($routeParams.col && $routeParams.n) {
+        getResultsPage($scope.pageIndex)
+    } else {
+        getResultsPage2($scope.pageIndex)
+    }
 
     $scope.pageChanged = function (newPage) {
-        getResultsPage(newPage);
+        if ($routeParams.col && $routeParams.n) {
+            getResultsPage(newPage)
+        } else {
+            getResultsPage2(newPage)
+        }
         $location.search("page", newPage)
     };
 
@@ -51,6 +59,21 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
             method: 'get',
             url: '/Discovery/GetSongsPage',
             params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, collectionID: $routeParams.col, nation: $routeParams.n}
+        }).then(function (response) {
+            $scope.songs = response.data.songs
+            $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
+        }, function (error) {
+            alert('Failed to get the songs!')
+        })
+    }
+
+    function getResultsPage2(index) {
+        $scope.pageIndex = index
+        $http({
+            method: 'get',
+            url: '/Discovery/GetSongsNewAHot',
+            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize }
         }).then(function (response) {
             $scope.songs = response.data.songs
             $scope.totalCount = response.data.totalCount
@@ -109,10 +132,19 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
     $scope.pageIndex = $routeParams.page || 1
     $scope.loadSongSuccessfull = false
 
-    getResultsPage($scope.pageIndex)
+    if ($routeParams.n) {
+        getResultsPage($scope.pageIndex)
+    } else {
+        getResultsPage2($scope.pageIndex)
+    }
 
     $scope.pageChanged = function (newPage) {
-        getResultsPage(newPage);
+        if ($routeParams.n) {
+            getResultsPage(newPage)
+        } else {
+            getResultsPage(newPage)
+        }
+        getResultsPage(newPage)
         $location.search("page", newPage)
     };
 
@@ -122,6 +154,21 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
             method: 'get',
             url: '/Discovery/GetArtistsPage',
             params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, nation: $routeParams.n, genderorband: $routeParams.g }
+        }).then(function (response) {
+            $scope.artists = response.data.artists
+            $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
+        }, function (error) {
+            alert('Failed to get the artists!')
+        })
+    }
+
+    function getResultsPage2(index) {
+        $scope.pageIndex = index
+        $http({
+            method: 'get',
+            url: '/Discovery/GetArtistsHot',
+            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, genderorband: $routeParams.g }
         }).then(function (response) {
             $scope.artists = response.data.artists
             $scope.totalCount = response.data.totalCount
@@ -142,10 +189,18 @@ appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $h
     $scope.pageIndex = $routeParams.page || 1
     $scope.loadSongSuccessfull = false
 
-    getResultsPage($scope.pageIndex)
+    if ($routeParams.n) {
+        getResultsPage($scope.pageIndex)
+    } else {
+        getResultsPage2($scope.pageIndex)
+    }
 
     $scope.pageChanged = function (newPage) {
-        getResultsPage(newPage);
+        if ($routeParams.n) {
+            getResultsPage(newPage)
+        } else {
+            getResultsPage2(newPage)
+        }
         $location.search("page", newPage)
     };
 
@@ -155,6 +210,21 @@ appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $h
             method: 'get',
             url: '/Discovery/GetAlbumsPage',
             params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, nation: $routeParams.n }
+        }).then(function (response) {
+            $scope.albums = response.data.albums
+            $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
+        }, function (error) {
+            alert('Failed to get the albums!')
+        })
+    }
+
+    function getResultsPage2(index) {
+        $scope.pageIndex = index
+        $http({
+            method: 'get',
+            url: '/Discovery/GetAlbumsNewAHot',
+            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize }
         }).then(function (response) {
             $scope.albums = response.data.albums
             $scope.totalCount = response.data.totalCount

@@ -57,6 +57,19 @@ namespace MusicDao
             dh.Close();
             return albums;
         }
+        public List<Album> GetAlbumsNewAHot(int pageIndex, int pageSize, int time, string accountName, out int totalCount)
+        {
+            totalCount = 0;
+            SqlDataReader dr = dh.StoreReaders("GetAlbumsNewAHot", pageIndex, pageSize, time, accountName);
+            while (dr.Read())
+            {
+                totalCount = int.Parse(dr["totalCount"].ToString());
+            }
+            dr.NextResult();
+            List<Album> albums = AlbumToList(dr);
+            dh.Close();
+            return albums;
+        }
         public List<Album> AlbumToList(SqlDataReader dr)
         {
             List<Album> albums = new List<Album>();

@@ -480,6 +480,9 @@
     justify-content: space-between;
     padding: 0 20px;
     border-radius: 4px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .top100-header__titler {
@@ -500,12 +503,12 @@
 
 .btn-top100.btn.btn--primary {
     color: var(--white-color);
-    border-color: var(---white-color);
+    border-color: var(--white-color);
 }
 
 .btn-top100.btn.btn--primary:hover {
     color: var(--main-color);
-    border-color: var(---main-color);
+    border-color: var(--main-color);
 }
 
 

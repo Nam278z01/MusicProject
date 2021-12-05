@@ -43,5 +43,9 @@ namespace MusicBus
         {
             return sdao.GetSongsByArtistPage(pageIndex, pageSize, artistID, accountName, out totalCount);
         }
+        public List<SongwithArtist> GetSongsNewAHot(int pageIndex, int pageSize, string accountName, int time, out int totalCount)
+        {
+            return sdao.GetSongsNewAHot(pageIndex, pageSize, accountName, time, out totalCount);
+        }
     }
 }
