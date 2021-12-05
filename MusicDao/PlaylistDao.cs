@@ -16,10 +16,10 @@ namespace MusicDao
         {
             dh = new DataHelper();
         }
-        public List<PlaylistwithPerson> GetPlaylistSearch(int pageIndex, int pageSize, string textSearch, out int totalCount)
+        public List<PlaylistwithPerson> GetPlaylistSearch(int pageIndex, int pageSize, string textSearch,string accountName, out int totalCount)
         {
             totalCount = 0;
-            SqlDataReader dr = dh.StoreReaders("GetPlaylistsSearch", pageIndex, pageSize, textSearch);
+            SqlDataReader dr = dh.StoreReaders("GetPlaylistsSearch", pageIndex, pageSize, textSearch, accountName);
             while (dr.Read())
             {
                 totalCount = int.Parse(dr["totalCount"].ToString());
@@ -36,6 +36,7 @@ namespace MusicDao
                 playlist.isPublic = bool.Parse(dr["isPublic"].ToString());
                 playlist.PersonName = dr["PersonName"].ToString();
                 playlist.KindofPlaylist = int.Parse(dr["KindofPlaylist"].ToString());
+                playlist.Liked = int.Parse(dr["Liked"].ToString());
                 playlists.Add(playlist);
             }
             dh.Close();

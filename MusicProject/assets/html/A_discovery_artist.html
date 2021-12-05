@@ -35,6 +35,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave MuiSkeleton-circle" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px; margin: auto"></span>
+                    </div>
                 </div>
             </div>
         </div>

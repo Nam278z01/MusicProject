@@ -4,17 +4,20 @@
             Thể Loại
         </div>
         <div class="collection__pick-item" ng-repeat="col in genres | limitTo:5" ng-click="pickedCollection(col, 'tl')"
-            ng-class="{active:pickedCollection2(col)}"><i
-                class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span></div>
-        <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(1)}"><i
-                class="bx bxs-chevron-down"></i><span style="text-transform: initial;">Xem thêm ...</span></div>
+             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
+            <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
+        </div>
+        <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(1)}" style="user-select: none">
+            <i class="bx bxs-chevron-down"></i><span style="text-transform: initial;">Xem thêm ...</span>
+        </div>
         <div class="collection__pick-list-item">
             <div class="grid">
                 <div class="row sm-gutter">
                     <div class="col sl-3 l-3" ng-repeat="col in genres.slice(5)">
                         <div class="collection__pick-item" ng-click="pickedCollection(col, 'tl')"
-                            ng-class="{active:pickedCollection2(col)}"><i
-                                class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span></div>
+                             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
+                            <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -25,17 +28,20 @@
             Tâm trạng
         </div>
         <div class="collection__pick-item" ng-repeat="col in moods | limitTo:5" ng-click="pickedCollection(col, 'tt')"
-            ng-class="{active:pickedCollection2(col)}"><i
-                class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span></div>
-        <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(2)}"><i
-                class="bx bxs-chevron-down"></i><span style="text-transform: initial;">Xem thêm ...</span></div>
+             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
+            <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
+        </div>
+        <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(2)}" style="user-select: none">
+            <i class="bx bxs-chevron-down"></i><span style="text-transform: initial;">Xem thêm ...</span>
+        </div>
         <div class="collection__pick-list-item">
             <div class="grid">
                 <div class="row sm-gutter">
                     <div class="col sl-3 l-3" ng-repeat="col in moods.slice(5)">
                         <div class="collection__pick-item" ng-click="pickedCollection(col, 'tt')"
-                            ng-class="{active:pickedCollection2(col)}"><i
-                                class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span></div>
+                             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
+                            <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,17 +52,20 @@
             Khung cảnh
         </div>
         <div class="collection__pick-item" ng-repeat="col in scenes | limitTo:5" ng-click="pickedCollection(col, 'kc')"
-            ng-class="{active:pickedCollection2(col)}"><i
-                class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span></div>
-        <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(3)}"><i
-                class="bx bxs-chevron-down"></i><span style="text-transform: initial;">Xem thêm ...</span></div>
+             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
+            <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
+        </div>
+        <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(3)}" style="user-select: none">
+            <i class="bx bxs-chevron-down"></i><span style="text-transform: initial;">Xem thêm ...</span>
+        </div>
         <div class="collection__pick-list-item">
             <div class="grid">
                 <div class="row sm-gutter">
                     <div class="col sl-3 l-3" ng-repeat="col in scenes.slice(5)">
                         <div class="collection__pick-item" ng-click="pickedCollection(col, 'kc')"
-                            ng-class="{active:pickedCollection2(col)}"><i
-                                class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span></div>
+                             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
+                            <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,17 +76,20 @@
             Chủ đề
         </div>
         <div class="collection__pick-item" ng-repeat="col in topics | limitTo:5" ng-click="pickedCollection(col, 'cd')"
-            ng-class="{active:pickedCollection2(col)}"><i
-                class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span></div>
-        <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(4)}"><i
-                class="bx bxs-chevron-down"></i><span style="text-transform: initial;">Xem thêm ...</span></div>
+             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
+            <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
+        </div>
+        <div class="collection__pick-item collection__pick-item-show" ng-class="{active:isShowCollection(4)}" style="user-select: none">
+            <i class="bx bxs-chevron-down"></i><span style="text-transform: initial;">Xem thêm ...</span>
+        </div>
         <div class="collection__pick-list-item">
             <div class="grid">
                 <div class="row sm-gutter">
                     <div class="col sl-3 l-3" ng-repeat="col in topics.slice(5)">
                         <div class="collection__pick-item" ng-click="pickedCollection(col, 'cd')"
-                            ng-class="{active:pickedCollection2(col)}"><i
-                                class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span></div>
+                             ng-class="{active:pickedCollection2(col)}" title="{{col.CollectionName}}">
+                            <i class="bx bxs-chevron-right"></i><span>{{col.CollectionName}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,8 +101,8 @@
     <div class="list-playlist">
         <div class="list-playlist__header">
             <h3 class="list-playlist__name" ng-show="!showpickedCollection">
-                    Tất cả tuyển tập
-                </h3>
+                Tất cả tuyển tập
+            </h3>
             <div class="list-playlist__tag" ng-show="showpickedCollection">
                 Đã chọn:
                 <span class="list-playlist__tag-item" ng-repeat="col in pickedCollections">
@@ -106,17 +118,18 @@
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-2">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="p in playlistAdmins | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex">
                         <div class="list-playlist__item" style="padding-bottom: 24px;">
                             <div class="decorative"></div>
                             <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="Hit-Maker Việt">
+                                    <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
+                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -126,12 +139,30 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="Hit-Maker Việt">
-                                <a href="#">Hit-Maker Việt</a>
+                            <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                            </div>
+                            <div class="list-playlist__item-admin">
+                                <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
                             </div>
                         </div>
+                    </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
                     </div>
                 </div>
             </div>
@@ -139,15 +170,6 @@
     </div>
 
     <div class="wrap-layout">
-        <ul class="pagination">
-            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
-        </ul>
+        <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

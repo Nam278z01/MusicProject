@@ -2,49 +2,49 @@
     <div class="home-main__slide-list">
         <a class="home-main__slide-item" href="#!/tuyen-tap?kc=Col0000042">
             <div class="ratio10-4">
-                <div class="ratioIn">
+                <div class="ratioIn overflow-hd">
                     <img src="./assets/img/Default/gym.jpg" alt="">
                 </div>
             </div>
         </a>
         <a class="home-main__slide-item" href="#!/tuyen-tap?cd=Col0000059">
             <div class="ratio10-4">
-                <div class="ratioIn">
+                <div class="ratioIn overflow-hd">
                     <img src="./assets/img/Default/codien.jpg" alt="">
                 </div>
             </div>
         </a>
         <a class="home-main__slide-item" href="#!/tuyen-tap?kc=Col0000078">
             <div class="ratio10-4">
-                <div class="ratioIn">
+                <div class="ratioIn overflow-hd">
                     <img src="./assets/img/Default/wedding.jpg" alt="">
                 </div>
             </div>
         </a>
         <a class="home-main__slide-item" href="#!/tuyen-tap?kc=Col0000050">
             <div class="ratio10-4">
-                <div class="ratioIn">
+                <div class="ratioIn overflow-hd">
                     <img src="./assets/img/Default/stayhome.jpg" alt="">
                 </div>
             </div>
         </a>
         <a class="home-main__slide-item" href="#!/tuyen-tap?tl=Col0000002">
             <div class="ratio10-4">
-                <div class="ratioIn">
+                <div class="ratioIn overflow-hd">
                     <img src="./assets/img/Default/edm.jpg" alt="">
                 </div>
             </div>
         </a>
         <a class="home-main__slide-item" href="#!/tuyen-tap?tl=Col0000014">
             <div class="ratio10-4">
-                <div class="ratioIn">
+                <div class="ratioIn overflow-hd">
                     <img src="./assets/img/Default/acoustic.jpg" alt="">
                 </div>
             </div>
         </a>
         <a class="home-main__slide-item" href="#!/tuyen-tap?cd=Col0000063">
             <div class="ratio10-4">
-                <div class="ratioIn">
+                <div class="ratioIn overflow-hd">
                     <img src="./assets/img/Default/tinhyeu.jpg" alt="">
                 </div>
             </div>
@@ -69,25 +69,28 @@
             </h3>
             <div class="list-playlist__btn">
                 <button class="btn list-playlist__btn-prev disabled">
-                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-chevrons-left'></i>
                 </button>
                 <button class="btn list-playlist__btn-next">
-                    <i class='bx bx-right-arrow-alt'></i>
+                    <i class='bx bx-chevrons-right'></i>
                 </button>
             </div>
         </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter nowrap">
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-repeat="p in playlistsRandom">
+                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                            <div class="decorative"></div>
+                            <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
+                                    <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
+                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -97,187 +100,30 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
+                            <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                            </div>
+                            <div class="list-playlist__item-admin">
+                                <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1631509112943_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1631509319362_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
                     </div>
                 </div>
             </div>
@@ -287,29 +133,32 @@
     <div class="list-playlist" id="slide-second">
         <div class="list-playlist__header">
             <h3 class="list-playlist__name">
-                Mới mẻ mỗi ngày
+                Mới mẻ hôm nay
             </h3>
             <div class="list-playlist__btn">
                 <button class="btn list-playlist__btn-prev disabled">
-                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-chevrons-left'></i></i>
                 </button>
                 <button class="btn list-playlist__btn-next">
-                    <i class='bx bx-right-arrow-alt'></i>
+                    <i class='bx bx-chevrons-right'></i></i>
                 </button>
             </div>
         </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter nowrap">
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-repeat="p in playlistsNewest">
+                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                            <div class="decorative"></div>
+                            <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
+                                    <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
+                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -319,212 +168,30 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
+                            <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                            </div>
+                            <div class="list-playlist__item-admin">
+                                <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1631509112943_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1631509319362_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1631509112943_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull2" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
                     </div>
                 </div>
             </div>
@@ -534,29 +201,32 @@
     <div class="list-playlist" id="slide-third">
         <div class="list-playlist__header">
             <h3 class="list-playlist__name">
-                Thiên hạ nghe gì
+                Album mỗi ngày
             </h3>
             <div class="list-playlist__btn">
                 <button class="btn list-playlist__btn-prev disabled">
-                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-chevrons-left'></i></i>
                 </button>
                 <button class="btn list-playlist__btn-next">
-                    <i class='bx bx-right-arrow-alt'></i>
+                    <i class='bx bx-chevrons-right'></i></i>
                 </button>
             </div>
         </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter nowrap">
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-repeat="a in albumsRandom">
+                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                            <div class="decorative"></div>
+                            <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
+                                    <img src="../../assets/img/album/{{a.Image}}" alt="{{a.AlbumName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
+                                        <i class='bx bx-heart' ng-if="a.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="a.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -566,212 +236,30 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
+                            <div class="list-playlist__item-name" title="{{a.AlbumName}}">
+                                <a href="#!/chi-tiet/album?id={{a.AlbumID}}">{{a.AlbumName}}</a>
+                            </div>
+                            <div class="list-playlist__item-artist">
+                                <a href="#!/chi-tiet/nghe-si?id={{a.Artist.ArtistID}}">{{a.Artist.ArtistName}}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1631509112943_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1631509319362_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1635399302001_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2">
-                        <div class="list-playlist__item">
-                            <div class="ratio1-1">
-                                <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/1631509112943_300.jpg" alt="If I were witch">
-                                </div>
-                                <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                            <i class='bx bxs-right-arrow'></i>
-                                        </button>
-                                    </div>
-                                    <button class="btn btn--more btn--circle" title="Khác">
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="list-playlist__item-name" title="If I were witch">
-                                <a href="#">If I were witch</a>
-                            </div>
-                        </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull3" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
                     </div>
                 </div>
             </div>
@@ -787,77 +275,29 @@
         <div class="released__main">
             <div class="released__show">
                 <div class="released__img">
-                    <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
+                    <img src="../../assets/img/song/{{songNewestpicked.Song.Image}}" alt="{{songNewestpicked.Song.SongName}}" />
                 </div>
                 <div class="released__info">
-                    <h4 class="released__name">Ngôi sao dây</h4>
+                    <h4 class="released__name">
+                        <a href="#!/chi-tiet/bai-hat?song={{songNewestpicked.Song.SongID}}">{{songNewestpicked.Song.SongName}}</a>
+                    </h4>
                     <div class="released__artist">
-                        <a href="" class="released__artist-img">
-                            <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
-                        </a>
-                        <a href="" class="released__artist-img">
-                            <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
-                        </a>
-                        <a href="" class="released__artist-img">
-                            <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
-                        </a>
-                        <a href="" class="released__artist-img">
-                            <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
+                        <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" class="released__artist-img" ng-repeat="a in songNewestpicked.Artists" title="{{a.ArtistName}}" ng-style="{'z-index': {{ 10 - $index}}}">
+                            <img src="../../assets/img/artist/{{a.Image}}" alt="{{a.ArtistName}}">
                         </a>
                         <div class="released__artist-name">
-                            <a href="">Kaisoul</a>
-                            <a href="">KaisoulSecond</a>
+                            <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songNewestpicked.Artists">{{a.ArtistName}}</a>
                         </div>
                     </div>
                     <div class="released__date">
-                        <i class='bx bx-calendar'></i>Ngày phát hành:
-                        <span>29/20/2021</span>
+                        <i class='bx bx-calendar'></i>
+                        <span> Ngày phát hành:<span>{{songNewestpicked.Song.ReleaseDate.replace('/Date(','').replace(')/','') | date : "dd/MM/yyyy"}}</span></span>
                     </div>
                 </div>
             </div>
             <div class="released__picked">
-                <div class="released__picked-item picked">
-                    <img src="./assets/img/1631509112943_300.jpg" alt="">
-                    <div class="released__picked-play ratioIn">
-                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                            <i class='bx bxs-right-arrow'></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="released__picked-item">
-                    <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
-                    <div class="released__picked-play ratioIn">
-                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                            <i class='bx bxs-right-arrow'></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="released__picked-item">
-                    <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
-                    <div class="released__picked-play ratioIn">
-                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                            <i class='bx bxs-right-arrow'></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="released__picked-item">
-                    <img src="./assets/img/1631509112943_300.jpg" alt="">
-                    <div class="released__picked-play ratioIn">
-                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                            <i class='bx bxs-right-arrow'></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="released__picked-item">
-                    <img src="./assets/img/1631509319362_300.jpg" alt="">
-                    <div class="released__picked-play ratioIn">
-                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                            <i class='bx bxs-right-arrow'></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="released__picked-item">
-                    <img src="./assets/img/ngoi-sao-ay.jpg" alt="">
+                <div class="released__picked-item" ng-repeat="s in songsNewest" ng-class="{picked:pickedSongNewst($index, s)}" ng-click="pickSongNewst($index, s)" ng-mouseover="pickSongNewst($index, s)">
+                    <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
                     <div class="released__picked-play ratioIn">
                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
                             <i class='bx bxs-right-arrow'></i>
@@ -1021,23 +461,23 @@
         <div class="list-song-main">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-6">
+                    <div class="col c-12 m-6 l-6" ng-repeat="s in songsRandom">
                         <div class="song">
                             <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
+                                <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
                             </div>
                             <div class="song__info">
                                 <div class="song__name">
-                                    Em như mây gió
+                                    <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
                                 </div>
                                 <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
+                                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
                                 </div>
                             </div>
                             <div class="song__like">
                                 <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
+                                    <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                    <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
                                 </button>
                             </div>
                             <div class="song__more">
@@ -1047,277 +487,30 @@
                             </div>
                             <div class="song__listens">
                                 <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
+                                <span ng-if="s.Views > 999">{{s.Views / 1000 | number:1}}k</span>
+                                <span ng-if="s.Views < 1000">{{s.Views}}</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
+                            <div class="feature__more">
+                                <div class="feature__item btn-add-song-playlist">
+                                    <i class='bx bxs-playlist'></i>
+                                    <span>Thêm vào playlist</span>
                                 </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
+                                <div class="feature__item">
+                                    <i class='bx bx-add-to-queue'></i>
+                                    <span>Thêm vào chờ phát</span>
                                 </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
+                                <div class="feature__item">
+                                    <i class='bx bxs-download'></i>
+                                    <span>Tải xuống</span>
                                 </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
+                                <div class="feature__item">
+                                    <i class='bx bx-link-alt'></i>
+                                    <span>Sao chép link</span>
                                 </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
+                                <div class="feature__item">
+                                    <i class='bx bx-share-alt'></i>
+                                    <span>Chia sẻ</span>
                                 </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
-                                </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
-                                </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
-                                </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
-                                </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
-                                </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
-                                </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
-                                </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
-                                </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
-                                </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
-                                </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
-                                </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l-6">
-                        <div class="song">
-                            <div class="song__img">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                            </div>
-                            <div class="song__info">
-                                <div class="song__name">
-                                    Em như mây gió
-                                </div>
-                                <div class="song__artist">
-                                    <span>HuyR</span>,
-                                    <span>HuyRR</span>
-                                </div>
-                            </div>
-                            <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                            </div>
-                            <div class="song__more">
-                                <button class="btn btn--circle btn-song-more">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                            </div>
-                            <div class="song__listens">
-                                <i class='bx bx-headphone'></i>
-                                <span>48.9k</span>
                             </div>
                         </div>
                     </div>
@@ -1333,10 +526,10 @@
             </h3>
             <div class="list-playlist__btn">
                 <button class="btn list-playlist__btn-prev disabled">
-                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-chevrons-left'></i></i>
                 </button>
                 <button class="btn list-playlist__btn-next">
-                    <i class='bx bx-right-arrow-alt'></i>
+                    <i class='bx bx-chevrons-right'></i></i>
                 </button>
             </div>
         </div>
@@ -1347,7 +540,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100blues-jazz.jpg">
+                                    <img src="../../assets/img/Default/top100blues-jazz.jpg">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <a class="list-playlist__item-play" href="#!/top-100?n=usuk&col=Col0000072">
@@ -1363,7 +556,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100electonica-dance.jpg">
+                                    <img src="../../assets/img/Default/top100electonica-dance.jpg">
                                 </div>
                                 <a class="ratioIn list-playlist__item-feature" href="#!/top-100?n=usuk&col=Col0000002">
                                     <div class="list-playlist__item-play">
@@ -1379,7 +572,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100nhactre.jpg">
+                                    <img src="../../assets/img/Default/top100nhactre.jpg">
                                 </div>
                                 <a class="ratioIn list-playlist__item-feature" href="#!/top-100?n=vn&col=Col0000001">
                                     <div class="list-playlist__item-play">
@@ -1395,7 +588,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100rapviet.jpg">
+                                    <img src="../../assets/img/Default/top100rapviet.jpg">
                                 </div>
                                 <a class="ratioIn list-playlist__item-feature" href="#!/top-100?n=vn&col=Col0000006">
                                     <div class="list-playlist__item-play">
@@ -1411,7 +604,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100country.jpg">
+                                    <img src="../../assets/img/Default/top100country.jpg">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <a class="list-playlist__item-play" href="#!/top-100?n=usuk&col=Col0000004">
@@ -1427,7 +620,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100remixviet.jpg">
+                                    <img src="../../assets/img/Default/top100remixviet.jpg">
                                 </div>
                                 <a class="ratioIn list-playlist__item-feature" href="#!/top-100?n=vn&col=Col0000070">
                                     <div class="list-playlist__item-play">
@@ -1443,7 +636,7 @@
                         <div class="list-playlist__item">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Default/top100rap-hiphop.jpg">
+                                    <img src="../../assets/img/Default/top100rap-hiphop.jpg">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <a class="list-playlist__item-play" href="#!/top-100?n=usuk&col=Col0000016">

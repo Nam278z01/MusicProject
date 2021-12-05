@@ -9,6 +9,6 @@ namespace MusicDao
 {
     public interface IPlaylistDao
     {
-        List<PlaylistwithPerson> GetPlaylistSearch(int pageIndex, int pageSize, string textSearch, out int totalCount);
+        List<PlaylistwithPerson> GetPlaylistSearch(int pageIndex, int pageSize, string textSearch, string accountName, out int totalCount);
     }
 }

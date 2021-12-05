@@ -76,7 +76,8 @@
     margin-right: 10px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid var(--border-color);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    border: 1px solid var(--bg-color-blur2);
 }
 
 .media-left img {
@@ -118,10 +119,10 @@
 }
 
 .controls__player .btn {
-    height: 50px;
-    width: 50px;
+    height: 44px;
+    width: 44px;
     margin: 0 5px;
-    color: var(--text-color-blur);
+    /*color: var(--text-color-blur);*/
 }
 
 .controls__player .btn:hover {
@@ -132,19 +133,11 @@
     color: var(--main-color);
 }
 
-.controls__player .btn:nth-child(3) {
-    height: 60px;
-    width: 60px;
-}
-
 .controls__player i {
     font-size: 3.2rem;
 }
 
-.controls__player .btn:nth-child(3) i {
-    font-size: 5rem;
-}
-
+.controls__player .btn:nth-child(3) i,
 .controls__player .btn:first-child i,
 .controls__player .btn:last-child i {
     font-size: 2.4rem;

@@ -91,12 +91,12 @@ appMusic.config(function ($routeProvider, $locationProvider) {
             controller: "SongDetailsController"
         })
         .when("/chi-tiet/playlistad", {
-            templateUrl: "../../assets/html/detail_playlist.html",
+            templateUrl: "../../assets/html/detail_playlistadmin.html",
             controller: "PlaylistADetailsController"
         })
         .when("/chi-tiet/playlistnd", {
-            templateUrl: "../../assets/html/detail_playlist.html",
-            controller: "PlaylistADetailsController"
+            templateUrl: "../../assets/html/detail_playlistuser.html",
+            controller: "PlaylistUDetailsController"
         })
         .when("/chi-tiet/album", {
             templateUrl: "../../assets/html/detail_album.html",
@@ -136,6 +136,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             document.querySelector('#modal-login-singup').remove()
             document.querySelector('.signin-singup').remove()
         } else {
+            // Login - SignIn
             let btnLogin = document.querySelector('#showlogin')
             let btnSignUp = document.querySelector('#showsignup')
             let modalLoginSignUp = document.querySelector('#modal-login-singup')
@@ -164,7 +165,6 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             }
             body.addEventListener('click', function (e) {
                 if (e.target.classList.contains('modal__body') || e.target.closest('.auth-form__controls-back')) {
-                    console.log(e.target.closest('.auth-form__controls-back'), e.target)
                     document.body.classList.remove('no-scroll')
                     document.querySelector('html').scrollTop = scrollTop
                     body.style.top = '0px'
@@ -184,13 +184,13 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 }
             })
 
-            var restrictedPage = $.inArray($location.path(), ['my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
+            var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
             if (restrictedPage) {
                 $location.path('/')
             }
 
             $rootScope.$on('$routeChangeStart', function (event, next, current) {
-                var restrictedPage = $.inArray($location.path(), ['my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
+                var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
                 if (restrictedPage) {
                     event.preventDefault()
                     $location.path('/')
@@ -201,6 +201,12 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         alert('Failed to get Account!')
     })
 
+    //Thay đổi url thì cuộn lên đầu
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        $window.scrollTo(0, 0);
+    })
+
+    //Lấy danh sách colletion cho trang tuyển tập
     $rootScope.collections = []
     $http({
         method: 'get',
@@ -218,4 +224,118 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             this.style.display = 'none'
         })
     })
+
+    //Lấy để repeat loading
+    $rootScope.getTimes = function (n) {
+        return new Array(n);
+    }  
+    //repeat n lần loading
+    $rootScope.eleView
+    if (window.innerWidth < 740) {
+        $rootScope.eleView = 2
+    } else if (window.innerWidth < 1113) {
+        $rootScope.eleView = 4
+    } else if (window.innerWidth < 1800) {
+        $rootScope.eleView = 5
+    } else {
+        $rootScope.eleView = 6
+    }
+    $window.addEventListener('resize', () => {
+        if (window.innerWidth < 740) {
+            $rootScope.eleView = 2
+        } else if (window.innerWidth < 1113) {
+            $rootScope.eleView = 4
+        } else if (window.innerWidth < 1800) {
+            $rootScope.eleView = 5
+        } else {
+            $rootScope.eleView = 6
+        }
+    })
+
+    //Thêm playlist trên giao diện
+    let scrollTop2
+    let modal2 = document.querySelector('#playlist')
+    document.body.addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal__body') || e.target.closest('.btn-close-form')) {
+            document.body.classList.remove('no-scroll')
+            document.querySelector('html').scrollTop = scrollTop2
+            document.body.style.top = '0px'
+            modal2.style.display = 'none'
+        }
+        if (e.target.closest('.btn-add-song-playlist')) {
+            modal2.style.display = 'block'
+            // Ẩn thanh cuộn và giữ vị trí
+            scrollTop2 = document.querySelector('html').scrollTop
+            document.body.classList.add('no-scroll')
+            document.body.style.top = -scrollTop2 + 'px'
+        }
+    })
+    //click thanh 3 chấm thì hiện chức năng 
+    document.body.addEventListener('click', function (e) {
+        let featureMore = document.querySelectorAll('.list-playlist__item-feature')
+        if (featureMore) {
+            featureMore.forEach(ele => {
+                ele.classList.remove('focus')
+            })
+        }
+        let featureMore2 = document.querySelectorAll('.song')
+        if (featureMore2) {
+            featureMore2.forEach(ele => {
+                ele.classList.remove('focus')
+            })
+        }
+        //if (e.target.closest('.list-playlist__item') == null) {
+        //    let featureMore = document.querySelectorAll('.list-playlist__item-feature')
+        //    if (featureMore) {
+        //        featureMore.forEach(ele =>{
+        //            ele.classList.remove('focus')
+        //        })
+        //    }
+        //}
+        if (e.target.closest('.btn--more')) {
+            e.target.closest('.btn--more').parentElement.classList.toggle('focus')
+        }
+        if (e.target.closest('.song__more')) {
+            e.target.closest('.song__more').parentElement.classList.toggle('focus')
+        }
+    })
+
+    //Lấy danh sách playlist để thêm bài hát vào playlist
+    $rootScope.playlistsforAdd = []
+    $http({
+        method: 'get',
+        url: 'MyPlaylist/GetPlaylistsUserBySong'
+    }).then(function (res) {
+        $rootScope.playlistsforAdd = res.data
+    }, function (err) {
+        alert('Adding song to playlist failed!')
+    })
+
+    //Lấy bài hát để thêm vào playlist
+    $rootScope.songIDforAdd
+    $rootScope.getSongforAdd = function (song) {
+        $rootScope.songIDforAdd = song.Song.SongID
+    }
+    //Thêm bài hát vào playlist
+    $rootScope.addSongtoPlaylist = function (songID, playlistID) {
+        $http({
+            method: 'post',
+            url: '/MyPlaylist/AddSongtoPlaylist',
+            datatype: 'json',
+            data: { songID: songID, playlistID: playlistID }
+        }).then(function (res) {
+            if (!res.data) {
+                alert("Successfully added song to playlist!")
+            } else {
+                alert("Adding song to playlist failed!")
+            }
+        }, function () {
+            alert("Adding song to playlist failed!")
+        })
+    }
+
+    //Test
+    $rootScope.testAlert = function (n) {
+        alert("hehe")
+    }
 })

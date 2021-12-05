@@ -8,10 +8,16 @@ using MusicBus;
 
 namespace MusicProject.Controllers
 {
-    public class SongController : Controller
+    public class Top100Controller : Controller
     {
-        // GET: Song
+        // GET: Top100
         public JsonResult GetTop100Songs(string collectionID, string nation)
+        {
+            ISongBus sbus = new SongBus();
+            List<SongwithArtist> songs = sbus.GetTop100Songs(GetUserName(), collectionID, Nation(nation));
+            return Json(songs, JsonRequestBehavior.AllowGet);
+        }
+        public int Nation(string nation)
         {
             int nationInt;
             if (nation == "vn")
@@ -30,15 +36,17 @@ namespace MusicProject.Controllers
             {
                 nationInt = 4;
             }
-            ISongBus sbus = new SongBus();
+            return nationInt;
+        }
+        public string GetUserName()
+        {
             GetUser_Result user = (GetUser_Result)Session["user"];
             string accountName = "";
             if (user != null)
             {
                 accountName = user.AccountName;
             }
-            List<SongwithArtist> songs = sbus.GetTop100Songs(accountName, collectionID, nationInt);
-            return Json(songs, JsonRequestBehavior.AllowGet);
+            return accountName;
         }
     }
 }

@@ -17,5 +17,6 @@ namespace MusicObj
         public Nullable<bool> isPublic { get; set; }
         public string PersonName { get; set; }
         public int KindofPlaylist { get; set; }
+        public int Liked { get; set; }
     }
 }

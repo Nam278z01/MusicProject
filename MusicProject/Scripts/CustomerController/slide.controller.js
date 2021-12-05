@@ -169,80 +169,100 @@ appMusic.controller('SlideController', function ($scope) {
     app.start()
 })
 
-appMusic.controller('SlideClickController', function ($scope, $window) {
+appMusic.controller('SlideClickController', function ($scope, $window, $interval) {
     function Slide(options) {
         let btnNext = options.selector.querySelector('.list-playlist__btn-next')
         let btnPrev = options.selector.querySelector('.list-playlist__btn-prev')
         let slide = options.selector.querySelector('.list-playlist__slide > .grid')
-
-        let currentIdx = 0
+        let slideChildren = slide.querySelector('.list-playlist__item')
 
         let eleInViewOfThisSlide
-        if (window.innerWidth < 740) {
+        let oneJump
+        if ($window.innerWidth < 740) {
             eleInViewOfThisSlide = 2
+            oneJump = slideChildren.offsetWidth + 8
         } else if (window.innerWidth < 1113) {
             eleInViewOfThisSlide = 4
+            oneJump = slideChildren.offsetWidth + 16
         } else if (window.innerWidth < 1800) {
             eleInViewOfThisSlide = 5
+            oneJump = slideChildren.offsetWidth + 16
         } else {
             eleInViewOfThisSlide = 6
+            oneJump = slideChildren.offsetWidth + 16
         }
 
+        let currentIdx = 0
         let countEleSlide = slide.children[0].childElementCount
-        let jump = (countEleSlide % eleInViewOfThisSlide) / eleInViewOfThisSlide * 100
 
-       
-
-        // Next slide
-        btnNext.onclick = () => {
-            if (currentIdx * eleInViewOfThisSlide < countEleSlide - eleInViewOfThisSlide) {
-                if (countEleSlide - currentIdx * eleInViewOfThisSlide < 2 * eleInViewOfThisSlide) {
-                    moveSlide(++currentIdx, jump - 100)
+        if (countEleSlide > 0) {
+            // Next slide
+            btnNext.onclick = () => {
+                if (currentIdx < countEleSlide - eleInViewOfThisSlide) {
+                    if (countEleSlide - currentIdx < 2 * eleInViewOfThisSlide) {
+                        moveSlide(countEleSlide - eleInViewOfThisSlide)
+                    }
+                    else {
+                        moveSlide(currentIdx + eleInViewOfThisSlide)
+                    }
                 }
+                if (currentIdx >= countEleSlide - eleInViewOfThisSlide) {
+                    btnNext.classList.add('disabled')
+                }
+                btnPrev.classList.remove('disabled')
+            }
+
+            // Prev slide
+            btnPrev.onclick = () => {
+                if (currentIdx > 0) {
+                    if (currentIdx < eleInViewOfThisSlide) {
+                        moveSlide(0);
+                    } else {
+                        moveSlide(currentIdx - eleInViewOfThisSlide);
+                    }
+                }
+                if (currentIdx <= 0) {
+                    btnPrev.classList.add('disabled')
+                }
+                btnNext.classList.remove('disabled')
+            }
+
+            // Move slide
+            function moveSlide(index) {
+                slide.style.transform = `translateX(-${oneJump * index}px)`
+                slide.style.transition = 'transform ' + options.duration + 'ms linear'
+                currentIdx = index
+            }
+
+            $window.addEventListener('resize', () => {
+                if (window.innerWidth < 740) {
+                    eleInViewOfThisSlide = 2
+                    oneJump = slideChildren.offsetWidth + 8
+                } else if (window.innerWidth < 1113) {
+                    eleInViewOfThisSlide = 4
+                    oneJump = slideChildren.offsetWidth + 16
+                } else if (window.innerWidth < 1800) {
+                    eleInViewOfThisSlide = 5
+                    oneJump = slideChildren.offsetWidth + 16
+                } else {
+                    eleInViewOfThisSlide = 6
+                    oneJump = slideChildren.offsetWidth + 16
+                }
+                if (countEleSlide - currentIdx - eleInViewOfThisSlide > 0)
+                    btnNext.classList.remove('disabled')
                 else {
-                    moveSlide(++currentIdx, 0)
+                    if (currentIdx != 0)
+                        btnPrev.classList.remove('disabled')
                 }
-            }
-            if (currentIdx * eleInViewOfThisSlide >= countEleSlide - eleInViewOfThisSlide) {
-                btnNext.classList.add('disabled')
-            }
-            btnPrev.classList.remove('disabled')
-
-        }
-
-        // Prev slide
-        btnPrev.onclick = () => {
-            if (currentIdx > 0) {
-                moveSlide(--currentIdx, 0)
-            }
-            if (currentIdx <= 0) {
-                btnPrev.classList.add('disabled')
-            }
-            btnNext.classList.remove('disabled')
-        }
-
-        // Move slide
-        function moveSlide(index, percentJump) {
-            slide.animate([
-                { transform: `translateX(calc(${-100 * index - percentJump}% - ${options.padding * 2 * index}px))` }
-            ], {
-                duration: options.duration,
-                fill: 'forwards'
+                slide.style.transitionDuration = '0s'
+                slide.style.transform = `translateX(-${oneJump * currentIdx}px)`
             })
+
+            return true
+        } else {
+            return false
         }
 
-        $window.addEventListener('resize', () => {
-            if (window.innerWidth < 740) {
-                eleInViewOfThisSlide = 2
-            } else if (document.body.clientWidth < 1113) {
-                eleInViewOfThisSlide = 4
-            } else if (document.body.clientWidth < 1800) {
-                eleInViewOfThisSlide = 5
-            } else {
-                eleInViewOfThisSlide = 6
-            }
-            jump = (countEleSlide % eleInViewOfThisSlide) / eleInViewOfThisSlide * 100
-        })
     }
 
     let slideOne = document.querySelector('#slide-one')
@@ -251,26 +271,37 @@ appMusic.controller('SlideClickController', function ($scope, $window) {
     let slideTop = document.querySelector('#slide-top')
 
     Slide({
-        selector: slideOne,
-        duration: 400,
-        padding: 8
-    })
-
-    Slide({
-        selector: slideSecond,
-        duration: 400,
-        padding: 8
-    })
-
-    Slide({
-        selector: slideThird,
-        duration: 400,
-        padding: 8
-    })
-
-    Slide({
         selector: slideTop,
-        duration: 400,
-        padding: 6
+        duration: 300
     })
+
+    let myInterval = $interval(function () {
+        let check = Slide({
+            selector: slideOne,
+            duration: 300
+        })
+        if (check) {
+            $interval.cancel(myInterval)
+        }
+    }, 1000)
+
+    let myInterval2 = $interval(function () {
+        let check = Slide({
+            selector: slideSecond,
+            duration: 300
+        })
+        if (check) {
+            $interval.cancel(myInterval2)
+        }
+    }, 1000)
+
+    let myInterval3 = $interval(function () {
+        let check = Slide({
+            selector: slideThird,
+            duration: 300
+        })
+        if (check) {
+            $interval.cancel(myInterval3)
+        }
+    }, 1000)
 })

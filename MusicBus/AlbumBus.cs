@@ -19,5 +19,9 @@ namespace MusicBus
         {
             return aldao.GetAlbumsPage(pageIndex, pageSize, nation,textSearch, function,accountName, out totalCount);
         }
+        public List<Album> Get10AlbumsRandom(string accountName)
+        {
+            return aldao.Get10AlbumsRandom(accountName);
+        }
     }
 }

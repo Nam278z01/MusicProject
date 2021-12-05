@@ -1,14 +1,23 @@
-appMusic.controller('CollectionController', function ($scope, $rootScope, $http, $routeParams, $location, $window) {
+appMusic.controller('CollectionController', function ($scope, $rootScope, $http, $routeParams, $location, $window, $interval) {
     $rootScope.currentIndex = 3
     $rootScope.currentSubIndex = 5
     $scope.pickedCollections = []
 
-    $scope.genres = $rootScope.collections.filter(collection => collection.KindofCollection == 1)
-    $scope.moods = $rootScope.collections.filter(collection => collection.KindofCollection == 2)
-    $scope.scenes = $rootScope.collections.filter(collection => collection.KindofCollection == 3)
-    $scope.topics = $rootScope.collections.filter(collection => collection.KindofCollection == 4)
+    let myInterval = $interval(getSuccessCol, 1000)
 
-    $scope.pickedCollections = $rootScope.collections.filter(collection => collection.CollectionID == $routeParams.tl || collection.CollectionID == $routeParams.tt || collection.CollectionID == $routeParams.kc || collection.CollectionID == $routeParams.cd)
+    getSuccessCol()
+    function getSuccessCol() {
+        if ($rootScope.collections.length != 0) {
+            $scope.genres = $rootScope.collections.filter(collection => collection.KindofCollection == 1)
+            $scope.moods = $rootScope.collections.filter(collection => collection.KindofCollection == 2)
+            $scope.scenes = $rootScope.collections.filter(collection => collection.KindofCollection == 3)
+            $scope.topics = $rootScope.collections.filter(collection => collection.KindofCollection == 4)
+
+            $scope.pickedCollections = $rootScope.collections.filter(collection => collection.CollectionID == $routeParams.tl || collection.CollectionID == $routeParams.tt || collection.CollectionID == $routeParams.kc || collection.CollectionID == $routeParams.cd)
+            $interval.cancel(myInterval)
+        }
+    }
+
 
     if ($scope.pickedCollections.length > 0) {
         $scope.showpickedCollection = true;
@@ -52,7 +61,36 @@ appMusic.controller('CollectionController', function ($scope, $rootScope, $http,
             })
         }
         if (e.target.closest('.collection__pick-item-show')) {
-            e.target.closest('.collection__pick-item-show').nextElementSibling.classList.add('show')
+            e.target.closest('.collection__pick-item-show').nextElementSibling.classList.toggle('show')
         }
     })
+
+    $scope.playlists = []
+    $scope.totalCount = 0
+    $scope.pageSize = 24
+    $scope.maxSize = 5
+    $scope.pageIndex = $routeParams.page || 1
+    $scope.loadSongSuccessfull = false
+
+    getResultsPage($scope.pageIndex)
+
+    $scope.pageChanged = function (newPage) {
+        getResultsPage(newPage);
+        $location.search("page", newPage)
+    };
+
+    function getResultsPage(index) {
+        $scope.pageIndex = index
+        $http({
+            method: 'get',
+            url: '/Collection/GetPlaylistsByCollectionsPage',
+            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, genre: $routeParams.tl, mood: $routeParams.tt, scene: $routeParams.kc, topic: $routeParams.cd }
+        }).then(function (response) {
+            $scope.playlistAdmins = response.data.playlistAdmins
+            $scope.totalCount = response.data.totalCount
+            $scope.loadSongSuccessfull = true
+        }, function (error) {
+            alert('Failed to get the playlists!')
+        })
+    }
 })

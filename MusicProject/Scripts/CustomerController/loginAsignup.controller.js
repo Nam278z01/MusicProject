@@ -31,4 +31,15 @@ appMusic.controller('LoginController', function ($scope, $rootScope, $http, $win
             alert('Failed to logout!')
         })
     }
+
+
+    let sidebarSetting = document.querySelector('.sidebar__setting')
+    document.body.addEventListener('click', function (e) {
+        if (e.target.closest('.sidebar__setting') == null && e.target.closest('.sidebar__btn-setting') == null) {
+            sidebarSetting.classList.remove('show')
+        }
+        if (e.target.closest('.sidebar__btn-setting')) {
+            sidebarSetting.classList.toggle('show')
+        }
+    })
 })

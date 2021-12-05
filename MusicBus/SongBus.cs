@@ -23,5 +23,21 @@ namespace MusicBus
         {
             return sdao.GetTop100Songs(accountName, collectionID, nation);
         }
+        public List<SongwithArtist> Get10SongsRandom(string accountName)
+        {
+            return sdao.Get10SongsRandom(accountName);
+        }
+        public List<SongwithArtist> Get10SongsNewest(string accountName)
+        {
+            return sdao.Get10SongsNewest(accountName);
+        }
+        public SongwithArtist GetSong(string songID, string accountName)
+        {
+            return sdao.GetSong(songID, accountName);
+        }
+        public List<SongwithArtist> Get10SongsRandomCollection(string accountName, string colletionID, string songID)
+        {
+            return sdao.Get10SongsRandomCollection(accountName, colletionID, songID);
+        }
     }
 }

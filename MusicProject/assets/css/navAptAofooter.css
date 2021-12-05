@@ -24,6 +24,7 @@
     line-height: 48px;
     text-align: center;
     cursor: pointer;
+    display: block;
 }
 
 .nav-item .nav-item-link.active::after {
@@ -321,6 +322,8 @@
 
 .nav_service li i {
     font-size: 24px;
+    color: var(--text-color-blur);
+    cursor: pointer;
 }
 
 .link .service:nth-child(2) .nav_service li {

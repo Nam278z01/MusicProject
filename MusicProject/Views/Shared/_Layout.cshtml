@@ -29,7 +29,7 @@
         <nav class="sidebar" ng-controller="SidebarController">
             <div class="sidebar__header">
                 <div class="sidebar__brand-name">
-                    MM
+                    <span>M</span><span>M</span>
                 </div>
                 <a class="sidebar__upgrade btn btn--primary btn-outline" href="#">
                     Nâng cấp
@@ -82,7 +82,7 @@
                                 </a>
                             </div>
                             <div class="sidebar__navigation-subitem">
-                                <a href="#!/kham-pha/playlist" class="sidebar__navigation-sublink"
+                                <a href="#!/kham-pha/playlist?n=vn&col=Col0000001" class="sidebar__navigation-sublink"
                                    ng-class="{active:isSubActive(2)}" ng-click="changePage(2); changeSubPage(2)">
                                     <span>Playlist</span>
                                 </a>
@@ -141,19 +141,39 @@
                         <a href="#!/da-thich/bai-hat" class="sidebar__navigation-link" ng-class="{active:isActive(6)}"
                            ng-click="changePage(6)">
                             <i class='bx bx-heart'></i>
-                            <span>Đã thích</span>
+                            <span>Yêu thích</span>
                         </a>
                     </li>
                     <li class="sidebar__navigation-item" ng-show="logged">
                         <a href="#!/da-nghe/bai-hat" class="sidebar__navigation-link" ng-class="{active:isActive(7)}"
                            ng-click="changePage(7)">
                             <i class='bx bx-history'></i>
-                            <span>Lịch sử</span>
+                            <span>Lịch sử nghe</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
+        <div class="sidebar__setting">
+            <div class="setting__item">
+                <i class='bx bx-support'></i>
+                <span>Hỗ trợ</span>
+            </div>
+            <div class="setting__item">
+                <i class='bx bx-moon'></i>
+                <span>Chủ đề</span>
+                <i class='bx bx-chevron-right'></i>
+                <div class="setting__subitem">
+                    <p>Nền sáng</p>
+                    <p>Nền tối</p>
+                </div>
+            </div>
+
+            <div class="setting__item" ng-click="Logout()" ng-if="logged">
+                <i class='bx bx-log-in-circle'></i>
+                <span>Đăng xuất</span>
+            </div>
+        </div>
 
         <section class="home-main">
             @RenderBody()
@@ -166,10 +186,10 @@
                 <div class="link">
                     <div class="service">
                         <ul class="nav_service">
-                            <li><a href="#!/">Giới Thiệu</a></li>
+                            <li><a href="#!/">Giới thiệu</a></li>
                             <li><a href="#!/">SP-DV</a></li>
-                            <li><a href="#!/">Hỗ Trợ</a></li>
-                            <li><a href="#!/">Thỏa Thuận Người Dùng</a></li>
+                            <li><a href="#!/">Hỗ trợ</a></li>
+                            <li><a href="#!/">Thỏa thuận người dùng</a></li>
                         </ul>
                     </div>
                     <div class="service">
@@ -182,7 +202,7 @@
                     </div>
                 </div>
                 <div class="infor">
-                    <p>Website được xây dựng dựa trên nhaccuatui.com bởi 3 thành viên: An, Nam, Tuyết</p>
+                    <p>Website được xây dựng dựa trên Nhaccuatui.com bởi 3 thành viên: An, Nam, Tuyết</p>
                 </div>
             </div>
         </section>
@@ -206,11 +226,11 @@
                         <img src="./assets/img/Song/{{song.Song.Image}}" alt="{{song.Song.SongName}}">
                     </div>
                     <div class="media-content">
-                        <marquee class="song__name">
-                            {{song.Song.SongName}}
-                        </marquee>
+                        <div class="song__name">
+                            <a href="#">{{song.Song.SongName}}</a>
+                        </div>
                         <div class="song__artist">
-                            <span ng-repeat="a in song.Artists">{{a.ArtistName}}</span>
+                            <a ng-repeat="a in song.Artists">{{a.ArtistName}}</a>
                         </div>
                     </div>
                     <div class="media-right">
@@ -232,14 +252,14 @@
                             <i class='bx bx-shuffle'></i>
                         </button>
                         <button class="btn btn--circle">
-                            <i class='bx bx-fast-forward bx-flip-horizontal'></i>
+                            <i class='bx bx-skip-previous'></i>
                         </button>
-                        <button class="btn btn--circle">
-                            <i class='bx bxs-right-arrow' style="font-size: 4rem"></i>
+                        <button class="btn btn--circle btn-outline">
+                            <i class='bx bxs-right-arrow'></i>
                             <!-- <i class='bx bx-pause'></i> -->
                         </button>
                         <button class="btn btn--circle">
-                            <i class='bx bx-fast-forward'></i>
+                            <i class='bx bx-skip-next'></i>
                         </button>
                         <button class="btn btn--circle">
                             <i class='bx bx-transfer'></i>
@@ -357,6 +377,41 @@
                         <button class="btn btn--circle auth-form__socials--google">
                             <img src="./assets/img/Default/gg.png" alt="">
                         </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="modal2" id="playlist">
+            <div class="modal__overlay"></div>
+            <div class="modal__body">
+                <!-- Add playlist form -->
+                <form class="add-form" id="addplaylistForm" novalidate name="addplaylistForm">
+                    <div class="form-title">
+                        <p>Chọn playlist muốn thêm</p>
+                        <button class="btn btn-close-form">
+                            <i class='bx bx-x'></i>
+                        </button>
+                    </div>
+                    <div class="form-content">
+                        <div class="form-item" ng-repeat="p in playlistsforAdd" ng-click="addSongtoPlaylist(songIDforAdd, p.PlaylistUser.PlaylistID)">
+                            <span class="form-item-left">
+                                <span title="{{p.PlaylistUser.PlaylistName}}">{{p.PlaylistUser.PlaylistName}}</span>
+                                <span style="margin-left: 12px">({{p.TotalSongs}})</span>
+                            </span>
+                            <i class='bx bxs-lock' ng-hide="p.PlaylistUser.isPublic"></i>
+                            <i class='bx bx-globe' ng-show="p.PlaylistUser.isPublic"></i>
+                        </div>
+                    </div>
+                    <div class="form-create">
+                        <div class="form-input">
+                            <input type="text" name="playlistname" value="" placeholder="Nhập tên playlist cần tạo"/>
+                        </div>
+                        <div>
+                            <button class="btn btn-addplaylist">
+                                Tạo playlist
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

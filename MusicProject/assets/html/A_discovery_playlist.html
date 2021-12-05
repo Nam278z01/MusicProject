@@ -1,7 +1,5 @@
 <div class="nav">
     <ul class="nav-list">
-        <li class="nav-item"><a href="#!/kham-pha/playlist" ng-class="{active:isActiveNav(undefined)}"
-                class="nav-item-link">Mới</a></li>
         <li class="nav-item"><a href="#!/kham-pha/playlist?n=vn&col=Col0000001" ng-class="{active:isActiveNav('vn')}"
                 class="nav-item-link">Việt Nam</a></li>
         <li class="nav-item"><a href="#!/kham-pha/playlist?n=usuk&col=Col0000003" ng-class="{active:isActiveNav('usuk')}"
@@ -87,6 +85,7 @@
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
                                     <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
+                                    <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
@@ -101,15 +100,30 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
-                                <a href="#!/chi-tiet/playlistad/pl={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
                             </div>
                             <div class="list-playlist__item-admin">
                                 <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
                             </div>
                         </div>
+                    </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
                     </div>
                 </div>
             </div>

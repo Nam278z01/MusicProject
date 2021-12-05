@@ -1,0 +1,248 @@
+/*Song details*/
+.song-detail {
+}
+
+.song-detail__main {
+    display: flex;
+    padding: 0 32px;
+}
+
+.song-detail__img {
+    width: 240px;
+    height: 240px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+    position: relative;
+    border: 1px solid var(--bg-color-blur2);
+}
+
+    .song-detail__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.btn-play-detail {
+    position: absolute;
+    top: 83%;
+    right: 5%;
+    background-color: var(--bg-color);
+    outline: 6px solid rgb(0 0 0 / 20%);
+    height: 30px;
+    width: 30px;
+}
+
+    .btn-play-detail i {
+        font-size: 1.6rem;
+    }
+
+
+.song-detail__info {
+    padding-left: 24px;
+}
+
+.song-detail__name {
+    color: var(--text-color-blur);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+    .song-detail__name span, .song-detail__album a {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding-left: 6px;
+        text-transform: capitalize;
+    }
+
+.song-detail__artist {
+}
+
+.song-detail__album, .song-detail__view, .song-detail__releasedate, .song-detail__desciption {
+    color: var(--text-color-blur);
+    font-size: 1.4rem;
+    margin-top: 0.8rem;
+}
+
+    .song-detail__album a:hover {
+        color: var(--main-color);
+        cursor: pointer;
+    }
+
+.song-detail__view, .song-detail__releasedate {
+    color: var(--text-color-blur);
+    display: flex;
+    align-items: center;
+}
+
+    .song-detail__view i, .song-detail__releasedate i, .song-detail__desciption i {
+        font-size: 2rem;
+        padding-right: 0.4rem;
+    }
+
+    .song-detail__view span, .song-detail__releasedate span {
+        padding-left: 0.4rem;
+    }
+
+.song-detail__lyric {
+    margin: 24px 32px 0;
+    background-color: var(--bg-color-blur);
+    border-radius: 4px;
+    padding: 0 24px 12px;
+}
+
+.song-detail__lyric-title {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+    .song-detail__lyric-title span {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+.btn-copy {
+    color: var(--text-color-blur);
+    background-color: var(--bg-color-blur2);
+    padding: 8px;
+    border-radius: 4px;
+    transition-duration: 0s;
+}
+    .btn-copy:active {
+        background-color: var(--bg-color-blur3);
+    }
+
+.btn-copy i {
+    font-size: 2rem;
+}
+
+    .btn-copy span {
+        font-size: 1.3rem;
+    }
+
+.song-detail__lyric-script {
+    margin-top: 24px;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    overflow-y: hidden;
+}
+
+    .song-detail__lyric-script.shorten {
+        height: 100px;
+    }
+
+.btn-view-lyric {
+    margin-top: 12px;
+    font-size: 1.3rem;
+    padding: 8px 0;
+    color: var(--text-color-blur);
+    font-weight: 400;
+}
+
+    .btn-view-lyric:hover {
+        color: var(--main-color);
+    }
+
+/*Playlist details*/
+.playlist-detail__main {
+    display: flex;
+    padding: 0 32px;
+    width: 100%;
+}
+
+.playlist__info {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    position: sticky;
+    align-items: center;
+    top: 24px;
+    height: 100%;
+}
+
+.playlist-detail__info {
+    width: 100%;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.playlist-detail__img {
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
+    position: relative;
+    border: 1px solid var(--bg-color-blur2);
+}
+    .playlist-detail__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.playlist__detail-creater {
+    margin-top: 0.8rem;
+    font-size: 1.4rem;
+    color: var(--text-color-blur);
+}
+
+.playlist__detail-creater span {
+    margin-left: 6px;
+}
+
+.songinplaylist {
+    width: calc(100% - 300px);
+    margin-left: 24px;
+}
+
+.listsonginplaylist {
+    margin-top: 24px;
+}
+
+    .listsonginplaylist .col:nth-of-type(n) .feature__more {
+        left: 50%;
+    }
+
+/*Artist detail*/
+.artist__detail {
+
+}
+
+.artist__detail-header {
+    margin: 0 4rem;
+    position: relative;
+}
+
+.artist__detail-img {
+
+}
+
+.artist_detail-thumbnail {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    border-radius: 30px;
+    background-color: var(--shadow-color);
+    display: flex;
+    align-items: center;
+}
+
+.artist_detail-thumbnail img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.artist_detail-thumbnail span {
+    font-size: 1.6rem;
+    display: inline-block;
+    margin: 0 24px 0 16px;
+    color: var(--white-color);
+    text-transform: capitalize;
+}

@@ -40,7 +40,7 @@
             <div class="grid">
                 <div class="row sm-gutter">
                     <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in artists | itemsPerPage: pageSize" total-items="totalCount"
-                        current-page="pageIndex">
+                         current-page="pageIndex">
                         <div class="list-playlist__item" style="margin-bottom: 24px;">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd" style="border-radius: 50%;">
@@ -51,6 +51,10 @@
                                 <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}">{{a.ArtistName}}</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave MuiSkeleton-circle" style="width: 100%; position: relative; padding-top: 100%"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px; margin: auto"></span>
                     </div>
                 </div>
             </div>
