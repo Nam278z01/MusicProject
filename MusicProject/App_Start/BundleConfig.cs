@@ -49,6 +49,7 @@ namespace MusicProject
                        "~/Scripts/CustomerController/loginAsignup.controller.js",
                        "~/Scripts/CustomerController/myplaylist.controller.js",
                        "~/Scripts/CustomerController/playmusic.controller.js",
+                       "~/Scripts/CustomerController/rank.controller.js",
                        "~/Scripts/CustomerController/search.controller.js",
                        "~/Scripts/CustomerController/sidebar.controller.js",
                        "~/Scripts/CustomerController/slide.controller.js",

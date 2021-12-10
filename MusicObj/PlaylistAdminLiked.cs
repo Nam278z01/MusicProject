@@ -16,7 +16,7 @@ namespace MusicObj
     {
         public string AccountName { get; set; }
         public string PlaylistID { get; set; }
-        public System.DateTime DateAdded { get; set; }
+        public System.DateTime DateLiked { get; set; }
     
         public virtual AccountUser AccountUser { get; set; }
         public virtual PlaylistAdmin PlaylistAdmin { get; set; }

@@ -47,5 +47,9 @@ namespace MusicBus
         {
             return sdao.GetSongsNewAHot(pageIndex, pageSize, accountName, time, out totalCount);
         }
+        public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week)
+        {
+            return sdao.GetRankSongsofWeek(accountName, quantity, nation, week);
+        }
     }
 }

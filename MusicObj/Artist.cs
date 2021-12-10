@@ -18,7 +18,7 @@ namespace MusicObj
         public Artist()
         {
             this.Albums = new HashSet<Album>();
-            this.Song_Artist = new HashSet<Song_Artist>();
+            this.Songs = new HashSet<Song>();
         }
     
         public string ArtistID { get; set; }
@@ -26,12 +26,12 @@ namespace MusicObj
         public string Description { get; set; }
         public string Image { get; set; }
         public string ImageBig { get; set; }
-        public Nullable<int> Nation { get; set; }
-        public Nullable<int> GenderorisBand { get; set; }
+        public byte Nation { get; set; }
+        public byte GenderorisBand { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Album> Albums { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Song_Artist> Song_Artist { get; set; }
+        public virtual ICollection<Song> Songs { get; set; }
     }
 }

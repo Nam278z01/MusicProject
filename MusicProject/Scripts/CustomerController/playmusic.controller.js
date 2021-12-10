@@ -1,4 +1,5 @@
-appMusic.controller('PlayMusicController', function ($scope, $rootScope) {
+﻿appMusic.controller('PlayMusicController', function ($scope, $rootScope) {
+    // Chạy slide (background) ...
     let indexBackgroundImage = 0
     let backgroundImage = document.querySelectorAll('.background img')
     let mySetInterval

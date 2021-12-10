@@ -1,12 +1,5 @@
 
 appMusic.controller('SlideController', function ($scope) {
-    let imgArtist = document.querySelectorAll('.released__artist-img')
-    let countArtist = imgArtist.length
-    imgArtist.forEach(item => {
-        item.style.zIndex = `${countArtist}`
-        countArtist--
-    })
-
     let slideContain = document.querySelector('.home-main__slide')
     let slide = slideContain.querySelector('.home-main__slide-list')
     let slideItem = slide.querySelectorAll('.home-main__slide-item')
@@ -174,28 +167,31 @@ appMusic.controller('SlideClickController', function ($scope, $window, $interval
         let btnNext = options.selector.querySelector('.list-playlist__btn-next')
         let btnPrev = options.selector.querySelector('.list-playlist__btn-prev')
         let slide = options.selector.querySelector('.list-playlist__slide > .grid')
-        let slideChildren = slide.querySelector('.list-playlist__item')
 
         let eleInViewOfThisSlide
         let oneJump
-        if ($window.innerWidth < 740) {
-            eleInViewOfThisSlide = 2
-            oneJump = slideChildren.offsetWidth + 8
-        } else if (window.innerWidth < 1113) {
-            eleInViewOfThisSlide = 4
-            oneJump = slideChildren.offsetWidth + 16
-        } else if (window.innerWidth < 1800) {
-            eleInViewOfThisSlide = 5
-            oneJump = slideChildren.offsetWidth + 16
-        } else {
-            eleInViewOfThisSlide = 6
-            oneJump = slideChildren.offsetWidth + 16
-        }
-
+        
         let currentIdx = 0
         let countEleSlide = slide.children[0].childElementCount
 
         if (countEleSlide > 0) {
+            let slideChildren = slide.querySelector('.list-playlist__item')
+
+            //Responsive silde ó
+            if ($window.innerWidth < 740) {
+                eleInViewOfThisSlide = 2
+                oneJump = slideChildren.offsetWidth + 8 //Chắc là + 16!
+            } else if (window.innerWidth < 1113) {
+                eleInViewOfThisSlide = 4
+                oneJump = slideChildren.offsetWidth + 16
+            } else if (window.innerWidth < 1800) {
+                eleInViewOfThisSlide = 5
+                oneJump = slideChildren.offsetWidth + 16
+            } else {
+                eleInViewOfThisSlide = 6
+                oneJump = slideChildren.offsetWidth + 16
+            }
+
             // Next slide
             btnNext.onclick = () => {
                 if (currentIdx < countEleSlide - eleInViewOfThisSlide) {
@@ -234,6 +230,7 @@ appMusic.controller('SlideClickController', function ($scope, $window, $interval
                 currentIdx = index
             }
 
+            // Responsive slide ó
             $window.addEventListener('resize', () => {
                 if (window.innerWidth < 740) {
                     eleInViewOfThisSlide = 2
@@ -257,12 +254,11 @@ appMusic.controller('SlideClickController', function ($scope, $window, $interval
                 slide.style.transitionDuration = '0s'
                 slide.style.transform = `translateX(-${oneJump * currentIdx}px)`
             })
-
             return true
         } else {
+            alert("hehe")
             return false
         }
-
     }
 
     let slideOne = document.querySelector('#slide-one')
@@ -275,6 +271,7 @@ appMusic.controller('SlideClickController', function ($scope, $window, $interval
         duration: 300
     })
 
+    // Phải xử lý kiểu này bởi vì nếu chưa kịp lấy data thì ko chuyển đc slide (ko biết có cách nào đỡ chuối hơn ko...)
     let myInterval = $interval(function () {
         let check = Slide({
             selector: slideOne,

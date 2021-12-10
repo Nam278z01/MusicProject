@@ -2,7 +2,7 @@
     <div class="song-detail__main">
         <div class="song-detail__img">
             <img src="../../assets/img/song/{{song.Song.Image}}" alt="{{song.Song.SongName}}">
-            <button class="btn btn--circle btn-play-detail" title="nghe">
+            <button class="btn btn--circle btn-play-detail" title="Phát">
                 <i class='bx bxs-right-arrow'></i>
             </button>
             <button class="btn btn--circle btn-like" title="Yêu thích" style="top: calc(11% + 36px); left: 3%;">
@@ -17,7 +17,7 @@
             <div class="song-detail__name">Bài hát:<span>{{song.Song.SongName}}</span></div>
             <div class="song-detail__artist released__artist">
                 <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" class="released__artist-img" ng-repeat="a in song.Artists" title="{{a.ArtistName}}" ng-style="{'z-index': {{ 10 - $index}}}">
-                    <img src="../../assets/img/artist/{{a.Image}}" alt="">
+                    <img src="../../assets/img/artist/{{a.Image}}" alt="{{a.ArtistName}}">
                 </a>
                 <div class="released__artist-name">
                     <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in song.Artists">{{a.ArtistName}}</a>

@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MusicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MusicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountAdmin">
           <Key>
             <PropertyRef Name="AccountName" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="Password" Type="char" MaxLength="20" Nullable="false" />
           <Property Name="Role" Type="tinyint" Nullable="false" />
           <Property Name="State" Type="bit" Nullable="false" />
@@ -21,7 +21,7 @@
           <Key>
             <PropertyRef Name="AccountName" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="Password" Type="char" MaxLength="20" Nullable="false" />
           <Property Name="Role" Type="tinyint" Nullable="false" />
           <Property Name="State" Type="bit" Nullable="false" />
@@ -49,14 +49,15 @@
           <Property Name="AlbumName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="ArtistID" Type="char" MaxLength="10" />
+          <Property Name="ArtistID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ReleasedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="AlbumLiked">
           <Key>
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="AlbumID" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="AlbumID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DateAdded" Type="datetime" Nullable="false" />
         </EntityType>
@@ -65,7 +66,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="AlbumID" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="AlbumID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DateListened" Type="datetime" Nullable="false" />
         </EntityType>
@@ -77,9 +78,9 @@
           <Property Name="ArtistName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="ImageBig" Type="nvarchar" MaxLength="200" />
-          <Property Name="Nation" Type="int" />
-          <Property Name="GenderorisBand" Type="int" />
+          <Property Name="ImageBig" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nation" Type="tinyint" Nullable="false" />
+          <Property Name="GenderorisBand" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Collection">
           <Key>
@@ -93,23 +94,23 @@
           <Key>
             <PropertyRef Name="CommentID" />
           </Key>
-          <Property Name="CommentID" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="CommentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Content" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="SongID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentHistory">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
-          <Property Name="PaymentID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="PaymentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PaymentDate" Type="datetime" Nullable="false" />
           <Property Name="OnSale" Type="tinyint" Nullable="false" />
           <Property Name="Total" Type="float" />
           <Property Name="Note" Type="nvarchar" MaxLength="50" />
           <Property Name="ServiceVipID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="PlaylistAdmin">
           <Key>
@@ -117,10 +118,10 @@
           </Key>
           <Property Name="PlaylistID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="PlaylistName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="nchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="isPublic" Type="bit" />
         </EntityType>
         <EntityType Name="PlaylistAdmin_Collection">
@@ -145,16 +146,16 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="PlaylistID" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="PlaylistID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateLiked" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="PlaylistAdminListened">
           <Key>
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="PlaylistID" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="PlaylistID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DateListened" Type="datetime" Nullable="false" />
         </EntityType>
@@ -164,9 +165,9 @@
           </Key>
           <Property Name="PlaylistID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="PlaylistName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="nchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="isPublic" Type="bit" Nullable="false" />
         </EntityType>
@@ -184,7 +185,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="PlaylistID" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="PlaylistID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DateLiked" Type="datetime" Nullable="false" />
         </EntityType>
@@ -193,7 +194,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="PlaylistID" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="PlaylistID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DateListened" Type="datetime" Nullable="false" />
         </EntityType>
@@ -212,8 +213,8 @@
           </Key>
           <Property Name="SongID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="SongName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Lyric" Type="nvarchar(max)" />
-          <Property Name="ReleaseDate" Type="date" />
+          <Property Name="Lyric" Type="nvarchar" MaxLength="3000" />
+          <Property Name="ReleaseDate" Type="date" Nullable="false" />
           <Property Name="Nation" Type="int" Nullable="false" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="SongPath" Type="nvarchar" MaxLength="200" Nullable="false" />
@@ -228,7 +229,6 @@
           </Key>
           <Property Name="ArtistID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="SongID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="Own" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Song_Collection">
           <Key>
@@ -243,7 +243,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="SongID" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="SongID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DateLiked" Type="datetime" Nullable="false" />
         </EntityType>
@@ -252,9 +252,19 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="SongID" />
           </Key>
-          <Property Name="AccountName" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="AccountName" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="SongID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="DateListened" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -309,30 +319,6 @@
               <PropertyRef Name="AccountName" />
             </Principal>
             <Dependent Role="AlbumListened">
-              <PropertyRef Name="AccountName" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AccountName_Comment">
-          <End Role="AccountUser" Type="Self.AccountUser" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AccountUser">
-              <PropertyRef Name="AccountName" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="AccountName" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AccountName_PaymentHistory">
-          <End Role="AccountUser" Type="Self.AccountUser" Multiplicity="1" />
-          <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AccountUser">
-              <PropertyRef Name="AccountName" />
-            </Principal>
-            <Dependent Role="PaymentHistory">
               <PropertyRef Name="AccountName" />
             </Dependent>
           </ReferentialConstraint>
@@ -474,7 +460,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ArtistID_Album">
-          <End Role="Artist" Type="Self.Artist" Multiplicity="0..1">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
@@ -649,18 +635,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ServiceVipID_PaymentHistory">
-          <End Role="ServiceVip" Type="Self.ServiceVip" Multiplicity="1" />
-          <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ServiceVip">
-              <PropertyRef Name="ServiceVipID" />
-            </Principal>
-            <Dependent Role="PaymentHistory">
-              <PropertyRef Name="ServiceVipID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SongID_Artist_Song">
           <End Role="Song" Type="Self.Song" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -685,20 +659,6 @@
               <PropertyRef Name="SongID" />
             </Principal>
             <Dependent Role="Song_Collection">
-              <PropertyRef Name="SongID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SongID_Comment">
-          <End Role="Song" Type="Self.Song" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Song">
-              <PropertyRef Name="SongID" />
-            </Principal>
-            <Dependent Role="Comment">
               <PropertyRef Name="SongID" />
             </Dependent>
           </ReferentialConstraint>
@@ -759,16 +719,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddSong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jsonSong" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="Get10AlbumsRandom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Get10PlaylistsNewest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Get10PlaylistsRandom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Get10PlaylistsRandomCollection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="collectionID" Type="char" Mode="In" />
+          <Parameter Name="playlistID" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Get10SongsNewest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Get10SongsRandom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Get10SongsRandomCollection" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="collectionID" Type="char" Mode="In" />
+          <Parameter Name="songID" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetAlbumsByArtist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="artistID" Type="nchar" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetAlbumsNewAHot" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="time" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
         <Function Name="GetAlbumsPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
           <Parameter Name="pageSize" Type="int" Mode="In" />
           <Parameter Name="nation" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
         <Function Name="GetAlbumsSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
           <Parameter Name="pageSize" Type="int" Mode="In" />
           <Parameter Name="textSearch" Type="nvarchar" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetArtistsHot" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="time" Type="int" Mode="In" />
+          <Parameter Name="genderorband" Type="int" Mode="In" />
         </Function>
         <Function Name="GetArtistsPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
@@ -781,10 +789,15 @@
           <Parameter Name="pageSize" Type="int" Mode="In" />
           <Parameter Name="textSearch" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetPlaylistAdminwithSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="playlistAdminID" Type="char" Mode="In" />
+        </Function>
         <Function Name="GetPlaylistsByCollectionPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
           <Parameter Name="pageSize" Type="int" Mode="In" />
           <Parameter Name="collectionID" Type="char" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
         <Function Name="GetPlaylistsByCollectionsPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
@@ -793,11 +806,35 @@
           <Parameter Name="mood" Type="char" Mode="In" />
           <Parameter Name="scene" Type="char" Mode="In" />
           <Parameter Name="topic" Type="char" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
         <Function Name="GetPlaylistsSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
           <Parameter Name="pageSize" Type="int" Mode="In" />
           <Parameter Name="textSearch" Type="nvarchar" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetPlaylistsUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetPlaylistsUserBySong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetPlaylistUserwithSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="playlistUserID" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetSong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="songID" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetSongsByArtistPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="artistID" Type="char" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
         <Function Name="GetSongsByCollectionPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
@@ -806,13 +843,22 @@
           <Parameter Name="nation" Type="int" Mode="In" />
           <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
+        <Function Name="GetSongsNewAHot" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="time" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetSongsSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
           <Parameter Name="pageSize" Type="int" Mode="In" />
           <Parameter Name="textSearch" Type="nvarchar" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
         <Function Name="GetTop100Songs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="collectionID" Type="char" Mode="In" />
+          <Parameter Name="nation" Type="int" Mode="In" />
         </Function>
         <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AccountName" Type="char" Mode="In" />
@@ -874,6 +920,7 @@
           <EntitySet Name="Song_Collection" EntityType="Self.Song_Collection" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SongLiked" EntityType="Self.SongLiked" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SongListened" EntityType="Self.SongListened" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="View" EntityType="Self.View" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__SongID_View" Association="Self.FK__SongID_View">
@@ -887,14 +934,6 @@
           <AssociationSet Name="FK_AccountName_AlbumListened" Association="Self.FK_AccountName_AlbumListened">
             <End Role="AccountUser" EntitySet="AccountUser" />
             <End Role="AlbumListened" EntitySet="AlbumListened" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AccountName_Comment" Association="Self.FK_AccountName_Comment">
-            <End Role="AccountUser" EntitySet="AccountUser" />
-            <End Role="Comment" EntitySet="Comment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AccountName_PaymentHistory" Association="Self.FK_AccountName_PaymentHistory">
-            <End Role="AccountUser" EntitySet="AccountUser" />
-            <End Role="PaymentHistory" EntitySet="PaymentHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountName_PlaylistAdmin" Association="Self.FK_AccountName_PlaylistAdmin">
             <End Role="AccountAdmin" EntitySet="AccountAdmin" />
@@ -992,10 +1031,6 @@
             <End Role="PlaylistUser" EntitySet="PlaylistUser" />
             <End Role="PlaylistUserListened" EntitySet="PlaylistUserListened" />
           </AssociationSet>
-          <AssociationSet Name="FK_ServiceVipID_PaymentHistory" Association="Self.FK_ServiceVipID_PaymentHistory">
-            <End Role="ServiceVip" EntitySet="ServiceVip" />
-            <End Role="PaymentHistory" EntitySet="PaymentHistory" />
-          </AssociationSet>
           <AssociationSet Name="FK_SongID_Artist_Song" Association="Self.FK_SongID_Artist_Song">
             <End Role="Song" EntitySet="Song" />
             <End Role="Song_Artist" EntitySet="Song_Artist" />
@@ -1003,10 +1038,6 @@
           <AssociationSet Name="FK_SongID_Collection_Song" Association="Self.FK_SongID_Collection_Song">
             <End Role="Song" EntitySet="Song" />
             <End Role="Song_Collection" EntitySet="Song_Collection" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SongID_Comment" Association="Self.FK_SongID_Comment">
-            <End Role="Song" EntitySet="Song" />
-            <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_SongID_PlaylistAdmin_Song" Association="Self.FK_SongID_PlaylistAdmin_Song">
             <End Role="Song" EntitySet="Song" />
@@ -1025,7 +1056,8 @@
             <End Role="SongListened" EntitySet="SongListened" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MusicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1033,7 +1065,7 @@
           <Key>
             <PropertyRef Name="AccountName" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Role" Type="Byte" Nullable="false" />
           <Property Name="State" Type="Boolean" Nullable="false" />
@@ -1047,7 +1079,7 @@
           <Key>
             <PropertyRef Name="AccountName" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Role" Type="Byte" Nullable="false" />
           <Property Name="State" Type="Boolean" Nullable="false" />
@@ -1058,8 +1090,6 @@
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AlbumLikeds" Relationship="Self.FK_AccountName_AlbumLiked" FromRole="AccountUser" ToRole="AlbumLiked" />
           <NavigationProperty Name="AlbumListeneds" Relationship="Self.FK_AccountName_AlbumListened" FromRole="AccountUser" ToRole="AlbumListened" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK_AccountName_Comment" FromRole="AccountUser" ToRole="Comment" />
-          <NavigationProperty Name="PaymentHistories" Relationship="Self.FK_AccountName_PaymentHistory" FromRole="AccountUser" ToRole="PaymentHistory" />
           <NavigationProperty Name="PlaylistAdminLikeds" Relationship="Self.FK_AccountName_PlaylistAdminLiked" FromRole="AccountUser" ToRole="PlaylistAdminLiked" />
           <NavigationProperty Name="PlaylistAdminListeneds" Relationship="Self.FK_AccountName_PlaylistAdminListened" FromRole="AccountUser" ToRole="PlaylistAdminListened" />
           <NavigationProperty Name="PlaylistUsers" Relationship="Self.FK_AccountName_PlaylistUser" FromRole="AccountUser" ToRole="PlaylistUser" />
@@ -1088,7 +1118,8 @@
           <Property Name="AlbumName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ArtistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ArtistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ReleasedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AlbumLikeds" Relationship="Self.FK_AlbumID_AlbumLiked" FromRole="Album" ToRole="AlbumLiked" />
           <NavigationProperty Name="AlbumListeneds" Relationship="Self.FK_AlbumID_AlbumListened" FromRole="Album" ToRole="AlbumListened" />
           <NavigationProperty Name="Songs" Relationship="Self.FK_AlbumID_Song" FromRole="Album" ToRole="Song" />
@@ -1099,7 +1130,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="AlbumID" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="AlbumID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_AlbumLiked" FromRole="AlbumLiked" ToRole="AccountUser" />
@@ -1110,7 +1141,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="AlbumID" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="AlbumID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DateListened" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_AlbumListened" FromRole="AlbumListened" ToRole="AccountUser" />
@@ -1124,11 +1155,11 @@
           <Property Name="ArtistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ImageBig" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Nation" Type="Int32" />
-          <Property Name="GenderorisBand" Type="Int32" />
+          <Property Name="ImageBig" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nation" Type="Byte" Nullable="false" />
+          <Property Name="GenderorisBand" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Albums" Relationship="Self.FK_ArtistID_Album" FromRole="Artist" ToRole="Album" />
-          <NavigationProperty Name="Song_Artist" Relationship="Self.FK_ArtistID_Song_Artist" FromRole="Artist" ToRole="Song_Artist" />
+          <NavigationProperty Name="Songs" Relationship="Self.Song_Artist" FromRole="Artist" ToRole="Song" />
         </EntityType>
         <EntityType Name="Collection">
           <Key>
@@ -1144,27 +1175,23 @@
           <Key>
             <PropertyRef Name="CommentID" />
           </Key>
-          <Property Name="CommentID" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CommentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SongID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_Comment" FromRole="Comment" ToRole="AccountUser" />
-          <NavigationProperty Name="Song" Relationship="Self.FK_SongID_Comment" FromRole="Comment" ToRole="Song" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentHistory">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
-          <Property Name="PaymentID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PaymentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="OnSale" Type="Byte" Nullable="false" />
           <Property Name="Total" Type="Double" />
           <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ServiceVipID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_PaymentHistory" FromRole="PaymentHistory" ToRole="AccountUser" />
-          <NavigationProperty Name="ServiceVip" Relationship="Self.FK_ServiceVipID_PaymentHistory" FromRole="PaymentHistory" ToRole="ServiceVip" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="PlaylistAdmin">
           <Key>
@@ -1172,10 +1199,10 @@
           </Key>
           <Property Name="PlaylistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PlaylistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="isPublic" Type="Boolean" />
           <NavigationProperty Name="AccountAdmin" Relationship="Self.FK_AccountName_PlaylistAdmin" FromRole="PlaylistAdmin" ToRole="AccountAdmin" />
           <NavigationProperty Name="PlaylistAdmin_Song" Relationship="Self.FK_PlaylistID_PlaylistAdmin_Song" FromRole="PlaylistAdmin" ToRole="PlaylistAdmin_Song" />
@@ -1199,9 +1226,9 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="PlaylistID" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PlaylistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLiked" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_PlaylistAdminLiked" FromRole="PlaylistAdminLiked" ToRole="AccountUser" />
           <NavigationProperty Name="PlaylistAdmin" Relationship="Self.FK_PlaylistID_PlaylistAdminLiked" FromRole="PlaylistAdminLiked" ToRole="PlaylistAdmin" />
         </EntityType>
@@ -1210,7 +1237,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="PlaylistID" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PlaylistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DateListened" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_PlaylistAdminListened" FromRole="PlaylistAdminListened" ToRole="AccountUser" />
@@ -1222,9 +1249,9 @@
           </Key>
           <Property Name="PlaylistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PlaylistName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="isPublic" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_PlaylistUser" FromRole="PlaylistUser" ToRole="AccountUser" />
@@ -1248,7 +1275,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="PlaylistID" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PlaylistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DateLiked" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_PlaylistUserLiked" FromRole="PlaylistUserLiked" ToRole="AccountUser" />
@@ -1259,7 +1286,7 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="PlaylistID" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="PlaylistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DateListened" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_PlaylistUserListened" FromRole="PlaylistUserListened" ToRole="AccountUser" />
@@ -1273,7 +1300,6 @@
           <Property Name="ServiceVipName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PaymentHistories" Relationship="Self.FK_ServiceVipID_PaymentHistory" FromRole="ServiceVip" ToRole="PaymentHistory" />
         </EntityType>
         <EntityType Name="Song">
           <Key>
@@ -1281,8 +1307,8 @@
           </Key>
           <Property Name="SongID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="SongName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Lyric" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
+          <Property Name="Lyric" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Nation" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SongPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1290,32 +1316,20 @@
           <Property Name="isVip" Type="Boolean" Nullable="false" />
           <Property Name="AlbumID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Album" Relationship="Self.FK_AlbumID_Song" FromRole="Song" ToRole="Album" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK_SongID_Comment" FromRole="Song" ToRole="Comment" />
           <NavigationProperty Name="PlaylistAdmin_Song" Relationship="Self.FK_SongID_PlaylistAdmin_Song" FromRole="Song" ToRole="PlaylistAdmin_Song" />
           <NavigationProperty Name="PlaylistUser_Song" Relationship="Self.FK_SongID_PlaylistUser_Song" FromRole="Song" ToRole="PlaylistUser_Song" />
           <NavigationProperty Name="Views" Relationship="Self.FK__SongID_View" FromRole="Song" ToRole="View" />
-          <NavigationProperty Name="Song_Artist" Relationship="Self.FK_SongID_Artist_Song" FromRole="Song" ToRole="Song_Artist" />
           <NavigationProperty Name="SongLikeds" Relationship="Self.FK_SongID_SongLiked" FromRole="Song" ToRole="SongLiked" />
           <NavigationProperty Name="SongListeneds" Relationship="Self.FK_SongID_SongListened" FromRole="Song" ToRole="SongListened" />
+          <NavigationProperty Name="Artists" Relationship="Self.Song_Artist" FromRole="Song" ToRole="Artist" />
           <NavigationProperty Name="Collections" Relationship="Self.Song_Collection" FromRole="Song" ToRole="Collection" />
-        </EntityType>
-        <EntityType Name="Song_Artist">
-          <Key>
-            <PropertyRef Name="ArtistID" />
-            <PropertyRef Name="SongID" />
-          </Key>
-          <Property Name="ArtistID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="SongID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Own" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Artist" Relationship="Self.FK_ArtistID_Song_Artist" FromRole="Song_Artist" ToRole="Artist" />
-          <NavigationProperty Name="Song" Relationship="Self.FK_SongID_Artist_Song" FromRole="Song_Artist" ToRole="Song" />
         </EntityType>
         <EntityType Name="SongLiked">
           <Key>
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="SongID" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="SongID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DateLiked" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_SongLiked" FromRole="SongLiked" ToRole="AccountUser" />
@@ -1326,11 +1340,21 @@
             <PropertyRef Name="AccountName" />
             <PropertyRef Name="SongID" />
           </Key>
-          <Property Name="AccountName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="SongID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DateListened" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccountUser" Relationship="Self.FK_AccountName_SongListened" FromRole="SongListened" ToRole="AccountUser" />
           <NavigationProperty Name="Song" Relationship="Self.FK_SongID_SongListened" FromRole="SongListened" ToRole="Song" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1397,30 +1421,6 @@
               <PropertyRef Name="AccountName" />
             </Principal>
             <Dependent Role="AlbumListened">
-              <PropertyRef Name="AccountName" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AccountName_Comment">
-          <End Role="AccountUser" Type="Self.AccountUser" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AccountUser">
-              <PropertyRef Name="AccountName" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="AccountName" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AccountName_PaymentHistory">
-          <End Role="AccountUser" Type="Self.AccountUser" Multiplicity="1" />
-          <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AccountUser">
-              <PropertyRef Name="AccountName" />
-            </Principal>
-            <Dependent Role="PaymentHistory">
               <PropertyRef Name="AccountName" />
             </Dependent>
           </ReferentialConstraint>
@@ -1562,7 +1562,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ArtistID_Album">
-          <End Role="Artist" Type="Self.Artist" Multiplicity="0..1">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Album" Type="Self.Album" Multiplicity="*" />
@@ -1572,44 +1572,6 @@
             </Principal>
             <Dependent Role="Album">
               <PropertyRef Name="ArtistID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ArtistID_Song_Artist">
-          <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
-          <End Role="Song_Artist" Type="Self.Song_Artist" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Artist">
-              <PropertyRef Name="ArtistID" />
-            </Principal>
-            <Dependent Role="Song_Artist">
-              <PropertyRef Name="ArtistID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SongID_Comment">
-          <End Role="Song" Type="Self.Song" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Song">
-              <PropertyRef Name="SongID" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="SongID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ServiceVipID_PaymentHistory">
-          <End Role="ServiceVip" Type="Self.ServiceVip" Multiplicity="1" />
-          <End Role="PaymentHistory" Type="Self.PaymentHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ServiceVip">
-              <PropertyRef Name="ServiceVipID" />
-            </Principal>
-            <Dependent Role="PaymentHistory">
-              <PropertyRef Name="ServiceVipID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1739,20 +1701,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SongID_Artist_Song">
-          <End Role="Song" Type="Self.Song" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Song_Artist" Type="Self.Song_Artist" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Song">
-              <PropertyRef Name="SongID" />
-            </Principal>
-            <Dependent Role="Song_Artist">
-              <PropertyRef Name="SongID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SongID_SongLiked">
           <End Role="Song" Type="Self.Song" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1785,6 +1733,10 @@
           <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
           <End Role="PlaylistAdmin" Type="Self.PlaylistAdmin" Multiplicity="*" />
         </Association>
+        <Association Name="Song_Artist">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
+          <End Role="Song" Type="Self.Song" Multiplicity="*" />
+        </Association>
         <Association Name="Song_Collection">
           <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
           <End Role="Song" Type="Self.Song" Multiplicity="*" />
@@ -1810,9 +1762,9 @@
           <EntitySet Name="PlaylistUserListeneds" EntityType="Self.PlaylistUserListened" />
           <EntitySet Name="ServiceVips" EntityType="Self.ServiceVip" />
           <EntitySet Name="Songs" EntityType="Self.Song" />
-          <EntitySet Name="Song_Artist" EntityType="Self.Song_Artist" />
           <EntitySet Name="SongLikeds" EntityType="Self.SongLiked" />
           <EntitySet Name="SongListeneds" EntityType="Self.SongListened" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Views" EntityType="Self.View" />
           <AssociationSet Name="FK_AccountName_PlaylistAdmin" Association="Self.FK_AccountName_PlaylistAdmin">
@@ -1830,14 +1782,6 @@
           <AssociationSet Name="FK_AccountName_AlbumListened" Association="Self.FK_AccountName_AlbumListened">
             <End Role="AccountUser" EntitySet="AccountUsers" />
             <End Role="AlbumListened" EntitySet="AlbumListeneds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AccountName_Comment" Association="Self.FK_AccountName_Comment">
-            <End Role="AccountUser" EntitySet="AccountUsers" />
-            <End Role="Comment" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AccountName_PaymentHistory" Association="Self.FK_AccountName_PaymentHistory">
-            <End Role="AccountUser" EntitySet="AccountUsers" />
-            <End Role="PaymentHistory" EntitySet="PaymentHistories" />
           </AssociationSet>
           <AssociationSet Name="FK_AccountName_PlaylistAdminLiked" Association="Self.FK_AccountName_PlaylistAdminLiked">
             <End Role="AccountUser" EntitySet="AccountUsers" />
@@ -1887,18 +1831,6 @@
             <End Role="Artist" EntitySet="Artists" />
             <End Role="Album" EntitySet="Albums" />
           </AssociationSet>
-          <AssociationSet Name="FK_ArtistID_Song_Artist" Association="Self.FK_ArtistID_Song_Artist">
-            <End Role="Artist" EntitySet="Artists" />
-            <End Role="Song_Artist" EntitySet="Song_Artist" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SongID_Comment" Association="Self.FK_SongID_Comment">
-            <End Role="Song" EntitySet="Songs" />
-            <End Role="Comment" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ServiceVipID_PaymentHistory" Association="Self.FK_ServiceVipID_PaymentHistory">
-            <End Role="ServiceVip" EntitySet="ServiceVips" />
-            <End Role="PaymentHistory" EntitySet="PaymentHistories" />
-          </AssociationSet>
           <AssociationSet Name="FK_PlaylistID_PlaylistAdmin_Song" Association="Self.FK_PlaylistID_PlaylistAdmin_Song">
             <End Role="PlaylistAdmin" EntitySet="PlaylistAdmins" />
             <End Role="PlaylistAdmin_Song" EntitySet="PlaylistAdmin_Song" />
@@ -1935,10 +1867,6 @@
             <End Role="Song" EntitySet="Songs" />
             <End Role="View" EntitySet="Views" />
           </AssociationSet>
-          <AssociationSet Name="FK_SongID_Artist_Song" Association="Self.FK_SongID_Artist_Song">
-            <End Role="Song" EntitySet="Songs" />
-            <End Role="Song_Artist" EntitySet="Song_Artist" />
-          </AssociationSet>
           <AssociationSet Name="FK_SongID_SongLiked" Association="Self.FK_SongID_SongLiked">
             <End Role="Song" EntitySet="Songs" />
             <End Role="SongLiked" EntitySet="SongLikeds" />
@@ -1951,30 +1879,71 @@
             <End Role="Collection" EntitySet="Collections" />
             <End Role="PlaylistAdmin" EntitySet="PlaylistAdmins" />
           </AssociationSet>
+          <AssociationSet Name="Song_Artist" Association="Self.Song_Artist">
+            <End Role="Artist" EntitySet="Artists" />
+            <End Role="Song" EntitySet="Songs" />
+          </AssociationSet>
           <AssociationSet Name="Song_Collection" Association="Self.Song_Collection">
             <End Role="Collection" EntitySet="Collections" />
             <End Role="Song" EntitySet="Songs" />
           </AssociationSet>
-          <FunctionImport Name="GetSongsByCollectionPage">
-            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
-            <Parameter Name="pageSize" Mode="In" Type="Int32" />
-            <Parameter Name="collectionID" Mode="In" Type="String" />
-            <Parameter Name="nation" Mode="In" Type="Int32" />
+          <FunctionImport Name="AddSong">
+            <Parameter Name="jsonSong" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get10AlbumsRandom">
             <Parameter Name="accountName" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetUser" ReturnType="Collection(MusicModel.GetUser_Result)">
-            <Parameter Name="AccountName" Mode="In" Type="String" />
-            <Parameter Name="PassWord" Mode="In" Type="String" />
+          <FunctionImport Name="Get10PlaylistsNewest">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get10PlaylistsRandom">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get10PlaylistsRandomCollection">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="collectionID" Mode="In" Type="String" />
+            <Parameter Name="playlistID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get10SongsNewest" ReturnType="Collection(String)">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get10SongsRandom" ReturnType="Collection(String)">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get10SongsRandomCollection" ReturnType="Collection(String)">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="collectionID" Mode="In" Type="String" />
+            <Parameter Name="songID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAlbumsByArtist">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="artistID" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAlbumsNewAHot">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="time" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAlbumsPage">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
             <Parameter Name="nation" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAlbumsSearch">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
             <Parameter Name="textSearch" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetArtistsHot">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="time" Mode="In" Type="Int32" />
+            <Parameter Name="genderorband" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetArtistsPage">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
@@ -1987,10 +1956,15 @@
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
             <Parameter Name="textSearch" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetPlaylistAdminwithSongs" ReturnType="Collection(String)">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="playlistAdminID" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="GetPlaylistsByCollectionPage">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
             <Parameter Name="collectionID" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPlaylistsByCollectionsPage">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
@@ -1999,19 +1973,63 @@
             <Parameter Name="mood" Mode="In" Type="String" />
             <Parameter Name="scene" Mode="In" Type="String" />
             <Parameter Name="topic" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPlaylistsSearch">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
             <Parameter Name="textSearch" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPlaylistsUser">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPlaylistsUserBySong" ReturnType="Collection(String)">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPlaylistUserwithSongs" ReturnType="Collection(String)">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="playlistUserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetSong" ReturnType="Collection(String)">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="songID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetSongsByArtistPage">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="artistID" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetSongsByCollectionPage">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="collectionID" Mode="In" Type="String" />
+            <Parameter Name="nation" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetSongsNewAHot">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="time" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetSongsSearch">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
             <Parameter Name="textSearch" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="GetTop100Songs" ReturnType="Collection(MusicModel.GetTop100Songs_Result)">
             <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetTop100Songs" ReturnType="Collection(String)">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="collectionID" Mode="In" Type="String" />
+            <Parameter Name="nation" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUser" ReturnType="Collection(MusicModel.GetUser_Result)">
+            <Parameter Name="AccountName" Mode="In" Type="String" />
+            <Parameter Name="PassWord" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -2045,7 +2063,7 @@
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <ComplexType Name="GetUser_Result">
-          <Property Type="String" Name="AccountName" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="AccountName" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
           <Property Type="Byte" Name="Role" Nullable="false" />
           <Property Type="Boolean" Name="State" Nullable="false" />
@@ -2058,23 +2076,6 @@
           <Property Type="Byte" Name="Gender" Nullable="true" />
           <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Phone" Nullable="true" MaxLength="15" />
-        </ComplexType>
-        <ComplexType Name="GetTop100Songs_Result">
-          <Property Type="String" Name="SongID" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="SongName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Lyric" Nullable="true" />
-          <Property Type="DateTime" Name="ReleaseDate" Nullable="true" />
-          <Property Type="Int32" Name="Nation" Nullable="false" />
-          <Property Type="String" Name="Image" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="SongPath" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="MV" Nullable="true" MaxLength="200" />
-          <Property Type="Boolean" Name="isVip" Nullable="false" />
-          <Property Type="String" Name="AlbumID" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="ArtistID" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="ArtistName" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="Own" Nullable="true" />
-          <Property Type="Int32" Name="Views" Nullable="true" />
-          <Property Type="Int32" Name="Liked" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -2140,6 +2141,7 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="ReleasedDate" ColumnName="ReleasedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2234,7 +2236,7 @@
               <MappingFragment StoreEntitySet="PlaylistAdminLiked">
                 <ScalarProperty Name="AccountName" ColumnName="AccountName" />
                 <ScalarProperty Name="PlaylistID" ColumnName="PlaylistID" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateLiked" ColumnName="DateLiked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2313,15 +2315,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Song_Artist">
-            <EntityTypeMapping TypeName="MusicModel.Song_Artist">
-              <MappingFragment StoreEntitySet="Song_Artist">
-                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
-                <ScalarProperty Name="SongID" ColumnName="SongID" />
-                <ScalarProperty Name="Own" ColumnName="Own" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SongLikeds">
             <EntityTypeMapping TypeName="MusicModel.SongLiked">
               <MappingFragment StoreEntitySet="SongLiked">
@@ -2337,6 +2330,17 @@
                 <ScalarProperty Name="AccountName" ColumnName="AccountName" />
                 <ScalarProperty Name="SongID" ColumnName="SongID" />
                 <ScalarProperty Name="DateListened" ColumnName="DateListened" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MusicModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2369,6 +2373,14 @@
               <ScalarProperty Name="PlaylistID" ColumnName="PlaylistID" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="Song_Artist" TypeName="MusicModel.Song_Artist" StoreEntitySet="Song_Artist">
+            <EndProperty Name="Artist">
+              <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+            </EndProperty>
+            <EndProperty Name="Song">
+              <ScalarProperty Name="SongID" ColumnName="SongID" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="Song_Collection" TypeName="MusicModel.Song_Collection" StoreEntitySet="Song_Collection">
             <EndProperty Name="Collection">
               <ScalarProperty Name="CollectionID" ColumnName="CollectionID" />
@@ -2377,7 +2389,34 @@
               <ScalarProperty Name="SongID" ColumnName="SongID" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="AddSong" FunctionName="MusicModel.Store.AddSong" />
+          <FunctionImportMapping FunctionImportName="Get10AlbumsRandom" FunctionName="MusicModel.Store.Get10AlbumsRandom" />
+          <FunctionImportMapping FunctionImportName="Get10PlaylistsNewest" FunctionName="MusicModel.Store.Get10PlaylistsNewest" />
+          <FunctionImportMapping FunctionImportName="Get10PlaylistsRandom" FunctionName="MusicModel.Store.Get10PlaylistsRandom" />
+          <FunctionImportMapping FunctionImportName="Get10PlaylistsRandomCollection" FunctionName="MusicModel.Store.Get10PlaylistsRandomCollection" />
+          <FunctionImportMapping FunctionImportName="Get10SongsNewest" FunctionName="MusicModel.Store.Get10SongsNewest" />
+          <FunctionImportMapping FunctionImportName="Get10SongsRandom" FunctionName="MusicModel.Store.Get10SongsRandom" />
+          <FunctionImportMapping FunctionImportName="Get10SongsRandomCollection" FunctionName="MusicModel.Store.Get10SongsRandomCollection" />
+          <FunctionImportMapping FunctionImportName="GetAlbumsByArtist" FunctionName="MusicModel.Store.GetAlbumsByArtist" />
+          <FunctionImportMapping FunctionImportName="GetAlbumsNewAHot" FunctionName="MusicModel.Store.GetAlbumsNewAHot" />
+          <FunctionImportMapping FunctionImportName="GetAlbumsPage" FunctionName="MusicModel.Store.GetAlbumsPage" />
+          <FunctionImportMapping FunctionImportName="GetAlbumsSearch" FunctionName="MusicModel.Store.GetAlbumsSearch" />
+          <FunctionImportMapping FunctionImportName="GetArtistsHot" FunctionName="MusicModel.Store.GetArtistsHot" />
+          <FunctionImportMapping FunctionImportName="GetArtistsPage" FunctionName="MusicModel.Store.GetArtistsPage" />
+          <FunctionImportMapping FunctionImportName="GetArtistsSearch" FunctionName="MusicModel.Store.GetArtistsSearch" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistAdminwithSongs" FunctionName="MusicModel.Store.GetPlaylistAdminwithSongs" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistsByCollectionPage" FunctionName="MusicModel.Store.GetPlaylistsByCollectionPage" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistsByCollectionsPage" FunctionName="MusicModel.Store.GetPlaylistsByCollectionsPage" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistsSearch" FunctionName="MusicModel.Store.GetPlaylistsSearch" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistsUser" FunctionName="MusicModel.Store.GetPlaylistsUser" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistsUserBySong" FunctionName="MusicModel.Store.GetPlaylistsUserBySong" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistUserwithSongs" FunctionName="MusicModel.Store.GetPlaylistUserwithSongs" />
+          <FunctionImportMapping FunctionImportName="GetSong" FunctionName="MusicModel.Store.GetSong" />
+          <FunctionImportMapping FunctionImportName="GetSongsByArtistPage" FunctionName="MusicModel.Store.GetSongsByArtistPage" />
           <FunctionImportMapping FunctionImportName="GetSongsByCollectionPage" FunctionName="MusicModel.Store.GetSongsByCollectionPage" />
+          <FunctionImportMapping FunctionImportName="GetSongsNewAHot" FunctionName="MusicModel.Store.GetSongsNewAHot" />
+          <FunctionImportMapping FunctionImportName="GetSongsSearch" FunctionName="MusicModel.Store.GetSongsSearch" />
+          <FunctionImportMapping FunctionImportName="GetTop100Songs" FunctionName="MusicModel.Store.GetTop100Songs" />
           <FunctionImportMapping FunctionImportName="GetUser" FunctionName="MusicModel.Store.GetUser">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MusicModel.GetUser_Result">
@@ -2394,35 +2433,6 @@
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAlbumsPage" FunctionName="MusicModel.Store.GetAlbumsPage" />
-          <FunctionImportMapping FunctionImportName="GetAlbumsSearch" FunctionName="MusicModel.Store.GetAlbumsSearch" />
-          <FunctionImportMapping FunctionImportName="GetArtistsPage" FunctionName="MusicModel.Store.GetArtistsPage" />
-          <FunctionImportMapping FunctionImportName="GetArtistsSearch" FunctionName="MusicModel.Store.GetArtistsSearch" />
-          <FunctionImportMapping FunctionImportName="GetPlaylistsByCollectionPage" FunctionName="MusicModel.Store.GetPlaylistsByCollectionPage" />
-          <FunctionImportMapping FunctionImportName="GetPlaylistsByCollectionsPage" FunctionName="MusicModel.Store.GetPlaylistsByCollectionsPage" />
-          <FunctionImportMapping FunctionImportName="GetPlaylistsSearch" FunctionName="MusicModel.Store.GetPlaylistsSearch" />
-          <FunctionImportMapping FunctionImportName="GetSongsSearch" FunctionName="MusicModel.Store.GetSongsSearch" />
-          <FunctionImportMapping FunctionImportName="GetTop100Songs" FunctionName="MusicModel.Store.GetTop100Songs">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MusicModel.GetTop100Songs_Result">
-                <ScalarProperty Name="SongID" ColumnName="SongID" />
-                <ScalarProperty Name="SongName" ColumnName="SongName" />
-                <ScalarProperty Name="Lyric" ColumnName="Lyric" />
-                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-                <ScalarProperty Name="Nation" ColumnName="Nation" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="SongPath" ColumnName="SongPath" />
-                <ScalarProperty Name="MV" ColumnName="MV" />
-                <ScalarProperty Name="isVip" ColumnName="isVip" />
-                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
-                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
-                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
-                <ScalarProperty Name="Own" ColumnName="Own" />
-                <ScalarProperty Name="Views" ColumnName="Views" />
-                <ScalarProperty Name="Liked" ColumnName="Liked" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

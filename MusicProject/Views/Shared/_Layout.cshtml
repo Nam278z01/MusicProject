@@ -38,6 +38,7 @@
             <div class="sidebar__userAset">
                 <a href="#!/nguoi-dung" class="sidebar__user" ng-click="changePage(-1)" ng-if="logged">
                     <div class="sidebar__user-avatar">
+                        @* onerror="this.src='../../assets/img/user/default.png'" *@
                         <img onerror="this.src='../../assets/img/user/default.png'" src="~/assets/img/user/{{User.user.Image}}" alt="{{User.user.PersonName}}">
                     </div>
                     <div class="sidebar__user-name">
@@ -123,7 +124,7 @@
                         </div>
                     </li>
                     <li class="sidebar__navigation-item">
-                        <a href="#!/bang-xep-hang" class="sidebar__navigation-link" ng-class="{active:isActive(4)}"
+                        <a href="#!/bang-xep-hang?n=vn" class="sidebar__navigation-link" ng-class="{active:isActive(4)}"
                            ng-click="changePage(4)">
                             <i class='bx bx-bar-chart'></i>
                             <span>BXH MM</span>
@@ -223,14 +224,14 @@
             <div class="play-music__main">
                 <div class="media">
                     <div class="media-left">
-                        <img src="../../assets/img/Song/{{song.Song.Image}}" alt="{{song.Song.SongName}}">
+                        <img src="../../assets/img/Song/{{songIsPlayed.Song.Image}}" alt="{{songIsPlayed.Song.SongName}}">
                     </div>
                     <div class="media-content">
                         <div class="song__name">
-                            <a href="#">{{song.Song.SongName}}</a>
+                            <a href="#">{{songIsPlayed.Song.SongName}}</a>
                         </div>
                         <div class="song__artist">
-                            <a ng-repeat="a in song.Artists">{{a.ArtistName}}</a>
+                            <a ng-repeat="a in songIsPlayed.Artists">{{a.ArtistName}}</a>
                         </div>
                     </div>
                     <div class="media-right">
@@ -269,7 +270,7 @@
                         <span class="controls_time--right">00.00</span>
                         <input id="progress" class="controls_time--range" value="0" type="range" step="1" min="0"
                                max="100">
-                        <audio autoplay id="audio" src="../../assets/mp3/{{song.Song.SongPath}}"
+                        <audio autoplay id="audio" src="../../assets/mp3/{{songIsPlayed.Song.SongPath}}"
                                style="display: none;"></audio>
                         <span class="controls_time--left">03.22</span>
                     </div>
@@ -347,11 +348,13 @@
                         </div>
                         <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <input type="email" class="auth-form__input" name="EmailLogin" placeholder="Email của bạn" ng-model="EmailLogin" ng-class="{'warning': warning}" ng-focus="warningEmail=false; isLoginSubmit=true" ng-blur="warningEmail=LoginForm.EmailLogin.$error.email" required>
+                                <input type="email" class="auth-form__input" name="EmailLogin" placeholder="Email của bạn" ng-model="EmailLogin" 
+                                       ng-class="{'warning': warningEmail}" ng-focus="warningEmail=false; isLoginSubmit=true" ng-blur="warningEmail=LoginForm.EmailLogin.$error.email" required>
                                 <p class="input-warning" ng-show="warningEmail">Email không hợp lệ!</p>
                             </div>
                             <div class="auth-form__group">
-                                <input type="password" class="auth-form__input" name="PassLogin" placeholder="Mật khẩu của bạn" ng-model="PassLogin" ng-class="{'warning': warningPass}" ng-focus="warningPass=false; isLoginSubmit=true" ng-blur="warningPass=LoginForm.PassLogin.$error.required" required>
+                                <input type="password" class="auth-form__input" name="PassLogin" placeholder="Mật khẩu của bạn" ng-model="PassLogin"
+                                       ng-class="{'warning': warningPass}" ng-focus="warningPass=false; isLoginSubmit=true" ng-blur="warningPass=LoginForm.PassLogin.$error.required" required>
                                 <p class="input-warning" ng-show="warningPass">Không được bỏ trống!</p>
                             </div>
                             <p class="input-warning" ng-hide="isLoginSubmit" style="text-align: center; margin-top: 4px;">Tài khoản hoặc mật khẩu không chính xác!</p>
@@ -399,8 +402,8 @@
                                 <span title="{{p.PlaylistUser.PlaylistName}}">{{p.PlaylistUser.PlaylistName}}</span>
                                 <span style="margin-left: 12px">({{p.TotalSongs}})</span>
                             </span>
-                            <i class='bx bxs-lock' ng-hide="p.PlaylistUser.isPublic"></i>
-                            <i class='bx bx-globe' ng-show="p.PlaylistUser.isPublic"></i>
+                            <i class='bx bxs-lock' ng-hide="p.PlaylistUser.isPublic" title="Cá nhân"></i>
+                            <i class='bx bx-globe' ng-show="p.PlaylistUser.isPublic" title="Công khai"></i>
                         </div>
                     </div>
                     <div class="form-create">

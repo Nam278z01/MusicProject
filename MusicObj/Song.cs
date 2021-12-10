@@ -17,20 +17,19 @@ namespace MusicObj
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Song()
         {
-            this.Comments = new HashSet<Comment>();
             this.PlaylistAdmin_Song = new HashSet<PlaylistAdmin_Song>();
             this.PlaylistUser_Song = new HashSet<PlaylistUser_Song>();
             this.Views = new HashSet<View>();
-            this.Song_Artist = new HashSet<Song_Artist>();
             this.SongLikeds = new HashSet<SongLiked>();
             this.SongListeneds = new HashSet<SongListened>();
+            this.Artists = new HashSet<Artist>();
             this.Collections = new HashSet<Collection>();
         }
     
         public string SongID { get; set; }
         public string SongName { get; set; }
         public string Lyric { get; set; }
-        public Nullable<System.DateTime> ReleaseDate { get; set; }
+        public System.DateTime ReleaseDate { get; set; }
         public int Nation { get; set; }
         public string Image { get; set; }
         public string SongPath { get; set; }
@@ -40,19 +39,17 @@ namespace MusicObj
     
         public virtual Album Album { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlaylistAdmin_Song> PlaylistAdmin_Song { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlaylistUser_Song> PlaylistUser_Song { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<View> Views { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Song_Artist> Song_Artist { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SongLiked> SongLikeds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SongListened> SongListeneds { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Artist> Artists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Collection> Collections { get; set; }
     }

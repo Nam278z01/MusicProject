@@ -44,7 +44,6 @@ namespace MusicDao
             dh.Close();
             return songs;
         }
-
         public List<SongwithArtist> Get10SongsRandom(string accountName)
         {
             SqlDataReader reader = dh.StoreReaders("Get10SongsRandom", accountName);
@@ -98,6 +97,24 @@ namespace MusicDao
             List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
             dh.Close();
             return songs;
+        }
+        public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week)
+        {
+            SqlDataReader reader = dh.StoreReaders("GetRankSongsofWeek", accountName, quantity, nation, week);
+            var jsonResult = new StringBuilder();
+            if (!reader.HasRows)
+            {
+                return default;
+            }
+            else
+            {
+                while (reader.Read())
+                {
+                    jsonResult.Append(reader.GetValue(0).ToString());
+                }
+            }
+            dh.Close();
+            return jsonResult.ToString();
         }
     }
 }

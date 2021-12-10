@@ -1,12 +1,14 @@
-appMusic.controller('LoginController', function ($scope, $rootScope, $http, $window) {
-    $scope.isLoginSubmit = true
+﻿appMusic.controller('LoginController', function ($scope, $rootScope, $http, $window) {
+    $scope.isLoginSubmit = true // Được sử dụng hiển thị thông báo tài khoản không chính xác khi ấn submit
 
+    // Đăng nhập
     $scope.loginSubmit = function () {
         $http({
             method: 'get',
             url: '/Login/Login',
             params: { accountname: $scope.EmailLogin, password: $scope.PassLogin}
         }).then(function (res) {
+            // Phải reload nha
             if (res.data.login == "1") {
                 $window.location.reload();
             } else {
@@ -17,6 +19,7 @@ appMusic.controller('LoginController', function ($scope, $rootScope, $http, $win
         })
     }
 
+    // Đăng xuất 
     $scope.Logout = function () {
         $http({
             method: 'get',

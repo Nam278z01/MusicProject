@@ -1,4 +1,5 @@
-appMusic.controller('SidebarController', function ($scope, $rootScope) {
+﻿appMusic.controller('SidebarController', function ($scope, $rootScope) {
+    //Như tab controls ấy
     $scope.changePage = function (index) {
         $rootScope.currentIndex = index
         $rootScope.currentSubIndex = -1
@@ -13,6 +14,7 @@ appMusic.controller('SidebarController', function ($scope, $rootScope) {
         return index == $rootScope.currentSubIndex
     }
 
+    //Thu - Mở Sub Tab
     let navParent = document.querySelectorAll('div.sidebar__navigation-link')
     navParent.forEach((item) => {
         let listSubLink = item.nextElementSibling

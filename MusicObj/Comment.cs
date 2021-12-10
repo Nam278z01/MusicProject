@@ -14,13 +14,10 @@ namespace MusicObj
     
     public partial class Comment
     {
-        public string CommentID { get; set; }
+        public long CommentID { get; set; }
         public string Content { get; set; }
         public System.DateTime Date { get; set; }
         public string SongID { get; set; }
         public string AccountName { get; set; }
-    
-        public virtual AccountUser AccountUser { get; set; }
-        public virtual Song Song { get; set; }
     }
 }

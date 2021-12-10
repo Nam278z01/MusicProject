@@ -11,7 +11,7 @@ namespace MusicObj
         public string PlaylistID { get; set; }
         public string PlaylistName { get; set; }
         public string Description { get; set; }
-        public System.DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
         public string Image { get; set; }
         public string AccountName { get; set; }
         public Nullable<bool> isPublic { get; set; }

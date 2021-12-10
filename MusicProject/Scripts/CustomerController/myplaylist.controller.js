@@ -1,10 +1,9 @@
-appMusic.controller('MyPlaylistController', function ($scope, $rootScope, $location, $routeParams, $http) {
-    $rootScope.currentIndex = 5
+﻿appMusic.controller('MyPlaylistController', function ($scope, $rootScope, $location, $routeParams, $http) {
+    $rootScope.currentIndex = 5 // :V không comment nữa đâu
     $rootScope.currentSubIndex = -1
-    $rootScope.title = "My Playlist"
-   
-    $rootScope.currentIndex = 2
-    $rootScope.currentSubIndex = 2
+    $rootScope.title = "My Playlist | My music"
+
+    //Lấy về playlist của chính tài khoản đăng nhập
     $scope.playlists = []
     $scope.totalCount = 0
     $scope.pageSize = 24
@@ -15,7 +14,6 @@ appMusic.controller('MyPlaylistController', function ($scope, $rootScope, $locat
     getResultsPage($scope.pageIndex)
 
     $scope.pageChanged = function (newPage) {
-        getResultsPage(newPage);
         $location.search("page", newPage)
     };
 

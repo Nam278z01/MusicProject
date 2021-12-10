@@ -14,18 +14,9 @@ namespace MusicObj
     
     public partial class ServiceVip
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ServiceVip()
-        {
-            this.PaymentHistories = new HashSet<PaymentHistory>();
-        }
-    
         public string ServiceVipID { get; set; }
         public string ServiceVipName { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentHistory> PaymentHistories { get; set; }
     }
 }

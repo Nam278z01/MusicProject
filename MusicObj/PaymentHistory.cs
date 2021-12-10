@@ -14,15 +14,12 @@ namespace MusicObj
     
     public partial class PaymentHistory
     {
-        public string PaymentID { get; set; }
+        public long PaymentID { get; set; }
         public System.DateTime PaymentDate { get; set; }
         public byte OnSale { get; set; }
         public Nullable<double> Total { get; set; }
         public string Note { get; set; }
         public string ServiceVipID { get; set; }
         public string AccountName { get; set; }
-    
-        public virtual AccountUser AccountUser { get; set; }
-        public virtual ServiceVip ServiceVip { get; set; }
     }
 }

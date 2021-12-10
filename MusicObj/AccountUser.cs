@@ -19,8 +19,6 @@ namespace MusicObj
         {
             this.AlbumLikeds = new HashSet<AlbumLiked>();
             this.AlbumListeneds = new HashSet<AlbumListened>();
-            this.Comments = new HashSet<Comment>();
-            this.PaymentHistories = new HashSet<PaymentHistory>();
             this.PlaylistAdminLikeds = new HashSet<PlaylistAdminLiked>();
             this.PlaylistAdminListeneds = new HashSet<PlaylistAdminListened>();
             this.PlaylistUsers = new HashSet<PlaylistUser>();
@@ -44,10 +42,6 @@ namespace MusicObj
         public virtual ICollection<AlbumLiked> AlbumLikeds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AlbumListened> AlbumListeneds { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PaymentHistory> PaymentHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlaylistAdminLiked> PlaylistAdminLikeds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

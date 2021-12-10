@@ -117,23 +117,31 @@ appMusic.config(function ($routeProvider, $locationProvider) {
 
 appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.title = 'My Music | Nghe nhạc Hot, tải nhạc Hay'
+    //Sidebar tab hoạt động là trang home
+    $rootScope.currentIndex = 1
+    //Sidebar tab con (của khám phá & nghe gì hôm nay) hoạt động là trang home
+    $rootScope.currentSubIndex = -1
+    // Thông tin user
     $rootScope.User = {}
     $rootScope.UserVip = false
-    $rootScope.currentIndex = 1
-    $rootScope.currentSubIndex = -1
+    //Bài hát đang chạy
     $rootScope.songIsPlayed = {}
+    //Kiểm tra đăng nhập chưa
     $rootScope.logged = false
-    $rootScope.song = {}
+    //Danh sách lấy playlist của tài khoản để thực hiện chức năng thêm song vào playlist
     $rootScope.playlistsforAdd = []
 
     $http({
         method: 'get',
         url: '/Login/CheckLogin'
     }).then(function (res) {
+        //Nếu đã đăng nhập
         if (res.data.login == "1") {
             $rootScope.User = res.data
             $rootScope.logged = true
+            //Nếu thuộc tinh ngày hạn > hôm nay thì là tài khoản vip và ngược lại
             $rootScope.UserVip = ($rootScope.User.user.DueOn || $rootScope.User.user.DueOn > new Date()) ? true : false
+            //Loại bỏ giao diện đăng nhập - đăng ký
             document.querySelector('#modal-login-singup').remove()
             document.querySelector('.signin-singup').remove()
 
@@ -146,7 +154,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             }, function (err) {
                 alert('Adding song to playlist failed!')
             })
-
+        //Nếu chưa đăng nhập
         } else {
             // Login - SignIn
             let btnLogin = document.querySelector('#showlogin')
@@ -156,19 +164,24 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             let SignUpForm = document.querySelector('#registerForm')
             let body = document.body
             let scrollTop
-            let isLogin = true
+            let isLogin = true // Có tác dụng để switch giao diện đăng nhập đăng ký của sự kiện bên dưới
+
+            //Hiện giao diện đăng nhập
             btnLogin.onclick = () => {
                 modalLoginSignUp.style.display = 'block'
                 loginForm.style.display = 'block'
+
                 // Ẩn thanh cuộn và giữ vị trí
                 scrollTop = document.querySelector('html').scrollTop
                 body.classList.add('no-scroll')
                 body.style.top = -scrollTop + 'px'
                 isLogin = true
             }
+            //Hiện giao diện đăng ký
             btnSignUp.onclick = () => {
                 modalLoginSignUp.style.display = 'block'
                 SignUpForm.style.display = 'block'
+
                 // Ẩn thanh cuộn và giữ vị trí
                 scrollTop = document.querySelector('html').scrollTop
                 body.classList.add('no-scroll')
@@ -176,14 +189,17 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 isLogin = false
             }
             body.addEventListener('click', function (e) {
+                // Nếu click trúng thì ẩn modal, cho cuộn
                 if (e.target.classList.contains('modal__body') || e.target.closest('.auth-form__controls-back')) {
                     document.body.classList.remove('no-scroll')
                     document.querySelector('html').scrollTop = scrollTop
                     body.style.top = '0px'
+
                     modalLoginSignUp.style.display = 'none'
                     SignUpForm.style.display = 'none'
                     loginForm.style.display = 'none'
                 }
+                //Đoạn switch hiển thị đăng nhập và đăng ký đây!
                 if (e.target.closest('.auth-form__switch-btn')) {
                     if (isLogin) {
                         loginForm.style.display = 'none'
@@ -196,11 +212,12 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 }
             })
 
+            // Nếu chưa đăng nhập mà vào các trang cần quyền của người dùng nhập nhập thì dẫn về trang home
             var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
             if (restrictedPage) {
                 $location.path('/')
             }
-
+            // Dùng thêm cái này vì single page ko load, ko load thì bắt sự kiện thay đổi url để dẫn về trang home nếu chưa đăng nhập
             $rootScope.$on('$routeChangeStart', function (event, next, current) {
                 var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
                 if (restrictedPage) {
@@ -229,6 +246,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         alert("Failed to get collections!")
     })
 
+    //Nếu loading xong thì ẩn giao diện load lúc mới vào trang hoặc reload trang
     $window.addEventListener('load', function () {
         let loading = document.querySelector('.loading')
         loading.classList.add('hidden')
@@ -240,8 +258,9 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     //Lấy để repeat loading
     $rootScope.getTimes = function (n) {
         return new Array(n);
-    }  
-    //repeat n lần loading
+    }
+
+    //repeat n lần loading bài hát - playlist - album
     $rootScope.eleView
     if (window.innerWidth < 740) {
         $rootScope.eleView = 2
@@ -276,14 +295,17 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         }
         if (e.target.closest('.btn-add-song-playlist')) {
             modal2.style.display = 'block'
+
             // Ẩn thanh cuộn và giữ vị trí
             scrollTop2 = document.querySelector('html').scrollTop
             document.body.classList.add('no-scroll')
             document.body.style.top = -scrollTop2 + 'px'
         }
     })
+
     //click thanh 3 chấm thì hiện chức năng 
     document.body.addEventListener('click', function (e) {
+        //Đầu tiên khi click ta ẩn hết class focus khi click (focus làm nổi giao diện feature mỗi item)
         let featureMore = document.querySelectorAll('.list-playlist__item-feature')
         if (featureMore) {
             featureMore.forEach(ele => {
@@ -310,6 +332,9 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         if (e.target.closest('.song__more')) {
             e.target.closest('.song__more').parentElement.classList.toggle('focus')
         }
+        if (e.target.closest('.show-rank')) {
+            e.target.closest('.show-rank').parentElement.parentElement.classList.toggle('show')
+        }
     })
 
     //Lấy bài hát để thêm vào playlist
@@ -317,6 +342,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.getSongforAdd = function (song) {
         $rootScope.songIDforAdd = song.Song.SongID
     }
+
     //Thêm bài hát vào playlist
     $rootScope.addSongtoPlaylist = function (songID, playlistID) {
         $http({

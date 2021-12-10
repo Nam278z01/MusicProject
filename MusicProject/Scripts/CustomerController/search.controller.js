@@ -4,33 +4,35 @@ appMusic.controller('SearchController', function ($scope, $rootScope, $location,
     $rootScope.title = 'Tìm kiếm bài hát, playlist, album và nghệ sĩ'
     $rootScope.currentIndex = 0
     $rootScope.currentSubIndex = -1
-    $scope.searchValue = $routeParams.q || ''
+
+    $scope.searchValue = $routeParams.q || '' //Lấy value từ url để cho vào input (đoạn dưới)
+    // Phục vụ cho việc xác định trang tìm kiếm
     $scope.name = {
         song: 'bai-hat',
         playlist: 'playlist',
         album: 'album',
         artist: 'nghe-si'
     }
-    if ($scope.searchValue) {
-        $scope.isChange = true
-    } else {
-        $scope.isChange = false
-    }
 
-    $scope.searchInput = function (name) {
-        if ($scope.searchValue && $scope.isChange) {
-            $location.path('/tim-kiem/' + name).search({ q: $scope.searchValue, page: 1 })
-        }
-    }
-
-    $scope.changeInput = function () {
+    // Nếu đúng thì submit input đc nhá
+    function checkInputSearch() {
         if ($scope.searchValue) {
             $scope.isChange = true
         } else {
             $scope.isChange = false
         }
     }
+    checkInputSearch()
+    $scope.changeInput = checkInputSearch
 
+    //Đoạn submit đây
+    $scope.searchInput = function (name) {
+        if ($scope.isChange) {
+            $location.path('/tim-kiem/' + name).search({ q: $scope.searchValue, page: 1 })
+        }
+    }
+
+    //Click vào dấu "x" trên input thì...
     $scope.deleteInput = function () {
         $location.path('/tim-kiem')
         $location.search({ q: null, page: null })
@@ -43,6 +45,7 @@ appMusic.controller('SongSearchController', function ($scope, $rootScope, $locat
     $rootScope.title = $routeParams.q + " | Bài hát hay nhất " + $routeParams.q
     $rootScope.currentSubIndex = 1
 
+    //Lấy về bài hát cần tìm kiếm
     $scope.songs = []
     $scope.totalCount = 0
     $scope.pageSize = 5
@@ -72,8 +75,9 @@ appMusic.controller('SongSearchController', function ($scope, $rootScope, $locat
         })
     }
 
+    //Chơi nhạc 
     $scope.playMusic = function (song) {
-        $rootScope.song = song
+        $rootScope.songIsPlayed = song
         document.querySelector('.play-music').classList.remove('hidden')
     }
 })
@@ -82,7 +86,7 @@ appMusic.controller('ArtistSearchController', function ($scope, $rootScope, $loc
     $rootScope.title = $routeParams.q + " | Tìm kiếm nghệ sĩ " + $routeParams.q
     $rootScope.currentSubIndex = 1
 
-    $scope.songs = []
+    //Lấy về nghệ sĩ cần tìm kiếm
     $scope.totalCount = 0
     $scope.pageSize = 5
     $scope.maxSize = 5
@@ -117,7 +121,7 @@ appMusic.controller('AlbumSearchController', function ($scope, $rootScope, $loca
     $rootScope.title = $routeParams.q + " | Tìm kiếm Album " + $routeParams.q
     $rootScope.currentSubIndex = 1
 
-    $scope.songs = []
+    //Lấy về album cần tìm kiếm
     $scope.totalCount = 0
     $scope.pageSize = 5
     $scope.maxSize = 5
@@ -151,7 +155,7 @@ appMusic.controller('PlaylistSearchController', function ($scope, $rootScope, $l
     $rootScope.title = $routeParams.q + " | Tìm kiếm Playlist " + $routeParams.q
     $rootScope.currentSubIndex = 1
 
-    $scope.songs = []
+    //Lấy về playlist cần tìm kiếm
     $scope.totalCount = 0
     $scope.pageSize = 5
     $scope.maxSize = 5

@@ -17,5 +17,6 @@ namespace MusicBus
         List<SongwithArtist> Get10SongsRandomCollection(string accountName, string colletionID, string songID);
         List<SongwithArtist> GetSongsByArtistPage(int pageIndex, int pageSize, string artistID, string accountName, out int totalCount);
         List<SongwithArtist> GetSongsNewAHot(int pageIndex, int pageSize, string accountName, int time, out int totalCount);
+        string GetRankSongsofWeek(string accountName, int quantity, int nation, int week);
     }
 }

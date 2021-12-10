@@ -1,6 +1,9 @@
 ﻿appMusic.controller('SongDetailsController', function ($scope, $rootScope, $http, $routeParams) {
+    //Sidebar tab, tab con hoạt động tắt hết đi
     $rootScope.currentIndex = -1
     $rootScope.currentSubIndex = -1
+
+    //Lấy về thông tin chi tiết bài hát
     $http({
         method: 'get',
         url: '/Detail/GetSong',
@@ -23,6 +26,7 @@
         alert('Failed to get the song!')
     })
 
+    // Ẩn hiện phần lyric (hay rút ngắn - xem thêm lyric)
     $scope.isShorten = true
     $scope.titleShorten = "Xem thêm"
     $scope.seeMore = function () {
@@ -34,6 +38,8 @@
             $scope.titleShorten = "Thu gọn"
         }
     }
+
+    //Copy lyric bài hát
     function copyTextToClipboard(text) {
         var textArea = document.createElement("textarea");
         textArea.style.position = 'fixed';
@@ -69,8 +75,11 @@
 })
 
 appMusic.controller('PlaylistADetailsController', function ($scope, $rootScope, $http, $routeParams) {
+    //Sidebar tab, tab con hoạt động tắt hết đi
     $rootScope.currentIndex = -1
     $rootScope.currentSubIndex = -1
+
+    // Lấy về thông tin chi tiết playlist admin (gồm bài hát của nó) và lấy về playlist cùng collection
     $http({
         method: 'get',
         url: '/Detail/GetPlaylistAdminwithSongs',
@@ -85,8 +94,11 @@ appMusic.controller('PlaylistADetailsController', function ($scope, $rootScope, 
 })
 
 appMusic.controller('PlaylistUDetailsController', function ($scope, $rootScope, $http, $routeParams, $location) {
+    //Sidebar tab, tab con hoạt động tắt hết đi
     $rootScope.currentIndex = -1
     $rootScope.currentSubIndex = -1
+
+    // Lấy về thông tin chi tiết user (gồm bài hát của nó) và lấy về playlist cùng collection
     $http({
         method: 'get',
         url: '/Detail/GetPlaylistUserwithSongs',
@@ -104,9 +116,11 @@ appMusic.controller('PlaylistUDetailsController', function ($scope, $rootScope, 
 })
 
 appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $http, $routeParams, $location) {
+    //Sidebar tab, tab con hoạt động tắt hết đi
     $rootScope.currentIndex = -1
     $rootScope.currentSubIndex = -1
 
+    // Artist gồm 3 phần trang chủ, bài hát, album, tạo cái này để làm như cái tabs control
     $scope.isActiveNav = 1
     $scope.activeNav = function (index) {
         $scope.isActiveNav = index
@@ -121,9 +135,10 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
     $scope.pageSizeArtist = 24
     $scope.maxSizeArtist = 5
     $scope.pageIndexArtist = 1
-    $scope.loadSongSuccessfullArtist = false
-    $scope.isGetSongsofArtist = false
+    $scope.loadSongSuccessfullArtist = false // Dùng cho ẩn hiện phần loading item
 
+    // Nếu lấy dữ liệu rồi (khi click vào tabs đó rồi) thì ko cần lấy lại dư liệu nữa
+    $scope.isGetSongsofArtist = false
     $scope.getSongsofArtist = function () {
         if (!$scope.isGetSongsofArtist) {
             getResultsPageArtist(1)
@@ -156,9 +171,10 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
     $scope.pageSizeArtistAlbum = 24
     $scope.maxSizeArtistAlbum = 5
     $scope.pageIndexArtistAlbum = 1
-    $scope.loadSongSuccessfullArtistAlbum = false
-    $scope.isGetSongsofArtistAlbum = false
+    $scope.loadSongSuccessfullArtistAlbum = false // Dùng cho ẩn hiện phần loading item
 
+    // Nếu lấy dữ liệu rồi (khi click vào tabs đó rồi) thì ko cần lấy lại dư liệu nữa
+    $scope.isGetSongsofArtistAlbum = false
     $scope.getSongsofArtistAlbum = function () {
         if (!$scope.isGetSongsofArtistAlbum) {
             getResultsPageArtistAlbum(1)

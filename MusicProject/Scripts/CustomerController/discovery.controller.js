@@ -1,6 +1,8 @@
-appMusic.controller('DiscoveryController', function ($scope, $rootScope, $routeParams, $location) {
+﻿appMusic.controller('DiscoveryController', function ($scope, $rootScope, $routeParams, $location) {
+    //Sidebar tab hoạt động là khám phá
     $rootScope.currentIndex = 2
-    // $rootScope.currentSubIndex = 1
+
+    // Tab controls hết nha nha
     $scope.isActiveNav = function (name) {
         if ($routeParams.n == name) {
             return true
@@ -8,6 +10,7 @@ appMusic.controller('DiscoveryController', function ($scope, $rootScope, $routeP
             return false
         }
     }
+
     $scope.isActiveCollection = function (colId) {
         if ($routeParams.col == colId) {
             return true
@@ -29,15 +32,19 @@ appMusic.controller('DiscoveryController', function ($scope, $rootScope, $routeP
 })
 
 appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {
-    $rootScope.currentIndex = 2
+    $rootScope.title = 'Bài hát | My music'
+     //Sidebar tab con hoạt động là bài hát
     $rootScope.currentSubIndex = 1
+
+    //Lấy về danh sách bài hát phân trang
     $scope.songs = []
     $scope.totalCount = 0
     $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page || 1
-    $scope.loadSongSuccessfull = false
+    $scope.loadSongSuccessfull = false // Vẫn là phục vụ ẩn hiện loading item
 
+    // Vì tab hot không có params nên làm vậy để lấy đc dữ liệu mong muốn
     if ($routeParams.col && $routeParams.n) {
         getResultsPage($scope.pageIndex)
     } else {
@@ -45,11 +52,6 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
     }
 
     $scope.pageChanged = function (newPage) {
-        if ($routeParams.col && $routeParams.n) {
-            getResultsPage(newPage)
-        } else {
-            getResultsPage2(newPage)
-        }
         $location.search("page", newPage)
     };
 
@@ -68,6 +70,7 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
         })
     }
 
+    // Lấy dữ liệu tab hot
     function getResultsPage2(index) {
         $scope.pageIndex = index
         $http({
@@ -83,15 +86,20 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
         })
     }
 
+    //Chơi nhạc nha
     $scope.playMusic = function (song) {
-        $rootScope.song = song
+        $rootScope.songIsPlayed = song
+        //Hiện giao diện chơi nhạc nếu chưa hiện nha
         document.querySelector('.play-music').classList.remove('hidden')
     }
 })
 
 appMusic.controller('PlaylistDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {
-    $rootScope.currentIndex = 2
+    $rootScope.title = 'Playlist | My music'
+    //Sidebar tab con hoạt động là playlist
     $rootScope.currentSubIndex = 2
+
+    //Lấy về playlist list phân trang
     $scope.playlists = []
     $scope.totalCount = 0
     $scope.pageSize = 24
@@ -102,7 +110,6 @@ appMusic.controller('PlaylistDiscoveryController', function ($scope, $rootScope,
     getResultsPage($scope.pageIndex)
 
     $scope.pageChanged = function (newPage) {
-        getResultsPage(newPage);
         $location.search("page", newPage)
     };
 
@@ -123,8 +130,11 @@ appMusic.controller('PlaylistDiscoveryController', function ($scope, $rootScope,
 })
 
 appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {
-    $rootScope.currentIndex = 2
+    $rootScope.title = 'Nghệ sĩ | My music'
+    //Sidebar tab con hoạt động là artist
     $rootScope.currentSubIndex = 4
+
+    //Lấy về danh sách nghệ sĩ
     $scope.artists = []
     $scope.totalCount = 0
     $scope.pageSize = 24
@@ -132,6 +142,7 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
     $scope.pageIndex = $routeParams.page || 1
     $scope.loadSongSuccessfull = false
 
+    // Như bài hát thì nghệ sĩ có tab hot làm vậy để lấy dữ liệu mong muốn do trang hot ko có params
     if ($routeParams.n) {
         getResultsPage($scope.pageIndex)
     } else {
@@ -139,12 +150,6 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
     }
 
     $scope.pageChanged = function (newPage) {
-        if ($routeParams.n) {
-            getResultsPage(newPage)
-        } else {
-            getResultsPage(newPage)
-        }
-        getResultsPage(newPage)
         $location.search("page", newPage)
     };
 
@@ -163,6 +168,7 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
         })
     }
 
+    // Đây chính là lấy dữ liệu tab hot
     function getResultsPage2(index) {
         $scope.pageIndex = index
         $http({
@@ -180,8 +186,11 @@ appMusic.controller('ArtistDiscoveryController', function ($scope, $rootScope, $
 })
 
 appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {
-    $rootScope.currentIndex = 2
+    $rootScope.title = 'Album | My music'
+    //Sidebar tab con hoạt động là album
     $rootScope.currentSubIndex = 3
+
+    //Lấy về danh sách album
     $scope.albums = []
     $scope.totalCount = 0
     $scope.pageSize = 24
@@ -189,6 +198,7 @@ appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $h
     $scope.pageIndex = $routeParams.page || 1
     $scope.loadSongSuccessfull = false
 
+    // Như tab nghệ sĩ và bài hát ấy
     if ($routeParams.n) {
         getResultsPage($scope.pageIndex)
     } else {
@@ -196,11 +206,6 @@ appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $h
     }
 
     $scope.pageChanged = function (newPage) {
-        if ($routeParams.n) {
-            getResultsPage(newPage)
-        } else {
-            getResultsPage2(newPage)
-        }
         $location.search("page", newPage)
     };
 
@@ -219,6 +224,7 @@ appMusic.controller('AlbumDiscoveryController', function ($scope, $rootScope, $h
         })
     }
 
+    //Lấy danh sách album hot và mới nè
     function getResultsPage2(index) {
         $scope.pageIndex = index
         $http({
