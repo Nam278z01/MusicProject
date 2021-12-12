@@ -101,20 +101,23 @@ namespace MusicDao
         public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week)
         {
             SqlDataReader reader = dh.StoreReaders("GetRankSongsofWeek", accountName, quantity, nation, week);
-            var jsonResult = new StringBuilder();
-            if (!reader.HasRows)
-            {
-                return default;
-            }
-            else
-            {
-                while (reader.Read())
-                {
-                    jsonResult.Append(reader.GetValue(0).ToString());
-                }
-            }
-            dh.Close();
-            return jsonResult.ToString();
+            return Utility.ToStringForJson(reader);
+        }
+        public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week)
+        {
+            List<string> dataJsonSong = new List<string>();
+            SqlDataReader reader = dh.StoreReaders("Get3RankSongsofWeek", accountName, quantity, week);
+            dataJsonSong.Add(Utility.ToStringForJson(reader));
+            reader.NextResult();
+            dataJsonSong.Add(Utility.ToStringForJson(reader));
+            reader.NextResult();
+            dataJsonSong.Add(Utility.ToStringForJson(reader));
+            return dataJsonSong;
+        }
+        public string AddSong(string jsonSong)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("AddSong", jsonSong);
+            return result;
         }
     }
 }

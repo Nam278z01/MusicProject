@@ -27,5 +27,21 @@ namespace MusicDao
             T obj = JsonConvert.DeserializeObject<T>(jsonResult.ToString());
             return obj;
         }
+        public static string ToStringForJson(SqlDataReader reader)
+        {
+            var jsonResult = new StringBuilder();
+            if (!reader.HasRows)
+            {
+                return default;
+            }
+            else
+            {
+                while (reader.Read())
+                {
+                    jsonResult.Append(reader.GetValue(0).ToString());
+                }
+            }
+            return jsonResult.ToString();
+        }
     }
 }

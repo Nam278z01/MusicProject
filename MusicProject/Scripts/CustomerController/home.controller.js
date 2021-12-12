@@ -54,6 +54,48 @@ appMusic.controller('HomeController', function ($scope, $rootScope, $location, $
         alert('Failed to get songs!')
     })
 
+    //Lấy 3 rank bài hát
+    function getWeekNumber(d) {
+        // Copy date so don't modify original
+        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        // Set to nearest Thursday: current date + 4 - current day number
+        // Make Sunday's day number 7
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+        // Get first day of year
+        var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        // Calculate full weeks to nearest Thursday
+        var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        // Return array of year and week number
+        return [d.getUTCFullYear(), weekNo];
+    }
+
+    $scope.pickedsongsVN
+    $scope.pickedsongsUSUK
+    $scope.pickedsongsAS
+    $http({
+        method: 'get',
+        url: '/Home/Get3RankSongsofWeek',
+        params: { week: (getWeekNumber(new Date)[1] - 1)}
+    }).then(function (res) {
+        $scope.songsVN = JSON.parse(res.data.songsVN)
+        $scope.songsUSUK = JSON.parse(res.data.songsUSUK)
+        $scope.songsAS = JSON.parse(res.data.songsAS)
+        $scope.pickedsongsVN = $scope.songsVN[0]
+        $scope.pickedsongsUSUK = $scope.songsUSUK[0]
+        $scope.pickedsongsAS = $scope.songsAS[0]
+    }, function (err) {
+        alert('Failed to get songs!')
+    })
+    $scope.picksongsAS = function (s, name) {
+        if (name == 'vn') {
+            $scope.pickedsongsVN = s
+        } else if (name == 'usuk'){
+            $scope.pickedsongsUSUK = s
+        } else {
+            $scope.pickedsongsAS = s
+        }
+    }
+
     //Lấy 10 bài hát random
     $http({
         method: 'get',

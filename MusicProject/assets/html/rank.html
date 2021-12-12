@@ -26,7 +26,7 @@
             <i class='bx bx-chevron-left'></i>
         </div>
         <span>{{firstTime | date : "dd/MM/yyyy"}} - {{lastTime | date : "dd/MM/yyyy"}}</span>
-        <div class="rank-time-next" ng-click="weekIncrease()" ng-class="{disable:numbetOfWeek == 53}">
+        <div class="rank-time-next" ng-click="weekIncrease()" ng-class="{disable:numbetOfWeek == limitupofWeek}">
             <i class='bx bx-chevron-right'></i>
         </div>
     </div>
@@ -50,7 +50,7 @@
             <div class="rank-detail">
                 <div class="rank-detail-item">
                     <div class="rank-number" style="color: #FFC40E;">{{songBXHTop1.RankDetail.RankCurrent}}</div>
-                    <div class="rank-title">Tuần trước</div>
+                    <div class="rank-title">Trong tuần</div>
                 </div>
                 <div class="rank-detail-item">
                     <div class="rank-number" style="color: #2DAAED;">{{songBXHTop1.RankDetail.MaxACount[0].Max}}</div>
@@ -86,7 +86,7 @@
                                 <div class="song__info">
                                     <div class="song__name">
                                         <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                        <div class="song_vip_horizontal" ng-show={{s.Song.isVip}}>VIP</div>
+                                        <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
                                     </div>
                                     <div class="song__artist">
                                         <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
@@ -131,7 +131,7 @@
                                         <i class='bx bxs-playlist'></i>
                                         <span>Thêm vào playlist</span>
                                     </div>
-                                    <div class="feature__item">
+                                    <div class="feature__item" ng-click="getSongforAdd(s)">
                                         <i class='bx bx-add-to-queue'></i>
                                         <span>Thêm vào chờ phát</span>
                                     </div>
@@ -152,7 +152,7 @@
                             <div class="rank-detail" style="border: none; padding-top: 4px; margin: 2px 16px 10px">
                                 <div class="rank-detail-item">
                                     <div class="rank-number" style="color: #FFC40E;">{{s.RankDetail.RankCurrent}}</div>
-                                    <div class="rank-title">Tuần trước</div>
+                                    <div class="rank-title">Trong tuần</div>
                                 </div>
                                 <div class="rank-detail-item">
                                     <div class="rank-number" style="color: #2DAAED;">{{s.RankDetail.MaxACount[0].Max}}</div>

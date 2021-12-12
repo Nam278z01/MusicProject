@@ -319,26 +319,10 @@
                 <div class="row sm-gutter">
                     <div class="col l-4">
                         <div class="rank-main__item">
-                            <img src="./assets/img/Default/bg_top_vn.jpg" alt="">
+                            <img src="../../assets/img/Default/bg_top_vn.jpg" alt="top 100 VN">
                             <div class="rank-main__name">Việt Nam</div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1635399302001_300.jpg" alt="">
-                                <div class="rank-main__song-play ratioIn">
-                                    <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                        <i class='bx bxs-right-arrow'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                                <div class="rank-main__song-play ratioIn">
-                                    <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                        <i class='bx bxs-right-arrow'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
+                            <div class="rank-main__song" ng-repeat="s in songsVN" ng-click="picksongsAS(s, 'vn')" ng-mouseover="picksongsAS(s, 'vn')">
+                                <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}">
                                 <div class="rank-main__song-play ratioIn">
                                     <button class="btn btn-outline btn--circle btn-listen" title="nghe">
                                         <i class='bx bxs-right-arrow'></i>
@@ -346,42 +330,25 @@
                                 </div>
                             </div>
                             <div class="rank-main__pick-info">
-                                <div class="rank-main__pick-info-name">
-                                    Ái nộ
-                                </div>
-                                <div class="rank-main__pick-info-artist">
-                                    <span>masew</span>,
-                                    <span>Khôi Vũ</span>
+                                <a href="#!/chi-tiet/bai-hat?song={{pickedsongsVN.Song.SongID}}" class="rank-main__pick-info-name">
+                                    {{pickedsongsVN.Song.SongName}}
+                                </a>
+                                <div class="song__artist">
+                                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in pickedsongsVN.Artists">{{a.ArtistName}}</a>
                                 </div>
                             </div>
-                            <button class="btn btn--primary btn-outline rank-main__btn-view-all">
+                            <a href="#!/bang-xep-hang?n=vn" class="btn btn--primary btn-outline rank-main__btn-view-all">
                                 Xem tất cả
-                            </button>
-                            <div class="rank-main__order-number">#1</div>
+                            </a>
+                            <div class="rank-main__order-number">#{{pickedsongsVN.RankDetail.RankCurrent}}</div>
                         </div>
                     </div>
                     <div class="col l-4">
                         <div class="rank-main__item">
-                            <img src="./assets/img/Default/bg_top_us.jpg" alt="">
+                            <img src="../../assets/img/Default/bg_top_us.jpg" alt="top 100 USUK">
                             <div class="rank-main__name">âu mỹ</div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1635399302001_300.jpg" alt="">
-                                <div class="rank-main__song-play ratioIn">
-                                    <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                        <i class='bx bxs-right-arrow'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                                <div class="rank-main__song-play ratioIn">
-                                    <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                        <i class='bx bxs-right-arrow'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
+                            <div class="rank-main__song" ng-repeat="s in songsUSUK" ng-click="picksongsAS(s, 'usuk')" ng-mouseover="picksongsAS(s, 'usuk')">
+                                <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}">
                                 <div class="rank-main__song-play ratioIn">
                                     <button class="btn btn-outline btn--circle btn-listen" title="nghe">
                                         <i class='bx bxs-right-arrow'></i>
@@ -389,42 +356,25 @@
                                 </div>
                             </div>
                             <div class="rank-main__pick-info">
-                                <div class="rank-main__pick-info-name">
-                                    Ái nộ
-                                </div>
-                                <div class="rank-main__pick-info-artist">
-                                    <span>masew</span>,
-                                    <span>Khôi Vũ</span>
+                                <a href="#!/chi-tiet/bai-hat?song={{pickedsongsUSUK.Song.SongID}}" class="rank-main__pick-info-name">
+                                    {{pickedsongsUSUK.Song.SongName}}
+                                </a>
+                                <div class="song__artist">
+                                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in pickedsongsUSUK.Artists">{{a.ArtistName}}</a>
                                 </div>
                             </div>
-                            <button class="btn btn--primary btn-outline rank-main__btn-view-all">
+                            <a href="#!/bang-xep-hang?n=usuk" class="btn btn--primary btn-outline rank-main__btn-view-all">
                                 Xem tất cả
-                            </button>
-                            <div class="rank-main__order-number">#1</div>
+                            </a>
+                            <div class="rank-main__order-number">#{{pickedsongsUSUK.RankDetail.RankCurrent}}</div>
                         </div>
                     </div>
                     <div class="col l-4">
                         <div class="rank-main__item">
-                            <img src="./assets/img/Default/bg_top_hq.jpg" alt="">
+                            <img src="./assets/img/Default/bg_top_hq.jpg" alt="top 100 AS">
                             <div class="rank-main__name">Châu Á</div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1635399302001_300.jpg" alt="">
-                                <div class="rank-main__song-play ratioIn">
-                                    <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                        <i class='bx bxs-right-arrow'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
-                                <div class="rank-main__song-play ratioIn">
-                                    <button class="btn btn-outline btn--circle btn-listen" title="nghe">
-                                        <i class='bx bxs-right-arrow'></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="rank-main__song">
-                                <img src="./assets/img/1631509112943_300.jpg" alt="">
+                            <div class="rank-main__song" ng-repeat="s in songsAS" ng-click="picksongsAS(s, 'as')" ng-mouseover="picksongsAS(s, 'as')">
+                                <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}">
                                 <div class="rank-main__song-play ratioIn">
                                     <button class="btn btn-outline btn--circle btn-listen" title="nghe">
                                         <i class='bx bxs-right-arrow'></i>
@@ -432,18 +382,17 @@
                                 </div>
                             </div>
                             <div class="rank-main__pick-info">
-                                <div class="rank-main__pick-info-name">
-                                    Ái nộ
-                                </div>
-                                <div class="rank-main__pick-info-artist">
-                                    <span>masew</span>,
-                                    <span>Khôi Vũ</span>
+                                <a href="#!/chi-tiet/bai-hat?song={{pickedsongsAS.Song.SongID}}" class="rank-main__pick-info-name">
+                                    {{pickedsongsAS.Song.SongName}}
+                                </a>
+                                <div class="song__artist">
+                                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in pickedsongsAS.Artists">{{a.ArtistName}}</a>
                                 </div>
                             </div>
-                            <button class="btn btn--primary btn-outline rank-main__btn-view-all">
+                            <a href="#!/bang-xep-hang?n=ca" class="btn btn--primary btn-outline rank-main__btn-view-all">
                                 Xem tất cả
-                            </button>
-                            <div class="rank-main__order-number">#1</div>
+                            </a>
+                            <div class="rank-main__order-number">#{{pickedsongsAS.RankDetail.RankCurrent}}</div>
                         </div>
                     </div>
                 </div>

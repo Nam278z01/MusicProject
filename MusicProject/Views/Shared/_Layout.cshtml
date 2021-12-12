@@ -208,7 +208,8 @@
             </div>
         </section>
 
-        <section class="play-music hidden" ng-controller="PlayMusicController">
+        <section class="play-music" ng-controller="PlayMusicController" ng-class="{hidden: config.hidden, playing: config.isPlayingMusic}">
+            <img src="../../assets/img/Song/{{songIsPlayed.Song.Image}}" alt="" class="bgImgMain"/>
             <div class="background">
                 <img src="../../assets/img/Default/background10.jpg" alt="">
                 <img src="../../assets/img/Default/background1.jpg" alt="">
@@ -228,16 +229,18 @@
                     </div>
                     <div class="media-content">
                         <div class="song__name">
-                            <a href="#">{{songIsPlayed.Song.SongName}}</a>
+                            <a href="#!/chi-tiet/bai-hat?song={{songIsPlayed.Song.SongID}}">{{songIsPlayed.Song.SongName}}</a>
+                            <div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>
                         </div>
                         <div class="song__artist">
-                            <a ng-repeat="a in songIsPlayed.Artists">{{a.ArtistName}}</a>
+                            <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songIsPlayed.Artists">{{a.ArtistName}}</a>
                         </div>
                     </div>
                     <div class="media-right">
                         <div class="song__like">
                             <button class="btn btn--circle btn-song-like">
-                                <i class='bx bx-heart'></i>
+                                <i class='bx bx-heart' ng-if="songIsPlayed.Liked == 0"></i>
+                                <i class='bx bxs-heart' ng-if="songIsPlayed.Liked == 1" style="color: var(--main-color)"></i>
                             </button>
                         </div>
                         <div class="song__more">
@@ -249,30 +252,32 @@
                 </div>
                 <div class="controls">
                     <div class="controls__player">
-                        <button class="btn btn--circle">
+                        <button class="btn btn--circle btn-random-music" ng-class="{active: config.isRandomMusic}">
                             <i class='bx bx-shuffle'></i>
                         </button>
-                        <button class="btn btn--circle">
+                        <button class="btn btn--circle btn-prev-music">
                             <i class='bx bx-skip-previous'></i>
                         </button>
-                        <button class="btn btn--circle btn-outline">
-                            <i class='bx bxs-right-arrow'></i>
-                            <!-- <i class='bx bx-pause'></i> -->
+                        <button class="btn btn--circle btn-outline btn-toggle-play">
+                            <i class='bx bxs-right-arrow' ng-hide="config.isPlayingMusic"></i>
+                            <i class='bx bx-pause' style="font-size: 4rem" ng-show="config.isPlayingMusic"></i>
                         </button>
-                        <button class="btn btn--circle">
+                        <button class="btn btn--circle btn-next-music">
                             <i class='bx bx-skip-next'></i>
                         </button>
-                        <button class="btn btn--circle">
-                            <i class='bx bx-transfer'></i>
+                        <button class="btn btn--circle btn-repeat-music" style="position: relative" ng-class="{active: config.isRepeatMusic > 0}">
+                            <i class='bx bx-repeat bx-rotate-180'></i>
+                            <span ng-show="config.isRepeatMusic == 1" style="position: absolute; left: 8px; padding: 0; top: 10px; font-size: 1.2rem; display: inline-block; background-color: var(--white-color);" >1</span>
                         </button>
                     </div>
                     <div class="controls_time">
-                        <span class="controls_time--right">00.00</span>
+                        <span class="controls_time--left">03.22</span>
                         <input id="progress" class="controls_time--range" value="0" type="range" step="1" min="0"
                                max="100">
-                        <audio autoplay id="audio" src="../../assets/mp3/{{songIsPlayed.Song.SongPath}}"
-                               style="display: none;"></audio>
-                        <span class="controls_time--left">03.22</span>
+                        <audio id="audio" src="../../assets/mp3/{{songIsPlayed.Song.SongPath}}"
+                               style="display: none;">
+                        </audio>
+                        <span class="controls_time--right">00.00</span>
                     </div>
                 </div>
                 <div class="controls-extend">
@@ -284,14 +289,300 @@
                         <i class='bx bx-exit-fullscreen' ng-show="open"></i>
                     </button>
                     <div class="volume">
-                        <button class="btn btn--circle">
-                            <i class='bx bx-volume-full'></i>
+                        <button class="btn btn--circle btn-switch-volume">
+                            <i class='bx bx-volume-full' ng-show="config.volume >= 50"></i>
+                            <i class='bx bx-volume-low' ng-show="config.volume < 50 && config.volume != 0"></i>
+                            <i class='bx bx-volume-mute' ng-show="config.volume == 0"></i>
                         </button>
-                        <input class="controls_volume" value="100" type="range" step="1" min="0" max="100">
+                        <input class="controls_volume" value="config.volume" type="range" step="1" min="0" max="100" ng-model="config.volume">
                     </div>
-                    <button class="btn btn--circle">
-                        <i class='bx bx-slider-alt'></i>
+                    <button class="btn btn--circle btn-show-queue">
+                        <i class='bx bxs-playlist'></i>
                     </button>
+                </div>
+            </div>
+
+            <div class="play-music__waiting-list">
+                <div class="player-queue__container">
+                    <div class="player-queue__header">
+                        <div class="player-queue__header-left">
+                            <button class="btn btn--primary player-tab-btn active">
+                                <span>Danh sách phát</span>
+                            </button>
+                            <button class="btn btn--primary player-tab-btn">
+                                <span>Nghe gần đây</span>
+                            </button>
+                        </div>
+                        <div class="player-queue__header-right">
+                            <button class="btn btn--circle">
+                                <i class='bx bx-stopwatch'></i>
+                            </button>
+                            <button class="btn btn--circle">
+                                <i class='bx bx-dots-horizontal-rounded'></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="player-queue__list">
+                        <div class="player-queue__list-queue">
+                            <div class="player-queue__list-title">
+                                Đang phát
+                            </div>
+                            <div class="list-song-queue" style="margin-bottom: 15px;">
+                                <div class="grid">
+                                    <div class="row sm-gutter">
+                                        <div class="col c-12">
+                                            <div class="song__wraper">
+                                                <div class="song top100 isPlayed">
+                                                    <div class="song__img" style="margin: 0 10px;">
+                                                        <img src="../../assets/img/song/{{songIsPlayed.Song.Image}}" alt="{{songIsPlayed.Song.SongName}}" />
+                                                    </div>
+                                                    <div class="song__info">
+                                                        <div class="song__name">
+                                                            <a href="#!/chi-tiet/bai-hat?song={{songIsPlayed.Song.SongID}}">{{songIsPlayed.Song.SongName}}</a>
+                                                            <div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>
+                                                        </div>
+                                                        <div class="song__artist">
+                                                            <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songIsPlayed.Artists">{{a.ArtistName}}</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="song__like">
+                                                        <button class="btn btn--circle btn-song-like">
+                                                            <i class='bx bx-heart' ng-if="songIsPlayed.Liked == 0"></i>
+                                                            <i class='bx bxs-heart' ng-if="songIsPlayed.Liked == 1" style="color: var(--main-color)"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="song__more">
+                                                        <button class="btn btn--circle btn-song-more">
+                                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="song__listens">
+                                                        <i class='bx bx-headphone'></i>
+                                                        <span ng-if="songIsPlayed.Views > 999">{{songIsPlayed.Views / 1000 | number:1}}k</span>
+                                                        <span ng-if="songIsPlayed.Views < 1000">{{songIsPlayed.Views}}</span>
+                                                    </div>
+                                                    <div class="feature__more">
+                                                        <div class="feature__item btn-add-song-playlist">
+                                                            <i class='bx bxs-playlist'></i>
+                                                            <span>Thêm vào playlist</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bx-add-to-queue'></i>
+                                                            <span>Thêm vào chờ phát</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bxs-download'></i>
+                                                            <span>Tải xuống</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bx-link-alt'></i>
+                                                            <span>Sao chép link</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bx-share-alt'></i>
+                                                            <span>Chia sẻ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="player-queue__list-queue" ng-if="songsofQueue.length > 1">
+                            <div class="player-queue__list-title">
+                                Danh sách chờ phát
+                            </div>
+                            <div class="list-song-queue" style="margin-bottom: 15px;">
+                                <div class="grid">
+                                    <div class="row sm-gutter">
+                                        <div class="col c-12" ng-repeat="s in songsofQueue track by $index">
+                                            <div class="song__wraper">
+                                                <div class="song top100" ng-class="{isPlayed: config.currentIndex == $index}">
+                                                    <div class="song__img" style="margin: 0 10px;">
+                                                        <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+                                                    </div>
+                                                    <div class="song__info">
+                                                        <div class="song__name">
+                                                            <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
+                                                            <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
+                                                        </div>
+                                                        <div class="song__artist">
+                                                            <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="song__like">
+                                                        <button class="btn btn--circle btn-song-like">
+                                                            <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                                            <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="song__more">
+                                                        <button class="btn btn--circle btn-song-more">
+                                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="song__listens">
+                                                        <i class='bx bx-headphone'></i>
+                                                        <span ng-if="s.Views > 999">{{s.Views / 1000 | number:1}}k</span>
+                                                        <span ng-if="s.Views < 1000">{{s.Views}}</span>
+                                                    </div>
+                                                    <div class="feature__more">
+                                                        <div class="feature__item btn-add-song-playlist">
+                                                            <i class='bx bxs-playlist'></i>
+                                                            <span>Thêm vào playlist</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bx-add-to-queue'></i>
+                                                            <span>Thêm vào chờ phát</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bxs-download'></i>
+                                                            <span>Tải xuống</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bx-link-alt'></i>
+                                                            <span>Sao chép link</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bx-share-alt'></i>
+                                                            <span>Chia sẻ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="player-queue__list-queue" ng-if="songsofListPlay.length > 0">
+                            <div class="player-queue__list-title">
+                                Danh sách bài hát gợi ý
+                            </div>
+                            <div class="list-song-queue" style="margin-bottom: 15px;">
+                                <div class="grid">
+                                    <div class="row sm-gutter">
+                                        <div class="col c-12" ng-repeat="s in songsofListPlay">
+                                            <div class="song__wraper">
+                                                <div class="song top100">
+                                                    <div class="song__img" style="margin: 0 10px;">
+                                                        <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+                                                    </div>
+                                                    <div class="song__info">
+                                                        <div class="song__name">
+                                                            <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
+                                                            <div class="song_vip_horizontal" ng-show=s.Song.isVip>VIP</div>
+                                                        </div>
+                                                        <div class="song__artist">
+                                                            <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="song__like">
+                                                        <button class="btn btn--circle btn-song-like">
+                                                            <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                                            <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="song__more">
+                                                        <button class="btn btn--circle btn-song-more">
+                                                            <i class='bx bx-dots-vertical-rounded'></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="song__listens">
+                                                        <i class='bx bx-headphone'></i>
+                                                        <span ng-if="s.Views > 999">{{s.Views / 1000 | number:1}}k</span>
+                                                        <span ng-if="s.Views < 1000">{{s.Views}}</span>
+                                                    </div>
+                                                    <div class="feature__more">
+                                                        <div class="feature__item btn-add-song-playlist">
+                                                            <i class='bx bxs-playlist'></i>
+                                                            <span>Thêm vào playlist</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bxs-download'></i>
+                                                            <span>Tải xuống</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bx-link-alt'></i>
+                                                            <span>Sao chép link</span>
+                                                        </div>
+                                                        <div class="feature__item">
+                                                            <i class='bx bx-share-alt'></i>
+                                                            <span>Chia sẻ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="player-queue__list" style="display: none">
+                            <div class="player-queue__list-queue">
+                                <div class="list-song-queue">
+                                    <div class="grid">
+                                        <div class="row sm-gutter">
+                                            <div class="col c-12" ng-repeat="s in songsofListened">
+                                                <div class="song__wraper">
+                                                    <div class="song top100">
+                                                        <div class="song__img" style="margin: 0 10px;">
+                                                            <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+                                                        </div>
+                                                        <div class="song__info">
+                                                            <div class="song__name">
+                                                                <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
+                                                                <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
+                                                            </div>
+                                                            <div class="song__artist">
+                                                                <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="song__like">
+                                                            <button class="btn btn--circle btn-song-like">
+                                                                <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                                                <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="song__more">
+                                                            <button class="btn btn--circle btn-song-more">
+                                                                <i class='bx bx-dots-vertical-rounded'></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="song__listens">
+                                                            <i class='bx bx-headphone'></i>
+                                                            <span ng-if="s.Views > 999">{{s.Views / 1000 | number:1}}k</span>
+                                                            <span ng-if="s.Views < 1000">{{s.Views}}</span>
+                                                        </div>
+                                                        <div class="feature__more">
+                                                            <div class="feature__item btn-add-song-playlist">
+                                                                <i class='bx bxs-playlist'></i>
+                                                                <span>Thêm vào playlist</span>
+                                                            </div>
+                                                            <div class="feature__item">
+                                                                <i class='bx bxs-download'></i>
+                                                                <span>Tải xuống</span>
+                                                            </div>
+                                                            <div class="feature__item">
+                                                                <i class='bx bx-link-alt'></i>
+                                                                <span>Sao chép link</span>
+                                                            </div>
+                                                            <div class="feature__item">
+                                                                <i class='bx bx-share-alt'></i>
+                                                                <span>Chia sẻ</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -348,7 +639,7 @@
                         </div>
                         <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <input type="email" class="auth-form__input" name="EmailLogin" placeholder="Email của bạn" ng-model="EmailLogin" 
+                                <input type="email" class="auth-form__input" name="EmailLogin" placeholder="Email của bạn" ng-model="EmailLogin"
                                        ng-class="{'warning': warningEmail}" ng-focus="warningEmail=false; isLoginSubmit=true" ng-blur="warningEmail=LoginForm.EmailLogin.$error.email" required>
                                 <p class="input-warning" ng-show="warningEmail">Email không hợp lệ!</p>
                             </div>

@@ -51,5 +51,9 @@ namespace MusicBus
         {
             return sdao.GetRankSongsofWeek(accountName, quantity, nation, week);
         }
+        public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week)
+        {
+            return sdao.Get3RankSongsofWeek(accountName, quantity, week);
+        }
     }
 }

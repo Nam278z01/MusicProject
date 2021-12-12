@@ -124,8 +124,6 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     // Thông tin user
     $rootScope.User = {}
     $rootScope.UserVip = false
-    //Bài hát đang chạy
-    $rootScope.songIsPlayed = {}
     //Kiểm tra đăng nhập chưa
     $rootScope.logged = false
     //Danh sách lấy playlist của tài khoản để thực hiện chức năng thêm song vào playlist
@@ -283,7 +281,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         }
     })
 
-    //Thêm playlist trên giao diện
+    //Thêm vào playlist trên giao diện
     let scrollTop2
     let modal2 = document.querySelector('#playlist')
     document.body.addEventListener('click', function (e) {
@@ -359,10 +357,5 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         }, function () {
             alert("Adding song to playlist failed!")
         })
-    }
-
-    //Test
-    $rootScope.testAlert = function (n) {
-        alert("hehe")
     }
 })

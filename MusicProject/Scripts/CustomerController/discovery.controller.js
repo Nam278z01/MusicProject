@@ -85,13 +85,6 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
             alert('Failed to get the songs!')
         })
     }
-
-    //Chơi nhạc nha
-    $scope.playMusic = function (song) {
-        $rootScope.songIsPlayed = song
-        //Hiện giao diện chơi nhạc nếu chưa hiện nha
-        document.querySelector('.play-music').classList.remove('hidden')
-    }
 })
 
 appMusic.controller('PlaylistDiscoveryController', function ($scope, $rootScope, $http, $location, $routeParams) {

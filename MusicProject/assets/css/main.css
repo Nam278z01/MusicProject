@@ -245,6 +245,8 @@
     overflow: hidden;
     position: absolute;
     top: 92px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    border: 1px solid var(--bg-color-blur2);
 }
 
     .rank-main__song:nth-child(3) {
@@ -480,9 +482,6 @@
     justify-content: space-between;
     padding: 0 20px;
     border-radius: 4px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
 }
 
 .top100-header__titler {

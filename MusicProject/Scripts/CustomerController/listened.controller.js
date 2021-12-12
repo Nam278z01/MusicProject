@@ -12,3 +12,4 @@ appMusic.controller('AlbumListenedController', function ($scope, $rootScope, $lo
     $rootScope.currentIndex = 7
     $rootScope.title = "Album đã nghe | My music"
 })
+

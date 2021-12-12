@@ -22,6 +22,44 @@
         $location.search('n', n)
     }
 
+    let numberofWk = getWeekNumber(new Date)
+    $scope.limitupofWeek = numberofWk[1]
+    $scope.numbetOfWeek = $routeParams.tuan || $scope.limitupofWeek - 1
+
+    let firstAlast = getFirstALastTime(numberofWk[0], $scope.numbetOfWeek)
+    $scope.firstTime = new Date(firstAlast[0])
+    $scope.lastTime = new Date(firstAlast[1])
+
+    //Tăng giảm thứ tự tuần
+    $scope.weekDecrease = function () {
+        if ($scope.numbetOfWeek > 1) {
+            $location.search("tuan", $scope.numbetOfWeek - 1)
+        }
+    }
+    $scope.weekIncrease = function () {
+        if ($scope.numbetOfWeek < $scope.limitupofWeek) {
+            $location.search("tuan", $scope.numbetOfWeek + 1)
+        }
+    }
+
+    //Lấy top Tuần
+    if (!$routeParams.k) {
+        getRankSongofWeek()
+    }
+
+    function getRankSongofWeek() {
+        $http({
+            method: 'get',
+            url: 'Rank/GetRankSongsofWeek',
+            params: { nation: $routeParams.n, week: $scope.numbetOfWeek }
+        }).then(function (res) {
+            $scope.songsBXHofWeek = JSON.parse(res.data)
+            $scope.songBXHTop1 = $scope.songsBXHofWeek[0]
+        }, function (err) {
+            alert('Failed to get songs!')
+        })
+    }
+
     function getWeekNumber(d) {
         // Copy date so don't modify original
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -36,56 +74,20 @@
         return [d.getUTCFullYear(), weekNo];
     }
 
-    let numberofWk = getWeekNumber(new Date)
+    function getFirstALastTime(year, week) {
+        // first date of year
+        let firstDateOfYear = new Date(year, 0, 1);
+        // get the day of first date in the year
+        let firstDayOfYear = firstDateOfYear.getDay();
 
-    $scope.numbetOfWeek = $routeParams.tuan || numberofWk[1] - 1
+        let timeofOneDay = 60 * 60 * 24 * 1000;
+        let timeofOneWeek = 60 * 60 * 24 * 7 * 1000;
+        // last day of the week, 6 days later
+        let timeof6Day = 60 * 60 * 24 * 6 * 1000;
 
-    // give the year and week
-    let year = numberofWk[0]
-    let week = $scope.numbetOfWeek
-
-    // first date of year
-    let firstDateOfYear = new Date(year, 0, 1);
-    // get the day of first date in the year
-    let firstDayOfYear = firstDateOfYear.getDay();
-
-    let timeofOneDay = 60 * 60 * 24 * 1000;
-    let timeofOneWeek = 60 * 60 * 24 * 7 * 1000;
-    // last day of the week, 6 days later
-    let timeof6Day = 60 * 60 * 24 * 6 * 1000;
-
-    // if week start from Monday
-    let timeOfFirstDay = firstDateOfYear.getTime() - (timeofOneDay * (firstDayOfYear - 1)) + timeofOneWeek * (week - 1);
-    let timeOfLastDay = timeOfFirstDay + timeof6Day;
-
-    $scope.firstTime = new Date(timeOfFirstDay)
-    $scope.lastTime = new Date(timeOfLastDay)
-
-    //Tăng giảm thứ tự tuần
-    $scope.weekDecrease = function () {
-        if ($scope.numbetOfWeek > 1) {
-            $location.search("tuan", $scope.numbetOfWeek - 1)
-        }
-    }
-    $scope.weekIncrease = function () {
-        if ($scope.numbetOfWeek < 53) {
-            $location.search("tuan", $scope.numbetOfWeek + 1)
-        }
-    }
-
-    //Lấy top Tuần
-    getRankSongofWeek()
-
-    function getRankSongofWeek() {
-        $http({
-            method: 'get',
-            url: 'Rank/GetRankSongsofWeek',
-            params: { nation: $routeParams.n, week: $scope.numbetOfWeek }
-        }).then(function (res) {
-            $scope.songsBXHofWeek = JSON.parse(res.data)
-            $scope.songBXHTop1 = $scope.songsBXHofWeek[0]
-        }, function (err) {
-            alert('Failed to get songs!')
-        })
+        // if week start from Monday
+        let timeOfFirstDay = firstDateOfYear.getTime() - (timeofOneDay * (firstDayOfYear - 1)) + timeofOneWeek * (week - 1);
+        let timeOfLastDay = timeOfFirstDay + timeof6Day;
+        return [timeOfFirstDay, timeOfLastDay]
     }
 })
