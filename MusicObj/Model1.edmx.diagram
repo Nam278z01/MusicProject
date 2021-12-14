@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="00b7d22fd06c433482dadd111c621b9c" Name="Diagram1">
+      <Diagram DiagramId="c42d2bbc90834330a64b792bebfdf90e" Name="Diagram1">
         <EntityTypeShape EntityType="MusicModel.AccountAdmin" Width="1.5" PointX="3.75" PointY="27.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicModel.AccountUser" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicModel.Admin" Width="1.5" PointX="1.5" PointY="27.875" IsExpanded="true" />
@@ -27,7 +27,6 @@
         <EntityTypeShape EntityType="MusicModel.Song" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicModel.SongLiked" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicModel.SongListened" Width="1.5" PointX="10.25" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MusicModel.sysdiagram" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicModel.User" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicModel.View" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
         <AssociationConnector Association="MusicModel.FK_AccountName_PlaylistAdmin" ManuallyRouted="false" />

@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Music]    Script Date: 12/8/2021 4:58:57 PM ******/
+/****** Object:  Database [Music]    Script Date: 12/13/2021 9:43:09 PM ******/
 CREATE DATABASE [Music]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,22 +80,22 @@ ALTER DATABASE [Music] SET QUERY_STORE = OFF
 GO
 USE [Music]
 GO
-/****** Object:  FullTextCatalog [album_search]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  FullTextCatalog [album_search]    Script Date: 12/13/2021 9:43:09 PM ******/
 CREATE FULLTEXT CATALOG [album_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  FullTextCatalog [artist_search]    Script Date: 12/8/2021 4:58:58 PM ******/
-CREATE FULLTEXT CATALOG [artist_search] WITH ACCENT_SENSITIVITY = ON
+/****** Object:  FullTextCatalog [artist_search]    Script Date: 12/13/2021 9:43:09 PM ******/
+CREATE FULLTEXT CATALOG [artist_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  FullTextCatalog [playlist_search]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  FullTextCatalog [playlist_search]    Script Date: 12/13/2021 9:43:09 PM ******/
 CREATE FULLTEXT CATALOG [playlist_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  FullTextCatalog [playlistus_search]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  FullTextCatalog [playlistus_search]    Script Date: 12/13/2021 9:43:09 PM ******/
 CREATE FULLTEXT CATALOG [playlistus_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  FullTextCatalog [song_search]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  FullTextCatalog [song_search]    Script Date: 12/13/2021 9:43:09 PM ******/
 CREATE FULLTEXT CATALOG [song_search] WITH ACCENT_SENSITIVITY = OFF
 GO
-/****** Object:  Table [dbo].[AccountAdmin]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[AccountAdmin]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -106,7 +106,7 @@ CREATE TABLE [dbo].[AccountAdmin](
 	[Role] [tinyint] NOT NULL,
 	[State] [bit] NOT NULL,
 	[DateCreated] [datetime] NOT NULL,
-	[PersonID] [char](10) NOT NULL,
+	[PersonID] [varchar](50) NOT NULL,
 	[Image] [nvarchar](200) NOT NULL,
  CONSTRAINT [PK_AccountAdmin] PRIMARY KEY CLUSTERED 
 (
@@ -114,7 +114,7 @@ CREATE TABLE [dbo].[AccountAdmin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AccountUser]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[AccountUser]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,23 +125,22 @@ CREATE TABLE [dbo].[AccountUser](
 	[Role] [tinyint] NOT NULL,
 	[State] [bit] NOT NULL,
 	[DateCreated] [datetime] NOT NULL,
-	[KindofAccount] [tinyint] NOT NULL,
 	[DueOn] [datetime] NULL,
-	[PersonID] [char](10) NOT NULL,
-	[Image] [nvarchar](200) NOT NULL,
+	[PersonID] [varchar](50) NOT NULL,
+	[Image] [nvarchar](200) NOT NULL
  CONSTRAINT [PK_AccountUser] PRIMARY KEY CLUSTERED 
 (
 	[AccountName] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Admin]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[Admin]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Admin](
-	[PersonID] [char](10) NOT NULL,
+	[PersonID] [varchar](50) NOT NULL,
 	[PersonName] [nvarchar](50) NOT NULL,
 	[Gender] [tinyint] NOT NULL,
 	[Email] [nvarchar](100) NULL,
@@ -152,17 +151,17 @@ CREATE TABLE [dbo].[Admin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Album]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[Album]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Album](
-	[AlbumID] [char](10) NOT NULL,
+	[AlbumID] [varchar](50) NOT NULL,
 	[AlbumName] [nvarchar](50) NOT NULL,
 	[Description] [nvarchar](200) NULL,
 	[Image] [nvarchar](200) NOT NULL,
-	[ArtistID] [char](10) NOT NULL,
+	[ArtistID] [varchar](50) NOT NULL,
 	[ReleasedDate] [datetime] NOT NULL,
  CONSTRAINT [PK_Album] PRIMARY KEY CLUSTERED 
 (
@@ -170,14 +169,14 @@ CREATE TABLE [dbo].[Album](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AlbumLiked]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[AlbumLiked]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[AlbumLiked](
 	[AccountName] [char](30) NOT NULL,
-	[AlbumID] [char](10) NOT NULL,
+	[AlbumID] [varchar](50) NOT NULL,
 	[DateAdded] [datetime] NOT NULL,
  CONSTRAINT [PK_AlbumLiked] PRIMARY KEY CLUSTERED 
 (
@@ -186,14 +185,14 @@ CREATE TABLE [dbo].[AlbumLiked](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AlbumListened]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[AlbumListened]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[AlbumListened](
 	[AccountName] [char](30) NOT NULL,
-	[AlbumID] [char](10) NOT NULL,
+	[AlbumID] [varchar](50) NOT NULL,
 	[DateListened] [datetime] NOT NULL,
  CONSTRAINT [PK_AlbumListened] PRIMARY KEY CLUSTERED 
 (
@@ -202,13 +201,13 @@ CREATE TABLE [dbo].[AlbumListened](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Artist]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[Artist]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Artist](
-	[ArtistID] [char](10) NOT NULL,
+	[ArtistID] [varchar](50) NOT NULL,
 	[ArtistName] [nvarchar](50) NOT NULL,
 	[Description] [nvarchar](200) NULL,
 	[Image] [nvarchar](200) NOT NULL,
@@ -221,13 +220,13 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Collection]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[Collection]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Collection](
-	[CollectionID] [char](10) NOT NULL,
+	[CollectionID] [varchar](50) NOT NULL,
 	[CollectionName] [nvarchar](50) NOT NULL,
 	[KindofCollection] [tinyint] NOT NULL,
  CONSTRAINT [PK_Collection] PRIMARY KEY CLUSTERED 
@@ -236,7 +235,7 @@ CREATE TABLE [dbo].[Collection](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Comment]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[Comment]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -245,7 +244,7 @@ CREATE TABLE [dbo].[Comment](
 	[CommentID] [bigint] IDENTITY(1,1) NOT NULL,
 	[Content] [nvarchar](200) NOT NULL,
 	[Date] [datetime] NOT NULL,
-	[SongID] [char](10) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
 	[AccountName] [char](30) NOT NULL,
  CONSTRAINT [PK_Comment] PRIMARY KEY CLUSTERED 
 (
@@ -253,7 +252,7 @@ CREATE TABLE [dbo].[Comment](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PaymentHistory]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PaymentHistory]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -264,7 +263,7 @@ CREATE TABLE [dbo].[PaymentHistory](
 	[OnSale] [tinyint] NOT NULL,
 	[Total] [float] NULL,
 	[Note] [nvarchar](50) NULL,
-	[ServiceVipID] [char](10) NOT NULL,
+	[ServiceVipID] [varchar](50) NOT NULL,
 	[AccountName] [char](30) NOT NULL,
  CONSTRAINT [PK_PaymentHistory] PRIMARY KEY CLUSTERED 
 (
@@ -272,13 +271,13 @@ CREATE TABLE [dbo].[PaymentHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdmin]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdmin]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistAdmin](
-	[PlaylistID] [char](10) NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
 	[PlaylistName] [nvarchar](50) NOT NULL,
 	[Description] [nvarchar](200) NULL,
 	[DateCreated] [datetime] NOT NULL,
@@ -291,14 +290,14 @@ CREATE TABLE [dbo].[PlaylistAdmin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdmin_Collection]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdmin_Collection]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistAdmin_Collection](
-	[PlaylistID] [char](10) NOT NULL,
-	[CollectionID] [char](10) NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
+	[CollectionID] [varchar](50) NOT NULL,
  CONSTRAINT [PK_PlaylistAdmin_Collection] PRIMARY KEY CLUSTERED 
 (
 	[PlaylistID] ASC,
@@ -306,14 +305,14 @@ CREATE TABLE [dbo].[PlaylistAdmin_Collection](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdmin_Song]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdmin_Song]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistAdmin_Song](
-	[PlaylistID] [char](10) NOT NULL,
-	[SongID] [char](10) NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
 	[DateAdded] [datetime] NOT NULL,
  CONSTRAINT [PK_PlaylistAdmin_Song] PRIMARY KEY CLUSTERED 
 (
@@ -322,15 +321,15 @@ CREATE TABLE [dbo].[PlaylistAdmin_Song](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdminLiked]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdminLiked]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistAdminLiked](
 	[AccountName] [char](30) NOT NULL,
-	[PlaylistID] [char](10) NOT NULL,
-	[DateAdded] [datetime] NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
+	[DateLiked] [datetime] NOT NULL,
  CONSTRAINT [PK_PlaylistAdminLiked] PRIMARY KEY CLUSTERED 
 (
 	[AccountName] ASC,
@@ -338,14 +337,14 @@ CREATE TABLE [dbo].[PlaylistAdminLiked](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistAdminListened]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistAdminListened]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistAdminListened](
 	[AccountName] [char](30) NOT NULL,
-	[PlaylistID] [char](10) NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
 	[DateListened] [datetime] NOT NULL,
  CONSTRAINT [PK_PlaylistAdminListened] PRIMARY KEY CLUSTERED 
 (
@@ -354,13 +353,13 @@ CREATE TABLE [dbo].[PlaylistAdminListened](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistUser]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistUser]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistUser](
-	[PlaylistID] [char](10) NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
 	[PlaylistName] [nvarchar](50) NOT NULL,
 	[Description] [nvarchar](200) NULL,
 	[DateCreated] [datetime] NOT NULL,
@@ -373,14 +372,14 @@ CREATE TABLE [dbo].[PlaylistUser](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistUser_Song]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistUser_Song]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistUser_Song](
-	[PlaylistID] [char](10) NOT NULL,
-	[SongID] [char](10) NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
 	[DateAdded] [datetime] NOT NULL,
  CONSTRAINT [PK_PlaylistUser_Song] PRIMARY KEY CLUSTERED 
 (
@@ -389,14 +388,14 @@ CREATE TABLE [dbo].[PlaylistUser_Song](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistUserLiked]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistUserLiked]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistUserLiked](
 	[AccountName] [char](30) NOT NULL,
-	[PlaylistID] [char](10) NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
 	[DateLiked] [datetime] NOT NULL,
  CONSTRAINT [PK_PlaylistUserLiked] PRIMARY KEY CLUSTERED 
 (
@@ -405,14 +404,14 @@ CREATE TABLE [dbo].[PlaylistUserLiked](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PlaylistUserListened]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[PlaylistUserListened]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PlaylistUserListened](
 	[AccountName] [char](30) NOT NULL,
-	[PlaylistID] [char](10) NOT NULL,
+	[PlaylistID] [varchar](50) NOT NULL,
 	[DateListened] [datetime] NOT NULL,
  CONSTRAINT [PK_PlaylistUserListened] PRIMARY KEY CLUSTERED 
 (
@@ -421,13 +420,13 @@ CREATE TABLE [dbo].[PlaylistUserListened](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ServiceVip]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[ServiceVip]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ServiceVip](
-	[ServiceVipID] [char](10) NOT NULL,
+	[ServiceVipID] [varchar](50) NOT NULL,
 	[ServiceVipName] [nvarchar](50) NOT NULL,
 	[Price] [float] NOT NULL,
 	[Description] [nvarchar](200) NULL,
@@ -437,13 +436,13 @@ CREATE TABLE [dbo].[ServiceVip](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Song]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[Song]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Song](
-	[SongID] [char](10) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
 	[SongName] [nvarchar](50) NOT NULL,
 	[Lyric] [nvarchar](3000) NULL,
 	[ReleaseDate] [date] NOT NULL,
@@ -452,21 +451,21 @@ CREATE TABLE [dbo].[Song](
 	[SongPath] [nvarchar](200) NOT NULL,
 	[MV] [nvarchar](200) NULL,
 	[isVip] [bit] NOT NULL,
-	[AlbumID] [char](10) NULL,
+	[AlbumID] [varchar](50) NULL,
  CONSTRAINT [PK_Song] PRIMARY KEY CLUSTERED 
 (
 	[SongID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Song_Artist]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[Song_Artist]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Song_Artist](
-	[ArtistID] [char](10) NOT NULL,
-	[SongID] [char](10) NOT NULL,
+	[ArtistID] [varchar](50) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
  CONSTRAINT [PK_Song_Artist] PRIMARY KEY CLUSTERED 
 (
 	[ArtistID] ASC,
@@ -474,14 +473,14 @@ CREATE TABLE [dbo].[Song_Artist](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Song_Collection]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[Song_Collection]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Song_Collection](
-	[SongID] [char](10) NOT NULL,
-	[CollectionID] [char](10) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
+	[CollectionID] [varchar](50) NOT NULL,
  CONSTRAINT [PK_Song_Collection] PRIMARY KEY CLUSTERED 
 (
 	[SongID] ASC,
@@ -489,14 +488,14 @@ CREATE TABLE [dbo].[Song_Collection](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SongLiked]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[SongLiked]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[SongLiked](
 	[AccountName] [char](30) NOT NULL,
-	[SongID] [char](10) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
 	[DateLiked] [datetime] NOT NULL,
  CONSTRAINT [PK_SongLiked] PRIMARY KEY CLUSTERED 
 (
@@ -505,14 +504,14 @@ CREATE TABLE [dbo].[SongLiked](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SongListened]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[SongListened]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[SongListened](
 	[AccountName] [char](30) NOT NULL,
-	[SongID] [char](10) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
 	[DateListened] [datetime] NOT NULL,
  CONSTRAINT [PK_SongListened] PRIMARY KEY CLUSTERED 
 (
@@ -521,13 +520,13 @@ CREATE TABLE [dbo].[SongListened](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[User]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[User](
-	[PersonID] [char](10) NOT NULL,
+	[PersonID] [varchar](50) NOT NULL,
 	[PersonName] [nvarchar](50) NOT NULL,
 	[Gender] [tinyint] NOT NULL,
 	[Email] [nvarchar](100) NULL,
@@ -538,7 +537,7 @@ CREATE TABLE [dbo].[User](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[View]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  Table [dbo].[View]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -546,7 +545,7 @@ GO
 CREATE TABLE [dbo].[View](
 	[ViewID] [bigint] IDENTITY(1,1) NOT NULL,
 	[Views] [int] NOT NULL,
-	[SongID] [char](10) NOT NULL,
+	[SongID] [varchar](50) NOT NULL,
 	[Date] [date] NOT NULL,
  CONSTRAINT [PK_View] PRIMARY KEY CLUSTERED 
 (
@@ -554,21 +553,21 @@ CREATE TABLE [dbo].[View](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-INSERT [dbo].[AccountAdmin] ([AccountName], [Password], [Role], [State], [DateCreated], [PersonID], [Image]) VALUES (N'binhanvio@gmail.com ', N'0987654321          ', 2, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'P000000003', N'an.jpg')
+INSERT [dbo].[AccountAdmin] ([AccountName], [Password], [Role], [State], [DateCreated], [PersonID], [Image]) VALUES (N'binhanvio@gmail.com           ', N'0987654321          ', 2, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'P000000003', N'an.jpg')
 GO
-INSERT [dbo].[AccountAdmin] ([AccountName], [Password], [Role], [State], [DateCreated], [PersonID], [Image]) VALUES (N'nam278z01@gmail.com ', N'1234567890          ', 1, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'P000000001', N'nam.jpg')
+INSERT [dbo].[AccountAdmin] ([AccountName], [Password], [Role], [State], [DateCreated], [PersonID], [Image]) VALUES (N'nam278z01@gmail.com           ', N'1234567890          ', 1, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'P000000001', N'nam.jpg')
 GO
-INSERT [dbo].[AccountAdmin] ([AccountName], [Password], [Role], [State], [DateCreated], [PersonID], [Image]) VALUES (N'ntuyet44@gmail.com  ', N'1234567890          ', 1, 1, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'P000000002', N'tuyet.jpg')
+INSERT [dbo].[AccountAdmin] ([AccountName], [Password], [Role], [State], [DateCreated], [PersonID], [Image]) VALUES (N'ntuyet44@gmail.com            ', N'1234567890          ', 1, 1, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'P000000002', N'tuyet.jpg')
 GO
-INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'binhanvio@gmail.com ', N'0987654321          ', 2, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), 2, CAST(N'2022-11-21T00:00:00.000' AS DateTime), N'P000000003', N'an.jpg')
+INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'binhanvio@gmail.com           ', N'0987654321          ', 2, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), 2, CAST(N'2022-11-21T00:00:00.000' AS DateTime), N'P000000003', N'an.jpg')
 GO
-INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'nam278z01@gmail.com ', N'1234567890          ', 1, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), 1, NULL, N'P000000001', N'nam.jpg')
+INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'nam278z01@gmail.com           ', N'1234567890          ', 1, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), 1, NULL, N'P000000001', N'nam.jpg')
 GO
-INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'nam278z01v@gmail.com', N'1234567890          ', 1, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), 1, CAST(N'2022-11-21T00:00:00.000' AS DateTime), N'P000000002', N'nam.jpg')
+INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'nam278z01v@gmail.com          ', N'1234567890          ', 1, 1, CAST(N'2021-11-21T00:00:00.000' AS DateTime), 1, CAST(N'2022-11-21T00:00:00.000' AS DateTime), N'P000000002', N'nam.jpg')
 GO
-INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'ngiang44@gmail.com  ', N'1234567890          ', 1, 1, CAST(N'2021-03-12T00:00:00.000' AS DateTime), 1, CAST(N'2022-03-12T00:00:00.000' AS DateTime), N'P000000012', N'tuyet.jpg')
+INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'ngiang44@gmail.com            ', N'1234567890          ', 1, 1, CAST(N'2021-03-12T00:00:00.000' AS DateTime), 1, CAST(N'2022-03-12T00:00:00.000' AS DateTime), N'P000000012', N'tuyet.jpg')
 GO
-INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'ntuyet44@gmail.com  ', N'1234567890          ', 1, 1, CAST(N'2021-11-23T00:00:00.000' AS DateTime), 1, CAST(N'2022-11-23T00:00:00.000' AS DateTime), N'P000000004', N'tuyet.jpg')
+INSERT [dbo].[AccountUser] ([AccountName], [Password], [Role], [State], [DateCreated], [KindofAccount], [DueOn], [PersonID], [Image]) VALUES (N'ntuyet44@gmail.com            ', N'1234567890          ', 1, 1, CAST(N'2021-11-23T00:00:00.000' AS DateTime), 1, CAST(N'2022-11-23T00:00:00.000' AS DateTime), N'P000000004', N'tuyet.jpg')
 GO
 INSERT [dbo].[Admin] ([PersonID], [PersonName], [Gender], [Email], [Phone]) VALUES (N'P000000001', N'Nguyễn Thanh Nam', 1, N'nam278z01@gmail.com', N'0328731170     ')
 GO
@@ -596,17 +595,17 @@ INSERT [dbo].[Album] ([AlbumID], [AlbumName], [Description], [Image], [ArtistID]
 GO
 INSERT [dbo].[Album] ([AlbumID], [AlbumName], [Description], [Image], [ArtistID], [ReleasedDate]) VALUES (N'AB00000009', N'LiLac', N' Album phòng thu thứ 5 của IU sẽ có 11 bài, trong đó ca khúc chủ đề cùng tên album sẽ hứa hẹn mang đến nhiều điều đặc biệt.', N'albumiu.jpeg', N'AT00000018', CAST(N'2021-09-06T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[AlbumLiked] ([AccountName], [AlbumID], [DateAdded]) VALUES (N'nam278z01@gmail.com ', N'AB00000001', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
+INSERT [dbo].[AlbumLiked] ([AccountName], [AlbumID], [DateAdded]) VALUES (N'nam278z01@gmail.com           ', N'AB00000001', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[AlbumLiked] ([AccountName], [AlbumID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'AB00000007', CAST(N'2021-11-26T00:00:00.000' AS DateTime))
+INSERT [dbo].[AlbumLiked] ([AccountName], [AlbumID], [DateAdded]) VALUES (N'ntuyet44@gmail.com            ', N'AB00000007', CAST(N'2021-11-26T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[AlbumLiked] ([AccountName], [AlbumID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'AB00000008', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[AlbumLiked] ([AccountName], [AlbumID], [DateAdded]) VALUES (N'ntuyet44@gmail.com            ', N'AB00000008', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[AlbumLiked] ([AccountName], [AlbumID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'AB00000009', CAST(N'2021-02-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[AlbumLiked] ([AccountName], [AlbumID], [DateAdded]) VALUES (N'ntuyet44@gmail.com            ', N'AB00000009', CAST(N'2021-02-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[AlbumListened] ([AccountName], [AlbumID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'AB00000007', CAST(N'2021-01-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[AlbumListened] ([AccountName], [AlbumID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'AB00000007', CAST(N'2021-01-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[AlbumListened] ([AccountName], [AlbumID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'AB00000008', CAST(N'2021-03-23T00:00:00.000' AS DateTime))
+INSERT [dbo].[AlbumListened] ([AccountName], [AlbumID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'AB00000008', CAST(N'2021-03-23T00:00:00.000' AS DateTime))
 GO
 INSERT [dbo].[Artist] ([ArtistID], [ArtistName], [Description], [Image], [ImageBig], [Nation], [GenderorisBand]) VALUES (N'AT00000001', N'Adele', NULL, N'adele.jpg', N'adele-big.jpeg', 2, 0)
 GO
@@ -842,85 +841,93 @@ INSERT [dbo].[Collection] ([CollectionID], [CollectionName], [KindofCollection])
 GO
 INSERT [dbo].[Collection] ([CollectionID], [CollectionName], [KindofCollection]) VALUES (N'Col0000078', N'Pop Việt', 1)
 GO
-INSERT [dbo].[Comment] ([Content], [Date], [SongID], [AccountName]) VALUES (N'Replay 1000 lần', CAST(N'2021-03-23T00:00:00.000' AS DateTime), N'SG00000041', N'ntuyet44@gmail.com  ')
+SET IDENTITY_INSERT [dbo].[Comment] ON 
 GO
-INSERT [dbo].[Comment] ([Content], [Date], [SongID], [AccountName]) VALUES (N'Bài hát rất ý nghĩa', CAST(N'2021-09-23T00:00:00.000' AS DateTime), N'SG00000042', N'ntuyet44@gmail.com  ')
+INSERT [dbo].[Comment] ([CommentID], [Content], [Date], [SongID], [AccountName]) VALUES (1, N'Replay 1000 lần', CAST(N'2021-03-23T00:00:00.000' AS DateTime), N'SG00000041', N'ntuyet44@gmail.com            ')
 GO
-INSERT [dbo].[Comment] ([Content], [Date], [SongID], [AccountName]) VALUES (N'2021 rồi vẫn nghe lại bài này', CAST(N'2021-04-23T00:00:00.000' AS DateTime), N'SG00000050', N'ntuyet44@gmail.com  ')
+INSERT [dbo].[Comment] ([CommentID], [Content], [Date], [SongID], [AccountName]) VALUES (2, N'Bài hát rất ý nghĩa', CAST(N'2021-09-23T00:00:00.000' AS DateTime), N'SG00000042', N'ntuyet44@gmail.com            ')
 GO
-INSERT [dbo].[Comment] ([Content], [Date], [SongID], [AccountName]) VALUES (N'Tình cờ nghe và rồi thấy hay quá', CAST(N'2021-05-20T00:00:00.000' AS DateTime), N'SG00000044', N'ntuyet44@gmail.com  ')
+INSERT [dbo].[Comment] ([CommentID], [Content], [Date], [SongID], [AccountName]) VALUES (3, N'2021 rồi vẫn nghe lại bài này', CAST(N'2021-04-23T00:00:00.000' AS DateTime), N'SG00000050', N'ntuyet44@gmail.com            ')
 GO
-INSERT [dbo].[Comment] ([Content], [Date], [SongID], [AccountName]) VALUES (N'Hay quá trời', CAST(N'2021-09-12T00:00:00.000' AS DateTime), N'SG00000060', N'ngiang44@gmail.com  ')
+INSERT [dbo].[Comment] ([CommentID], [Content], [Date], [SongID], [AccountName]) VALUES (4, N'Tình cờ nghe và rồi thấy hay quá', CAST(N'2021-05-20T00:00:00.000' AS DateTime), N'SG00000044', N'ntuyet44@gmail.com            ')
 GO
-INSERT [dbo].[Comment] ([Content], [Date], [SongID], [AccountName]) VALUES (N'Siêu đỉnh ạ ', CAST(N'2021-07-12T00:00:00.000' AS DateTime), N'SG00000058', N'ngiang44@gmail.com  ')
+INSERT [dbo].[Comment] ([CommentID], [Content], [Date], [SongID], [AccountName]) VALUES (5, N'Hay quá trời', CAST(N'2021-09-12T00:00:00.000' AS DateTime), N'SG00000060', N'ngiang44@gmail.com            ')
 GO
-INSERT [dbo].[Comment] ([Content], [Date], [SongID], [AccountName]) VALUES (N'U là trời', CAST(N'2021-08-12T00:00:00.000' AS DateTime), N'SG00000020', N'ngiang44@gmail.com  ')
+INSERT [dbo].[Comment] ([CommentID], [Content], [Date], [SongID], [AccountName]) VALUES (6, N'Siêu đỉnh ạ ', CAST(N'2021-07-12T00:00:00.000' AS DateTime), N'SG00000058', N'ngiang44@gmail.com            ')
 GO
-INSERT [dbo].[PaymentHistory] ( [PaymentDate], [OnSale], [Total], [Note], [ServiceVipID], [AccountName]) VALUES ( CAST(N'2021-09-12T00:00:00.000' AS DateTime), 15, 120000, N'Tháng mới ưu đãi mới', N'SV00000007', N'ntuyet44@gmail.com  ')
+INSERT [dbo].[Comment] ([CommentID], [Content], [Date], [SongID], [AccountName]) VALUES (7, N'U là trời', CAST(N'2021-08-12T00:00:00.000' AS DateTime), N'SG00000020', N'ngiang44@gmail.com            ')
 GO
-INSERT [dbo].[PaymentHistory] ( [PaymentDate], [OnSale], [Total], [Note], [ServiceVipID], [AccountName]) VALUES ( CAST(N'2021-12-14T00:00:00.000' AS DateTime), 20, 80000, N'ưu đã có hạn', N'SV00000008', N'ntuyet44@gmail.com  ')
+SET IDENTITY_INSERT [dbo].[Comment] OFF
 GO
-INSERT [dbo].[PaymentHistory] ( [PaymentDate], [OnSale], [Total], [Note], [ServiceVipID], [AccountName]) VALUES (CAST(N'2021-05-15T00:00:00.000' AS DateTime), 50, 40000, N'ưu đãi có tài khoản vip', N'SV00000009', N'ntuyet44@gmail.com  ')
+SET IDENTITY_INSERT [dbo].[PaymentHistory] ON 
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000001', N'Nhạc trẻ gây nghiện', N'Những giai điệu nghe một lần là không thể quên của V-Pop                                                                                                                                                ', CAST(N'2021-05-11T00:00:00.000' AS DateTime), N'nhactregaynghien.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PaymentHistory] ([PaymentID], [PaymentDate], [OnSale], [Total], [Note], [ServiceVipID], [AccountName]) VALUES (1, CAST(N'2021-09-12T00:00:00.000' AS DateTime), 15, 120000, N'Tháng mới ưu đãi mới', N'SV00000007', N'ntuyet44@gmail.com            ')
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000002', N'Nhạc trẻ Remix thất tình', N'Những bài hát đầy tâm trạng, thất tình được remix lại với phong cách mới                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nhactreremixthattinh.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PaymentHistory] ([PaymentID], [PaymentDate], [OnSale], [Total], [Note], [ServiceVipID], [AccountName]) VALUES (2, CAST(N'2021-12-14T00:00:00.000' AS DateTime), 20, 80000, N'ưu đã có hạn', N'SV00000008', N'ntuyet44@gmail.com            ')
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000003', N'Những chuyến di dài', N'Playlist này đặc biệt dành cho những người đam mê chu du khắp mọi miền đất nước hay còn gọi là đi phượt.                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nhungchuyendidai.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PaymentHistory] ([PaymentID], [PaymentDate], [OnSale], [Total], [Note], [ServiceVipID], [AccountName]) VALUES (3, CAST(N'2021-05-15T00:00:00.000' AS DateTime), 50, 40000, N'ưu đãi có tài khoản vip', N'SV00000009', N'ntuyet44@gmail.com            ')
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000004', N'Bạn thân ơi mình đi thôi', NULL, CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'ban-than-oi-minh-di-thoi.jpg', N'nam278z01@gmail.com ', 1)
+SET IDENTITY_INSERT [dbo].[PaymentHistory] OFF
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000005', N'Song ca Âu Mỹ bất hủ', N'Những màn song ca sống mãi với thời gian                                                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'songcaaumy.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000001', N'Nhạc trẻ gây nghiện', N'Những giai điệu nghe một lần là không thể quên của V-Pop                                                                                                                                                ', CAST(N'2021-05-11T00:00:00.000' AS DateTime), N'nhactregaynghien.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000006', N'Đỉnh cao Hip Hop', N'Tôn vinh những flow rap đỉnh nhất trong văn hóa Hip-Hop                                                                                                                                                 ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'dinhcaohiphop.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000002', N'Nhạc trẻ Remix thất tình', N'Những bài hát đầy tâm trạng, thất tình được remix lại với phong cách mới                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nhactreremixthattinh.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000007', N'Đỉnh cao Rock', N'Những cái tên hàng đầu giữ cho ngọn lửa Rock cháy mãi                                                                                                                                                   ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'dinhcaorock.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000003', N'Những chuyến di dài', N'Playlist này đặc biệt dành cho những người đam mê chu du khắp mọi miền đất nước hay còn gọi là đi phượt.                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nhungchuyendidai.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000008', N'Đỉnh cao R&B', N'Tôn vinh những siêu sao thống trị dòng nhạc R&B                                                                                                                                                         ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'dinhcaorb.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000004', N'Bạn thân ơi mình đi thôi', NULL, CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'ban-than-oi-minh-di-thoi.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000009', N'Đỉnh cao Pop', N'Ở đây có những ca khúc... Top Of The POP                                                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'dinhcaopop.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000005', N'Song ca Âu Mỹ bất hủ', N'Những màn song ca sống mãi với thời gian                                                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'songcaaumy.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000010', N'Nhẹ nhàng cùng V-Pop', N'Thả mình cùng những giai điệu V-Pop nhẹ nhàng                                                                                                                                                           ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nhenhangcungvpop.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000006', N'Đỉnh cao Hip Hop', N'Tôn vinh những flow rap đỉnh nhất trong văn hóa Hip-Hop                                                                                                                                                 ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'dinhcaohiphop.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000011', N'Nghe gì dễ ngủ', N'Kiến tạo giấc ngủ sâu và thoải mái nhất cho bạn cùng những bản nhạc                                                                                                                                     ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nghegidengu.jpg', N'nam278z01@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000007', N'Đỉnh cao Rock', N'Những cái tên hàng đầu giữ cho ngọn lửa Rock cháy mãi                                                                                                                                                   ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'dinhcaorock.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000012', N'Nhạc giáng sinh', N'Tết này buồn làm sao?                                                                                                                                                                                   ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'giangsinh.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000008', N'Đỉnh cao R&B', N'Tôn vinh những siêu sao thống trị dòng nhạc R&B                                                                                                                                                         ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'dinhcaorb.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000013', N'Việt Nam Ơi', N'Tự hào về đất nước :3                                                                                                                                                                                   ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'vietnam.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000009', N'Đỉnh cao Pop', N'Ở đây có những ca khúc... Top Of The POP                                                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'dinhcaopop.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000014', N'Căn phòng chỉ mình tôi', N'Cô đơn chỉ muốn một mình                                                                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'codon.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000010', N'Nhẹ nhàng cùng V-Pop', N'Thả mình cùng những giai điệu V-Pop nhẹ nhàng                                                                                                                                                           ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nhenhangcungvpop.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000015', N'Trái tim tan vỡ', N'Nắng tàn Mưa tan Tình ta cạn                                                                                                                                                                            ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'thattinh.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000011', N'Nghe gì dễ ngủ', N'Kiến tạo giấc ngủ sâu và thoải mái nhất cho bạn cùng những bản nhạc                                                                                                                                     ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nghegidengu.jpg', N'nam278z01@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000016', N'Hiện tượng mới', N'Bản hit nổi mới nhất                                                                                                                                                                                    ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'hientuong.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000012', N'Nhạc giáng sinh', N'Tết này buồn làm sao?                                                                                                                                                                                   ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'giangsinh.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000017', N'Piano', N'Nơi thể hiện trình độ âm nhạc đỉnh cao                                                                                                                                                                  ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'piano.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000013', N'Việt Nam Ơi', N'Tự hào về đất nước :3                                                                                                                                                                                   ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'vietnam.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000018', N'Âm nhạc không gian', N'Không gian riêng với âm nhạc                                                                                                                                                                            ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'khonggian.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000014', N'Căn phòng chỉ mình tôi', N'Cô đơn chỉ muốn một mình                                                                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'codon.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000019', N'Love You', N'Độc thân muốn có người yêu nghe ngay nào                                                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'yeu.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000015', N'Trái tim tan vỡ', N'Nắng tàn Mưa tan Tình ta cạn                                                                                                                                                                            ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'thattinh.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000020', N'Đêm hẹn hò', N'hẹn hò nên nghe gì?                                                                                                                                                                                     ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'henho.jpg', N'binhanvio@gmail.com ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000016', N'Hiện tượng mới', N'Bản hit nổi mới nhất                                                                                                                                                                                    ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'hientuong.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000021', N'Playlist này chill phết', N' Va vào những giai điệu chill khó cưỡng của V-Pop                                                                                                                                                       ', CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'playlistchill.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000017', N'Piano', N'Nơi thể hiện trình độ âm nhạc đỉnh cao                                                                                                                                                                  ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'piano.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000022', N'Tình Khúc', N'                                                                                                                                                                                                        ', CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'tinhkhuc.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000018', N'Âm nhạc không gian', N'Không gian riêng với âm nhạc                                                                                                                                                                            ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'khonggian.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000023', N'K-Candy', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'kcandy.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000019', N'Love You', N'Độc thân muốn có người yêu nghe ngay nào                                                                                                                                                                ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'yeu.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000024', N'Thính nhẹ thôi, liệu em có đổ', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'thathinh.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000020', N'Đêm hẹn hò', N'hẹn hò nên nghe gì?                                                                                                                                                                                     ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'henho.jpg', N'binhanvio@gmail.com           ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000025', N'Nơi ta chờ em ', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'noitachoem.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000021', N'Playlist này chill phết', N' Va vào những giai điệu chill khó cưỡng của V-Pop                                                                                                                                                       ', CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'playlistchill.jpg', N'ntuyet44@gmail.com            ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000026', N'Cà Phê Mùa Thu', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'cafemuathu.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000022', N'Tình Khúc', N'                                                                                                                                                                                                        ', CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'tinhkhuc.jpg', N'ntuyet44@gmail.com            ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000027', N'Đông Qua Em Có Nhớ', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'dongqua.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000023', N'K-Candy', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'kcandy.jpg', N'ntuyet44@gmail.com            ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000028', N'Nhạc Sôi Động Cho Ngày Mới', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'ngaymoi.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000024', N'Thính nhẹ thôi, liệu em có đổ', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'thathinh.jpg', N'ntuyet44@gmail.com            ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000029', N'Đi Cùng Năm Tháng', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'dicungnamthang.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000025', N'Nơi ta chờ em ', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'noitachoem.jpg', N'ntuyet44@gmail.com            ', 1)
 GO
-INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000030', N'Thanh Xuân Là Để Nhớ', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'thanhxuan.jpg', N'ntuyet44@gmail.com  ', 1)
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000026', N'Cà Phê Mùa Thu', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'cafemuathu.jpg', N'ntuyet44@gmail.com            ', 1)
+GO
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000027', N'Đông Qua Em Có Nhớ', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'dongqua.jpg', N'ntuyet44@gmail.com            ', 1)
+GO
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000028', N'Nhạc Sôi Động Cho Ngày Mới', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'ngaymoi.jpg', N'ntuyet44@gmail.com            ', 1)
+GO
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000029', N'Đi Cùng Năm Tháng', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'dicungnamthang.jpg', N'ntuyet44@gmail.com            ', 1)
+GO
+INSERT [dbo].[PlaylistAdmin] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [Image], [AccountName], [isPublic]) VALUES (N'PL00000030', N'Thanh Xuân Là Để Nhớ', NULL, CAST(N'2021-11-23T00:00:00.000' AS DateTime), N'thanhxuan.jpg', N'ntuyet44@gmail.com            ', 1)
 GO
 INSERT [dbo].[PlaylistAdmin_Collection] ([PlaylistID], [CollectionID]) VALUES (N'PL00000001', N'Col0000001')
 GO
@@ -1080,45 +1087,45 @@ INSERT [dbo].[PlaylistAdmin_Song] ([PlaylistID], [SongID], [DateAdded]) VALUES (
 GO
 INSERT [dbo].[PlaylistAdmin_Song] ([PlaylistID], [SongID], [DateAdded]) VALUES (N'PL00000030', N'SG00000052', CAST(N'2021-12-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateAdded]) VALUES (N'nam278z01@gmail.com ', N'PL00000001', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'nam278z01@gmail.com           ', N'PL00000001', CAST(N'2021-05-08T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000021', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000021', CAST(N'2021-06-11T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000025', CAST(N'2021-02-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000025', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000027', CAST(N'2021-06-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000027', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000028', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000028', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000029', CAST(N'2021-05-13T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000029', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateAdded]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000030', CAST(N'2021-03-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000030', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000022', CAST(N'2021-05-11T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000022', CAST(N'2021-05-11T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000023', CAST(N'2021-04-09T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000023', CAST(N'2021-04-09T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000024', CAST(N'2021-05-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000024', CAST(N'2021-05-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000025', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000025', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'PL00000030', CAST(N'2021-05-02T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistAdminListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'PL00000030', CAST(N'2021-05-02T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL00000001', N'Duyên', N'Những cái tên hàng đầu giữ cho ngọn lửa Rock cháy mãi                                                                                                                                                   ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nam278z01@gmail.com ', N'duyen.jpg', 0)
+INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL00000001', N'Duyên', N'Những cái tên hàng đầu giữ cho ngọn lửa Rock cháy mãi                                                                                                                                                   ', CAST(N'2021-11-21T00:00:00.000' AS DateTime), N'nam278z01@gmail.com           ', N'duyen.jpg', 0)
 GO
-INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000021 ', N'Nhạc Trung', N'Trước giờ đi ngủ                                                                                                                                                                                        ', CAST(N'2021-02-12T00:00:00.000' AS DateTime), N'ntuyet44@gmail.com  ', N'nhactrung.jpg', 0)
+INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000021 ', N'Nhạc Trung', N'Trước giờ đi ngủ                                                                                                                                                                                        ', CAST(N'2021-02-12T00:00:00.000' AS DateTime), N'ntuyet44@gmail.com            ', N'nhactrung.jpg', 0)
 GO
-INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000022 ', N'Nhạc hot', N'Nghe theo giờ                                                                                                                                                                                           ', CAST(N'2021-02-12T00:00:00.000' AS DateTime), N'ngiang44@gmail.com  ', N'nhachot.jpg', 1)
+INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000022 ', N'Nhạc hot', N'Nghe theo giờ                                                                                                                                                                                           ', CAST(N'2021-02-12T00:00:00.000' AS DateTime), N'ngiang44@gmail.com            ', N'nhachot.jpg', 1)
 GO
-INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000023 ', N'Nhac tiktok', N'Bắt trọn trend                                                                                                                                                                                          ', CAST(N'2021-03-12T00:00:00.000' AS DateTime), N'ngiang44@gmail.com  ', N'nhactiktok.jpg', 1)
+INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000023 ', N'Nhac tiktok', N'Bắt trọn trend                                                                                                                                                                                          ', CAST(N'2021-03-12T00:00:00.000' AS DateTime), N'ngiang44@gmail.com            ', N'nhactiktok.jpg', 1)
 GO
-INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000024 ', N'OST Doctor', N'Xem phim không chỉ vì nội dung mà còn vì diễn viên                                                                                                                                                      ', CAST(N'2021-03-11T00:00:00.000' AS DateTime), N'ntuyet44@gmail.com  ', N'doctor.jpg', 0)
+INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000024 ', N'OST Doctor', N'Xem phim không chỉ vì nội dung mà còn vì diễn viên                                                                                                                                                      ', CAST(N'2021-03-11T00:00:00.000' AS DateTime), N'ntuyet44@gmail.com            ', N'doctor.jpg', 0)
 GO
-INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000025 ', N'OST Thương ngày nắng về ', N'Phim siêu hay                                                                                                                                                                                           ', CAST(N'2021-04-01T00:00:00.000' AS DateTime), N'ntuyet44@gmail.com  ', N'nangve.jpg', 1)
+INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000025 ', N'OST Thương ngày nắng về ', N'Phim siêu hay                                                                                                                                                                                           ', CAST(N'2021-04-01T00:00:00.000' AS DateTime), N'ntuyet44@gmail.com            ', N'nangve.jpg', 1)
 GO
-INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000026 ', N'Nhạc tiktok Viet Nam', N'Xu hướng luôn thay đổi                                                                                                                                                                                  ', CAST(N'2021-03-12T00:00:00.000' AS DateTime), N'ngiang44@gmail.com  ', N'tiktokviet.jpg', 0)
+INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000026 ', N'Nhạc tiktok Viet Nam', N'Xu hướng luôn thay đổi                                                                                                                                                                                  ', CAST(N'2021-03-12T00:00:00.000' AS DateTime), N'ngiang44@gmail.com            ', N'tiktokviet.jpg', 0)
 GO
-INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000027 ', N'Nhạc buổi sáng', N'Ngày mới vui vẻ                                                                                                                                                                                         ', CAST(N'2021-03-12T00:00:00.000' AS DateTime), N'ntuyet44@gmail.com  ', N'binhminh.jpg', 1)
+INSERT [dbo].[PlaylistUser] ([PlaylistID], [PlaylistName], [Description], [DateCreated], [AccountName], [Image], [isPublic]) VALUES (N'PL0000027 ', N'Nhạc buổi sáng', N'Ngày mới vui vẻ                                                                                                                                                                                         ', CAST(N'2021-03-12T00:00:00.000' AS DateTime), N'ntuyet44@gmail.com            ', N'binhminh.jpg', 1)
 GO
 INSERT [dbo].[PlaylistUser_Song] ([PlaylistID], [SongID], [DateAdded]) VALUES (N'PL00000001', N'SG00000001', CAST(N'2021-12-01T15:26:08.323' AS DateTime))
 GO
@@ -1186,27 +1193,27 @@ INSERT [dbo].[PlaylistUser_Song] ([PlaylistID], [SongID], [DateAdded]) VALUES (N
 GO
 INSERT [dbo].[PlaylistUser_Song] ([PlaylistID], [SongID], [DateAdded]) VALUES (N'PL0000027 ', N'SG00000056', CAST(N'2021-03-11T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ngiang44@gmail.com  ', N'PL0000024 ', CAST(N'2021-05-08T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ngiang44@gmail.com            ', N'PL0000024 ', CAST(N'2021-05-08T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ngiang44@gmail.com  ', N'PL0000027 ', CAST(N'2021-06-11T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ngiang44@gmail.com            ', N'PL0000027 ', CAST(N'2021-06-11T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'PL0000021 ', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL0000021 ', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'PL0000022 ', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL0000022 ', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'PL0000023 ', CAST(N'2021-07-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserLiked] ([AccountName], [PlaylistID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'PL0000023 ', CAST(N'2021-07-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ngiang44@gmail.com  ', N'PL0000023 ', CAST(N'2021-12-14T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ngiang44@gmail.com            ', N'PL0000023 ', CAST(N'2021-12-14T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ngiang44@gmail.com  ', N'PL0000024 ', CAST(N'2021-07-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ngiang44@gmail.com            ', N'PL0000024 ', CAST(N'2021-07-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ngiang44@gmail.com  ', N'PL0000026 ', CAST(N'2021-12-16T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ngiang44@gmail.com            ', N'PL0000026 ', CAST(N'2021-12-16T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'PL0000023 ', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'PL0000023 ', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'PL0000024 ', CAST(N'2021-12-28T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'PL0000024 ', CAST(N'2021-12-28T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'PL0000027 ', CAST(N'2021-12-29T00:00:00.000' AS DateTime))
+INSERT [dbo].[PlaylistUserListened] ([AccountName], [PlaylistID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'PL0000027 ', CAST(N'2021-12-29T00:00:00.000' AS DateTime))
 GO
 INSERT [dbo].[ServiceVip] ([ServiceVipID], [ServiceVipName], [Price], [Description]) VALUES (N'SV00000007', N'Nghe nhạc US-UC', 1200000, N'Chất lượng hàng đầu')
 GO
@@ -1905,47 +1912,47 @@ INSERT [dbo].[Song_Collection] ([SongID], [CollectionID]) VALUES (N'SG00000059',
 GO
 INSERT [dbo].[Song_Collection] ([SongID], [CollectionID]) VALUES (N'SG00000060', N'Col0000073')
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'nam278z01@gmail.com ', N'SG00000001', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'nam278z01@gmail.com           ', N'SG00000001', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000041', CAST(N'2021-12-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000041', CAST(N'2021-12-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000043', CAST(N'2021-01-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000043', CAST(N'2021-01-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000045', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000045', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000051', CAST(N'2021-11-27T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000051', CAST(N'2021-11-27T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000052', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000052', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000053', CAST(N'2021-11-25T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000053', CAST(N'2021-11-25T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000055', CAST(N'2021-03-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000055', CAST(N'2021-03-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000056', CAST(N'2021-11-17T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000056', CAST(N'2021-11-17T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000057', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000057', CAST(N'2021-11-23T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000058', CAST(N'2021-10-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000058', CAST(N'2021-10-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000060', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongLiked] ([AccountName], [SongID], [DateLiked]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000060', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ngiang44@gmail.com  ', N'SG00000044', CAST(N'2021-06-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ngiang44@gmail.com            ', N'SG00000044', CAST(N'2021-06-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ngiang44@gmail.com  ', N'SG00000046', CAST(N'2021-12-27T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ngiang44@gmail.com            ', N'SG00000046', CAST(N'2021-12-27T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ngiang44@gmail.com  ', N'SG00000049', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ngiang44@gmail.com            ', N'SG00000049', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ngiang44@gmail.com  ', N'SG00000057', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ngiang44@gmail.com            ', N'SG00000057', CAST(N'2021-09-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000046', CAST(N'2021-12-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000046', CAST(N'2021-12-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000048', CAST(N'2021-03-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000048', CAST(N'2021-03-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000053', CAST(N'2021-12-09T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000053', CAST(N'2021-12-09T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000058', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000058', CAST(N'2021-04-12T00:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com  ', N'SG00000060', CAST(N'2021-12-12T00:00:00.000' AS DateTime))
+INSERT [dbo].[SongListened] ([AccountName], [SongID], [DateListened]) VALUES (N'ntuyet44@gmail.com            ', N'SG00000060', CAST(N'2021-12-12T00:00:00.000' AS DateTime))
 GO
 INSERT [dbo].[User] ([PersonID], [PersonName], [Gender], [Email], [Phone]) VALUES (N'P000000001', N'Nguyễn Nam', 1, N'nam278z01@gmail.com', N'0328731170     ')
 GO
@@ -1993,6 +2000,20 @@ INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (14, 34570, N'S
 GO
 INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (15, 6570, N'SG00000020', CAST(N'2021-11-22' AS Date))
 GO
+INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (17, 1234, N'SG00000001', CAST(N'2021-11-29' AS Date))
+GO
+INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (19, 5464, N'SG00000041', CAST(N'2021-11-29' AS Date))
+GO
+INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (20, 1245, N'SG00000043', CAST(N'2021-11-29' AS Date))
+GO
+INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (22, 6783, N'SG00000020', CAST(N'2021-11-29' AS Date))
+GO
+INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (23, 3245, N'SG00000044', CAST(N'2021-11-29' AS Date))
+GO
+INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (24, 4233, N'SG00000044', CAST(N'2021-11-28' AS Date))
+GO
+INSERT [dbo].[View] ([ViewID], [Views], [SongID], [Date]) VALUES (26, 1234, N'SG00000058', CAST(N'2021-11-29' AS Date))
+GO
 SET IDENTITY_INSERT [dbo].[View] OFF
 GO
 ALTER TABLE [dbo].[AccountAdmin]  WITH CHECK ADD  CONSTRAINT [FK_PersonID_AccountAdmin] FOREIGN KEY([PersonID])
@@ -2032,27 +2053,6 @@ REFERENCES [dbo].[Album] ([AlbumID])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[AlbumListened] CHECK CONSTRAINT [FK_AlbumID_AlbumListened]
-GO
-ALTER TABLE [dbo].[Comment]  WITH CHECK ADD  CONSTRAINT [FK_AccountName_Comment] FOREIGN KEY([AccountName])
-REFERENCES [dbo].[AccountUser] ([AccountName])
-GO
-ALTER TABLE [dbo].[Comment] CHECK CONSTRAINT [FK_AccountName_Comment]
-GO
-ALTER TABLE [dbo].[Comment]  WITH CHECK ADD  CONSTRAINT [FK_SongID_Comment] FOREIGN KEY([SongID])
-REFERENCES [dbo].[Song] ([SongID])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[Comment] CHECK CONSTRAINT [FK_SongID_Comment]
-GO
-ALTER TABLE [dbo].[PaymentHistory]  WITH CHECK ADD  CONSTRAINT [FK_AccountName_PaymentHistory] FOREIGN KEY([AccountName])
-REFERENCES [dbo].[AccountUser] ([AccountName])
-GO
-ALTER TABLE [dbo].[PaymentHistory] CHECK CONSTRAINT [FK_AccountName_PaymentHistory]
-GO
-ALTER TABLE [dbo].[PaymentHistory]  WITH CHECK ADD  CONSTRAINT [FK_ServiceVipID_PaymentHistory] FOREIGN KEY([ServiceVipID])
-REFERENCES [dbo].[ServiceVip] ([ServiceVipID])
-GO
-ALTER TABLE [dbo].[PaymentHistory] CHECK CONSTRAINT [FK_ServiceVipID_PaymentHistory]
 GO
 ALTER TABLE [dbo].[PlaylistAdmin]  WITH CHECK ADD  CONSTRAINT [FK_AccountName_PlaylistAdmin] FOREIGN KEY([AccountName])
 REFERENCES [dbo].[AccountAdmin] ([AccountName])
@@ -2200,7 +2200,7 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[View] CHECK CONSTRAINT [FK__SongID_View]
 GO
-/****** Object:  StoredProcedure [dbo].[AddSong]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[AddSong]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2237,7 +2237,7 @@ BEGIN
 		[AlbumID]
 	FROM OPENJSON(@jsonSong, '$.Song')
 	WITH (
-		[SongID] [char](10),
+		[SongID] [varchar](50),
 		[SongName] [nvarchar](50),
 		[Lyric] [nvarchar](max),
 		[ReleaseDate] [date],
@@ -2246,7 +2246,7 @@ BEGIN
 		[SongPath] [nvarchar](200),
 		[MV] [nvarchar](200),
 		[isVip] [bit],
-		[AlbumID] [char](10)
+		[AlbumID] [varchar](50)
 	)
 
 	INSERT INTO Song_Collection 
@@ -2275,7 +2275,7 @@ BEGIN
 	COMMIT TRAN;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Get10AlbumsRandom]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get10AlbumsRandom]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2306,7 +2306,7 @@ as
 		DROP TABLE #Results
 	end
 GO
-/****** Object:  StoredProcedure [dbo].[Get10PlaylistsNewest]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get10PlaylistsNewest]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2339,7 +2339,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[Get10PlaylistsRandom]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get10PlaylistsRandom]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2372,7 +2372,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[Get10PlaylistsRandomCollection]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get10PlaylistsRandomCollection]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2410,7 +2410,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[Get10SongsNewest]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get10SongsNewest]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2452,13 +2452,13 @@ ORDER BY s.ReleaseDate DESC
 for json path
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Get10SongsRandom]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get10SongsRandom]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[Get10SongsRandom](
-	@accountName char(20)
+	@accountName char(30)
 )
 as
 begin
@@ -2493,15 +2493,15 @@ group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation,
 for json path
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Get10SongsRandomCollection]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get10SongsRandomCollection]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[Get10SongsRandomCollection](
-	@accountName char(20),
-	@collectionID char(10),
-	@songID char(10)
+	@accountName char(30),
+	@collectionID varchar(50),
+	@songID varchar(50)
 )
 as
 begin
@@ -2539,7 +2539,139 @@ group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation,
 for json path
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetAlbumsByArtist]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[Get3RankSongsofWeek]    Script Date: 12/13/2021 9:43:09 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[Get3RankSongsofWeek](
+	@accountName char(30),
+	@quantity int,
+	@week int
+)
+as
+begin
+select s.SongID, s.Nation,
+	DATEPART ( ISO_WEEK, [Date] ) as [Week],
+    ROW_NUMBER() OVER (PARTITION BY s.Nation ORDER BY  sum(isnull([Views], 0)) DESC) as [Rank]
+into #Result
+from Song s inner join [View] v on v.SongID = s.SongID
+where year([Date]) = year(GetDate())
+group by s.SongID, DATEPART (ISO_WEEK, [Date]), s.Nation
+having DATEPART ( ISO_WEEK, [Date] ) = @week
+
+select *
+into #Result2
+from #Result
+where [Rank] between 1 and @quantity
+drop table #Result 
+
+select  s.SongID as 'Song.SongID',
+		s.SongName as 'Song.SongName',
+		s.Lyric as 'Song.Lyric',
+		s.ReleaseDate as 'Song.ReleaseDate',
+		s.Nation as 'Song.Nation',
+		s.[Image] as 'Song.Image',
+		s.SongPath as 'Song.SongPath',
+		s.MV as 'Song.MV',
+		s.isVip as 'Song.isVip',
+		case when sl.AccountName = @accountName then 1
+			 else 0
+		end as Liked,
+		sum(ISNULL([Views], 0)) as [Views],
+		(
+			SELECT a.ArtistID, a.ArtistName, a.[Image]
+			FROM (SELECT *
+				  FROM Song_Artist sa
+				  WHERE sa.SongID = s.SongID) as san
+				  inner join Artist a on san.ArtistID = a.ArtistID
+			for json path
+		) as Artists,
+		RT.[Week] as 'RankDetail.Week',
+		RT.[Rank] as 'RankDetail.RankCurrent'
+from (select *
+	  from #Result2 s
+	  where s.Nation = 1) as RT
+	  inner join Song s on RT.SongID = s.SongID
+	  left join SongLiked sl on s.SongID = sl.SongID
+	  left join [View] v on s.SongID = v.SongID
+group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation,
+		 s.[Image], s.SongPath, s.MV, s.isVip, s.AlbumID, sl.AccountName, RT.SongID, RT.[Week], RT.[Rank]
+order by RT.[Rank]
+for json path
+
+select  s.SongID as 'Song.SongID',
+		s.SongName as 'Song.SongName',
+		s.Lyric as 'Song.Lyric',
+		s.ReleaseDate as 'Song.ReleaseDate',
+		s.Nation as 'Song.Nation',
+		s.[Image] as 'Song.Image',
+		s.SongPath as 'Song.SongPath',
+		s.MV as 'Song.MV',
+		s.isVip as 'Song.isVip',
+		case when sl.AccountName = @accountName then 1
+			 else 0
+		end as Liked,
+		sum(ISNULL([Views], 0)) as [Views],
+		(
+			SELECT a.ArtistID, a.ArtistName, a.[Image]
+			FROM (SELECT *
+				  FROM Song_Artist sa
+				  WHERE sa.SongID = s.SongID) as san
+				  inner join Artist a on san.ArtistID = a.ArtistID
+			for json path
+		) as Artists,
+		RT.[Week] as 'RankDetail.Week',
+		RT.[Rank] as 'RankDetail.RankCurrent'
+from (select *
+	  from #Result2 s
+	  where s.Nation = 2) as RT
+	  inner join Song s on RT.SongID = s.SongID
+	  left join SongLiked sl on s.SongID = sl.SongID
+	  left join [View] v on s.SongID = v.SongID
+group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation,
+		 s.[Image], s.SongPath, s.MV, s.isVip, s.AlbumID, sl.AccountName, RT.SongID, RT.[Week], RT.[Rank]
+order by RT.[Rank]
+for json path
+
+select  s.SongID as 'Song.SongID',
+		s.SongName as 'Song.SongName',
+		s.Lyric as 'Song.Lyric',
+		s.ReleaseDate as 'Song.ReleaseDate',
+		s.Nation as 'Song.Nation',
+		s.[Image] as 'Song.Image',
+		s.SongPath as 'Song.SongPath',
+		s.MV as 'Song.MV',
+		s.isVip as 'Song.isVip',
+		case when sl.AccountName = @accountName then 1
+			 else 0
+		end as Liked,
+		sum(ISNULL([Views], 0)) as [Views],
+		(
+			SELECT a.ArtistID, a.ArtistName, a.[Image]
+			FROM (SELECT *
+				  FROM Song_Artist sa
+				  WHERE sa.SongID = s.SongID) as san
+				  inner join Artist a on san.ArtistID = a.ArtistID
+			for json path
+		) as Artists,
+		RT.[Week] as 'RankDetail.Week',
+		RT.[Rank] as 'RankDetail.RankCurrent'
+from (select *
+	  from #Result2 s
+	  where s.Nation = 3) as RT
+	  inner join Song s on RT.SongID = s.SongID
+	  left join SongLiked sl on s.SongID = sl.SongID
+	  left join [View] v on s.SongID = v.SongID
+group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation,
+		 s.[Image], s.SongPath, s.MV, s.isVip, s.AlbumID, sl.AccountName, RT.SongID, RT.[Week], RT.[Rank]
+order by RT.[Rank]
+for json path
+
+drop table #Result2 
+end
+GO
+/****** Object:  StoredProcedure [dbo].[GetAlbumsByArtist]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2547,8 +2679,8 @@ GO
 CREATE PROC [dbo].[GetAlbumsByArtist](
 	@pageIndex int,
 	@pageSize int,
-	@artistID nchar(10),
-	@accountName char(20)
+	@artistID varchar(50),
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -2582,7 +2714,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetAlbumsNewAHot]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetAlbumsNewAHot]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2591,7 +2723,7 @@ CREATE PROC [dbo].[GetAlbumsNewAHot](
 	@pageIndex int,
 	@pageSize int,
 	@time int,
-	@accountName char(20)
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -2633,7 +2765,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetAlbumsPage]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetAlbumsPage]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2642,7 +2774,7 @@ CREATE PROC [dbo].[GetAlbumsPage](
 	@pageIndex int,
 	@pageSize int,
 	@nation int,
-	@accountName char(20)
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -2676,7 +2808,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetAlbumsSearch]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetAlbumsSearch]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2685,7 +2817,7 @@ CREATE PROC [dbo].[GetAlbumsSearch](
 	@pageIndex int,
 	@pageSize int,
 	@textSearch nvarchar(100),
-	@accountName char(20)
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -2719,7 +2851,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetArtistsHot]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetArtistsHot]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2758,7 +2890,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetArtistsPage]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetArtistsPage]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2790,7 +2922,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetArtistsSearch]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetArtistsSearch]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2820,14 +2952,14 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistAdminwithSongs]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistAdminwithSongs]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[GetPlaylistAdminwithSongs](
-	@accountName char(20),
-	@playlistAdminID char(10)
+	@accountName char(30),
+	@playlistAdminID varchar(50)
 )
 as
 begin
@@ -2891,7 +3023,7 @@ group by pl.PlaylistID, pl.PlaylistName, pl.[Description], pl.DateCreated, pl.[I
 for json path, WITHOUT_ARRAY_WRAPPER
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistsByCollectionPage]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistsByCollectionPage]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2899,8 +3031,8 @@ GO
 CREATE PROC [dbo].[GetPlaylistsByCollectionPage](
 	@pageIndex int,
 	@pageSize int,
-	@collectionID char(10),
-	@accountName char(20)
+	@collectionID varchar(50),
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -2936,7 +3068,7 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistsByCollectionsPage]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistsByCollectionsPage]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2945,11 +3077,11 @@ GO
 CREATE PROC [dbo].[GetPlaylistsByCollectionsPage](
 	@pageIndex int,
 	@pageSize int,
-	@genre char(10),
-	@mood char(10),
-	@scene char(10),
-	@topic char(10),
-	@accountName char(20)
+	@genre varchar(50),
+	@mood varchar(50),
+	@scene varchar(50),
+	@topic varchar(50),
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -3141,7 +3273,7 @@ AS
 		end
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistsSearch]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistsSearch]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3150,7 +3282,7 @@ CREATE PROC [dbo].[GetPlaylistsSearch](
 	@pageIndex int,
 	@pageSize int,
 	@textSearch nvarchar(100),
-	@accountName char(20)
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -3232,7 +3364,7 @@ AS
 		end
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistsUser]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistsUser]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3240,7 +3372,7 @@ GO
 CREATE PROC [dbo].[GetPlaylistsUser](
 	@pageIndex int,
 	@pageSize int,
-	@accountName char(20)
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -3263,13 +3395,13 @@ AS
 		DROP TABLE #Results
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistsUserBySong]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistsUserBySong]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROC [dbo].[GetPlaylistsUserBySong](
-	@accountName char(20)
+	@accountName char(30)
 )
 AS
 	BEGIN
@@ -3286,14 +3418,14 @@ AS
 		FOR JSON PATH
 	END
 GO
-/****** Object:  StoredProcedure [dbo].[GetPlaylistUserwithSongs]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetPlaylistUserwithSongs]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[GetPlaylistUserwithSongs](
-	@accountName char(20),
-	@playlistUserID char(10)
+	@accountName char(30),
+	@playlistUserID varchar(50)
 )
 as
 begin
@@ -3351,14 +3483,91 @@ group by pl.PlaylistID, pl.PlaylistName, pl.[Description], pl.DateCreated, pl.[I
 for json path, WITHOUT_ARRAY_WRAPPER
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetSong]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetRankSongsofWeek]    Script Date: 12/13/2021 9:43:09 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[GetRankSongsofWeek](
+	@accountName char(30),
+	@quantity int,
+	@nation int,
+	@week int
+)
+as
+begin
+select s.SongID,
+	DATEPART ( ISO_WEEK, [Date] ) as [Week],
+    ROW_NUMBER() OVER (PARTITION BY DATEPART(ISO_WEEK, [Date]) ORDER BY  sum(isnull([Views], 0)) DESC) as [Rank]
+into #Result
+from Song s inner join [View] v on v.SongID = s.SongID
+where year([Date]) = year(GetDate()) and s.Nation = @nation
+group by s.SongID, DATEPART (ISO_WEEK, [Date])
+
+select *
+into #Result2
+from #Result
+where [Rank] between 1 and @quantity
+drop table #Result 
+
+select  s.SongID as 'Song.SongID',
+		s.SongName as 'Song.SongName',
+		s.Lyric as 'Song.Lyric',
+		s.ReleaseDate as 'Song.ReleaseDate',
+		s.Nation as 'Song.Nation',
+		s.[Image] as 'Song.Image',
+		s.SongPath as 'Song.SongPath',
+		s.MV as 'Song.MV',
+		s.isVip as 'Song.isVip',
+		case when sl.AccountName = @accountName then 1
+			 else 0
+		end as Liked,
+		sum(ISNULL([Views], 0)) as [Views],
+		(
+			SELECT a.ArtistID, a.ArtistName, a.[Image]
+			FROM (SELECT *
+				  FROM Song_Artist sa
+				  WHERE sa.SongID = s.SongID) as san
+				  inner join Artist a on san.ArtistID = a.ArtistID
+			for json path
+		) as Artists,
+		RT.[Week] as 'RankDetail.Week',
+		RT.[Rank] as 'RankDetail.RankCurrent',
+		(
+			SELECT min(s.[Rank]) as 'Max', count(s.SongID) as 'Count'
+			FROM #Result2 s
+			where s.SongID = RT.SongID
+			group by s.SongID
+			for json path
+		) as 'RankDetail.MaxACount',
+		(
+			SELECT s.[Rank]
+			FROM #Result2 s
+			where s.SongID = RT.SongID and [Week] = @week - 1
+			for json path
+		) as 'RankDetail.RankPrev'
+from  Song s
+	  left join SongLiked sl on s.SongID = sl.SongID
+	  left join [View] v on s.SongID = v.SongID
+	  inner join (select *
+				  from #Result2
+				  where [Week] = @week) as RT on RT.SongID = s.SongID
+group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation,
+		 s.[Image], s.SongPath, s.MV, s.isVip, s.AlbumID, sl.AccountName,RT.SongID, RT.[Week], RT.[Rank]
+order by RT.[Rank]
+for json path
+
+drop table #Result2 
+end
+GO
+/****** Object:  StoredProcedure [dbo].[GetSong]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[GetSong](
-	@accountName char(20),
-	@songID char(10)
+	@accountName char(30),
+	@songID varchar(50)
 )
 as
 begin
@@ -3405,7 +3614,7 @@ group by s.SongID, s.SongName, s.Lyric, s.ReleaseDate, s.Nation,
 for json path, WITHOUT_ARRAY_WRAPPER
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetSongsByArtistPage]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetSongsByArtistPage]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3413,8 +3622,8 @@ GO
 CREATE proc [dbo].[GetSongsByArtistPage] (
 	@pageIndex int,
 	@pageSize int,
-	@artistID char(10),
-	@accountName char(20)
+	@artistID varchar(50),
+	@accountName char(30)
 )
 as
 begin
@@ -3467,7 +3676,7 @@ begin
 	DROP TABLE #Results
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetSongsByCollectionPage]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetSongsByCollectionPage]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3475,9 +3684,9 @@ GO
 CREATE proc [dbo].[GetSongsByCollectionPage] (
 	@pageIndex int,
 	@pageSize int,
-	@collectionID char(10),
+	@collectionID varchar(50),
 	@nation int,
-	@accountName char(20)
+	@accountName char(30)
 )
 as
 begin
@@ -3532,7 +3741,7 @@ begin
 	DROP TABLE #Results
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetSongsNewAHot]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetSongsNewAHot]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3540,7 +3749,7 @@ GO
 CREATE proc [dbo].[GetSongsNewAHot] (
 	@pageIndex int,
 	@pageSize int,
-	@accountName char(20),
+	@accountName char(30),
 	@time int
 )
 as
@@ -3598,7 +3807,7 @@ begin
 	DROP TABLE #Results
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetSongsSearch]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetSongsSearch]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3607,7 +3816,7 @@ CREATE proc [dbo].[GetSongsSearch] (
 	@pageIndex int,
 	@pageSize int,
 	@textSearch nvarchar(100),
-	@accountName char(20)
+	@accountName char(30)
 )
 as
 begin
@@ -3656,14 +3865,14 @@ begin
 	DROP TABLE #Results
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetTop100Songs]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetTop100Songs]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[GetTop100Songs](
 	@accountName char(20),
-	@collectionID char(10),
+	@collectionID varchar(50),
 	@nation int
 )
 as
@@ -3700,13 +3909,13 @@ order by [Views] DESC
 for json path
 end
 GO
-/****** Object:  StoredProcedure [dbo].[GetUser]    Script Date: 12/8/2021 4:58:58 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetUser]    Script Date: 12/13/2021 9:43:09 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE proc [dbo].[GetUser](
-	@AccountName char(50),
+	@AccountName char(30),
 	@PassWord char(20))
 as
 	begin
