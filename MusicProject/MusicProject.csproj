@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MusicProject</RootNamespace>
     <AssemblyName>MusicProject</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,17 +59,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -109,6 +108,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -138,6 +138,7 @@
     <Compile Include="Controllers\RankController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\Top100Controller.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\base.css" />
+    <Content Include="assets\css\detail.css" />
     <Content Include="assets\css\grid.css" />
     <Content Include="assets\css\gridmusic.css" />
     <Content Include="assets\css\loadAmodal.css" />
@@ -153,7 +155,7 @@
     <Content Include="assets\css\playmusic.css" />
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\sidebar.css" />
-    <Content Include="assets\css\detail.css" />
+    <Content Include="assets\css\user.css" />
     <Content Include="assets\html\artist.html" />
     <Content Include="assets\html\A_discovery_album.html" />
     <Content Include="assets\html\A_discovery_artist.html" />
@@ -181,12 +183,16 @@
     <Content Include="assets\html\T_listened.html" />
     <Content Include="assets\html\T_myplaylist.html" />
     <Content Include="assets\html\T_user.html" />
+    <Content Include="assets\html\update_user.html" />
     <Content Include="assets\html\upgrade.html" />
     <Content Include="assets\img\album\30-adele.jpg" />
-    <Content Include="assets\img\album\EngSongOne.jpg" />
-    <Content Include="assets\img\album\EngSongThree.jpg" />
-    <Content Include="assets\img\album\EngSongTwo.jpg" />
+    <Content Include="assets\img\album\albumiu.jpeg" />
+    <Content Include="assets\img\album\buocquamuacodon.jpg" />
+    <Content Include="assets\img\album\camon.jpg" />
+    <Content Include="assets\img\album\dangerous.jpg" />
+    <Content Include="assets\img\album\Divide_cover.png" />
     <Content Include="assets\img\album\Folklore %28Full Album%29.jpg" />
+    <Content Include="assets\img\album\jordi.jpg" />
     <Content Include="assets\img\album\Post_Malone_Hollywood%27s_Bleeding.png" />
     <Content Include="assets\img\artist\adele-big.jpeg" />
     <Content Include="assets\img\artist\adele.jpg" />
@@ -199,6 +205,10 @@
     <Content Include="assets\img\artist\bts.jpg" />
     <Content Include="assets\img\artist\coldplay-big.jpg" />
     <Content Include="assets\img\artist\coldplay.jpg" />
+    <Content Include="assets\img\artist\doanhieu-big.jpg" />
+    <Content Include="assets\img\artist\doanhieu.jpg" />
+    <Content Include="assets\img\artist\dongnhi-big.jpg" />
+    <Content Include="assets\img\artist\dongnhi.jpg" />
     <Content Include="assets\img\artist\ducphuc-big.jpg" />
     <Content Include="assets\img\artist\ducphuc.jpg" />
     <Content Include="assets\img\artist\edsheeran-big.jpg" />
@@ -208,6 +218,8 @@
     <Content Include="assets\img\artist\Excuse.jpg" />
     <Content Include="assets\img\artist\FoolsGarden.jpg" />
     <Content Include="assets\img\artist\hozier.jpg" />
+    <Content Include="assets\img\artist\iu-big.jpg" />
+    <Content Include="assets\img\artist\iu.jpg" />
     <Content Include="assets\img\artist\JasonMraz.jpg" />
     <Content Include="assets\img\artist\Justatee-big.jpg" />
     <Content Include="assets\img\artist\Justatee.jpg" />
@@ -239,6 +251,8 @@
     <Content Include="assets\img\artist\taylorswift.jpg" />
     <Content Include="assets\img\artist\thescript.jpg" />
     <Content Include="assets\img\artist\vlanobrie.jpg" />
+    <Content Include="assets\img\artist\vu-big.jpg" />
+    <Content Include="assets\img\artist\vu.jpg" />
     <Content Include="assets\img\default\acoustic.jpg" />
     <Content Include="assets\img\default\background1.jpg" />
     <Content Include="assets\img\default\background10.jpg" />
@@ -272,37 +286,62 @@
     <Content Include="assets\img\default\vip-label.3dd6ac7e.svg" />
     <Content Include="assets\img\default\wedding.jpg" />
     <Content Include="assets\img\playlist\admin\ban-than-oi-minh-di-thoi.jpg" />
+    <Content Include="assets\img\playlist\admin\cafemuathu.jpg" />
     <Content Include="assets\img\playlist\admin\codon.jpg" />
+    <Content Include="assets\img\playlist\admin\dicungnamthang.jpg" />
     <Content Include="assets\img\playlist\admin\dinhcaohiphop.jpg" />
     <Content Include="assets\img\playlist\admin\dinhcaopop.jpg" />
     <Content Include="assets\img\playlist\admin\dinhcaorb.jpg" />
     <Content Include="assets\img\playlist\admin\dinhcaorock.jpg" />
+    <Content Include="assets\img\playlist\admin\dongqua.jpg" />
     <Content Include="assets\img\playlist\admin\giangsinh.jpg" />
     <Content Include="assets\img\playlist\admin\henho.jpg" />
     <Content Include="assets\img\playlist\admin\hientuong.jpg" />
+    <Content Include="assets\img\playlist\admin\kcandy.jpg" />
     <Content Include="assets\img\playlist\admin\khonggian.jpg" />
+    <Content Include="assets\img\playlist\admin\ngaymoi.jpg" />
     <Content Include="assets\img\playlist\admin\nghegidengu.jpg" />
     <Content Include="assets\img\playlist\admin\nhactregaynghien.jpg" />
     <Content Include="assets\img\playlist\admin\nhactreremixthattinh.jpg" />
     <Content Include="assets\img\playlist\admin\nhenhangcungvpop.jpg" />
     <Content Include="assets\img\playlist\admin\nhungchuyendidai.jpg" />
+    <Content Include="assets\img\playlist\admin\noitachoem.jpg" />
     <Content Include="assets\img\playlist\admin\piano.jpg" />
+    <Content Include="assets\img\playlist\admin\playlistchill.jpg" />
     <Content Include="assets\img\playlist\admin\songcaaumy.jpg" />
+    <Content Include="assets\img\playlist\admin\thanhxuan.jpg" />
+    <Content Include="assets\img\playlist\admin\thathinh.jpg" />
     <Content Include="assets\img\playlist\admin\thattinh.jpg" />
+    <Content Include="assets\img\playlist\admin\tinhkhuc.jpg" />
     <Content Include="assets\img\playlist\admin\vietnam.jpg" />
     <Content Include="assets\img\playlist\admin\yeu.jpg" />
+    <Content Include="assets\img\playlist\user\doctor.jpg" />
     <Content Include="assets\img\playlist\user\duyen.jpg" />
+    <Content Include="assets\img\playlist\user\nangve.jpg" />
+    <Content Include="assets\img\playlist\user\nhachot.jpg" />
+    <Content Include="assets\img\playlist\user\nhactiktok.jpg" />
+    <Content Include="assets\img\playlist\user\nhactrung.jpg" />
+    <Content Include="assets\img\playlist\user\tiktokviet.jpg" />
+    <Content Include="assets\img\song\All Too Well - Taylor Swift.mp3" />
     <Content Include="assets\img\song\alltoowell-taylorswift.jpg" />
+    <Content Include="assets\img\song\aloha.jpg" />
     <Content Include="assets\img\song\Apologize.jpg" />
+    <Content Include="assets\img\song\atohitotsu.jpg" />
     <Content Include="assets\img\song\bua-yeu.png" />
+    <Content Include="assets\img\song\buocquanhau_vu.jpg" />
+    <Content Include="assets\img\song\canyouhearmyheart.jpg" />
+    <Content Include="assets\img\song\chantinh.jpg" />
     <Content Include="assets\img\song\Chay_ngay_di.png" />
     <Content Include="assets\img\song\chungtacuahientai.jpg" />
     <Content Include="assets\img\song\circles-postmalone.jpg" />
     <Content Include="assets\img\song\conduongbinhpham.jpg" />
     <Content Include="assets\img\song\CountingStars.jpg" />
+    <Content Include="assets\img\song\Cryonmyshoulder.jpg" />
     <Content Include="assets\img\song\da-lo-yeu-em-nhieu.jpg" />
     <Content Include="assets\img\song\dap-an-cua-ban.jpg" />
     <Content Include="assets\img\song\dauchiriengem.jpg" />
+    <Content Include="assets\img\song\dungcungthanhsai.jpg" />
+    <Content Include="assets\img\song\duyenphan.jpg" />
     <Content Include="assets\img\song\easy-on-me-adele.jpg" />
     <Content Include="assets\img\song\Ellie_Goulding_-_Love_Me_Like_You_Do.png" />
     <Content Include="assets\img\song\HallOfFame.jpg" />
@@ -311,20 +350,31 @@
     <Content Include="assets\img\song\I%27mYours.jpg" />
     <Content Include="assets\img\song\InTheEnd.jpg" />
     <Content Include="assets\img\song\It%27sMyLife.jpg" />
+    <Content Include="assets\img\song\lastchristmas.jpg" />
     <Content Include="assets\img\song\LemonTree.jpg" />
     <Content Include="assets\img\song\LetHerGo.jpg" />
     <Content Include="assets\img\song\lookwhatyoumademedo.jpg" />
     <Content Include="assets\img\song\LoveIsGone.jpg" />
+    <Content Include="assets\img\song\matnai.jpg" />
     <Content Include="assets\img\song\MeandMyBrokenHeart.jpg" />
     <Content Include="assets\img\song\Monsters.jpg" />
+    <Content Include="assets\img\song\motnha.jpg" />
+    <Content Include="assets\img\song\muongapem.jpg" />
+    <Content Include="assets\img\song\muonmanglatuluc.jpg" />
     <Content Include="assets\img\song\muonroimasaocon.jpg" />
     <Content Include="assets\img\song\myuniverse-coldplay.jpg" />
+    <Content Include="assets\img\song\nucuoi1820.jpg" />
     <Content Include="assets\img\song\oldtownroad-lilnasx.jpg" />
+    <Content Include="assets\img\song\saigondaucolanh.jpg" />
     <Content Include="assets\img\song\sandinmyboots.jpg" />
     <Content Include="assets\img\song\Shape_of_You_cover.jpg" />
     <Content Include="assets\img\song\SoFarAway.jpg" />
+    <Content Include="assets\img\song\somethingjustlikethis.jpg" />
+    <Content Include="assets\img\song\staywithme.jpg" />
     <Content Include="assets\img\song\sugar.jpg" />
     <Content Include="assets\img\song\TakeMeToChurch.jpg" />
+    <Content Include="assets\img\song\talacuanhau.jpg" />
+    <Content Include="assets\img\song\tauanhquanui.jpg" />
     <Content Include="assets\img\song\thang_dien.jpg" />
     <Content Include="assets\img\song\tides-edsheeran.jpg" />
     <Content Include="assets\img\song\Timber.jpg" />
@@ -332,25 +382,45 @@
     <Content Include="assets\img\song\Unstoppable.jpg" />
     <Content Include="assets\img\song\vivalavida-coldplay.jpg" />
     <Content Include="assets\img\song\WayBackHome.jpg" />
+    <Content Include="assets\img\song\Youdon%27tknow.jpg" />
+    <Content Include="assets\img\user\account.jpg" />
+    <Content Include="assets\img\user\nam.jpg" />
     <Content Include="assets\mp3\All Too Well - Taylor Swift.mp3" />
+    <Content Include="assets\mp3\ALOHACOOL Learning English Lyrics.mp3" />
+    <Content Include="assets\mp3\Ato Hitotsu Một chút nữa thôi.mp3" />
     <Content Include="assets\mp3\BIGBANG  HARU HARU하루하루 MV.mp3" />
     <Content Include="assets\mp3\Bon Jovi  Its My Life Official Music Video.mp3" />
     <Content Include="assets\mp3\BÍCH PHƯƠNG  Bùa Yêu Official MV.mp3" />
+    <Content Include="assets\mp3\Bước qua nhau  Vũ  Video Lyrics  Lofi Chill Music.mp3" />
+    <Content Include="assets\mp3\Can you hear my heart  Epik High   FMV  Hae Soo.mp3" />
     <Content Include="assets\mp3\Chay Ngay Di Run Now_ - Son Tung M-TP_.mp3" />
+    <Content Include="assets\mp3\CHÂN TÌNH.mp3" />
     <Content Include="assets\mp3\ConDuongBinhPham.mp3" />
+    <Content Include="assets\mp3\CRY ON MY SHOULDER.mp3" />
     <Content Include="assets\mp3\Da Lo Yeu Em Nhieu - JustaTee.mp3" />
+    <Content Include="assets\mp3\Duyên Phận Thái Thịnh PBN 99.mp3" />
     <Content Include="assets\mp3\easy-on-me-adele.mp3" />
     <Content Include="assets\mp3\Ed Sheeran  Shape of You Official Music Video.mp3" />
+    <Content Include="assets\mp3\Goblin Stay with me MVOST.mp3" />
     <Content Include="assets\mp3\HƠN CẢ YÊU  ĐỨC PHÚC  OFFICIAL MUSIC VIDEO.mp3" />
     <Content Include="assets\mp3\Im Yours  Jason Mraz Lyrics.mp3" />
     <Content Include="assets\mp3\In The End Official HD Music Video.mp3" />
+    <Content Include="assets\mp3\IU 아이유  Celebrity Easy Lyrics.mp3" />
+    <Content Include="assets\mp3\Last Christmas  George Michael  Wham  Beth Acoustic Piano Cover.mp3" />
     <Content Include="assets\mp3\Lemon Tree  Fools Garden Lyrics.mp3" />
     <Content Include="assets\mp3\Love Me Like You Do - Ellie Goulding.mp3" />
+    <Content Include="assets\mp3\Lyrics  Vietsub Something Just Like This  Romy Wave Piano Cover.mp3" />
     <Content Include="assets\mp3\Maroon 5  Sugar Official Music Video.mp3" />
     <Content Include="assets\mp3\Monsters  Katie Sky Lyrics  Vietsub.mp3" />
     <Content Include="assets\mp3\Morgan Wallen Sand In My Boots The Dangerous Sessions.mp3" />
+    <Content Include="assets\mp3\muốn gặp em.mp3" />
+    <Content Include="assets\mp3\MUỘN MÀNG LÀ TỪ LÚC LATE FROM THE BEGINNING  MỸ TÂM  ANIMATION VIDEO.mp3" />
+    <Content Include="assets\mp3\MV You dont know.mp3" />
     <Content Include="assets\mp3\myuniverse-coldplay.mp3" />
+    <Content Include="assets\mp3\Một Nhà  Da LAB  Official Lyric Video.mp3" />
     <Content Include="assets\mp3\MỸ TÂM  ĐÂU CHỈ RIÊNG EM MV ONE SHOT CLOSEUP.mp3" />
+    <Content Include="assets\mp3\MỸ TÂM  ĐÚNG CŨNG THÀNH SAI  OFFICIAL MUSIC VIDEO.mp3" />
+    <Content Include="assets\mp3\Nụ Cười 18 20  Doãn Hiếu Official.mp3" />
     <Content Include="assets\mp3\oldtownroad-lilnasx.mp3" />
     <Content Include="assets\mp3\OneRepublic  Counting Stars Extended Radio Edit.mp3" />
     <Content Include="assets\mp3\Passenger  Let Her Go Official Video.mp3" />
@@ -360,18 +430,22 @@
     <Content Include="assets\mp3\Sia  Unstoppable Lyrics.mp3" />
     <Content Include="assets\mp3\SLANDER  Love Is Gone ft Dylan Matthew Acoustic.mp3" />
     <Content Include="assets\mp3\So Far Away Acoustic.mp3" />
+    <Content Include="assets\mp3\Sài Gòn đâu có lạnh  Changg x LeWiuy x meChill.mp3" />
     <Content Include="assets\mp3\SƠN TÙNG MTP  CHÚNG TA CỦA HIỆN TẠI  OFFICIAL MUSIC VIDEO.mp3" />
     <Content Include="assets\mp3\SƠN TÙNG MTP  MUỘN RỒI MÀ SAO CÒN  OFFICIAL MUSIC VIDEO.mp3" />
+    <Content Include="assets\mp3\Ta Là Của Nhau  Đông Nhi ft Ông Cao Thắng.mp3" />
     <Content Include="assets\mp3\Take Me To Church  Hozier Lyrics.mp3" />
     <Content Include="assets\mp3\Taylor Swift  Look What You Made Me Do.mp3" />
     <Content Include="assets\mp3\Thang Dien - JustaTee_ Phuong Ly.mp3" />
     <Content Include="assets\mp3\The Script  Hall Of Fame Lyrics.mp3" />
     <Content Include="assets\mp3\tides-edsheeran.mp3" />
     <Content Include="assets\mp3\Timbaland  Apologize ft OneRepublic.mp3" />
+    <Content Include="assets\mp3\Tàu anh qua núi Anh Thơ.mp3" />
     <Content Include="assets\mp3\Túy Âm  Xesi x Masew x Nhatnguyen.mp3" />
     <Content Include="assets\mp3\vivalavida-coldplay.mp3" />
     <Content Include="assets\mp3\Đáp án của bạn  A Nhũng.mp3" />
     <Content Include="assets\mp3\숀 SHAUN  웨이백홈 Way Back Home Lyric Video.mp3" />
+    <Content Include="assets\Music.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1207,6 +1281,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

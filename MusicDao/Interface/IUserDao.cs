@@ -10,5 +10,6 @@ namespace MusicDao
     public interface IUserDao
     {
         GetUser_Result CheckUser(string accountname, string password);
+        AcccountUser ReadUser();
     }
 }

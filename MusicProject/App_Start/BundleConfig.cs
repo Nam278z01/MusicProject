@@ -37,6 +37,7 @@ namespace MusicProject
                        "~/assets/css/loadAmodal.css",
                        "~/assets/css/playmusic.css",
                        "~/assets/css/main.css",
+                       "~/assets/css/user.css",
                        "~/assets/css/responsive.css"));
             bundles.Add(new ScriptBundle("~/Scripts/js").Include(
                        "~/Scripts/CustomerController/app.js",

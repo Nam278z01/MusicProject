@@ -43,3 +43,15 @@ appMusic.controller('LoginController', function ($scope, $rootScope, $http, $win
         }
     })
 })
+
+appMusic.controller("UserController", function ($scope, $rootScope, $http, $window) {
+    $rootScope.User = null;
+    $http.get({
+        //method: "get",
+        url: "/User/ ReadUser"
+    }).then(function success(d) {
+        $rootScope.User = d.data.user;
+    }, function error(e) { alert("error") });
+
+
+})

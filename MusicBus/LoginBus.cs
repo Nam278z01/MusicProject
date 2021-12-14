@@ -19,5 +19,10 @@ namespace MusicBus
         {
             return udao.CheckUser(accountname, password);
         }
+        public AcccountUser ReadUser()
+        {
+            return udao.ReadUser();
+
+        }
     }
 }

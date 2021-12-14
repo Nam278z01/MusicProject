@@ -1,0 +1,165 @@
+
+.header-user{
+    width: auto;
+    display: flex;
+    height: 220px;
+    border-bottom: 1px solid #CCC;
+}
+.img-user img{
+    width: 190px;
+    height: 190px;
+    padding: 20px 25px;
+}
+.user-info{
+   width: 1200px;
+   padding: 30px
+}
+.btn-update{
+	width:100px;
+	margin-top: 15px;
+	text-align: center;
+    height:40px;
+	line-height: 40px;
+	background-color:#CCC;
+	border:none;
+    border-radius: 5%;
+    cursor: pointer;
+	color: black;
+	opacity:0.8;
+}
+.user-info h2{
+    font-size: medium;
+    color:rgb(158, 150, 150);
+}
+.user-info a{
+    color: skyblue;
+}
+.content-user{
+    margin: 20px  25px 0 25px ;
+    height: 600px;
+}
+.personal-infor{
+    height: 65px;
+    font-size: 28px;
+    color: black;
+    
+}
+.row{
+    width: auto;
+    height: 55px;
+    font-size: 14px;
+    height: 40px;
+    background-color: #eee;
+    padding-top: 5px;
+    padding-left: 10px;
+    border-bottom:  1px solid #ddd;
+}
+.column1{
+    width: 120px;
+}
+.column2{
+    width: 300px;
+}
+.column2 a{
+    color: rgb(60, 180, 228);
+    cursor: pointer;
+}
+.content-update {
+    margin: 20px  25px 0 25px ;
+    height: 800px;
+    
+}
+h1{
+    font-size: 22px;
+}
+.update-info{
+    margin-top:20px ;
+    width: auto;
+    height: 80px;
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+}
+.avatar-user{
+    padding-top: 10px;
+}
+.img{
+    height: 80px;
+    width: 80px;
+    padding-left: 25px;
+}
+.btn-file{
+    width:100px;
+    font-size: 15px;
+    margin-left: 25px;
+	text-align: center;
+    height:40px;
+    border-radius: 5%;
+	line-height: 40px;
+	background-color:#CCC;
+	border:none;
+    cursor: pointer;
+	color: black;
+	opacity:0.8;
+}
+.column2 input{
+    height: 32px;
+    padding-top: 0px;
+}
+.month{
+    height: 32px;
+    width: 55px;
+    
+}
+.day{
+    height: 32px;
+    width: 55px;
+}
+.year{
+    height: 32px;
+    width: 55px;
+    margin-left: 10px ;
+}
+
+.column2 lable {
+    height: 25px;
+    width: 25px;
+    padding-bottom: 10px;
+}
+.btn-cancel{
+    width:100px;
+    font-size: 15px;
+    margin-left: 25px;
+	text-align: center;
+    height:40px;
+	line-height: 40px;
+	background-color:#CCC;
+	border:none;
+    cursor: pointer;
+    border-radius: 5%;
+    margin-left: 200px;
+	color: black;
+	opacity:0.8;
+}
+.btn-edit{
+    margin-left: 50px;
+    width:100px;
+    font-size: 15px;
+    margin-left: 35px;
+	text-align: center;
+    height:40px;
+	line-height: 40px;
+	background-color:#2daaed;
+	border:none;
+    cursor: pointer;
+    border-radius: 5%;
+	color: black;
+	opacity:0.8;
+}
+.btn{
+    width: auto;
+    font-size: 14px;
+    height: 40px;
+    margin-top: 20px;
+    padding-left: 10px;
+}

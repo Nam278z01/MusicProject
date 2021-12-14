@@ -1,0 +1,44 @@
+﻿<section class="home-main" ng-controller="UserController">
+    <div class="header-user">
+        <div class="img-user">
+            <img src="./assets/img/account.jpg" alt="">
+        </div>
+        <div class="user-info">
+            <h1>{{User.PersonName}}</h1> </br>
+            <h2> Trở thành thành viên VIP  để trải nghiệm tất cả tính năng <a href="#"> - Nâng cấp ngay!</a></h2>
+            <h2>ID:41851800</h2>
+            <input type="button" class="btn-update" value="Cập Nhật" onclick="location='update_user.html'" />
+
+        </div>
+    </div>
+    <div class="content-user">
+        <div class="personal-infor"> Thông tin cá nhân </div>
+        <div class=row>
+            <div class=column1>Tên hiện thị:</div>
+            <div class=column2>{{User.PersonName}}</div>
+        </div>
+        <div class=row>
+            <div class=column1>Tên đăng nhập:</div>
+            <div class=column2>{{User.AccountName}}</div>
+        </div>
+        <div class=row>
+            <div class=column1>Email:</div>
+            <div class=column2>{{User.Email}}<a href="#">Chưa xác thực</a></div>
+        </div>
+        <div class=row>
+            <div class=column1>Sinh nhật:</div>
+            <div class=column2>{{User.Birthday}}</div>
+        </div>
+        <div class=row>
+            <div class=column1>giới tính:</div>
+            <div class=column2>{{User.Gender}}</div>
+        </div>
+        <div class=row>
+            <div class=column1>Số Điện Thoại</div>
+            <div class=column2>{{User.Phone}}</div>
+        </div>
+       
+
+    </div>
+
+</section>
