@@ -201,3 +201,16 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
         })
     }
 })
+
+appMusic.controller('AlbumDetailsController', function ($scope, $rootScope, $http, $routeParams) {
+    $http({
+        method: 'get',
+        url: '/Detail/GetAlbumDetail',
+        params: { albumID: $routeParams.id }
+    }).then(function (res) {
+        $scope.album = JSON.parse(res.data)
+        console.log($scope.album)
+    }, function (err) {
+        alert("Failed to get album!")
+    })
+})

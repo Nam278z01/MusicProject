@@ -70,6 +70,13 @@ namespace MusicDao
             dh.Close();
             return albums;
         }
+
+        public string GetAlbumDetail(string albumID, string accountName)
+        {
+            SqlDataReader reader = dh.StoreReaders("GetAlbumDetail", albumID, accountName);
+            string album = Utility.ToStringForJson(reader);
+            return album;
+        }
         public List<Album> AlbumToList(SqlDataReader dr)
         {
             List<Album> albums = new List<Album>();

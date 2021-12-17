@@ -46,6 +46,12 @@ namespace MusicProject.Controllers
                 }
             }
         }
+        public JsonResult GetAlbumDetail(string albumID)
+        {
+            IAlbumBus sbus = new AlbumBus();
+            string album = sbus.GetAlbumDetail(albumID, GetUserName());
+            return Json(album, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult GetSongsByArtistPage(int pageIndex, int pageSize, string artistID)
         {
             ISongBus sbus = new SongBus();

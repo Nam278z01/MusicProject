@@ -31,5 +31,9 @@ namespace MusicBus
         {
             return aldao.GetAlbumsNewAHot(pageIndex, pageSize, time, accountName, out totalCount);
         }
+        public string GetAlbumDetail(string albumID, string accountName)
+        {
+            return aldao.GetAlbumDetail(albumID, accountName);
+        }
     }
 }

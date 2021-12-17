@@ -23,7 +23,7 @@
                 });
                 backgroundImage[indexBackgroundImage].classList.add('animation')
                 backgroundImage[indexBackgroundImage].classList.add('active')
-            }, 10000)
+            }, 15000)
             indexBackgroundImage = 0
             backgroundImage[0].classList.add('animation')
             backgroundImage[0].classList.add('active')
