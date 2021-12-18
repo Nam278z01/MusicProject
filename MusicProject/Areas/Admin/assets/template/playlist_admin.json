@@ -1,0 +1,20 @@
+[
+    {
+        "PlaylistID":"PL01",
+        "PlaylistName":"Top nhạc Việt mới nhất",
+        "DateCreated":"2021-09-24",
+        "AccountName":"An"
+    },
+    {
+        "PlaylistID":"PL02",
+        "PlaylistName":"Top nhạc US-UK mới nhất",
+        "DateCreated":"2021-09-24",
+        "AccountName":"Nam"
+    },
+    {
+        "PlaylistID":"PL03",
+        "PlaylistName":"Top nhạc Hàn mới nhất",
+        "DateCreated":"2021-09-24",
+        "AccountName":"Tuyết"
+    }
+]

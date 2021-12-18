@@ -1,0 +1,18 @@
+[
+    {
+        "AccountName":"binhan009",
+        "Password":"12321",
+        "Role":1,
+        "State":0,
+        "DateCreated":"2021-3-3",
+        "PersonID":"PS004"
+    },
+    {
+        "AccountName":"anbinh017",
+        "Password":"32123",
+        "Role":1,
+        "State":0,
+        "DateCreated":"2021-3-3",
+        "PersonID":"PS005"
+    }
+]

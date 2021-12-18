@@ -1,0 +1,26 @@
+[
+    {
+        "ServiceVipID":"V001",
+        "ServiceVipName":"7 ngày Free",
+        "Price":"0K",
+        "Description":"no"
+    },
+    {
+        "ServiceVipID":"V002",
+        "ServiceVipName":"1 Tháng",
+        "Price":"100K",
+        "Description":"no"
+    },
+    {
+        "ServiceVipID":"V003",
+        "ServiceVipName":"6 Tháng",
+        "Price":"500k",
+        "Description":"no"
+    },
+    {
+        "ServiceVipID":"V004",
+        "ServiceVipName":"1 Năm",
+        "Price":"850k",
+        "Description":"no"
+    }
+]

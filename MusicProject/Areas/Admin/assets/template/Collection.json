@@ -1,0 +1,33 @@
+[
+    {
+        "CollectionID":"CL001",
+        "CollectionName":"Pop",
+        "KindofCollection":1
+    },
+    {
+        "CollectionID":"CL002",
+        "CollectionName":"K-Pop",
+        "KindofCollection":1
+    },
+    {
+        "CollectionID":"CL003",
+        "CollectionName":"Ca Dao",
+        "KindofCollection":1
+    },
+    {
+        "CollectionID":"CL004",
+        "CollectionName":"Cách Mạng",
+        "KindofCollection":1
+    },
+    {
+        "CollectionID":"CL005",
+        "CollectionName":"Pop",
+        "KindofCollection":1
+    },
+    {
+        "CollectionID":"CL006",
+        "CollectionName":"Piano",
+        "KindofCollection":1
+    }
+
+]

@@ -1,0 +1,61 @@
+<div class="content-wrapper" ng-controller="MusicController">
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="home-tab">
+            <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active ps-0" style="cursor: pointer;">Song</a>
+                </li>
+              </ul>
+                <div>
+                    <div class="btn-wrapper">
+                        <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-file-add"></i> Thêm</a>
+                        <a href="#" class="btn btn-primary text-white me-0"><i class="icon-credit-card"></i> Sửa</a>
+                    </div>
+                </div>
+            </div>
+            <div class="main_body" style="width: 100%; margin-top: 26px;">
+                <div class="row" >
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">SongID</th>
+                                <th scope="col">SongName</th>
+                                <th scope="col">Lyric</th>
+                                <th scope="col">Nation</th>
+                                <th scope="col">ReleaseDate</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">SongPath</th>
+                                <th scope="col">IsVip</th>
+                                <th scope="col">Listens</th>
+                                <th scope="col">CollectionID</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody style="color: black;">
+                            <tr ng-repeat="s in songs" ng-class-even="even" ng-class-odd="odd">
+                                <th scope="col">{{s.SongID}}</th>
+                                <th scope="col">{{s.SongName}}</th>
+                                <th scope="col">{{s.Lyric}}</th>
+                                <th scope="col">{{s.Nation}}</th>
+                                <!-- <th scope="col">{{s.ReleaseDate}}</th> -->
+                                <th scope="col">{{s.ReleaseDate| jsDate | date:'dd/MM/yyyy'}}</th>
+                                <th scope="col"><img src="{{s.Image}}" alt="" style="width:50px;height:50px;"></th>
+                                <th scope="col">{{s.SongPath}}</th>
+                                <th scope="col">{{s.IsVip}}</th>
+                                <th scope="col">{{s.Listens}}</th>
+                                <th scope="col">{{s.CollectionID}}</th>
+                                <th scope="col">
+                                    <button ng-click="Delete(s)" type="button" class="btn btn-otline-dark align-items-center">
+                                        <i class="icon-delete"  style="font-size: 1.4rem;"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

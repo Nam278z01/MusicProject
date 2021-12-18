@@ -1,0 +1,23 @@
+[
+    {
+        "PlaylistID":"PL01",
+        "PlaylistName":"Top EDM mới nhất",
+        "DateCreated":"2021-09-24",
+        "AccountName":"An Bình",
+        "isPublic":"true"
+    },
+    {
+        "PlaylistID":"PL02",
+        "PlaylistName":"Top Rap mới nhất",
+        "DateCreated":"2021-09-24",
+        "AccountName":"Nam Nguyễn",
+        "isPublic":"true"
+    },
+    {
+        "PlaylistID":"PL03",
+        "PlaylistName":"Top nhạc Hoa mới nhất",
+        "DateCreated":"2021-09-24",
+        "AccountName":"Tuyết Nguyễn",
+        "isPublic":"true"
+    }
+]
