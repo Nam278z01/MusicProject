@@ -12,6 +12,7 @@ namespace MusicProject.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         // GET: Admin/Home
+        //BinhAn321
         public ActionResult Index()
         {
             return View();
