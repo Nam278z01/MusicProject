@@ -46,7 +46,7 @@ body.no-scroll {
     width: 100%;
 }
 
-body::-webkit-scrollbar {
+/*body::-webkit-scrollbar {
     width: 4px;
     background-color: var(--bg-color);
 }
@@ -55,7 +55,7 @@ body::-webkit-scrollbar-thumb {
     border-radius: 2px;
     width: 4px;
     background-color: var(--scroll-color);
-} 
+} */
 
 a {
     text-decoration: none;

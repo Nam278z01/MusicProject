@@ -43,12 +43,12 @@ appMusic.controller('SearchController', function ($scope, $rootScope, $location,
 
 appMusic.controller('SongSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
     $rootScope.title = $routeParams.q + " | Bài hát hay nhất " + $routeParams.q
-    $rootScope.currentSubIndex = 1
+    $rootScope.currentSubIndex = -1
 
     //Lấy về bài hát cần tìm kiếm
     $scope.songs = []
     $scope.totalCount = 0
-    $scope.pageSize = 5
+    $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page
     $scope.loadSongSuccessfull = false
@@ -88,7 +88,7 @@ appMusic.controller('ArtistSearchController', function ($scope, $rootScope, $loc
 
     //Lấy về nghệ sĩ cần tìm kiếm
     $scope.totalCount = 0
-    $scope.pageSize = 5
+    $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page
     $scope.loadSongSuccessfull = false
@@ -119,11 +119,11 @@ appMusic.controller('ArtistSearchController', function ($scope, $rootScope, $loc
 
 appMusic.controller('AlbumSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
     $rootScope.title = $routeParams.q + " | Tìm kiếm Album " + $routeParams.q
-    $rootScope.currentSubIndex = 1
+    $rootScope.currentSubIndex = -1
 
     //Lấy về album cần tìm kiếm
     $scope.totalCount = 0
-    $scope.pageSize = 5
+    $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page
     $scope.loadSongSuccessfull = false
@@ -153,11 +153,11 @@ appMusic.controller('AlbumSearchController', function ($scope, $rootScope, $loca
 
 appMusic.controller('PlaylistSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
     $rootScope.title = $routeParams.q + " | Tìm kiếm Playlist " + $routeParams.q
-    $rootScope.currentSubIndex = 1
+    $rootScope.currentSubIndex = -1
 
     //Lấy về playlist cần tìm kiếm
     $scope.totalCount = 0
-    $scope.pageSize = 5
+    $scope.pageSize = 24
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page
     $scope.loadSongSuccessfull = false

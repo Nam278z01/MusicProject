@@ -39,7 +39,7 @@
                 <a href="#!/nguoi-dung" class="sidebar__user" ng-click="changePage(-1)" ng-if="logged">
                     <div class="sidebar__user-avatar">
                         @* onerror="this.src='../../assets/img/user/default.png'" *@
-                        <img onerror="this.src='../../assets/img/user/default.png'" src="~/assets/img/user/{{User.user.Image}}" alt="{{User.user.PersonName}}">
+                        <img src="~/assets/img/user/{{User.user.Image}}" alt="{{User.user.PersonName}}">
                     </div>
                     <div class="sidebar__user-name">
                         <span title="{{User.user.PersonName}}">{{User.user.PersonName}}</span>
@@ -70,7 +70,7 @@
                         </a>
                     </li>
                     <li class="sidebar__navigation-item">
-                        <div class="sidebar__navigation-link show" ng-class="{active:isActive(2)}">
+                        <div class="sidebar__navigation-link" ng-class="{active:isActive(2), show:isActive(2)}">
                             <i class='bx bxs-compass'></i>
                             <span>Khám phá</span>
                             <i class='bx bx-chevron-up'></i>
@@ -103,7 +103,7 @@
                         </div>
                     </li>
                     <li class="sidebar__navigation-item">
-                        <div class="sidebar__navigation-link show" ng-class="{active:isActive(3)}">
+                        <div class="sidebar__navigation-link" ng-class="{active:isActive(3), show:isActive(3)}">
                             <i class='bx bxs-music'></i>
                             <span>Nghe gì hôm nay</span>
                             <i class='bx bx-chevron-up'></i>

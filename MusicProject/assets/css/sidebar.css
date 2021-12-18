@@ -292,6 +292,7 @@
 .sidebar__navigation-listsubitem {
     overflow: hidden;
     transition: height 200ms linear;
+    height: 0px;
 }
 
 .sidebar__navigation-subitem {

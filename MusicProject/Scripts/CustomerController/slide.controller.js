@@ -167,6 +167,8 @@ appMusic.controller('SlideClickController', function ($scope, $window, $interval
         let btnNext = options.selector.querySelector('.list-playlist__btn-next')
         let btnPrev = options.selector.querySelector('.list-playlist__btn-prev')
         let slide = options.selector.querySelector('.list-playlist__slide > .grid')
+        //Check xem có thật có item ko
+        let slideExists = options.selector.querySelector('.list-playlist__slide > .grid .list-playlist__item')
 
         let eleInViewOfThisSlide
         let oneJump
@@ -174,7 +176,7 @@ appMusic.controller('SlideClickController', function ($scope, $window, $interval
         let currentIdx = 0
         let countEleSlide = slide.children[0].childElementCount
 
-        if (countEleSlide > 0) {
+        if (slideExists && countEleSlide > 0) {
             let slideChildren = slide.querySelector('.list-playlist__item')
 
             //Responsive silde ó
@@ -256,7 +258,6 @@ appMusic.controller('SlideClickController', function ($scope, $window, $interval
             })
             return true
         } else {
-            alert("hehe")
             return false
         }
     }

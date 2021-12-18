@@ -9,7 +9,19 @@ using System.Data.SqlClient;
 
 namespace MusicDao
 {
-    public class AdminDao
+    public class AdminDao : IAdminDao
     {
+        DataHelper dh;
+        public AdminDao()
+        {
+            dh = new DataHelper();
+        }
+        public AccountAdmin CheckAccount(string acc, string pass)
+        {
+            SqlDataReader reader = dh.StoreReaders("CheckAccountAM", acc, pass);
+            AccountAdmin admin = Utility.ToList<AccountAdmin>(reader);
+            dh.Close();
+            return admin;
+        }
     }
 }

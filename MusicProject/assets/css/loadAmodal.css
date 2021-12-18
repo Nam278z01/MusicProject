@@ -303,7 +303,7 @@
     overflow-y: scroll;
     max-height: 288px;
 }
-
+/*
     .form-content::-webkit-scrollbar {
         width: 4px;
         background-color: var(--bg-color);
@@ -313,7 +313,7 @@
         border-radius: 2px;
         width: 4px;
         background-color: var(--scroll-color);
-    }
+    }*/
 
 .form-item {
     display: flex;

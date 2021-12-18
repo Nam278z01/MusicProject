@@ -2,11 +2,14 @@
     $scope.isLoginSubmit = true // Được sử dụng hiển thị thông báo tài khoản không chính xác khi ấn submit
 
     // Đăng nhập
+    let LoginObj = {}
     $scope.loginSubmit = function () {
+        LoginObj.AccountName = $scope.EmailLogin
+        LoginObj.Password = $scope.PassLogin
         $http({
-            method: 'get',
+            method: 'post',
             url: '/Login/Login',
-            params: { accountname: $scope.EmailLogin, password: $scope.PassLogin}
+            data: LoginObj
         }).then(function (res) {
             // Phải reload nha
             if (res.data.login == "1") {
