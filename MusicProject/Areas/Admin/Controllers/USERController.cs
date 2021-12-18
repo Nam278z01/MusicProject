@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace MusicProject.Areas.Admin.Controllers
 {
+    [Authorize]
     public class USERController : Controller
     {
         // GET: Admin/USER

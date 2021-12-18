@@ -158,7 +158,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\assets\.gitignore" />
     <Content Include="Areas\Admin\assets\docs\documentation.html" />
     <Content Include="Areas\Admin\assets\docs\documentation.js" />
     <Content Include="Areas\Admin\assets\login-form-07\css\bootstrap.min.css" />
@@ -1962,8 +1961,6 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\CustomerController\rank.controller.js" />
-    <Content Include="Areas\Admin\assets\CHANGELOG.md" />
-    <Content Include="Areas\Admin\assets\README.md" />
     <Content Include="Areas\Admin\assets\template\Account_Admin.json" />
     <Content Include="Areas\Admin\assets\template\Account_User.json" />
     <Content Include="Areas\Admin\assets\template\Admin.json" />
@@ -2339,7 +2336,6 @@
     <Content Include="Areas\Admin\Views\Vip\Index.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
-    <Content Include="Areas\Admin\assets\login-form-07\.DS_Store" />
     <Content Include="Areas\Admin\assets\login-form-07\css\.DS_Store" />
     <Content Include="Areas\Admin\assets\login-form-07\css\bootstrap.min.css.map" />
     <Content Include="Areas\Admin\assets\login-form-07\fonts\.DS_Store" />
