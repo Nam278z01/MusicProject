@@ -9,6 +9,7 @@ namespace MusicBus
 {
     public interface IArtistBus
     {
+        List<Artist> GetArtistAll();
         List<Artist> GetArtistsPage(int pageIndex, int pageSize, int nation, int genderorband, string textSearch, string function, out int totalCount);
         List<Artist> GetArtistsHot(int pageIndex, int pageSize, int time, int genderorband, out int totalCount);
     }

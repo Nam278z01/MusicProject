@@ -329,6 +329,7 @@
     <Content Include="Areas\Admin\assets\template\js\just-gage.js" />
     <Content Include="Areas\Admin\assets\template\js\light-gallery.js" />
     <Content Include="Areas\Admin\assets\template\js\listify.js" />
+    <Content Include="Scripts\AdminController\artist.controller.js" />
     <Content Include="Scripts\AdminController\mainAD.js" />
     <Content Include="Areas\Admin\assets\template\js\mapael.js" />
     <Content Include="Areas\Admin\assets\template\js\mapael_example_1.js" />

@@ -16,10 +16,10 @@ namespace MusicProject.Areas.Admin.Controllers
         {
             return View("Index");
         }
-        //public ActionResult GetArtist()
-        //{
-        //    List<Artist> aList = a.GetArtistAll();
-        //    return Json(aList, JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult GetArtist()
+        {
+            List<Artist> aList = a.GetArtistAll();
+            return Json(aList, JsonRequestBehavior.AllowGet);
+        }
     }
 }
