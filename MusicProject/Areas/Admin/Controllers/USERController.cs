@@ -12,7 +12,7 @@ namespace MusicProject.Areas.Admin.Controllers
         // GET: Admin/USER
         public ActionResult IUndex()
         {
-            return View("Index");
+            return View();
         }
     }
 }

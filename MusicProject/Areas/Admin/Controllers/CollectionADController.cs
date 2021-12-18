@@ -15,7 +15,7 @@ namespace MusicProject.Areas.Admin.Controllers
         CollectionBus cb = new CollectionBus();
         public ActionResult ICndex()
         {
-            return View("Index");
+            return View();
         }
         //public ActionResult GetCollection()
         //{

@@ -15,7 +15,7 @@ namespace MusicProject.Areas.Admin.Controllers
         ArtistBus a = new ArtistBus();
         public ActionResult IATndex()
         {
-            return View("Index");
+            return View();
         }
         public ActionResult GetArtist()
         {

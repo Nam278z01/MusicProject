@@ -15,7 +15,7 @@ namespace MusicProject.Areas.Admin.Controllers
         // GET: Admin/Song
         public ActionResult ISndex()
         {
-            return View("Index");
+            return View();
         }
         //public ActionResult GetSong()
         //{

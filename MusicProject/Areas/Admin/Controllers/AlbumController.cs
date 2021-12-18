@@ -15,7 +15,7 @@ namespace MusicProject.Areas.Admin.Controllers
         AlbumBus ab = new AlbumBus();
         public ActionResult IALndex()
         {
-            return View("Index");
+            return View();
         }
         //public ActionResult GetAlbum()
         //{

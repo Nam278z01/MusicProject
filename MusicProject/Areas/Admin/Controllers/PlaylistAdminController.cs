@@ -15,7 +15,7 @@ namespace MusicProject.Areas.Admin.Controllers
         PlaylistAdminBus ad = new PlaylistAdminBus();
         public ActionResult IPndex()
         {
-            return View("Index");
+            return View();
         }
         //public ActionResult GetPlaylistAdmin()
         //{

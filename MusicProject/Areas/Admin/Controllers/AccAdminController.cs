@@ -14,7 +14,7 @@ namespace MusicProject.Areas.Admin.Controllers
         // GET: Admin/AccAdmin
         public ActionResult IAAndex()
         {
-            return View("Index");
+            return View();
         }
     }
 }

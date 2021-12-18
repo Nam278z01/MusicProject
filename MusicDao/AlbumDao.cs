@@ -1,10 +1,5 @@
-﻿using System;
+﻿using MusicObj;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MusicObj;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace MusicDao
@@ -16,7 +11,7 @@ namespace MusicDao
         {
             dh = new DataHelper();
         }
-        public List<Album> GetAlbumsPage(int pageIndex, int pageSize, int nation, string textSearch, string function,string accountName, out int totalCount)
+        public List<Album> GetAlbumsPage(int pageIndex, int pageSize, int nation, string textSearch, string function, string accountName, out int totalCount)
         {
             totalCount = 0;
             SqlDataReader dr;

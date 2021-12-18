@@ -15,7 +15,7 @@ namespace MusicProject.Areas.Admin.Controllers
 
         public ActionResult IVndex()
         {
-            return View("Index");
+            return View();
 
         }
         //public ActionResult GetVip()
