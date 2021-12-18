@@ -8,6 +8,7 @@ using MusicObj;
 
 namespace MusicProject.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CollectionADController : Controller
     {
         // GET: Admin/CollectionAD

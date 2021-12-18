@@ -8,6 +8,7 @@ using MusicObj;
 
 namespace MusicProject.Areas.Admin.Controllers
 {
+    [Authorize]
     public class HistoryController : Controller
     {
         // GET: Admin/History
