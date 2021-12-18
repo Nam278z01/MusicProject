@@ -1,0 +1,22 @@
+[
+    {
+        "AccountName":"binhan123",
+        "Password":"12321",
+        "Role":1,
+        "State":0,
+        "DateCreated":"2021-3-3",
+        "KindofAccount":1,
+        "DueOn":"2021-3-3",
+        "PersonID":"PS001"
+    },
+    {
+        "AccountName":"anbinh321",
+        "Password":"32123",
+        "Role":1,
+        "State":0,
+        "DateCreated":"2021-3-3",
+        "KindofAccount":1,
+        "DueOn":"2021-3-3",
+        "PersonID":"PS002"
+    }
+]

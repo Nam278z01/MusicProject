@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="home-tab">
+                <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active ps-0">Tổng quát</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Admin/Home/View">View</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <div class="btn-wrapper">
+                            <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Chia sẻ</a>
+                            <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> In</a>
+                            <a href="#" class="btn btn-primary text-white me-0"><i class="icon-download"></i> Xuất</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content tab-content-basic">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="statistics-details d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="statistics-title">Tỉ lệ thoát</p>
+                                        <h3 class="rate-percentage">32.53%</h3>
+                                        <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
+                                    </div>
+                                    <div>
+                                        <p class="statistics-title">Số lượt truy cập</p>
+                                        <h3 class="rate-percentage">7,682</h3>
+                                        <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
+                                    </div>
+                                    <div>
+                                        <p class="statistics-title">Cuộc họp mới</p>
+                                        <h3 class="rate-percentage">68.8</h3>
+                                        <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
+                                    </div>
+                                    <div class="d-none d-md-block">
+                                        <p class="statistics-title">Thời gian trung bình trên web</p>
+                                        <h3 class="rate-percentage">2m:35s</h3>
+                                        <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 d-flex flex-column">
+                                <div class="row flex-grow">
+                                    <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
+                                        <div class="card card-rounded">
+                                            <div class="card-body">
+                                                <div class="d-sm-flex justify-content-between align-items-start">
+                                                    <div>
+                                                        <h4 class="card-title card-title-dash">Biểu đồ hiệu xuất</h4>
+                                                        <h5 class="card-subtitle card-subtitle-dash">Hiệu xuất tuần</h5>
+                                                    </div>
+                                                    <div id="performance-line-legend"></div>
+                                                </div>
+                                                <div class="chartjs-wrapper mt-5">
+                                                    <canvas id="performaneLine"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 d-flex flex-column">
+                                <div class="row flex-grow">
+                                    <div class="col-md-6 col-lg-12 grid-margin stretch-card">
+                                        <div class="card bg-primary card-rounded">
+                                            <div class="card-body pb-0">
+                                                <h4 class="card-title card-title-dash text-white mb-4">Trạng thái</h4>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <p class="status-summary-ight-white mb-1">Giá trị cuối</p>
+                                                        <h2 class="text-info">357</h2>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <div class="status-summary-chart-wrapper pb-4">
+                                                            <canvas id="status-summary"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-12 grid-margin stretch-card">
+                                        <div class="card card-rounded">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="d-flex justify-content-between align-items-center mb-2 mb-sm-0">
+                                                            <div class="circle-progress-width">
+                                                                <div id="totalVisitors" class="progressbar-js-circle pr-2"></div>
+                                                            </div>
+                                                            <div>
+                                                                <p class="text-small mb-2">Tổng số khách truy cập</p>
+                                                                <h4 class="mb-0 fw-bold">26.80%</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="circle-progress-width">
+                                                                <div id="visitperday" class="progressbar-js-circle pr-2"></div>
+                                                            </div>
+                                                            <div>
+                                                                <p class="text-small mb-2">Lượt truy cập mỗi ngày</p>
+                                                                <h4 class="mb-0 fw-bold">9065</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

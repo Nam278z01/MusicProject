@@ -1,0 +1,29 @@
+[
+    {
+        "PaymentID":"GD0001",
+        "PaymentDate":"2-2-2022",
+        "OnSale":"no",
+        "Total":"0K",
+        "Note":"Ad Pro Max +",
+        "ServiceVipID":"V001",
+        "AccountName":"NguyenHy"
+    },
+    {
+        "PaymentID":"GD0002",
+        "PaymentDate":"2-2-2022",
+        "OnSale":"no",
+        "Total":"100K",
+        "Note":"Web rất hay",
+        "ServiceVipID":"V002",
+        "AccountName":"LeHieu"
+    },
+    {
+        "PaymentID":"GD0003",
+        "PaymentDate":"1-2-2022",
+        "OnSale":"no",
+        "Total":"500K",
+        "Note":"Sự hoàn hảo đến từng chi tiết!",
+        "ServiceVipID":"V003",
+        "AccountName":"J Lader"
+    }
+]

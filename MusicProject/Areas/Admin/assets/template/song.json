@@ -1,0 +1,26 @@
+[
+    {
+        "SongID":"SG00000001",
+        "SongName":"Easy on me",
+        "Lyric":"",
+        "Nation":1,
+        "ReleaseDate":"2021-10-15",
+        "Image":"./images/album/alb1.jpg",
+        "SongPath":"./images/album/alb1.jpg",
+        "IsVip":"true",
+        "Listens":12321,
+        "CollectionID":1
+    },
+    {
+        "SongID":"SG00000002",
+        "SongName":"My Universe",
+        "Lyric":"",
+        "Nation":1,
+        "ReleaseDate":"2021-09-24",
+        "Image":"./images/album/alb2.jpg",
+        "SongPath":"./images/album/alb2.jpg",
+        "IsVip":"true",
+        "Listens":75938,
+        "CollectionID":2
+    }
+]

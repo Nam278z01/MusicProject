@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+<style>
+    .table {
+        width: 100%;
+    }
+
+        .table tbody {
+            display: block;
+            margin: 0;
+            width: 100%;
+            height: 500px;
+            overflow: auto;
+        }
+
+        .table thead {
+            width: 100%;
+        }
+
+            .table thead tr, .table tbody tr {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+                .table thead tr th, .table tbody tr th {
+                    flex: 1;
+                    font-size: 14px;
+                    line-height: 1.8rem;
+                    height: 5rem;
+                    overflow: hidden;
+                    display: block;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                }
+</style>
+<div class="content-wrapper" ng-controller="UserController">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="home-tab">
+                <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link ps-0" href="~/Admin/ADMIN/Index"> Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" style="cursor: pointer;">Account Admin</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <div class="btn-wrapper">
+                            <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-file-add"></i> Thêm</a>
+                            <a href="#" class="btn btn-primary text-white me-0"><i class="icon-credit-card"></i> Sửa</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_body" style="width: 100%; margin-top: 26px;">
+                    <div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">AccountName</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">DateCreated</th>
+                                    <th scope="col">PersonID</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color: black;">
+                                <tr ng-repeat="s in account_admin" ng-class-even="even" ng-class-odd="odd">
+                                    <th scope="col">{{s.AccountName}}</th>
+                                    <th scope="col">{{s.Password}}</th>
+                                    <th scope="col">{{s.Role}}</th>
+                                    <th scope="col">{{s.State}}</th>
+                                    <th scope="col">{{s.DateCreated}}</th>
+                                    <th scope="col">{{s.PersonID}}</th>
+                                    <th scope="col">
+                                        <button ng-click="Delete(s)" type="button" class="btn btn-otline-dark align-items-center">
+                                            <i class="icon-delete" style="font-size: 1.4rem;"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

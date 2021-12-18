@@ -1,0 +1,30 @@
+[
+    {
+        "PersonID":"PS01",
+        "PersonName":"Thái Bình An",
+        "Gender":"0",
+        "Email":"binhan@gmail.com",
+        "Phone":"09812212321"
+    },
+    {
+        "PersonID":"PS02",
+        "PersonName":"Nguyễn Đình Quang Anh",
+        "Gender":"0",
+        "Email":"quanganh@gmail.com",
+        "Phone":"09430282974"
+    },
+    {
+        "PersonID":"PS03",
+        "PersonName":"Giang Sơn Bá",
+        "Gender":"0",
+        "Email":"sonba@gmail.com",
+        "Phone":"09893840238"
+    },
+    {
+        "PersonID":"PS04",
+        "PersonName":"Mai Hoàng Thái Bảo",
+        "Gender":"0",
+        "Email":"thaibao@gmail.com",
+        "Phone":"09829382083"
+    }
+]
