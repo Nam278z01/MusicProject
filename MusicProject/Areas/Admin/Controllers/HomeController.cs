@@ -13,6 +13,7 @@ namespace MusicProject.Areas.Admin.Controllers
     {
         // GET: Admin/Home
         // Nam !31231231
+        //Nam này!
         public ActionResult Index()
         {
             return View();
