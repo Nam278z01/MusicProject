@@ -12,7 +12,6 @@ namespace MusicProject.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         // GET: Admin/Home
-        // Nam !31231231
         public ActionResult Index()
         {
             return View();

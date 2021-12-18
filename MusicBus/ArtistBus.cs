@@ -23,5 +23,9 @@ namespace MusicBus
         {
             return atdao.GetArtistsHot(pageIndex, pageSize, time, genderorband, out totalCount);
         }
+        public List<Artist> GetArtistAll()
+        {
+            return atdao.GetArtistAll();
+        }
     }
 }

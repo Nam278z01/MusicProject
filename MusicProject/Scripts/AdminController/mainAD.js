@@ -1,11 +1,11 @@
-////var appMusic = angular.module("AppMusic", ['angularUtils.directives.dirPagination', 'ngRoute']);
+var appMusic = angular.module("AppMusicM", ['angularUtils.directives.dirPagination']);
 
-////appMusic.filter("jsDate", function () {
-////   return function (x) {
-////       return new Date(parseInt(x.substr(6)));
-////   };
-////});
-
+appMusic.filter("jsDate", function () {
+   return function (x) {
+       return new Date(parseInt(x.substr(6)));
+   };
+});
+angular.module('ng').filter('tel', function () { });
 ////appMusic.controller('HomeController', function ($scope, $rootScope, $location, $routeParams, $http) {
 ////    // View
 ////    $http({
@@ -17,57 +17,54 @@
 ////        alert('Failed to get the view!')
 ////    })
 ////})
-////appMusic.controller('MusicController', function ($scope, $rootScope, $location, $routeParams, $http) {
-////    // albums
-////    $http({
-////            method: 'get',
-////        url: '/Album/GetAlbum'
-////        }).then(function (response) {
-////            $scope.albums = response.data
-////        }, function (error) {
-////            alert('Failed to get the album!')
-////    })
+appMusic.controller('MusicController', function ($scope, $rootScope, $location, $routeParams, $http) {
+    // albums
+    $http({
+            method: 'get',
+        url: '/Album/GetAlbum'
+        }).then(function (response) {
+            $scope.albums = response.data
+        }, function (error) {
+            alert('Failed to get the album!')
+    })
 
-////    //songs
-////    $http({
-////        method:'get',
-////        url: '/Song/GetSong'
-////    }).then(function (response) {
-////        $scope.songs = response.data
-////    }, function (error) {
-////        alert('Failed to get the songs!')
-////    })
-////    //playlist
-////    $http({
-////        method: 'get',
-////        url: '/PlaylistAdmin/GetPlaylistAdmin'
-////    }).then(function (response) {
-////        $scope.playlists_admin = response.data
-////    }, function (error) {
-////        alert('Failed to get the playlists!')
-////    })
-////    //Artists
-////    $http({
-////        method: 'get',
-////        url: '/Artist/GetArtist'
-////    }).then(function (response) {
-////        $scope.Artists = response.data
-////    }, function (error) {
-////        alert('Failed to get the Artist!')
-////    })
-////    //Thể Loại
-////    $http({
-////        method: 'get',
-////        url: '/CollectionAD/GetCollection'
-////    }).then(function (response) {
-////        $scope.collections = response.data
-////    }, function (error) {
-////        alert('Failed to get the Collection!')
-////    })
-
-
-
-////})
+    //songs
+    $http({
+        method:'get',
+        url: '/Song/GetSong'
+    }).then(function (response) {
+        $scope.songs = response.data
+    }, function (error) {
+        alert('Failed to get the songs!')
+    })
+    //playlist
+    $http({
+        method: 'get',
+        url: '/PlaylistAdmin/GetPlaylistAdmin'
+    }).then(function (response) {
+        $scope.playlists_admin = response.data
+    }, function (error) {
+        alert('Failed to get the playlists!')
+    })
+    //Artists
+    $http({
+        method: 'get',
+        url: '/Artist/GetArtist'
+    }).then(function (response) {
+        $scope.Artists = response.data
+    }, function (error) {
+        alert('Failed to get the Artist!')
+    })
+    //Thể Loại
+    $http({
+        method: 'get',
+        url: '/CollectionAD/GetCollection'
+    }).then(function (response) {
+        $scope.collections = response.data
+    }, function (error) {
+        alert('Failed to get the Collection!')
+    })
+})
 ////appMusic.controller('UserController', function ($scope, $rootScope, $location, $routeParams, $http) {
 ////    //Admin
 ////    $http({
@@ -187,4 +184,4 @@
 //        })
 //    // $locationProvider.html5Mode(true)
 //    // $locationProvider.hashPrefix('!')
-//});
+////});

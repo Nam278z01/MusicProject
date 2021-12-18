@@ -66,5 +66,12 @@ namespace MusicDao
             dh.Close();
             return artists;
         }
+        public List<Artist> GetArtistAll()
+        {
+            SqlDataReader reader = dh.StoreReaders("GetArtistAll");
+            List<Artist> Artist = Utility.ToList<List<Artist>>(reader);
+            dh.Close();
+            return Artist;
+        }
     }
 }

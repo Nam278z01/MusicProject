@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
 }
+@Scripts.Render("~/Scripts/AdminController/artist.controller.js")
+
 <style>
     .table {
         width: 100%;
@@ -38,7 +40,7 @@
                     -webkit-line-clamp: 2;
                 }
 </style>
-<div class="content-wrapper" ng-controller="MusicController">
+<div class="content-wrapper" ng-controller="ArtistController">
     <div class="row">
         <div class="col-sm-12">
             <div class="home-tab">
