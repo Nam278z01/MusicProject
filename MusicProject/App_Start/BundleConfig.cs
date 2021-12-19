@@ -38,6 +38,15 @@ namespace MusicProject
                        "~/assets/css/playmusic.css",
                        "~/assets/css/main.css",
                        "~/assets/css/responsive.css"));
+            bundles.Add(new StyleBundle("~/mana/assets/css").Include(
+                      "~/Areas/Admin/assets/template/vendors/feather/feather.css",
+                       "~/Areas/Admin/assets/template/vendors/mdi/css/materialdesignicons.min.css",
+                       "~/Areas/Admin/assets/template/vendors/ti-icons/css/themify-icons.css",
+                       "~/Areas/Admin/assets/template/vendors/typicons/typicons.css",
+                       "~/Areas/Admin/assets/template/vendors/simple-line-icons/css/simple-line-icons.css",
+                       "~/Areas/Admin/assets/template/vendors/css/vendor.bundle.base.css",
+                       "~/Areas/Admin/assets/template/js/select.dataTables.min.css",
+                       "~/Areas/Admin/assets/template/css/vertical-layout-light/style.css"));
             bundles.Add(new ScriptBundle("~/Scripts/js").Include(
                        "~/Scripts/CustomerController/app.js",
                        "~/Scripts/CustomerController/collection.controller.js",
@@ -54,6 +63,15 @@ namespace MusicProject
                        "~/Scripts/CustomerController/sidebar.controller.js",
                        "~/Scripts/CustomerController/slide.controller.js",
                        "~/Scripts/CustomerController/top100.controller.js"));
+            bundles.Add(new ScriptBundle("~/mana/Scripts/js").Include(
+                       "~/Areas/Admin/assets/template/vendors/js/vendor.bundle.base.js",
+                       "~/Areas/Admin/assets/template/vendors/chart.js/Chart.min.js",
+                       "~/Areas/Admin/assets/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js",
+                       "~/Areas/Admin/assets/template/vendors/progressbar.js/progressbar.min.js",
+                       "~/Areas/Admin/assets/template/js/template.js",
+                       "~/Areas/Admin/assets/template/js/settings.js",
+                       "~/Areas/Admin/assets/template/js/dashboard.js",//Custom (2 dòng cuối)
+                       "~/Areas/Admin/assets/template/js/Chart.roundedBarCharts.js"));
         }
     }
 }
