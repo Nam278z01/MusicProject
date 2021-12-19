@@ -15,7 +15,7 @@ namespace MusicProject.Areas.Admin.Controllers
         // Nam !31231231
         //An123
         //Nam này!
-        public ActionResult DashBoard()
+        public ActionResult Index()
         {
             return View();
         }

@@ -7,10 +7,10 @@ using System.Web.Mvc;
 namespace MusicProject.Areas.Admin.Controllers
 {
     [Authorize]
-    public class USERController : Controller
+    public class UserManaController : Controller
     {
         // GET: Admin/USER
-        public ActionResult IUndex()
+        public ActionResult User()
         {
             return View();
         }

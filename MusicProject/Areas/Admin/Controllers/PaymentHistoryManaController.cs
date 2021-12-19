@@ -9,10 +9,10 @@ using MusicObj;
 namespace MusicProject.Areas.Admin.Controllers
 {
     [Authorize]
-    public class HistoryController : Controller
+    public class PaymentHistoryManaController : Controller
     {
         // GET: Admin/History
-        public ActionResult IHndex()
+        public ActionResult PaymentHistory()
         {
             return View();
         }

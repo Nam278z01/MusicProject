@@ -9,11 +9,11 @@ using MusicObj;
 namespace MusicProject.Areas.Admin.Controllers
 {
     [Authorize]
-    public class SongController : Controller
+    public class SongManaController : Controller
     {
         SongBus sb = new SongBus();
         // GET: Admin/Song
-        public ActionResult ISndex()
+        public ActionResult Song()
         {
             return View();
         }

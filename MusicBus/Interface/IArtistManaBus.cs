@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicBus.Interface
+namespace MusicBus
 {
-    internal class IArtistManaBus
+    public interface IArtistManaBus
     {
     }
 }

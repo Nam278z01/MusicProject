@@ -1,9 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<div class="content-wrapper" ng-controller="SongController">
+@Scripts.Render("~/Scripts/AdminController/song.management.controller.js")
+<div class="content-wrapper" ng-controller="SongManaController">
     <div class="row">
         <div class="col-sm-12">
             <div class="home-tab">
@@ -30,12 +31,12 @@
                                     <th scope="col">Tên bài hảt</th>
                                     @*<th scope="col" >Lyric</th>*@
                                     <th scope="col">Quốc gia</th>
-                                    <th scope="col" >Ngày phát hành</th>
+                                    <th scope="col">Ngày phát hành</th>
                                     <th scope="col">Ảnh</th>
                                     <th scope="col">Đường dẫn bài hát</th>
                                     @*<th scope="col">IsVip</th>
-                                    <th scope="col">Listens</th>
-                                    <th scope="col">CollectionID</th>*@
+                                        <th scope="col">Listens</th>
+                                        <th scope="col">CollectionID</th>*@
                                     <th>Thao tác</th>
                                 </tr>
                             </thead>
@@ -71,7 +72,7 @@
                                     <th scope="col">{{s.SongName}}</th>
                                     <th scope="col">{{s.Lyric}}</th>
                                     <th scope="col">{{s.Nation}}</th>*@
-                                    <!-- <th scope="col">{{s.ReleaseDate}}</th> 
+                                <!-- <th scope="col">{{s.ReleaseDate}}</th>
                                     <th scope="col">{{s.ReleaseDate| jsDate | date:'dd/MM/yyyy'}}</th>
                                     <th scope="col"><img src="{{s.Image}}" alt="" style="width:50px;height:50px;"></th>
                                     <th scope="col">{{s.SongPath}}</th>
