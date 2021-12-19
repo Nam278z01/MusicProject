@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="~/assets/img/default/favicon2.png" />
     <title>@ViewBag.Title</title>
     <!-- plugins:css -->
     @Styles.Render("~/mana/assets/css")
-    <!-- plugins:js -->
-    @Scripts.Render("~/mana/Scripts/js")
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/dirPagination.js"></script>
@@ -20,7 +19,7 @@
         }
     </style>
 </head>
-<body ng-app="AppMusic" >
+<body ng-app="AppMusic">
     <div class="container-scroller" ng-app="AppMusicM">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
@@ -36,8 +35,8 @@
                         <img src="~/assets/img/default/favicon2.png" alt="logo" />
                     </a>
                     @*<a class="navbar-brand brand-logo-mini" href="index.html">
-                        <img src="~/Areas/Admin/template/images/logo-mini.svg" alt="logo" />
-                    </a>*@
+                            <img src="~/Areas/Admin/template/images/logo-mini.svg" alt="logo" />
+                        </a>*@
                 </div>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-top">
@@ -191,7 +190,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="~/Admin/Home/Index">
+                        <a class="nav-link" href="~/Admin/DashBoard/Index">
                             <i class="mdi mdi-grid-large menu-icon"></i>
                             <span class="menu-title">Bảng điều khiển</span>
                         </a>
@@ -271,6 +270,27 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Areas/Admin/assets/template/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/Areas/Admin/assets/template/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/Areas/Admin/assets/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="~/Areas/Admin/assets/template/vendors/progressbar.js/progressbar.min.js"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <!-- <script src="js/off-canvas.js"></script> -->
+    <!-- <script src="js/hoverable-collapse.js"></script> -->
+    <script src="~/Areas/Admin/assets/template/js/template.js"></script>
+    <script src="~/Areas/Admin/assets/template/js/settings.js"></script>
+    <!-- <script src="js/todolist.js"></script> -->
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="~/Areas/Admin/assets/template/js/dashboard.js"></script>
+    <script src="~/Areas/Admin/assets/template/js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
 </body>
 
 </html>

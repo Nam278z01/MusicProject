@@ -38,6 +38,7 @@ namespace MusicProject
                        "~/assets/css/playmusic.css",
                        "~/assets/css/main.css",
                        "~/assets/css/responsive.css"));
+
             bundles.Add(new StyleBundle("~/mana/assets/css").Include(
                       "~/Areas/Admin/assets/template/vendors/feather/feather.css",
                        "~/Areas/Admin/assets/template/vendors/mdi/css/materialdesignicons.min.css",
@@ -47,6 +48,13 @@ namespace MusicProject
                        "~/Areas/Admin/assets/template/vendors/css/vendor.bundle.base.css",
                        "~/Areas/Admin/assets/template/js/select.dataTables.min.css",
                        "~/Areas/Admin/assets/template/css/vertical-layout-light/style.css"));
+
+            bundles.Add(new StyleBundle("~/login/assets/css").Include(
+                      "~/Areas/Admin/assets/login-form-07/fonts/icomoon/style.css",
+                       "~/Areas/Admin/assets/login-form-07/css/owl.carousel.min.css",
+                       "~/Areas/Admin/assets/login-form-07/css/bootstrap.min.css",
+                       "~/Areas/Admin/assets/login-form-07/css/style.css"));
+
             bundles.Add(new ScriptBundle("~/Scripts/js").Include(
                        "~/Scripts/CustomerController/app.js",
                        "~/Scripts/CustomerController/collection.controller.js",
@@ -63,15 +71,11 @@ namespace MusicProject
                        "~/Scripts/CustomerController/sidebar.controller.js",
                        "~/Scripts/CustomerController/slide.controller.js",
                        "~/Scripts/CustomerController/top100.controller.js"));
-            bundles.Add(new ScriptBundle("~/mana/Scripts/js").Include(
-                       "~/Areas/Admin/assets/template/vendors/js/vendor.bundle.base.js",
-                       "~/Areas/Admin/assets/template/vendors/chart.js/Chart.min.js",
-                       "~/Areas/Admin/assets/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js",
-                       "~/Areas/Admin/assets/template/vendors/progressbar.js/progressbar.min.js",
-                       "~/Areas/Admin/assets/template/js/template.js",
-                       "~/Areas/Admin/assets/template/js/settings.js",
-                       "~/Areas/Admin/assets/template/js/dashboard.js",//Custom (2 dòng cuối)
-                       "~/Areas/Admin/assets/template/js/Chart.roundedBarCharts.js"));
+
+            bundles.Add(new ScriptBundle("~/login/Scripts/js").Include(
+                    "~/Areas/Admin/assets/login-form-07/js/popper.min.js",
+                    "~/Areas/Admin/assets/login-form-07/js/bootstrap.min.js",
+                    "~/Areas/Admin/assets/login-form-07/js/main.js"));
         }
     }
 }

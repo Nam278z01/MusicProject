@@ -4,16 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-    <link href="~/Areas/Admin/assets/login-form-07/fonts/icomoon/style.css" rel="stylesheet" />
-
-    <link href="~/Areas/Admin/assets/login-form-07/css/owl.carousel.min.css" rel="stylesheet" />
-    <!-- Bootstrap CSS -->
-    <link href="~/Areas/Admin/assets/login-form-07/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Style -->
-    <link href="~/Areas/Admin/assets/login-form-07/css/style.css" rel="stylesheet" />
-
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @Styles.Render("~/login/assets/css")
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/AdminController/app.js"></script>
     <script src="~/Scripts/AdminController/login.controller.js"></script>
@@ -64,11 +56,6 @@
             </div>
         </div>
     </div>
-
-
-    <script src="~/Areas/Admin/assets/login-form-07/js/jquery-3.3.1.min.js"></script>
-    <script src="~/Areas/Admin/assets/login-form-07/js/popper.min.js"></script>
-    <script src="~/Areas/Admin/assets/login-form-07/js/bootstrap.min.js"></script>
-    <script src="~/Areas/Admin/assets/login-form-07/js/main.js"></script>
+    @Scripts.Render("~/login/Scripts/js")
 </body>
 </html>
