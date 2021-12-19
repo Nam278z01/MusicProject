@@ -9,13 +9,13 @@ using MusicObj;
 namespace MusicProject.Areas.Admin.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class DashBoardController : Controller
     {
         // GET: Admin/Home
         // Nam !31231231
         //An123
         //Nam này!
-        public ActionResult Index()
+        public ActionResult DashBoard()
         {
             return View();
         }

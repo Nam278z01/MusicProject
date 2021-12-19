@@ -128,8 +128,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccAdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\ADMINController.cs" />
     <Compile Include="Areas\Admin\Controllers\AlbumController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArtistController.cs" />
@@ -328,8 +326,9 @@
     <Content Include="Areas\Admin\assets\template\js\just-gage.js" />
     <Content Include="Areas\Admin\assets\template\js\light-gallery.js" />
     <Content Include="Areas\Admin\assets\template\js\listify.js" />
-    <Content Include="Scripts\AdminController\artist.controller.js" />
-    <Content Include="Scripts\AdminController\mainAD.js" />
+    <Content Include="Scripts\AdminController\admin.management.controller.js" />
+    <Content Include="Scripts\AdminController\album.management.controller.js" />
+    <Content Include="Scripts\AdminController\artist.management.controller.js" />
     <Content Include="Areas\Admin\assets\template\js\mapael.js" />
     <Content Include="Areas\Admin\assets\template\js\mapael_example_1.js" />
     <Content Include="Areas\Admin\assets\template\js\mapael_example_2.js" />
@@ -1902,8 +1901,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\AdminController\app.js" />
+    <Content Include="Scripts\AdminController\app.management.js" />
+    <Content Include="Scripts\AdminController\collection.management.controller.js" />
+    <Content Include="Scripts\AdminController\dashboard.controller.js" />
     <Content Include="Scripts\AdminController\login.controller.js" />
+    <Content Include="Scripts\AdminController\paymenthistory.managent.controller.js" />
+    <Content Include="Scripts\AdminController\playlistadmin.management.js" />
+    <Content Include="Scripts\AdminController\servicevip.management.controller.js" />
+    <Content Include="Scripts\AdminController\song.management.controller.js" />
+    <Content Include="Scripts\AdminController\user.managent.controller.js" />
     <Content Include="Scripts\CustomerController\app.js" />
     <Content Include="Scripts\CustomerController\collection.controller.js" />
     <Content Include="Scripts\CustomerController\detail.controller.js" />
@@ -2322,8 +2328,6 @@
     <Content Include="Areas\Admin\assets\template\vendors\typicons\typicons.woff" />
     <Content Include="Areas\Admin\assets\template\vendors\typicons\typicons.woff2" />
     <Content Include="Areas\Admin\assets\template\View.json" />
-    <Content Include="Areas\Admin\Views\AccAdmin\IAAndex.cshtml" />
-    <Content Include="Areas\Admin\Views\AccUser\IAUndex.cshtml" />
     <Content Include="Areas\Admin\Views\ADMIN\IADndex.cshtml" />
     <Content Include="Areas\Admin\Views\Album\IALndex.cshtml" />
     <Content Include="Areas\Admin\Views\Artist\IATndex.cshtml" />

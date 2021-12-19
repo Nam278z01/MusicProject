@@ -115,6 +115,12 @@ appMusic.config(function ($routeProvider, $locationProvider) {
         })
 });
 
+appMusic.filter("jsDate", function () {
+    return function (x) {
+        return x.replace('/Date(', '').replace(')/', '');
+    };
+});
+
 appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.title = 'My Music | Nghe nhạc Hot, tải nhạc Hay'
     //Sidebar tab hoạt động là trang home

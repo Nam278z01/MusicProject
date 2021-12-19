@@ -9,18 +9,17 @@ using MusicObj;
 namespace MusicProject.Areas.Admin.Controllers
 {
     [Authorize]
-    public class VipController : Controller
+    public class AlbumManaController : Controller
     {
-        // GET: Admin/Vip
-
-        public ActionResult IVndex()
+        // GET: Admin/Album
+        AlbumBus ab = new AlbumBus();
+        public ActionResult Album()
         {
             return View();
-
         }
-        //public ActionResult GetVip()
+        //public ActionResult GetAlbum()
         //{
-        //    List<Song> List = sb.GetVipAll();
+        //    List<Album> List = ab.GetAlbumAll();
         //    return Json(List, JsonRequestBehavior.AllowGet);
         //}
     }

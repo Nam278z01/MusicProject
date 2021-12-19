@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
 }
+@Scripts.Render("~/Scripts/AdminController/artist.management.controller.js")
+
 <style>
     .table {
         width: 100%;
@@ -38,17 +40,14 @@
                     -webkit-line-clamp: 2;
                 }
 </style>
-<div class="content-wrapper" ng-controller="UserController">
+<div class="content-wrapper" ng-controller="ArtistController">
     <div class="row">
         <div class="col-sm-12">
             <div class="home-tab">
                 <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link ps-0" href="#!/doi-tuong/nguoi-dung">User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  active" style="cursor: pointer;">Account User</a>
+                            <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Nghệ Sĩ</a>
                         </li>
                     </ul>
                     <div>
@@ -63,25 +62,27 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">AccountName</th>
-                                    <th scope="col">Password</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">DateCreated</th>
-                                    <th scope="col">KindofAccount</th>
-                                    <th scope="col">DueOn</th>
-                                    <th scope="col">PersonID</th>
+                                    <th scope="col">ArtistID</th>
+                                    <th scope="col">ArtistName</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">ImageBig</th>
+                                    <th scope="col">isBand</th>
+                                    <th scope="col">Nation</th>
+                                    <th scope="col">Gender</th>
                                     <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody style="color: black;">
-                                <tr ng-repeat="s in account_user" ng-class-even="even" ng-class-odd="odd">
-                                    <th scope="col">{{s.AccountName}}</th>
-                                    <th scope="col">{{s.Password}}</th>
-                                    <th scope="col">{{s.Role}}</th>
-                                    <th scope="col">{{s.DateCreated}}</th>
-                                    <th scope="col">{{s.KindofAccount}}</th>
-                                    <th scope="col">{{s.DueOn}}</th>
-                                    <th scope="col">{{s.PersonID}}</th>
+                                <tr ng-repeat="s in Artists" ng-class-even="even" ng-class-odd="odd">
+                                    <th scope="col">{{s.ArtistID}}</th>
+                                    <th scope="col">{{s.ArtistName}}</th>
+                                    <th scope="col">{{s.Description}}</th>
+                                    <th scope="col"><img src="{{s.Image}}" alt="" style="width:50px;height:50px;"></th>
+                                    <th scope="col"><img src="{{s.ImageBig}}" alt="" style="width:50px;height:50px;"></th>
+                                    <th scope="col">{{s.isBand}}</th>
+                                    <th scope="col">{{s.Nation}}</th>
+                                    <th scope="col">{{s.Gender}}</th>
                                     <th scope="col">
                                         <button ng-click="Delete(s)" type="button" class="btn btn-otline-dark align-items-center">
                                             <i class="icon-delete" style="font-size: 1.4rem;"></i>
@@ -96,4 +97,3 @@
         </div>
     </div>
 </div>
-
