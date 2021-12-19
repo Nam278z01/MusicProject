@@ -2335,7 +2335,7 @@
     <Content Include="Areas\Admin\Views\PaymentHistoryMana\PaymentHistory.cshtml" />
     <Content Include="Areas\Admin\Views\DashBoard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PlaylistAdminMana\PlaylistAdmin.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\SongMana\Song.cshtml" />
     <Content Include="Areas\Admin\Views\UserMana\User.cshtml" />
     <Content Include="Areas\Admin\Views\ServiceVipMana\ServiceVip.cshtml" />
