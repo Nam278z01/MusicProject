@@ -1,4 +1,6 @@
-﻿appMusic.controller('LoginController', function ($scope, $rootScope, $http, $window) {
+﻿var appMusic = angular.module("AppMusic", []);
+
+appMusic.controller('LoginController', function ($scope, $rootScope, $http, $window) {
     // Đăng nhập
     $rootScope.Admins = null;
     $rootScope.AN = "";
@@ -15,7 +17,7 @@
             data: LoginObj
         }).then(function (res) {
             if (res.data) {
-                $window.location.href = '/Admin/Home/Index'
+                $window.location.href = '/Admin/DashBoard/Index'
             }
             else {
                 $rootScope.AN = "";

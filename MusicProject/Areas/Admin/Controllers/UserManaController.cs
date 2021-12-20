@@ -10,7 +10,7 @@ namespace MusicProject.Areas.Admin.Controllers
     public class UserManaController : Controller
     {
         // GET: Admin/USER
-        public ActionResult User()
+        public ActionResult UserM()
         {
             return View();
         }

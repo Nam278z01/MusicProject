@@ -101,7 +101,9 @@ namespace MusicDao
         public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week)
         {
             SqlDataReader reader = dh.StoreReaders("GetRankSongsofWeek", accountName, quantity, nation, week);
-            return Utility.ToStringForJson(reader);
+            string song = Utility.ToStringForJson(reader);
+            dh.Close();
+            return song;
         }
         public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week)
         {
@@ -112,12 +114,49 @@ namespace MusicDao
             dataJsonSong.Add(Utility.ToStringForJson(reader));
             reader.NextResult();
             dataJsonSong.Add(Utility.ToStringForJson(reader));
+            dh.Close();
             return dataJsonSong;
+        }
+        public string GetSongsForMana(int pageIndex, int pageSize, out int totalCount)
+        {
+            SqlDataReader reader = dh.StoreReaders("GetSongsForMana", pageIndex, pageSize);
+            totalCount = 0;
+            while (reader.Read())
+            {
+                totalCount = int.Parse(reader["totalCount"].ToString());
+            }
+            reader.NextResult();
+            string song = Utility.ToStringForJson(reader);
+            dh.Close();
+            return song;
         }
         public string AddSong(string jsonSong)
         {
             string result = dh.ExecuteNonQueryStoreProcedure("AddSong", jsonSong);
             return result;
+        }
+        public string DeleteSong(string songID)
+        {
+            string sql = "delete from Song where SongID = @songID";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@songID",
+                Value = songID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
         }
     }
 }

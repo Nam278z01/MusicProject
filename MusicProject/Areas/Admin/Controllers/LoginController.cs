@@ -13,7 +13,9 @@ namespace MusicProject.Areas.Admin.Controllers
     {
         // GET: Admin/Login
         public ActionResult Index()
-        {
+        {     
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/Admin/DashBoard/Index");
             return View();
         }
         public JsonResult Login(string accountname, string password)
@@ -29,7 +31,7 @@ namespace MusicProject.Areas.Admin.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Login");
+            return Redirect("/Admin/Login/Index");
         }
     }
 }

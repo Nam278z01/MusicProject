@@ -39,16 +39,6 @@ namespace MusicProject
                        "~/assets/css/main.css",
                        "~/assets/css/responsive.css"));
 
-            bundles.Add(new StyleBundle("~/mana/assets/css").Include(
-                      "~/Areas/Admin/assets/template/vendors/feather/feather.css",
-                       "~/Areas/Admin/assets/template/vendors/mdi/css/materialdesignicons.min.css",
-                       "~/Areas/Admin/assets/template/vendors/ti-icons/css/themify-icons.css",
-                       "~/Areas/Admin/assets/template/vendors/typicons/typicons.css",
-                       "~/Areas/Admin/assets/template/vendors/simple-line-icons/css/simple-line-icons.css",
-                       "~/Areas/Admin/assets/template/vendors/css/vendor.bundle.base.css",
-                       "~/Areas/Admin/assets/template/js/select.dataTables.min.css",
-                       "~/Areas/Admin/assets/template/css/vertical-layout-light/style.css"));
-
             bundles.Add(new StyleBundle("~/login/assets/css").Include(
                       "~/Areas/Admin/assets/login-form-07/fonts/icomoon/style.css",
                        "~/Areas/Admin/assets/login-form-07/css/owl.carousel.min.css",

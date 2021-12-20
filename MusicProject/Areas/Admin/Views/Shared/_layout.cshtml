@@ -8,19 +8,313 @@
     <link rel="shortcut icon" href="~/assets/img/default/favicon2.png" />
     <title>@ViewBag.Title</title>
     <!-- plugins:css -->
-    @Styles.Render("~/mana/assets/css")
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Areas/Admin/assets/template/vendors/feather/feather.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/template/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/template/vendors/ti-icons/css/themify-icons.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/template/vendors/typicons/typicons.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/template/vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/template/vendors/css/vendor.bundle.base.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/template/js/select.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/template/css/vertical-layout-light/style.css" rel="stylesheet" />
+
+    @*<link href="~/Areas/Admin/assets/template/vendors/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/template/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/select.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/angular-sanitize.min.js"></script>
+    <script src="~/Scripts/select.min.js"></script>
     <script src="~/Scripts/AdminController/app.management.js"></script>
     <style>
         html {
             background-color: #F4F5F7;
+            overflow: visible;
+        }
+
+        .nav, .pagination, .carousel, .panel-title a {
+            cursor: pointer;
+        }
+
+        .select2 > .select2-choice.ui-select-match {
+            /* Because of the inclusion of Bootstrap */
+            height: 29px;
+        }
+
+        .selectize-control > .selectize-dropdown {
+            top: 36px;
+        }
+        /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
+        .select-box {
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .alert-info.positioned {
+            margin-top: 1em;
+            position: relative;
+            z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+        }
+
+        .datepicker {
+            border-radius: 4px;
+        }
+
+            .datepicker .input-group-prepend {
+                border-right: 1px solid #dee2e6;
+                border-color: transparent;
+                height: 34px;
+                border-color: transparent;
+            }
+
+            .datepicker .calendar-icon {
+                border: none;
+                border-right: 1px solid #dee2e6;
+                background: transparent;
+                height: 100%;
+                color: #000000;
+                font-size: 12px;
+            }
+
+        body {
+            overflow: scroll;
+        }
+
+        .modal-open {
+            overflow: hidden;
+        }
+
+        table.stickyTB > thead > tr > th:last-child {
+            position: sticky;
+            right: 0;
+            background-color: white;
+        }
+
+        table.stickyTB > tbody > tr > td:last-child {
+            position: sticky;
+            right: 0;
+            background-color: white;
+        }
+
+        table.stickyTB > thead > tr > th:first-child {
+            position: sticky;
+            left: 0;
+            background-color: white;
+        }
+
+        table.stickyTB > tbody > tr > td:first-child {
+            position: sticky;
+            left: 0;
+            background-color: white;
+        }
+
+
+        table > tbody > tr > td > span + span:before {
+            content: ",";
+            display: inline;
+            position: relative;
+            padding-right: 2px;
+        }
+
+        /* wrap-layout */
+        .wrap-layout {
+            margin-top: 36px;
+            padding: 12px 0 32px 0;
+            display: flex;
+            justify-content: center;
+            --main-color: #1F3BB3;
+        }
+
+        /* pagination new */
+        .left-option {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-add {
+            height: 36px;
+            width: 80px;
+            margin-right: 12px;
+        }
+
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+            .pagination > li {
+                display: inline;
+            }
+
+                .pagination > li > a,
+                .pagination > li > span {
+                    position: relative;
+                    float: left;
+                    padding: 8px 14px;
+                    margin-left: -1px;
+                    line-height: 1.42857143;
+                    color: var(--main-color);
+                    text-decoration: none;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    font-size: 1.3rem;
+                }
+
+                .pagination > li:first-child > a,
+                .pagination > li:first-child > span {
+                    margin-left: 0;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                }
+
+                .pagination > li:last-child > a,
+                .pagination > li:last-child > span {
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                }
+
+                .pagination > li > a:hover,
+                .pagination > li > span:hover,
+                .pagination > li > a:focus,
+                .pagination > li > span:focus {
+                    z-index: 2;
+                    color: var(--main-color);
+                    background-color: #eee;
+                    border-color: #ddd;
+                }
+
+            .pagination > .active > a,
+            .pagination > .active > span,
+            .pagination > .active > a:hover,
+            .pagination > .active > span:hover,
+            .pagination > .active > a:focus,
+            .pagination > .active > span:focus {
+                z-index: 3;
+                color: #fff;
+                cursor: default;
+                background-color: var(--main-color);
+                border-color: var(--main-color);
+            }
+
+            .pagination > .disabled > span,
+            .pagination > .disabled > span:hover,
+            .pagination > .disabled > span:focus,
+            .pagination > .disabled > a,
+            .pagination > .disabled > a:hover,
+            .pagination > .disabled > a:focus {
+                color: #777;
+                cursor: not-allowed;
+                background-color: #fff;
+                border-color: #ddd;
+            }
+
+        .pagination-lg > li > a,
+        .pagination-lg > li > span {
+            padding: 10px 16px;
+            font-size: 1.5rem;
+            line-height: 1.3333333;
+        }
+
+        .pagination-lg > li:first-child > a,
+        .pagination-lg > li:first-child > span {
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+
+        .pagination-lg > li:last-child > a,
+        .pagination-lg > li:last-child > span {
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+
+        .pagination-sm > li > a,
+        .pagination-sm > li > span {
+            padding: 5px 10px;
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .pagination-sm > li:first-child > a,
+        .pagination-sm > li:first-child > span {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .pagination-sm > li:last-child > a,
+        .pagination-sm > li:last-child > span {
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .pager {
+            padding-left: 0;
+            margin: 20px 0;
+            text-align: center;
+            list-style: none;
+        }
+
+            .pager li {
+                display: inline;
+            }
+
+                .pager li > a,
+                .pager li > span {
+                    display: inline-block;
+                    padding: 5px 14px;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    border-radius: 15px;
+                }
+
+                    .pager li > a:hover,
+                    .pager li > a:focus {
+                        text-decoration: none;
+                        background-color: #eee;
+                    }
+
+            .pager .next > a,
+            .pager .next > span {
+                float: right;
+            }
+
+            .pager .previous > a,
+            .pager .previous > span {
+                float: left;
+            }
+
+            .pager .disabled > a,
+            .pager .disabled > a:hover,
+            .pager .disabled > a:focus,
+            .pager .disabled > span {
+                color: #777;
+                cursor: not-allowed;
+                background-color: #fff;
+            }
+
+        .page-number {
+            text-align: center;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            height: 30px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .head-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     </style>
 </head>
-<body ng-app="AppMusic">
-    <div class="container-scroller" ng-app="AppMusicM">
+<body ng-app="AppMusic" class="sidebar-icon-only">
+    <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
@@ -31,7 +325,7 @@
 
                 </div>
                 <div>
-                    <a class="navbar-brand brand-logo" href="index.html">
+                    <a class="navbar-brand brand-logo" href="/Admin/DashBoard/Index">
                         <img src="~/assets/img/default/favicon2.png" alt="logo" />
                     </a>
                     @*<a class="navbar-brand brand-logo-mini" href="index.html">
@@ -39,11 +333,11 @@
                         </a>*@
                 </div>
             </div>
-            <div class="navbar-menu-wrapper d-flex align-items-top">
+            <div class="navbar-menu-wrapper d-flex align-items-top" style="padding-left: 2.187rem">
                 <ul class="navbar-nav">
                     <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                        <h1 class="welcome-text">Xin Chào, <span class="text-black fw-bold">Matter</span></h1>
-                        <h3 class="welcome-sub-text">Quản lý Website MyMusic</h3>
+                        <h1 class="welcome-text">Xin Chào, <span class="text-black fw-bold">An</span></h1>
+                        <h3 class="welcome-sub-text">@ViewBag.TitleSub</h3>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -56,90 +350,90 @@
                             <input type="text" class="form-control">
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <form class="search-form" action="#">
-                            <i class="icon-search"></i>
-                            <input type="search" class="form-control" placeholder="Search Here" title="Search here">
-                        </form>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                            <i class="icon-mail icon-lg"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
-                            <a class="dropdown-item py-3 border-bottom">
-                                <p class="mb-0 font-weight-medium float-left">Bạn có 4 thông báo mới </p>
-                                <span class="badge badge-pill badge-primary float-right">Tất cả</span>
+                    @*<li class="nav-item">
+                            <form class="search-form" action="#">
+                                <i class="icon-search"></i>
+                                <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                            </form>
+                        </li>*@
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+                                <i class="icon-mail icon-lg"></i>
                             </a>
-                            <a class="dropdown-item preview-item py-3">
-                                <div class="preview-thumbnail">
-                                    <i class="mdi mdi-alert m-auto text-primary"></i>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject fw-normal text-dark mb-1">Lỗi ứng dụng</h6>
-                                    <p class="fw-light small-text mb-0"> Lúc này </p>
-                                </div>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
+                                <a class="dropdown-item py-3 border-bottom">
+                                    <p class="mb-0 font-weight-medium float-left">Bạn có 4 thông báo mới </p>
+                                    <span class="badge badge-pill badge-primary float-right">Tất cả</span>
+                                </a>
+                                <a class="dropdown-item preview-item py-3">
+                                    <div class="preview-thumbnail">
+                                        <i class="mdi mdi-alert m-auto text-primary"></i>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject fw-normal text-dark mb-1">Lỗi ứng dụng</h6>
+                                        <p class="fw-light small-text mb-0"> Lúc này </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item py-3">
+                                    <div class="preview-thumbnail">
+                                        <i class="mdi mdi-settings m-auto text-primary"></i>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject fw-normal text-dark mb-1">Cài đặt</h6>
+                                        <p class="fw-light small-text mb-0"> Tin nhắn riêng </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item py-3">
+                                    <div class="preview-thumbnail">
+                                        <i class="mdi mdi-airballoon m-auto text-primary"></i>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject fw-normal text-dark mb-1">Người dùng mới đăng ký</h6>
+                                        <p class="fw-light small-text mb-0"> 30 phút trước </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>*@
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="icon-bell"></i>
+                                <span class="count"></span>
                             </a>
-                            <a class="dropdown-item preview-item py-3">
-                                <div class="preview-thumbnail">
-                                    <i class="mdi mdi-settings m-auto text-primary"></i>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject fw-normal text-dark mb-1">Cài đặt</h6>
-                                    <p class="fw-light small-text mb-0"> Tin nhắn riêng </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item py-3">
-                                <div class="preview-thumbnail">
-                                    <i class="mdi mdi-airballoon m-auto text-primary"></i>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject fw-normal text-dark mb-1">Người dùng mới đăng ký</h6>
-                                    <p class="fw-light small-text mb-0"> 30 phút trước </p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="icon-bell"></i>
-                            <span class="count"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-                            <a class="dropdown-item py-3">
-                                <p class="mb-0 font-weight-medium float-left">Bạn có 5 tin chưa đọc</p>
-                                <span class="badge badge-pill badge-primary float-right">Tất cả</span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="~/Areas/Admin/assets/template/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
-                                </div>
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Nguyễn Thanh Nam</p>
-                                    <p class="fw-light small-text mb-0">Cuộc họp bị hủy bỏ </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="~/Areas/Admin/assets/template/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
-                                </div>
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Thái Bình An </p>
-                                    <p class="fw-light small-text mb-0">Cuộc họp bị hủy bỏ</p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="~/Areas/Admin/assets/template/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
-                                </div>
-                                <div class="preview-item-content flex-grow py-2">
-                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Nguyễn Thị Tuyết</p>
-                                    <p class="fw-light small-text mb-0">Cuộc họp bị hủy bỏ</p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
+                                <a class="dropdown-item py-3">
+                                    <p class="mb-0 font-weight-medium float-left">Bạn có 5 tin chưa đọc</p>
+                                    <span class="badge badge-pill badge-primary float-right">Tất cả</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="~/Areas/Admin/assets/template/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">Nguyễn Thanh Nam</p>
+                                        <p class="fw-light small-text mb-0">Cuộc họp bị hủy bỏ </p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="~/Areas/Admin/assets/template/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">Thái Bình An </p>
+                                        <p class="fw-light small-text mb-0">Cuộc họp bị hủy bỏ</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <img src="~/Areas/Admin/assets/template/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                                    </div>
+                                    <div class="preview-item-content flex-grow py-2">
+                                        <p class="preview-subject ellipsis font-weight-medium text-dark">Nguyễn Thị Tuyết</p>
+                                        <p class="fw-light small-text mb-0">Cuộc họp bị hủy bỏ</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>*@
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             <img class="img-xs rounded-circle" src="~/Areas/Admin/assets/template/images/faces/face8.jpg" alt="Profile image">
@@ -151,8 +445,8 @@
                                 <p class="fw-light text-muted mb-0">binhanvio@gmail.com</p>
                             </div>
                             <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>Hồ sơ <span class="badge badge-pill badge-danger">1</span></a>
-                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Tin nhắn</a>
-                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Hoạt động</a>
+                            @*<a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Tin nhắn</a>
+                                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Hoạt động</a>*@
                             <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> Trợ giúp</a>
                             <a class="dropdown-item" ng-click="Logout()"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Đăng xuất</a>
                         </div>
@@ -166,24 +460,24 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_settings-panel.html -->
-            <div class="theme-setting-wrapper">
-                <div id="settings-trigger"><i class="ti-settings"></i></div>
-                <div id="theme-settings" class="settings-panel">
-                    <i class="settings-close ti-close"></i>
-                    <p class="settings-heading">Menu</p>
-                    <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Sáng</div>
-                    <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Tối</div>
-                    <p class="settings-heading mt-2">Thanh ngang</p>
-                    <div class="color-tiles mx-0 px-4">
-                        <div class="tiles success"></div>
-                        <div class="tiles warning"></div>
-                        <div class="tiles danger"></div>
-                        <div class="tiles info"></div>
-                        <div class="tiles dark"></div>
-                        <div class="tiles default"></div>
+            @*<div class="theme-setting-wrapper">
+                    <div id="settings-trigger"><i class="ti-settings"></i></div>
+                    <div id="theme-settings" class="settings-panel">
+                        <i class="settings-close ti-close"></i>
+                        <p class="settings-heading">Menu</p>
+                        <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border me-3"></div>Sáng</div>
+                        <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border me-3"></div>Tối</div>
+                        <p class="settings-heading mt-2">Thanh ngang</p>
+                        <div class="color-tiles mx-0 px-4">
+                            <div class="tiles success"></div>
+                            <div class="tiles warning"></div>
+                            <div class="tiles danger"></div>
+                            <div class="tiles info"></div>
+                            <div class="tiles dark"></div>
+                            <div class="tiles default"></div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
 
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
@@ -222,7 +516,7 @@
                         <div class="collapse" id="form-elements">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"><a class="nav-link" href="~/Admin/AdminMana/Admin">Người quản trị</a></li>
-                                <li class="nav-item"><a class="nav-link" href="~/Admin/UserMana/User">Người dùng</a></li>
+                                <li class="nav-item"><a class="nav-link" href="~/Admin/UserMana/UserM">Người dùng</a></li>
                             </ul>
                         </div>
                     </li>
@@ -261,7 +555,7 @@
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Pro 2021</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></span>
                     </div>
                 </footer>
                 <!-- partial -->
@@ -278,16 +572,26 @@
     <script src="~/Areas/Admin/assets/template/vendors/chart.js/Chart.min.js"></script>
     <script src="~/Areas/Admin/assets/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="~/Areas/Admin/assets/template/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="~/Areas/Admin/assets/template/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="~/Areas/Admin/assets/template/vendors/jquery-file-upload/jquery.uploadfile.min.js"></script>
+
+    @*<script src="~/Areas/Admin/assets/template/vendors/select2/select2.min.js"></script>
+    <script src="~/Areas/Admin/assets/template/js/select2.js"></script>*@
 
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <!-- <script src="js/off-canvas.js"></script> -->
     <!-- <script src="js/hoverable-collapse.js"></script> -->
+    <script src="~/Areas/Admin/assets/template/js/off-canvas.js"></script>
+    <script src="~/Areas/Admin/assets/template/js/hoverable-collapse.js"></script>
     <script src="~/Areas/Admin/assets/template/js/template.js"></script>
     <script src="~/Areas/Admin/assets/template/js/settings.js"></script>
+    <script src="~/Areas/Admin/assets/template/js/todolist.js"></script>
     <!-- <script src="js/todolist.js"></script> -->
     <!-- endinject -->
     <!-- Custom js for this page-->
+    <script src="~/Areas/Admin/assets/template/js/file-upload.js"></script>
+    <script src="~/Areas/Admin/assets/template/js/jquery.cookie.js"></script>
     <script src="~/Areas/Admin/assets/template/js/dashboard.js"></script>
     <script src="~/Areas/Admin/assets/template/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->

@@ -12,9 +12,6 @@ namespace MusicProject.Areas.Admin.Controllers
     public class DashBoardController : Controller
     {
         // GET: Admin/Home
-        // Nam !31231231
-        //An123
-        //Nam này!
         public ActionResult Index()
         {
             return View();

@@ -19,5 +19,7 @@ namespace MusicDao
         List<SongwithArtist> GetSongsNewAHot(int pageIndex, int pageSize, string accountName, int time, out int totalCount);
         string GetRankSongsofWeek(string accountName, int quantity, int nation, int week);
         List<string> Get3RankSongsofWeek(string accountName, int quantity, int week);
+        string GetSongsForMana(int pageIndex, int pageSize, out int totalCount);
+        string DeleteSong(string songID);
     }
 }

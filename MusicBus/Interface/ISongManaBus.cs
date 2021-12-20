@@ -8,5 +8,7 @@ namespace MusicBus
 {
     public interface ISongManaBus
     {
+        string GetSongsForMana(int pageIndex, int pageSize, out int totalCount);
+        string DeleteSong(string songID);
     }
 }

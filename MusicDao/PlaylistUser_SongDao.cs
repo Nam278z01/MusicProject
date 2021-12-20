@@ -24,15 +24,15 @@ namespace MusicDao
             {
                 ParameterName = "@songID",
                 Value = songID,
-                SqlDbType = SqlDbType.NChar,
-                Size = 10
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
             });
             cm.Parameters.Add(new SqlParameter
             {
                 ParameterName = "@playlistID",
                 Value = playlistID,
-                SqlDbType = SqlDbType.NChar,
-                Size = 10
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
             });
             try
             {
