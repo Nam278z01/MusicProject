@@ -17,7 +17,8 @@ namespace MusicProject.Areas.Administrator
             context.MapRoute(
                 "Administrator_default",
                 "Administrator/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller="DashBoard", action = "Index", id = UrlParameter.Optional },
+                new[] { "MusicProject.Areas.Administrator.Controllers" }
             );
         }
     }

@@ -11,13 +11,14 @@ appMusic.controller('LoginController', function ($scope, $rootScope, $http, $win
     $rootScope.Login = function () {
         LoginObj.AccountName = $scope.AccountName
         LoginObj.Password = $scope.Password
+        console.log(LoginObj)
         $http({
             method: 'post',
-            url: '/Admin/Login/Login',
+            url: '/Administrator/Login/Login',
             data: LoginObj
         }).then(function (res) {
             if (res.data) {
-                $window.location.href = '/Admin/DashBoard/Index'
+                $window.location.href = '/Administrator/DashBoard/Index'
             }
             else {
                 $rootScope.AN = "";

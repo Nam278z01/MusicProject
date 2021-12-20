@@ -7,13 +7,13 @@ using System.Web.Security;
 using MusicBus;
 using MusicObj;
 
-namespace MusicProject.Areas.Admin.Controllers
+namespace MusicProject.Areas.Administrator.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Admin/Login
+        // GET: Administrator/Login
         public ActionResult Index()
-        {     
+        {
             if (User.Identity.IsAuthenticated)
                 return Redirect("/Administrator/DashBoard/Index");
             return View();

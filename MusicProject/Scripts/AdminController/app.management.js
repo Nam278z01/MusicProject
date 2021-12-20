@@ -1,4 +1,4 @@
-﻿var appMusic = angular.module("AppMusic", ['angularUtils.directives.dirPagination', 'ui.select', 'ngSanitize']);
+﻿var appMusic = angular.module("AppMusic", ['angularUtils.directives.dirPagination', 'ngSanitize']);
 
 appMusic.filter("jsDate", function () {
     return function (x) {
@@ -23,7 +23,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.Logout = function () {
         $http({
             method: 'get',
-            url: '/Admin/Login/Logout'
+            url: '/Administrator/Login/Logout'
         }).then(function (res) {
             $window.location.reload()
         }, function (err) {

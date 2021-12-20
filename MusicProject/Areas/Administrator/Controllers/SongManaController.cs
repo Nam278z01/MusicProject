@@ -7,9 +7,9 @@ using System.Web.Mvc;
 namespace MusicProject.Areas.Administrator.Controllers
 {
     [Authorize]
-    public class DashBoardController : Controller
+    public class SongManaController : Controller
     {
-        // GET: Administrator/DashBoard
+        // GET: Administrator/SongMana
         public ActionResult Index()
         {
             return View();
