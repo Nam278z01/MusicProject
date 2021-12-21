@@ -4,46 +4,211 @@
     Layout = "~/Areas/Administrator/Views/Shared/_Layout.cshtml";
 }
 
-<section class="content-header">
-    <h1>
-        Blank page
-        <small>it all starts here</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-    </ol>
+@Scripts.Render("~/Scripts/AdminController/song.management.controller.js")
+<!-- Bootstrap Color Picker -->
+<link href="~/Areas/Administrator/assets/Administrator/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+<!-- bootstrap wysihtml5 - text editor -->
+<link href="~/Areas/Administrator/assets/Administrator/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
+
+<section ng-controller="SongManaController">
+    <section class="content-header">
+        <h1>
+            Quản lý bài hát
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-music"></i>Quản lý</a></li>
+            <li class="active">Quản lý bài hát</li>
+        </ol>
+        <button ng-click="addSong()" class="btn btn-primary btn-block" style="margin-top: 8px" data-toggle="modal" data-target="#modaladd-editsong">Thêm bài hát</button>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="table-responsive">
+            <table ng-table="tableParams" show-filter="true" class="table table-bordered table-striped stickytb">
+                <tr ng-repeat="row in $data">
+                    <td title="'#'">
+                        {{$index + 1}}
+                    </td>
+                    <td title="'Mã bài hát'" filter="{'SongID': 'text'}" sortable="'SongID'">
+                        {{row.SongID}}
+                    </td>
+                    <td title="'Tên bài hát'" filter="{'SongName': 'text'}" sortable="'SongName'">
+                        {{row.SongName}}
+                    </td>
+                    <td title="'Ảnh'">
+                        <img src="~/assets/img/song/{{row.Image}}" alt="{{row.SongName}}" />
+                    </td>
+                    <td title="'Nghệ sĩ'">
+                        <span ng-repeat="a in row.Artists">{{a.ArtistName}}</span>
+                    </td>
+                    <td title="'Thể loại'">
+                        <span ng-repeat="c in row.Collections">{{c.CollectionName}}</span>
+                    </td>
+                    <td title="'Quốc gia'" sortable="'Nation'">
+                        {{row.Nation | cvNation}}
+                    </td>
+                    <td title="'Ngày phát hành'" filter="{'ReleaseDate': 'text'}" sortable="'ReleaseDate'">
+                        {{row.ReleaseDate | jsDate | date : "dd-MM-yyyy"}}
+                    </td>
+                    <td title="'Loại'" sortable="'isVip'">
+                        <label class="badge bg-yellow" ng-show="row.isVip">Vip</label>
+                        <label class="badge bg-dark" ng-hide="row.isVip">Thường</label>
+                    </td>
+                    <td title="'Số lượt nghe'" sortable="'Views'">
+                        {{row.Views}}
+                    </td>
+                    <td title="'Album'" sortable="'Album.AlbumID'">
+                        {{row.Album.AlbumName}}
+                    </td>
+                    <td title="'Số lượt thích'" sortable="'TotalLikes'">
+                        {{row.TotalLikes}}
+                    </td>
+                    <td title="'Thao tác'">
+                        <button ng-click="editSong(row)" type="button" class="btn btn-block btn-success" title="Sửa" data-toggle="modal" data-target="#modaladd-editsong">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button ng-click="Delete(row)" type="button" class="btn btn-block btn-danger" title="Xóa">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal fade" id="modaladd-editsong" role="dialog" aria-labelledby="myLargeModalLabel">
+            <form class="modal-dialog modal-lg" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel" style="text-align: center">{{feature}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Mã bài hát:</label>
+                                    <input type="text" class="form-control" disabled ng-model="Song.SongID">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Tên bài hát:</label>
+                                    <input type="text" class="form-control" placeholder="Tên bài hát" ng-model="Song.SongName">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Ngày phát hành:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control" id="datepicker">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label>Quốc gia:</label>
+                                    <select class="form-control" ng-model="Song.Nation">
+                                        <option selected ng-value="{{ 1 }}">Việt Nam</option>
+                                        <option ng-value="{{ 2 }}">Âu Mỹ</option>
+                                        <option ng-value="{{ 3 }}">Châu Á</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label>Là bài hát Vip:</label>
+                                    <select class="form-control" ng-model="Song.isVip">
+                                        <option ng-value="{{ false }}">Không</option>
+                                        <option ng-value="{{ true }}">Có</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 row row-no-gutters">
+                                <div class="form-group">
+                                    <label>File ảnh bài hát:</label>
+                                    <input type="file" class="form-control" placeholder="Tải ảnh bài hát lên" ngf-select="UploadImage($files)" ng-model="SelectedFileImage">
+                                </div>
+                                <div class="form-group">
+                                    <label>File(mp3) bài hát:</label>
+                                    <input type="file" class="form-control" placeholder="Tải bài hát lên" ngf-select="UploadMP3($files)">
+                                </div>
+                                <div class="form-group">
+                                    <label>Link nhúng MV:</label>
+                                    <input type="text" class="form-control" placeholder="Chèn link nhúng" ng-model="Song.MV">
+                                </div>
+                                <div class="form-group">
+                                    <label>Album:</label>
+                                    <div class="input-group">
+                                        <ui-select ng-model="Song.Album" title="Chọn Album">
+                                            <ui-select-match placeholder="Chọn hoặc tìm kiếm Album ...">
+                                                <span>{{$select.selected.AlbumName}} ({{$select.selected.ArtistName}})</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="a in albums | propsFilter: {AlbumName: $select.search, ArtistName: $select.search}" group-by="firstLetterGroupAlbumFn">
+                                                <img src="~/assets/img/album/{{a.ALImage}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px; " alt=""/>
+                                                <span>{{a.AlbumName}} ({{a.ArtistName}})</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="Song.Album = null" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label>Lời bài hát:</label>
+                                <div class="form-group">
+                                    <textarea class="textarea" placeholder="Lời bài hát"
+                                              style="width: 100%; height: 165px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label>Nghệ sĩ:</label>
+                                <ui-select multiple ng-model="Song.Artists" close-on-select="false" title="Chọn các nghệ sĩ">
+                                    <ui-select-match placeholder="Chọn hoặc tìm các nghệ sĩ">{{$item.ArtistName}}</ui-select-match>
+                                    <ui-select-choices repeat="a in artists | filter: {ArtistName : $select.search}" group-by="firstLetterGroupArtistFn">
+                                        <img src="~/assets/img/artist/{{a.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt=""/>
+                                        <span>{{a.ArtistName}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <label>Thể loại:</label>
+                                <ui-select multiple ng-model="Song.Collections" close-on-select="false" title="Chọn các thể loại">
+                                    <ui-select-match placeholder="Chọn hoặc tìm các thể loại">{{$item.CollectionName}}</ui-select-match>
+                                    <ui-select-choices repeat="c in collections | filter: {CollectionName : $select.search}" group-by="firstLetterGroupColFn">
+                                        <div>{{c.CollectionName}}</div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-primary" ng-click="addeditSongSave()">Lưu</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
 </section>
 
-<!-- Main content -->
-<section class="content">
+<!-- Bootstrap 3.3.7 -->
+<script src="~/Areas/Administrator/assets/Administrator/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="~/Areas/Administrator/assets/Administrator/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="~/Areas/Administrator/assets/Administrator/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 
-    <!-- Default box -->
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Title</h3>
-
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-        </div>
-        <div class="box-body">
-            Start creating your amazing application!
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-            Footer
-        </div>
-        <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
-
-</section>
-<!-- /.content -->
+<script>
+    $(document).ready(function () {
+        $('#datepicker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+        }).datepicker('setDate', new Date())
+        $('.textarea').wysihtml5()
+    })
+</script>

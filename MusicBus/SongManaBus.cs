@@ -16,9 +16,13 @@ namespace MusicBus
         {
             sdao = new SongDao();
         }
-        public string GetSongsForMana(int pageIndex, int pageSize, out int totalCount)
+        public string GetSongsForMana()
         {
-            return sdao.GetSongsForMana(pageIndex, pageSize, out totalCount);
+            return sdao.GetSongsForMana();
+        }
+        public List<string> GetAlbumsGenresArtistsForManaSong()
+        {
+            return sdao.GetAlbumsGenresArtistsForManaSong();
         }
         public string DeleteSong(string songID)
         {

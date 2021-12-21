@@ -117,18 +117,24 @@ namespace MusicDao
             dh.Close();
             return dataJsonSong;
         }
-        public string GetSongsForMana(int pageIndex, int pageSize, out int totalCount)
+        public string GetSongsForMana()
         {
-            SqlDataReader reader = dh.StoreReaders("GetSongsForMana", pageIndex, pageSize);
-            totalCount = 0;
-            while (reader.Read())
-            {
-                totalCount = int.Parse(reader["totalCount"].ToString());
-            }
-            reader.NextResult();
+            SqlDataReader reader = dh.StoreReaders("GetSongsForMana");
             string song = Utility.ToStringForJson(reader);
             dh.Close();
             return song;
+        }
+        public List<string> GetAlbumsGenresArtistsForManaSong()
+        {
+            List<string> dataJson = new List<string>();
+            SqlDataReader reader = dh.StoreReaders("GetAlbumsGenresArtistsForManaSong");
+            dataJson.Add(Utility.ToStringForJson(reader));
+            reader.NextResult();
+            dataJson.Add(Utility.ToStringForJson(reader));
+            reader.NextResult();
+            dataJson.Add(Utility.ToStringForJson(reader));
+            dh.Close();
+            return dataJson;
         }
         public string AddSong(string jsonSong)
         {

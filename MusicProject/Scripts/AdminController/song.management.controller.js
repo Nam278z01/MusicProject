@@ -1,56 +1,133 @@
-﻿appMusic.controller('SongManaController', function ($scope, $rootScope, $http, $window) {
+﻿appMusic.controller('SongManaController', function ($scope, $rootScope, $http, $window, NgTableParams, Upload) {
+    $rootScope.currentIndex = 1
+    $rootScope.currentSubIndex = 0
+
+    //Table phân dữ liệu theo Anphabet
+    $scope.firstLetterGroupArtistFn = function (item) {
+        return item.ArtistName[0];
+    }
+    $scope.firstLetterGroupAlbumFn = function (item) {
+        return item.AlbumName[0];
+    }
+    $scope.firstLetterGroupColFn = function (item) {
+        return item.CollectionName[0];
+    }
+
+    //Upload ảnh
+    $scope.UploadImage = function (file) {
+        $scope.Song.Image = file.name
+        $scope.SelectedFileImage = file
+    }
+    //Upload mp3
+    $scope.UploadMP3 = function (file) {
+        $scope.Song.SongPath = file.name
+        $scope.SelectedFileMp3 = file
+    }
+
     //Lấy về danh sách bài hát phân trang
     $scope.songs = []
-    $scope.totalCount = 0
-    $scope.pageSize = 10
-    $scope.maxSize = 5
-    $scope.pageIndex = 1
-    $scope.loadSongSuccessfull2 = false // Vẫn là phục vụ ẩn hiện loading item
 
-    getResultsPage()
-       
-    $scope.pageChanged = function (newPage) {
-        $scope.pageIndex = newPage
-        getResultsPage()
-    };
+    $http({
+        method: 'get',
+        url: '/Administrator/SongMana/GetSongsForMana'
+    }).then(function (response) {
+        $scope.songs = JSON.parse(response.data)
+        console.log($scope.songs)
+        //Table
+        $scope.tableParams = new NgTableParams({
+            page: 1, // show first page
+            count: 10, // count per page
+        }, {
+            filterDelay: 0,
+            dataset: $scope.songs
+        });
+    }, function (error) {
+        alert('Failed to get the songs!')
+    })
 
-    function getResultsPage() {
-        $http({
-            method: 'get',
-            url: '/SongMana/GetSongsForMana',
-            params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize }
-        }).then(function (response) {
-            $scope.songs = JSON.parse(response.data.songs)
-            console.log($scope.songs)
-            $scope.totalCount = response.data.totalCount
-            $scope.loadSongSuccessfull2 = true
-        }, function (error) {
-            alert('Failed to get the songs!')
-        })
-    }
+    $http({
+        method: 'get',
+        url: '/Administrator/SongMana/GetAlbumsGenresArtistsForManaSong'
+    }).then(function (response) {
+        $scope.albums = JSON.parse(response.data.ablums)
+        $scope.collections = JSON.parse(response.data.genres)
+        $scope.artists = JSON.parse(response.data.artists)
+    }, function (error) {
+        alert('Failed to get the data!')
+    })
 
     $scope.Song = {}
-    $scope.Artists = []
-    $scope.Collections = []
+    $scope.Song.Artists = []
+    $scope.Song.Collections = []
 
     $scope.addSong = function () {
+        $scope.feature = 'Thêm bài hát'
         $scope.Song = {}
-        $scope.Artists = []
-        $scope.Collections = []
         $scope.Song.SongID = $rootScope.create_UUID()
-        $scope.Song.isVip = false
         $scope.Song.Nation = 1
+        $scope.Song.isVip = false
+        $('iframe').contents().find('.textarea').html('');
     }
 
-    $scope.addSongSave = function () {
-        $scope.Song.ReleaseDate = document.querySelector("#releaseDate").value
+    $scope.editSong = function (s) {
+        $scope.feature = 'Sửa bài hát'
+        $scope.Song = JSON.parse(JSON.stringify(s));
+        $('iframe').contents().find('.textarea').html($scope.Song.Lyric);
+    }
+
+    $scope.addeditSongSave = function () {
+        $scope.Song.ReleaseDate = document.querySelector("#datepicker").value
+        $scope.Song.Lyric = $('iframe').contents().find('.textarea').html();
+        if ($scope.SelectedFileImage) {
+            Upload.upload({
+                url: '/Administrator/DashBoard/Upload',
+                data: { files: $scope.SelectedFileImage, path: '~/assets/img/user/' }
+            }).then((res) => {
+                $scope.Song.Image = res.data[0]
+            }, (err) => {
+                alert("Upload failed!")
+            })
+        }
+        if ($scope.SelectedFileMp3) {
+            Upload.upload({
+                url: '/Administrator/DashBoard/Upload',
+                data: { files: $scope.SelectedFileMp3, path: '~/assets/mp3/' }
+            }).then((res) => {
+                $scope.Song.SongPath = res.data[0]
+               
+            }, (err) => {
+                alert("Upload failed!")
+            })
+        }
+        if ($scope.feature == 'Thêm bài hát') {
+            //$http({
+            //    method: "post",
+            //    url: '/Administrator/SongMana/AddSong',
+            //    data: $scope.Song
+            //}).then((res) => {
+            //    if (res.data) {
+            //        $scope.SelectedFileMp3 = undefined
+            //        $scope.SelectedFileImage = undefined
+
+            //    } else {
+            //        alert("Insert failed!")
+            //    }
+            //}, (err) => {
+            //    alert("Insert failed!")
+            //})
+            console.log($scope.Song)
+        }
+        else {
+
+
+        }
         console.log($scope.Song)
     }
 
     $scope.deleteSong = function (song) {
         $http({
             method: 'post',
-            url: '/SongMana/DeleteSong',
+            url: '/Administrator/SongMana/DeleteSong',
             data: song.SongID
         }).then(function (res) {
             if (res.data) {
@@ -62,31 +139,4 @@
             alert("Delete failed song!")
         })
     }
-
-    if ($("#datepicker-popup2").length) {
-        $('#datepicker-popup2').datepicker({
-            enableOnReadonly: true,
-            todayHighlight: true,
-        });
-        $("#datepicker-popup2").datepicker("setDate", "0");
-    }
-
-    function formatDate(date) {
-        const day = date && date.getDate() || -1;
-        const dayWithZero = day.toString().length > 1 ? day : '0' + day;
-        const month = date && date.getMonth() + 1 || -1;
-        const monthWithZero = month.toString().length > 1 ? month : '0' + month;
-        const year = date && date.getFullYear() || -1;
-        return `${monthWithZero}/${dayWithZero}/${year}`;
-    }
-
-    $scope.itemArray = [
-        { id: 1, name: 'first' },
-        { id: 2, name: 'second' },
-        { id: 3, name: 'third' },
-        { id: 4, name: 'fourth' },
-        { id: 5, name: 'fifth' },
-    ];
-
-    $scope.selected = { value: $scope.itemArray[0] };
 })

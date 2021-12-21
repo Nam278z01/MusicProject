@@ -1,4 +1,4 @@
-﻿var appMusic = angular.module("AppMusic", ['angularUtils.directives.dirPagination', 'ngSanitize']);
+﻿var appMusic = angular.module("AppMusic", ['ngSanitize', 'ngTable', 'ui.select', 'ngFileUpload']);
 
 appMusic.filter("jsDate", function () {
     return function (x) {
@@ -18,7 +18,49 @@ appMusic.filter("cvNation", function () {
     };
 });
 
+appMusic.filter('propsFilter', function () {
+    return function (items, props) {
+        var out = [];
+
+        if (angular.isArray(items)) {
+            var keys = Object.keys(props);
+
+            items.forEach(function (item) {
+                var itemMatches = false;
+
+                for (var i = 0; i < keys.length; i++) {
+                    var prop = keys[i];
+                    var text = props[prop].toLowerCase();
+                    if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                        itemMatches = true;
+                        break;
+                    }
+                }
+
+                if (itemMatches) {
+                    out.push(item);
+                }
+            });
+        } else {
+            // Let the output be the input untouched
+            out = items;
+        }
+
+        return out;
+    };
+});
+
 appMusic.run(function ($rootScope, $http, $window, $location) {
+    //Như tab controls ấy
+    $rootScope.currentIndex = -1
+    $rootScope.currentSubIndex = -1
+    $rootScope.isActiveNav = function (index) {
+        return index == $rootScope.currentIndex
+    }
+    $rootScope.isActiveSubNav = function (index) {
+        return index == $rootScope.currentSubIndex
+    }
+
     // Đăng xuất 
     $rootScope.Logout = function () {
         $http({

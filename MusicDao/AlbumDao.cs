@@ -65,7 +65,6 @@ namespace MusicDao
             dh.Close();
             return albums;
         }
-
         public string GetAlbumDetail(string albumID, string accountName)
         {
             SqlDataReader reader = dh.StoreReaders("GetAlbumDetail", albumID, accountName);
