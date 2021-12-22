@@ -53,11 +53,11 @@
                     <div class="rank-title">Trong tuần</div>
                 </div>
                 <div class="rank-detail-item">
-                    <div class="rank-number" style="color: #2DAAED;">{{songBXHTop1.RankDetail.MaxACount[0].Max}}</div>
+                    <div class="rank-number" style="color: #2DAAED;">{{songBXHTop1.RankDetail.MaxACount.Max}}</div>
                     <div class="rank-title">Cao nhất</div>
                 </div>
                 <div class="rank-detail-item">
-                    <div class="rank-number" style="color: #95D96D;">{{songBXHTop1.RankDetail.MaxACount[0].Count}}</div>
+                    <div class="rank-number" style="color: #95D96D;">{{songBXHTop1.RankDetail.MaxACount.Count}}</div>
                     <div class="rank-title">Tuần trong BXH</div>
                 </div>
             </div>
@@ -109,15 +109,15 @@
                                     </button>
                                 </div>
                                 <div class="show-rank-prev">
-                                    <button class="btn btn--circle" style="color: #95D96D;" ng-if="s.RankDetail.RankPrev[0].Rank && (s.RankDetail.RankPrev[0].Rank - s.RankDetail.RankCurrent) > 0">
+                                    <button class="btn btn--circle" style="color: #95D96D;" ng-if="s.RankDetail.RankPrev.Rank && (s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent) > 0">
                                         <i class='bx bx-caret-up' style="font-size: 1.4rem"></i>
-                                        <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev[0].Rank - s.RankDetail.RankCurrent}}</span>
+                                        <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent}}</span>
                                     </button>
-                                    <button class="btn btn--circle" style="color: #F44336;" ng-if="s.RankDetail.RankPrev[0].Rank && (s.RankDetail.RankPrev[0].Rank - s.RankDetail.RankCurrent) < 0">
+                                    <button class="btn btn--circle" style="color: #F44336;" ng-if="s.RankDetail.RankPrev.Rank && (s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent) < 0">
                                         <i class='bx bx-caret-down' style="font-size: 1.4rem"></i>
-                                        <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev[0].Rank - s.RankDetail.RankCurrent}}</span>
+                                        <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent}}</span>
                                     </button>
-                                    <button class="btn btn--circle" ng-if="!s.RankDetail.RankPrev[0].Rank || s.RankDetail.RankPrev[0].Rank - s.RankDetail.RankCurrent == 0">
+                                    <button class="btn btn--circle" ng-if="!s.RankDetail.RankPrev.Rank || s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent == 0">
                                         <i class='bx bx-minus' style="font-size: 1.4rem"></i>
                                     </button>
                                 </div>
@@ -155,11 +155,11 @@
                                     <div class="rank-title">Trong tuần</div>
                                 </div>
                                 <div class="rank-detail-item">
-                                    <div class="rank-number" style="color: #2DAAED;">{{s.RankDetail.MaxACount[0].Max}}</div>
+                                    <div class="rank-number" style="color: #2DAAED;">{{s.RankDetail.MaxACount.Max}}</div>
                                     <div class="rank-title">Cao nhất</div>
                                 </div>
                                 <div class="rank-detail-item">
-                                    <div class="rank-number" style="color: #95D96D;">{{s.RankDetail.MaxACount[0].Count}}</div>
+                                    <div class="rank-number" style="color: #95D96D;">{{s.RankDetail.MaxACount.Count}}</div>
                                     <div class="rank-title">Tuần trong BXH</div>
                                 </div>
                             </div>

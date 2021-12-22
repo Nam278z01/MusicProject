@@ -24,6 +24,14 @@ namespace MusicBus
         {
             return sdao.GetAlbumsGenresArtistsForManaSong();
         }
+        public string AddSong(string jsonSong)
+        {
+            return sdao.AddSong(jsonSong);
+        }
+        public string EditSong(string jsonSong)
+        {
+            return sdao.EditSong(jsonSong);
+        }
         public string DeleteSong(string songID)
         {
             return sdao.DeleteSong(songID);

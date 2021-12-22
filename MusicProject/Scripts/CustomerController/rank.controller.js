@@ -54,6 +54,8 @@
             params: { nation: $routeParams.n, week: $scope.numbetOfWeek }
         }).then(function (res) {
             $scope.songsBXHofWeek = JSON.parse(res.data)
+            console.log($scope.songsBXHofWeek)
+            console.log($scope.songsBXHofWeek[0].RankDetail.MaxACount.Max)
             $scope.songBXHTop1 = $scope.songsBXHofWeek[0]
         }, function (err) {
             alert('Failed to get songs!')

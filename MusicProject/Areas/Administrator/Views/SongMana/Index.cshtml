@@ -30,14 +30,14 @@
                     <td title="'#'">
                         {{$index + 1}}
                     </td>
+                    <td title="'Ảnh'">
+                        <img src="~/assets/img/song/{{row.Image}}" alt="{{row.SongName}}" />
+                    </td>
                     <td title="'Mã bài hát'" filter="{'SongID': 'text'}" sortable="'SongID'">
                         {{row.SongID}}
                     </td>
                     <td title="'Tên bài hát'" filter="{'SongName': 'text'}" sortable="'SongName'">
                         {{row.SongName}}
-                    </td>
-                    <td title="'Ảnh'">
-                        <img src="~/assets/img/song/{{row.Image}}" alt="{{row.SongName}}" />
                     </td>
                     <td title="'Nghệ sĩ'">
                         <span ng-repeat="a in row.Artists">{{a.ArtistName}}</span>
@@ -55,11 +55,11 @@
                         <label class="badge bg-yellow" ng-show="row.isVip">Vip</label>
                         <label class="badge bg-dark" ng-hide="row.isVip">Thường</label>
                     </td>
-                    <td title="'Số lượt nghe'" sortable="'Views'">
-                        {{row.Views}}
-                    </td>
                     <td title="'Album'" sortable="'Album.AlbumID'">
                         {{row.Album.AlbumName}}
+                    </td>
+                    <td title="'Số lượt nghe'" sortable="'Views'">
+                        {{row.Views}}
                     </td>
                     <td title="'Số lượt thích'" sortable="'TotalLikes'">
                         {{row.TotalLikes}}
@@ -68,7 +68,7 @@
                         <button ng-click="editSong(row)" type="button" class="btn btn-block btn-success" title="Sửa" data-toggle="modal" data-target="#modaladd-editsong">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <button ng-click="Delete(row)" type="button" class="btn btn-block btn-danger" title="Xóa">
+                        <button ng-click="deleteSong(row)" type="button" class="btn btn-block btn-danger" title="Xóa"  data-toggle="modal" data-target="#modaldeletesong">
                             <i class="fa fa-trash-o"></i>
                         </button>
                     </td>
@@ -128,11 +128,29 @@
                             <div class="col-lg-6 col-md-6 row row-no-gutters">
                                 <div class="form-group">
                                     <label>File ảnh bài hát:</label>
-                                    <input type="file" class="form-control" placeholder="Tải ảnh bài hát lên" ngf-select="UploadImage($files)" ng-model="SelectedFileImage">
+                                    <input type="file" id="file-img" class="form-control" style="display: none" ngf-select="UploadImage($files)" ng-model="SelectedFileImage">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" disabled placeholder="Tải ảnh bài hát lên" ng-model="Song.Image">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-click="RemoveImage()">Remove</button>
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-click="openFileImage()">Upload</button>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>File(mp3) bài hát:</label>
-                                    <input type="file" class="form-control" placeholder="Tải bài hát lên" ngf-select="UploadMP3($files)">
+                                    <input type="file" id="file-img2" class="form-control" style="display: none" ngf-select="UploadMP3($files)" ng-model="SelectedFileMP3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" disabled placeholder="Tải bài hát lên" ng-model="Song.SongPath">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-click="RemoveMP3()">Remove</button>
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-click="openFileImage2()">Upload</button>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Link nhúng MV:</label>
@@ -146,7 +164,7 @@
                                                 <span>{{$select.selected.AlbumName}} ({{$select.selected.ArtistName}})</span>
                                             </ui-select-match>
                                             <ui-select-choices repeat="a in albums | propsFilter: {AlbumName: $select.search, ArtistName: $select.search}" group-by="firstLetterGroupAlbumFn">
-                                                <img src="~/assets/img/album/{{a.ALImage}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px; " alt=""/>
+                                                <img src="~/assets/img/album/{{a.ALImage}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px; " alt="" />
                                                 <span>{{a.AlbumName}} ({{a.ArtistName}})</span>
                                             </ui-select-choices>
                                         </ui-select>
@@ -159,36 +177,61 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <label>Lời bài hát:</label>
                                 <div class="form-group">
-                                    <textarea class="textarea" placeholder="Lời bài hát"
-                                              style="width: 100%; height: 165px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                    <label>Lời bài hát:</label>
+                                    <div class="form-group">
+                                        <textarea class="textarea" placeholder="Lời bài hát"
+                                                  style="width: 100%; height: 165px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <label>Nghệ sĩ:</label>
-                                <ui-select multiple ng-model="Song.Artists" close-on-select="false" title="Chọn các nghệ sĩ">
-                                    <ui-select-match placeholder="Chọn hoặc tìm các nghệ sĩ">{{$item.ArtistName}}</ui-select-match>
-                                    <ui-select-choices repeat="a in artists | filter: {ArtistName : $select.search}" group-by="firstLetterGroupArtistFn">
-                                        <img src="~/assets/img/artist/{{a.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt=""/>
-                                        <span>{{a.ArtistName}}</span>
-                                    </ui-select-choices>
-                                </ui-select>
+                                <div class="form-group">
+                                    <label>Nghệ sĩ:</label>
+                                    <ui-select multiple ng-model="Song.Artists" close-on-select="false" title="Chọn các nghệ sĩ">
+                                        <ui-select-match placeholder="Chọn hoặc tìm các nghệ sĩ">
+                                            <img src="~/assets/img/artist/{{$item.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
+                                            <span>{{$item.ArtistName}}</span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="a in artists | filter: {ArtistName : $select.search}" group-by="firstLetterGroupArtistFn">
+                                            <img src="~/assets/img/artist/{{a.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
+                                            <span>{{a.ArtistName}}</span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <label>Thể loại:</label>
-                                <ui-select multiple ng-model="Song.Collections" close-on-select="false" title="Chọn các thể loại">
-                                    <ui-select-match placeholder="Chọn hoặc tìm các thể loại">{{$item.CollectionName}}</ui-select-match>
-                                    <ui-select-choices repeat="c in collections | filter: {CollectionName : $select.search}" group-by="firstLetterGroupColFn">
-                                        <div>{{c.CollectionName}}</div>
-                                    </ui-select-choices>
-                                </ui-select>
+                                <div class="form-group">
+                                    <label>Thể loại:</label>
+                                    <ui-select multiple ng-model="Song.Collections" close-on-select="false" title="Chọn các thể loại">
+                                        <ui-select-match placeholder="Chọn hoặc tìm các thể loại">{{$item.CollectionName}}</ui-select-match>
+                                        <ui-select-choices repeat="c in collections | filter: {CollectionName : $select.search}" group-by="firstLetterGroupColFn">
+                                            <div>{{c.CollectionName}}</div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-primary" ng-click="addeditSongSave()">Lưu</button>
+                        <button type="submit" class="btn btn-primary" ng-click="addeditSongSave()">Lưu</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal fade" id="modaldeletesong" role="dialog" aria-labelledby="mySmallModalLabel">
+            <form class="modal-dialog modal-sm" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel" style="text-align: center">Bạn có đồng ý muốn xóa bài hát</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary" ng-click="agreetodeleteSong()">Đồng ý</button>
                     </div>
                 </div>
             </form>

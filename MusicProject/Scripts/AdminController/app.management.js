@@ -45,12 +45,32 @@ appMusic.filter('propsFilter', function () {
             // Let the output be the input untouched
             out = items;
         }
-
         return out;
     };
 });
 
 appMusic.run(function ($rootScope, $http, $window, $location) {
+    $rootScope.snackbarContent = "Hello!"
+    var myTimeout
+    $rootScope.showSnackbar = function (content) {
+        $rootScope.snackbarContent = content
+        let snackbar = $('#snackbar')
+        if (snackbar.hasClass('show')) {
+            snackbar.removeClass('show')
+            setTimeout(function () {
+                clearTimeout(myTimeout)
+                snackbar.addClass('show')
+                myTimeout = setTimeout(function () {
+                    snackbar.removeClass('show')
+                }, 3000);
+            }, 100);
+        } else {
+            snackbar.addClass('show')
+            myTimeout = setTimeout(function () {
+                snackbar.removeClass('show')
+            }, 3000);
+        }
+    }
     //Như tab controls ấy
     $rootScope.currentIndex = -1
     $rootScope.currentSubIndex = -1

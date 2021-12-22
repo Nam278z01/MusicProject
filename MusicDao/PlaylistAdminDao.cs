@@ -70,6 +70,13 @@ namespace MusicDao
             dh.Close();
             return playlists;
         }
+        public string GetPlaylistsForMana()
+        {
+            SqlDataReader dr = dh.StoreReaders("GetPlaylistsForMana");
+            string playlistAdmins = Utility.ToStringForJson(dr);
+            dh.Close();
+            return playlistAdmins;
+        }
         public List<PlaylistAdminwithAdmin> PlaylistAdminToList(SqlDataReader dr)
         {
             List<PlaylistAdminwithAdmin> playlistAdmins = new List<PlaylistAdminwithAdmin>();

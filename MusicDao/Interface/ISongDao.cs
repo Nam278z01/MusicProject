@@ -20,7 +20,10 @@ namespace MusicDao
         string GetRankSongsofWeek(string accountName, int quantity, int nation, int week);
         List<string> Get3RankSongsofWeek(string accountName, int quantity, int week);
         string GetSongsForMana();
+        string GetSongsForManaPlaylistAdmin();
         List<string> GetAlbumsGenresArtistsForManaSong();
+        string AddSong(string jsonSong);
+        string EditSong(string jsonSong);
         string DeleteSong(string songID);
     }
 }

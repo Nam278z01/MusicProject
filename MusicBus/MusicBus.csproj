@@ -63,6 +63,7 @@
     <Compile Include="Interface\IUserManaBus.cs" />
     <Compile Include="LoginBus.cs" />
     <Compile Include="PlaylistAdminBus.cs" />
+    <Compile Include="PlaylistAdminManaBus.cs" />
     <Compile Include="PlaylistBus.cs" />
     <Compile Include="PlaylistUserBus.cs" />
     <Compile Include="PlaylistUser_SongBus.cs" />

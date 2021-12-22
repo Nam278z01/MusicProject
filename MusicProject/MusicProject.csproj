@@ -6978,7 +6978,7 @@
     <Content Include="Scripts\AdminController\dashboard.controller.js" />
     <Content Include="Scripts\AdminController\login.controller.js" />
     <Content Include="Scripts\AdminController\paymenthistory.managent.controller.js" />
-    <Content Include="Scripts\AdminController\playlistadmin.management.js" />
+    <Content Include="Scripts\AdminController\playlistadmin.management.controller.js" />
     <Content Include="Scripts\AdminController\servicevip.management.controller.js" />
     <Content Include="Scripts\AdminController\song.management.controller.js" />
     <Content Include="Scripts\AdminController\user.managent.controller.js" />

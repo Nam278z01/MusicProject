@@ -9,7 +9,9 @@ namespace MusicBus
     public interface ISongManaBus
     {
         string GetSongsForMana();
-        List<string> GetAlbumsGenresArtistsForManaSong();
+        List<string> GetAlbumsGenresArtistsForManaSong(); 
+        string AddSong(string jsonSong);
+        string EditSong(string jsonSong);
         string DeleteSong(string songID);
     }
 }

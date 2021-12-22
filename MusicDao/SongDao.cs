@@ -124,6 +124,13 @@ namespace MusicDao
             dh.Close();
             return song;
         }
+        public string GetSongsForManaPlaylistAdmin()
+        {
+            SqlDataReader reader = dh.StoreReaders("GetSongsForManaPlaylistAdmin");
+            string song = Utility.ToStringForJson(reader);
+            dh.Close();
+            return song;
+        }
         public List<string> GetAlbumsGenresArtistsForManaSong()
         {
             List<string> dataJson = new List<string>();
@@ -139,6 +146,11 @@ namespace MusicDao
         public string AddSong(string jsonSong)
         {
             string result = dh.ExecuteNonQueryStoreProcedure("AddSong", jsonSong);
+            return result;
+        }
+        public string EditSong(string jsonSong)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("EditSong", jsonSong);
             return result;
         }
         public string DeleteSong(string songID)

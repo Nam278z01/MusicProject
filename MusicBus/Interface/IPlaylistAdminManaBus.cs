@@ -8,5 +8,7 @@ namespace MusicBus
 {
     public interface IPlaylistAdminManaBus
     {
+        string GetPlaylistsForMana();
+        string GetSongsForManaPlaylistAdmin();
     }
 }
