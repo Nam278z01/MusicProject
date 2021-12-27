@@ -39,7 +39,7 @@ appMusic.controller('SongDiscoveryController', function ($scope, $rootScope, $ht
     //Lấy về danh sách bài hát phân trang
     $scope.songs = []
     $scope.totalCount = 0
-    $scope.pageSize = 24
+    $scope.pageSize = 10
     $scope.maxSize = 5
     $scope.pageIndex = $routeParams.page || 1
     $scope.loadSongSuccessfull = false // Vẫn là phục vụ ẩn hiện loading item

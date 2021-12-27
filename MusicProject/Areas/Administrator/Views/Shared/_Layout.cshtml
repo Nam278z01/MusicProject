@@ -106,14 +106,15 @@
             font-size: 17px;
             opacity: 0;
         }
-        #snackbar.show {
-            top: 30px;
-            opacity: 1;
-            transition: top linear 0.2s, opacity linear 0.2s;
-        }
+
+            #snackbar.show {
+                top: 30px;
+                opacity: 1;
+                transition: top linear 0.2s, opacity linear 0.2s;
+            }
     </style>
 </head>
-<body class="hold-transition skin-black sidebar-mini fixed" ng-app="AppMusic">
+<body class="hold-transition skin-black sidebar-mini fixed sidebar-collapse" ng-app="AppMusic">
     <!-- Toast / Snackbar -->
     <div id="snackbar">{{snackbarContent}}</div>
     <!-- Site wrapper -->
@@ -593,4 +594,3 @@
     </script>
 </body>
 </html>
-
