@@ -124,13 +124,6 @@ namespace MusicDao
             dh.Close();
             return song;
         }
-        public string GetSongsForManaPlaylistAdmin()
-        {
-            SqlDataReader reader = dh.StoreReaders("GetSongsForManaPlaylistAdmin");
-            string song = Utility.ToStringForJson(reader);
-            dh.Close();
-            return song;
-        }
         public List<string> GetAlbumsGenresArtistsForManaSong()
         {
             List<string> dataJson = new List<string>();

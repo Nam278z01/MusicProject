@@ -16,5 +16,9 @@ namespace MusicDao
         PlaylistAdminwithAdmin GetPlaylistAdminwithSongs(string accountName, string playlistID);
         List<PlaylistAdminwithAdmin> Get10PlaylistsRandomCollection(string accountName, string collectionID, string playlistID);
         string GetPlaylistsForMana();
+        List<string> GetCollectionsSongsForManaPlaylistAdmin();
+        string AddPlaylistAdmin(string jsonPlaylist);
+        string EditPlaylistAdmin(string jsonPlaylist);
+        string DeletePlaylistAdmin(string PlaylistID);
     }
 }

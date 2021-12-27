@@ -128,5 +128,53 @@ namespace MusicDao
         //    }
         //    return playlistAdmins;
         //}
+
+        
+
+        public List<string> GetCollectionsSongsForManaPlaylistAdmin()
+        {
+            List<string> dataJson = new List<string>();
+            SqlDataReader reader = dh.StoreReaders("GetCollectionsSongsForManaPlaylistAdmin");
+            dataJson.Add(Utility.ToStringForJson(reader));
+            reader.NextResult();
+            dataJson.Add(Utility.ToStringForJson(reader));
+            dh.Close();
+            return dataJson;
+        }
+
+        public string AddPlaylistAdmin(string jsonPlaylist)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("AddPlaylistAdmin", jsonPlaylist);
+            return result;
+        }
+        public string EditPlaylistAdmin(string jsonPlaylist)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("EditPlaylistAdmin", jsonPlaylist);
+            return result;
+        }
+        public string DeletePlaylistAdmin(string PlaylistID)
+        {
+            string sql = "delete from PlaylistAdmin where PlaylistID = @PlaylistID";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@PlaylistID",
+                Value = PlaylistID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
+        }
+
     }
 }
