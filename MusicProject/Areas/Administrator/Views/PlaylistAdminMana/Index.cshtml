@@ -55,7 +55,7 @@
                         <button ng-click="editPlaylist(row)" type="button" class="btn btn-block btn-success" title="Sửa" data-toggle="modal" data-target="#modaladd-editplaylist">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <button ng-click="Delete(row)" type="button" class="btn btn-block btn-danger" title="Xóa">
+                        <button ng-click="deletePlaylist(row)" type="button" class="btn btn-block btn-danger" title="Xóa"  data-toggle="modal" data-target="#modaldeleteplaylist">
                             <i class="fa fa-trash-o"></i>
                         </button>
                     </td>
@@ -73,19 +73,19 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>Mã playlist:</label>
-                                    <input type="text" class="form-control" disabled ng-model="Song.SongID">
+                                    <input type="text" class="form-control" disabled ng-model="Playlist.PlaylistID">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>Tên playlist:</label>
-                                    <input type="text" class="form-control" ng-model="Song.SongID">
+                                    <input type="text" class="form-control" ng-model="Playlist.PlaylistName">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>Mô tả:</label>
-                                    <input type="text" class="form-control" ng-model="Song.SongID">
+                                    <input type="text" class="form-control" ng-model="Playlist.Description">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
@@ -102,13 +102,22 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>File ảnh playlist:</label>
-                                    <input type="file" class="form-control" placeholder="Tải ảnh playlist lên" ngf-select="UploadImage($files)" ng-model="SelectedFileImage">
+                                    <input type="file" id="file-img" class="form-control" style="display: none" ngf-select="UploadImage($files)" ng-model="SelectedFileImage">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" disabled placeholder="Tải ảnh playlist lên" ng-model="Playlist.Image">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-click="RemoveImage()">Remove</button>
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-click="openFileImage()">Upload</button>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                 <div class="form-group">
                                     <label>Chế độ:</label>
-                                    <select class="form-control" ng-model="Song.isVip">
+                                    <select class="form-control" ng-model="Playlist.isPublic">
                                         <option ng-value="{{ true }}">Công khai</option>
                                         <option ng-value="{{ false }}">Bị ẩn</option>
                                     </select>
@@ -117,22 +126,36 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>Tài khoản tạo:</label>
-                                    <input type="text" class="form-control" disabled ng-model="Song.SongID">
+                                    <input type="text" class="form-control" disabled ng-model="Playlist.AccountName">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>Tên người tạo:</label>
-                                    <input type="text" class="form-control" disabled ng-model="Song.SongID">
+                                    <input type="text" class="form-control" disabled ng-model="Playlist.PersonName">
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Tuyển tập:</label>
+                                    <ui-select multiple ng-model="Playlist.Collections" close-on-select="false" title="Chọn các thể loại">
+                                        <ui-select-match placeholder="Chọn hoặc tìm các thể loại">{{$item.CollectionName}}</ui-select-match>
+                                        <ui-select-choices repeat="c in collections | filter: {CollectionName : $select.search}" group-by="firstLetterGroupPlaylistFn2">
+                                            <div>{{c.CollectionName}}</div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
                                 <label>Bài hát:</label>
-                                <ui-select multiple ng-model="Playlist.Song" close-on-select="false" title="Chọn các bài hát">
-                                    <ui-select-match placeholder="Chọn hoặc tìm các bài hát">{{$item.Song.SongName}}</ui-select-match>
-                                    <ui-select-choices repeat="s in songs | filter: {Song :{SongName : $select.search}}" group-by="firstLetterGroupPlaylistFn">
-                                        <img src="~/assets/img/song/{{s.Song.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
-                                        <span>{{s.Song.SongName}}</span>
+                                <ui-select multiple ng-model="Playlist.Songs" close-on-select="false" title="Chọn các bài hát">
+                                    <ui-select-match placeholder="Chọn hoặc tìm các bài hát">
+                                        <img src="~/assets/img/song/{{$item.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
+                                        <span>{{$item.SongName}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="s in songs | filter: {SongName : $select.search}" group-by="firstLetterGroupPlaylistFn">
+                                        <img src="~/assets/img/song/{{s.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
+                                        <span>{{s.SongName}}</span>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
@@ -140,7 +163,23 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-primary" ng-click="addeditSongSave()">Lưu</button>
+                        <button type="button" class="btn btn-primary" ng-click="addeditPlaylistSave()">Lưu</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal fade" id="modaldeleteplaylist" role="dialog" aria-labelledby="mySmallModalLabel">
+            <form class="modal-dialog modal-sm" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel" style="text-align: center">Bạn có đồng ý muốn xóa playlistst</h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="agreetodeletePlaylist()">Đồng ý</button>
                     </div>
                 </div>
             </form>

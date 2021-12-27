@@ -21,9 +21,21 @@ namespace MusicBus
         {
             return pladao.GetPlaylistsForMana();
         }
-        public string GetSongsForManaPlaylistAdmin()
+        public List<string> GetCollectionsSongsForManaPlaylistAdmin()
         {
-            return sdao.GetSongsForManaPlaylistAdmin();
+            return pladao.GetCollectionsSongsForManaPlaylistAdmin();
+        }
+        public string AddPlaylistAdmin(string jsonPlaylist)
+        {
+            return pladao.AddPlaylistAdmin(jsonPlaylist);
+        }
+        public string EditPlaylistAdmin(string jsonPlaylist)
+        {
+            return pladao.EditPlaylistAdmin(jsonPlaylist);
+        }
+        public string DeletePlaylistAdmin(string PlaylistID)
+        {
+            return pladao.DeletePlaylistAdmin(PlaylistID);
         }
     }
 }

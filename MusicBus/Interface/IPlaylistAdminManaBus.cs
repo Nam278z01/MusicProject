@@ -9,6 +9,9 @@ namespace MusicBus
     public interface IPlaylistAdminManaBus
     {
         string GetPlaylistsForMana();
-        string GetSongsForManaPlaylistAdmin();
+        List<string> GetCollectionsSongsForManaPlaylistAdmin();
+        string AddPlaylistAdmin(string jsonPlaylist);
+        string EditPlaylistAdmin(string jsonPlaylist);
+        string DeletePlaylistAdmin(string PlaylistID);
     }
 }
