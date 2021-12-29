@@ -121,6 +121,18 @@ appMusic.filter("jsDate", function () {
     };
 });
 
+appMusic.filter("cvNation", function () {
+    return function (x) {
+        if (x == 1) {
+            return 'Việt Nam'
+        } else if (x == 2) {
+            return 'Âu Mỹ'
+        } else {
+            return 'Châu Á'
+        }
+    };
+});
+
 appMusic.filter('propsFilter', function () {
     return function (items, props) {
         var out = [];
