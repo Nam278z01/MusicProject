@@ -28,6 +28,10 @@
     display: none;
 }
 
+.background-wrap {
+    /*display: none;*/
+}
+
 .background {
     /*display: none;*/
 }
@@ -251,7 +255,7 @@
 }
 
 .btn-show-queue.focus {
-    background-color: var(--main-color);
+    background-color: var(--bg-color-blur3);
 }
 
 .play-music__waiting-list {
@@ -265,7 +269,7 @@
     box-shadow: 0 -4px 8px rgb(0 0 0 / 20%);
     border: 1px solid var(--bg-color-blur2);
     overflow-y: scroll;
-    transform: translateX(100%);
+    transform: translateX(calc(100% + 5px));
     transition: transform 0.3s linear;
 }
 
