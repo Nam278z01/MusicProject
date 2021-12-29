@@ -108,6 +108,7 @@
             $rootScope.songsofQueue.push(song)
         //}
         sessionStorage.setItem('songsofQueue', JSON.stringify($rootScope.songsofQueue))
+        $rootScope.showSnackbar('Thêm bài hát vào danh sách chờ thành công!')
     }
 
     //$scope.$watch('$root.songIsPlayed', function () {
