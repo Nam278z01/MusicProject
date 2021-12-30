@@ -22,11 +22,29 @@ namespace MusicProject.Areas.Administrator.Controllers
             string playlistAdmin = plabus.GetPlaylistsForMana();
             return Json(playlistAdmin, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetSongsForManaPlaylistAdmin()
+        public ActionResult GetCollectionsSongsForManaPlaylistAdmin()
         {
-            IPlaylistAdminManaBus plabus = new PlaylistAdminManaBus();
-            string songs = plabus.GetSongsForManaPlaylistAdmin();
-            return Json(songs, JsonRequestBehavior.AllowGet);
+            PlaylistAdminManaBus sbus = new PlaylistAdminManaBus();
+            List<string> data = sbus.GetCollectionsSongsForManaPlaylistAdmin();
+            return Json(new { collections = data[0], songs = data[1] }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult AddPlaylistAdmin(string jsonData)
+        {
+            PlaylistAdminManaBus sbus = new PlaylistAdminManaBus();
+            string result = sbus.AddPlaylistAdmin(jsonData);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult EditPlaylistAdmin(string jsonData)
+        {
+            PlaylistAdminManaBus sbus = new PlaylistAdminManaBus();
+            string result = sbus.EditPlaylistAdmin(jsonData);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult DeletePlaylistAdmin(string PlaylistID)
+        {
+            PlaylistAdminManaBus sbus = new PlaylistAdminManaBus();
+            string playlist = sbus.DeletePlaylistAdmin(PlaylistID);
+            return Json(playlist, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -7720,7 +7720,6 @@
     <Content Include="Areas\Administrator\assets\Administrator\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Areas\Administrator\assets\Administrator\README.md" />
     <Content Include="Areas\Administrator\assets\Administrator\yarn.lock" />
-    <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administrator\Views\SongMana\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\ServiceVipMana\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\UserMana\Index.cshtml" />
@@ -7733,6 +7732,7 @@
     <Content Include="Areas\Administrator\Views\Login\Index.cshtml" />
     <Content Include="Content\ng-table.min.css.map" />
     <Content Include="Content\ng-table.css.map" />
+    <Content Include="Areas\Administrator\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administrator\Views\AlbumMana\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\AlbumMana\Index2.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

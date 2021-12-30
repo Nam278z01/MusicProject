@@ -121,6 +121,49 @@ appMusic.filter("jsDate", function () {
     };
 });
 
+appMusic.filter("cvNation", function () {
+    return function (x) {
+        if (x == 1) {
+            return 'Việt Nam'
+        } else if (x == 2) {
+            return 'Âu Mỹ'
+        } else {
+            return 'Châu Á'
+        }
+    };
+});
+
+appMusic.filter('propsFilter', function () {
+    return function (items, props) {
+        var out = [];
+
+        if (angular.isArray(items)) {
+            var keys = Object.keys(props);
+
+            items.forEach(function (item) {
+                var itemMatches = false;
+
+                for (var i = 0; i < keys.length; i++) {
+                    var prop = keys[i];
+                    var text = props[prop].toLowerCase();
+                    if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                        itemMatches = true;
+                        break;
+                    }
+                }
+
+                if (itemMatches) {
+                    out.push(item);
+                }
+            });
+        } else {
+            // Let the output be the input untouched
+            out = items;
+        }
+        return out;
+    };
+});
+
 appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.title = 'My Music | Nghe nhạc Hot, tải nhạc Hay'
     //Sidebar tab hoạt động là trang home
@@ -134,6 +177,41 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.logged = false
     //Danh sách lấy playlist của tài khoản để thực hiện chức năng thêm song vào playlist
     $rootScope.playlistsforAdd = []
+
+    $rootScope.snackbarContent = "Hello!"
+    var myTimeout
+    $rootScope.showSnackbar = function (content, kind) {
+        $rootScope.snackbarContent = content
+        let snackbar = $('#snackbar')
+        if (kind == 'error') {
+            snackbar.css({ 'background-color': '#F44336' })
+            snackbar.css({ 'background-image': 'unset' })
+        } else if (kind == 'success') {
+            snackbar.css({ 'background-image': 'linear-gradient(to right, #2F80ED, #00AEEF)' })
+            snackbar.css({ 'background-color': 'unset' })
+        } else if (kind == 'warning') {
+            snackbar.css({ 'background-image': 'linear-gradient(45deg, #F2AF12 0%, #FFD200 100%)' })
+            snackbar.css({ 'background-color': 'unset' })
+        } else {
+            snackbar.css({ 'background-color': 'rgba(24, 34, 45, 1)' })
+            snackbar.css({ 'background-image': 'unset' })
+        }
+        if (snackbar.hasClass('show')) {
+            snackbar.removeClass('show')
+            setTimeout(function () {
+                clearTimeout(myTimeout)
+                snackbar.addClass('show')
+                myTimeout = setTimeout(function () {
+                    snackbar.removeClass('show')
+                }, 3000);
+            }, 100);
+        } else {
+            snackbar.addClass('show')
+            myTimeout = setTimeout(function () {
+                snackbar.removeClass('show')
+            }, 3000);
+        }
+    }
 
     $http({
         method: 'get',
@@ -220,6 +298,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
             if (restrictedPage) {
                 $location.path('/')
+                $location.search({})
             }
             // Dùng thêm cái này vì single page ko load, ko load thì bắt sự kiện thay đổi url để dẫn về trang home nếu chưa đăng nhập
             $rootScope.$on('$routeChangeStart', function (event, next, current) {
@@ -227,6 +306,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 if (restrictedPage) {
                     event.preventDefault()
                     $location.path('/')
+                    $location.search({})
                 }
             })
         }
@@ -356,9 +436,9 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             data: { songID: songID, playlistID: playlistID }
         }).then(function (res) {
             if (!res.data) {
-                alert("Successfully added song to playlist!")
+                $rootScope.showSnackbar('Thêm bài hát vào playlist thành công!')
             } else {
-                alert("Adding song to playlist failed!")
+                $rootScope.showSnackbar('Thêm bài hát vào playlist thất bại!')
             }
         }, function () {
             alert("Adding song to playlist failed!")

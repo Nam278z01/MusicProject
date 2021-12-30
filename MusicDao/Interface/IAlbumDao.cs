@@ -14,14 +14,7 @@ namespace MusicDao
         List<Album> GetAlbumsByArtist(int pageIndex, int pageSize, string artistID, string accountName, out int totalCount);
         List<Album> GetAlbumsNewAHot(int pageIndex, int pageSize, int time, string accountName, out int totalCount);
         string GetAlbumDetail(string albumID, string accountName);
-        string GetAlbumForMana();
-        string AddAlbum(Album al);
-        string DeleteAlbum(string albumid);
-        string EditAlbum(Album al);
-        //List<Album> GetAlbums();
-        string GetAlbums(int nation);
-        string GetAlbumForMana_N();
+        string GetAlbumsForMana();
         List<string> GetArtistSongForAlbumMana();
-
     }
 }

@@ -55,6 +55,17 @@ namespace MusicDao
             }
         }
 
+        public SqlParameter CreateParameter(string name, object value, DbType dbType, ParameterDirection direction = ParameterDirection.Input)
+        {
+            return new SqlParameter()
+            {
+                ParameterName = name,
+                Value = value,
+                DbType = dbType,
+                Direction = direction
+            };
+        }
+
         public SqlDataReader ExecuteReader(string sqlSelect)
         {
             Open();

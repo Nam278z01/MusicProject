@@ -19,9 +19,33 @@
     <script src="~/Scripts/angular-sanitize.min.js"></script>
     <script src="~/Scripts/dirPagination.js"></script>
     @Scripts.Render("~/Scripts/js")
+    <style>
+        /*Toast / Snackbar*/
+        #snackbar {
+            min-width: 250px;
+            margin-left: -125px;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            top: -60px;
+            font-size: 1.4rem;
+            opacity: 0;
+        }
+
+            #snackbar.show {
+                top: 30px;
+                opacity: 1;
+                transition: top linear 0.2s, opacity linear 0.2s;
+            }
+    </style>
 </head>
 
 <body>
+    <div id="snackbar">{{snackbarContent}}</div>
     <div class="app" ng-controller="LoginController">
         <div class="loading">
             <img src="./assets/img/Default/loading-37.gif" alt="">
@@ -209,18 +233,20 @@
         </section>
 
         <section class="play-music" ng-controller="PlayMusicController" ng-class="{hidden: config.hidden, playing: config.isPlayingMusic}">
-            <img src="../../assets/img/Song/{{songIsPlayed.Song.Image}}" alt="" class="bgImgMain"/>
-            <div class="background">
-                <img src="../../assets/img/Default/background5.jpg" alt="">
-                <img src="../../assets/img/Default/background10.jpg" alt="">
-                <img src="../../assets/img/Default/background1.jpg" alt="">
-                <img src="../../assets/img/Default/background2.jpg" alt="">
-                <img src="../../assets/img/Default/background3.jpg" alt="">
-                <img src="../../assets/img/Default/background4.jpg" alt="">
-                <img src="../../assets/img/Default/background6.jpg" alt="">
-                <img src="../../assets/img/Default/background7.jpg" alt="">
-                <img src="../../assets/img/Default/background8.jpg" alt="">
-                <img src="../../assets/img/Default/background9.jpg" alt="">
+            <div class="background-wrap">
+                <img src="../../assets/img/Song/{{songIsPlayed.Song.Image}}" alt="" class="bgImgMain" />
+                <div class="background">
+                    <img src="../../assets/img/Default/background5.jpg" alt="">
+                    <img src="../../assets/img/Default/background10.jpg" alt="">
+                    <img src="../../assets/img/Default/background1.jpg" alt="">
+                    <img src="../../assets/img/Default/background2.jpg" alt="">
+                    <img src="../../assets/img/Default/background3.jpg" alt="">
+                    <img src="../../assets/img/Default/background4.jpg" alt="">
+                    <img src="../../assets/img/Default/background6.jpg" alt="">
+                    <img src="../../assets/img/Default/background7.jpg" alt="">
+                    <img src="../../assets/img/Default/background8.jpg" alt="">
+                    <img src="../../assets/img/Default/background9.jpg" alt="">
+                </div>
             </div>
             <div class="play-music__main">
                 <div class="media">
@@ -267,7 +293,7 @@
                         </button>
                         <button class="btn btn--circle btn-repeat-music" style="position: relative" ng-class="{active: config.isRepeatMusic > 0}">
                             <i class='bx bx-repeat bx-rotate-180'></i>
-                            <span ng-show="config.isRepeatMusic == 1" style="position: absolute; left: 8px; padding: 0; top: 10px; font-size: 1.2rem; display: inline-block; background-color: var(--white-color);" >1</span>
+                            <span ng-show="config.isRepeatMusic == 1" style="position: absolute; left: 8px; padding: 0; top: 10px; font-size: 1.2rem; display: inline-block; background-color: var(--white-color);">1</span>
                         </button>
                     </div>
                     <div class="controls_time">
@@ -699,7 +725,7 @@
                     </div>
                     <div class="form-create">
                         <div class="form-input">
-                            <input type="text" name="playlistname" value="" placeholder="Nhập tên playlist cần tạo"/>
+                            <input type="text" name="playlistname" value="" placeholder="Nhập tên playlist cần tạo" />
                         </div>
                         <div>
                             <button class="btn btn-addplaylist">

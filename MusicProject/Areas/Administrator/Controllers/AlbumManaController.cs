@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MusicBus;
+using MusicObj;
 using MusicObj;
 using MusicBus;
 using System.IO;
@@ -21,6 +23,18 @@ namespace MusicProject.Areas.Administrator.Controllers
         public ActionResult Index2()
         {
             return View();
+        }
+        public ActionResult GetAlbumsForMana()
+        {
+            IAlbumManaBus albus = new AlbumManaBus();
+            string albums = albus.GetAlbumsForMana();
+            return Json(albums, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetArtistSongForAlbumMana()
+        {
+            IAlbumManaBus albus = new AlbumManaBus();
+            List<string> data = albus.GetArtistSongForAlbumMana();
+            return Json(new {artists = data[0], songs = data[1]}, JsonRequestBehavior.AllowGet);
         }
         IAlbumManaBus abus = new AlbumManaBus();
         public ActionResult GetAlbumsForMana_N()

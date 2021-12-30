@@ -52,9 +52,22 @@ appMusic.filter('propsFilter', function () {
 appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.snackbarContent = "Hello!"
     var myTimeout
-    $rootScope.showSnackbar = function (content) {
+    $rootScope.showSnackbar = function (content, kind) {
         $rootScope.snackbarContent = content
         let snackbar = $('#snackbar')
+        if (kind == 'error') {
+            snackbar.css({ 'background-color': '#F44336' })
+            snackbar.css({ 'background-image': 'unset' })
+        } else if (kind == 'success') {
+            snackbar.css({ 'background-image': 'linear-gradient(to right, #2F80ED, #00AEEF)' })
+            snackbar.css({ 'background-color': 'unset' })
+        } else if (kind == 'warning') {
+            snackbar.css({ 'background-image': 'linear-gradient(45deg, #F2AF12 0%, #FFD200 100%)' })
+            snackbar.css({ 'background-color': 'unset' })
+        } else {
+            snackbar.css({ 'background-color': 'rgba(24, 34, 45, 1)' })
+            snackbar.css({ 'background-image': 'unset' })
+        }
         if (snackbar.hasClass('show')) {
             snackbar.removeClass('show')
             setTimeout(function () {

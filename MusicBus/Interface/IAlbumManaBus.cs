@@ -14,5 +14,7 @@ namespace MusicBus
         string EditAlbum(Album al);
         string GetAlbumForMana_N();
         List<string> GetArtistSongForAlbumMana();
+        string GetAlbumsForMana();
+        List<string> GetArtistSongForAlbumMana();
     }
 }

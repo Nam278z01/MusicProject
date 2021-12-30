@@ -94,7 +94,6 @@
         #snackbar {
             min-width: 250px;
             margin-left: -125px;
-            background-color: rgba(24, 34, 45, 1);
             color: #fff;
             text-align: center;
             border-radius: 2px;
@@ -106,14 +105,19 @@
             font-size: 17px;
             opacity: 0;
         }
-        #snackbar.show {
-            top: 30px;
-            opacity: 1;
-            transition: top linear 0.2s, opacity linear 0.2s;
+
+            #snackbar.show {
+                top: 30px;
+                opacity: 1;
+                transition: top linear 0.2s, opacity linear 0.2s;
+            }
+
+        .artist-mana + .artist-mana::before {
+            content: ", ";
         }
     </style>
 </head>
-<body class="hold-transition skin-black sidebar-mini fixed" ng-app="AppMusic">
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed" ng-app="AppMusic">
     <!-- Toast / Snackbar -->
     <div id="snackbar">{{snackbarContent}}</div>
     <!-- Site wrapper -->
@@ -593,4 +597,3 @@
     </script>
 </body>
 </html>
-

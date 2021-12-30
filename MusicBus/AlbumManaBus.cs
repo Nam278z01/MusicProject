@@ -5,38 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using MusicDao;
 using MusicObj;
+
 namespace MusicBus
 {
     public class AlbumManaBus : IAlbumManaBus
     {
-        IAlbumDao adao;
+        IAlbumDao aldao;
         public AlbumManaBus()
         {
-            adao = new AlbumDao();
+            aldao = new AlbumDao();
         }
-        public string GetAlbumForMana()
+        public string GetAlbumsForMana()
         {
-          return  adao.GetAlbumForMana();
-        }
-        public string AddAlbum(Album al)
-        {
-            return adao.AddAlbum(al);
-        }
-        public string DeleteAlbum(string albumid)
-        {
-            return adao.DeleteAlbum(albumid);
-        }
-        public string EditAlbum(Album al)
-        {
-            return adao.EditAlbum(al);
-        }
-        public string GetAlbumForMana_N()
-        {
-            return adao.GetAlbumForMana_N();
+            return aldao.GetAlbumsForMana();
         }
         public List<string> GetArtistSongForAlbumMana()
         {
-            return adao.GetArtistSongForAlbumMana();
+            return aldao.GetArtistSongForAlbumMana();
         }
     }
 }
