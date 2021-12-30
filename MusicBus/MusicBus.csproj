@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlbumBus.cs" />
+    <Compile Include="AlbumManaBus.cs" />
     <Compile Include="ArtistBus.cs" />
     <Compile Include="CollectionBus.cs" />
-    <Compile Include="Interface\IAdminManaBus.cs" />
     <Compile Include="Interface\IAlbumManaBus.cs" />
     <Compile Include="Interface\IAlbumBus.cs" />
     <Compile Include="Interface\IArtistBus.cs" />

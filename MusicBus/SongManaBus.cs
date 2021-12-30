@@ -20,6 +20,7 @@ namespace MusicBus
         {
             return sdao.GetSongsForMana();
         }
+
         public List<string> GetAlbumsGenresArtistsForManaSong()
         {
             return sdao.GetAlbumsGenresArtistsForManaSong();

@@ -11,7 +11,8 @@ namespace MusicDao
 {
     public class DataHelper
     {
-        string conStr = ConfigurationManager.ConnectionStrings["strconnect"].ConnectionString;
+        //string conStr = ConfigurationManager.ConnectionStrings["strconnect"].ConnectionString;
+        string conStr = @"Data Source=DESKTOP-68MSM54\BINNHAN211;Initial Catalog=Music;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
 
         public SqlConnection Con
         {
