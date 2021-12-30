@@ -72,6 +72,23 @@ namespace MusicDao
             dh.Close();
             return album;
         }
+        public string GetAlbumsForMana()
+        {
+            SqlDataReader reader = dh.StoreReaders("GetAlbumsForMana");
+            string albums = Utility.ToStringForJson(reader);
+            dh.Close();
+            return albums;
+        }
+        public List<string> GetArtistSongForAlbumMana()
+        {
+            SqlDataReader reader = dh.StoreReaders("GetArtistSongForAlbumMana");
+            List<string> dataJson = new List<string>();
+            dataJson.Add(Utility.ToStringForJson(reader));
+            reader.NextResult();
+            dataJson.Add(Utility.ToStringForJson(reader));
+            dh.Close();
+            return dataJson;
+        }
         public List<Album> AlbumToList(SqlDataReader dr)
         {
             List<Album> albums = new List<Album>();

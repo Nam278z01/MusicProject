@@ -35,18 +35,24 @@
                     <td title="'Mã playlist'" filter="{'PlaylistID': 'text'}" sortable="'PlaylistID'">
                         {{row.PlaylistID}}
                     </td>
-                    <td title="'Tên bài hát'" filter="{'PlaylistName': 'text'}" sortable="'PlaylistName'">
+                    <td title="'Tên playlist'" filter="{'PlaylistName': 'text'}" sortable="'PlaylistName'">
                         {{row.PlaylistName}}
                     </td>
-                    <td title="'Tài khoản tạo'">
-                        {{row.AccountName}}
+                    <td title="'Mô tả'">
+                        {{row.Description}}
                     </td>
                     <td title="'Ngày tạo'" filter="{'DateCreated': 'text'}" sortable="'DateCreated'">
                         {{row.DateCreated | jsDate | date : "dd-MM-yyyy"}}
                     </td>
-                    <td title="'Chế độ'" sortable="'isPublic'">
+                    <td title="'Chế độ'" sortable="'isPublic'" filter="{isPublic: 'select'}" filter-data="isPublics">
                         <label class="badge bg-yellow" ng-show="row.isPublic">Công khai</label>
-                        <label class="badge bg-dark" ng-hide="row.isPublic">Bị ẩn</label>
+                        <label class="badge bg-dark" ng-hide="row.isPublic">Ẩn đi</label>
+                    </td>
+                    <td title="'Số lượt thích'" sortable="'TotalLikes'">
+                        {{row.TotalLikes}}
+                    </td>
+                    <td title="'Tài khoản tạo'">
+                        {{row.AccountName}}
                     </td>
                     <td title="'Tên người tạo'" filter="{'PersonName': 'text'}" sortable="'PersonName'">
                         {{row.PersonName}}
@@ -55,7 +61,7 @@
                         <button ng-click="editPlaylist(row)" type="button" class="btn btn-block btn-success" title="Sửa" data-toggle="modal" data-target="#modaladd-editplaylist">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <button ng-click="deletePlaylist(row)" type="button" class="btn btn-block btn-danger" title="Xóa"  data-toggle="modal" data-target="#modaldeleteplaylist">
+                        <button ng-click="deletePlaylist(row)" type="button" class="btn btn-block btn-danger" title="Xóa" data-toggle="modal" data-target="#modaldeleteplaylist">
                             <i class="fa fa-trash-o"></i>
                         </button>
                     </td>
@@ -117,7 +123,7 @@
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                 <div class="form-group">
                                     <label>Chế độ:</label>
-                                    <select class="form-control" ng-model="Playlist.isPublic">
+                                    <select class="form-control" ng-model="Playlist.isPublic" >
                                         <option ng-value="{{ true }}">Công khai</option>
                                         <option ng-value="{{ false }}">Bị ẩn</option>
                                     </select>
@@ -137,25 +143,31 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
-                                    <label>Tuyển tập:</label>
+                                    <label>Tuyển tập: ({{Playlist.Collections.length}})</label>
                                     <ui-select multiple ng-model="Playlist.Collections" close-on-select="false" title="Chọn các thể loại">
                                         <ui-select-match placeholder="Chọn hoặc tìm các thể loại">{{$item.CollectionName}}</ui-select-match>
-                                        <ui-select-choices repeat="c in collections | filter: {CollectionName : $select.search}" group-by="firstLetterGroupPlaylistFn2">
+                                        <ui-select-choices repeat="c in collections | filter: {CollectionName : $select.search} | orderBy:'CollectionName'" group-by="firstLetterGroupPlaylistFn2">
                                             <div>{{c.CollectionName}}</div>
                                         </ui-select-choices>
                                     </ui-select>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <label>Bài hát:</label>
+                                <label>Bài hát: ({{Playlist.Songs.length}})</label>
                                 <ui-select multiple ng-model="Playlist.Songs" close-on-select="false" title="Chọn các bài hát">
                                     <ui-select-match placeholder="Chọn hoặc tìm các bài hát">
                                         <img src="~/assets/img/song/{{$item.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
                                         <span>{{$item.SongName}}</span>
+                                        <span>
+                                            (<span class="artist-mana" ng-repeat="a in $item.Artists">{{a.ArtistName}}</span>)
+                                        </span>
                                     </ui-select-match>
-                                    <ui-select-choices repeat="s in songs | filter: {SongName : $select.search}" group-by="firstLetterGroupPlaylistFn">
+                                    <ui-select-choices repeat="s in songs | filter: {SongName : $select.search} | orderBy:'SongName'" group-by="firstLetterGroupPlaylistFn">
                                         <img src="~/assets/img/song/{{s.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
                                         <span>{{s.SongName}}</span>
+                                        <span>
+                                            (<span class="artist-mana" ng-repeat="a in s.Artists">{{a.ArtistName}}</span>)
+                                        </span>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
@@ -172,7 +184,7 @@
             <form class="modal-dialog modal-sm" role="form">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel" style="text-align: center">Bạn có đồng ý muốn xóa playlistst</h4>
+                        <h4 class="modal-title" id="myModalLabel" style="text-align: center">Bạn có đồng ý muốn xóa playlist?</h4>
                     </div>
                     <div class="modal-body">
 

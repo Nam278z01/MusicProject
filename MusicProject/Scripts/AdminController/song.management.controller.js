@@ -2,6 +2,9 @@
     $rootScope.currentIndex = 1
     $rootScope.currentSubIndex = 0
 
+    $scope.nations = [{ id: "", title: "" }, { id: 1, title: "Việt Nam" }, { id: 2, title: "Âu Mỹ" }, { id: 3, title: "Châu Á" }];
+    $scope.isVips = [{ id: "", title: "" }, { id: false, title: "Thường" }, { id: true, title: "Vip" }];
+
     $scope.openFileImage = function () {
         $('#file-img').click();
     }

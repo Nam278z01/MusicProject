@@ -2,6 +2,8 @@
     $rootScope.currentIndex = 1
     $rootScope.currentSubIndex = 1
 
+    $scope.isPublics = [{ id: "", title: "" }, { id: false, title: "Ẩn đi" }, { id: true, title: "Công khai" }];
+
     $scope.firstLetterGroupPlaylistFn = function (item) {
         return item.SongName[0];
     }

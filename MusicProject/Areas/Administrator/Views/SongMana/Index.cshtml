@@ -45,13 +45,13 @@
                     <td title="'Thể loại'">
                         <span ng-repeat="c in row.Collections">{{c.CollectionName}}</span>
                     </td>
-                    <td title="'Quốc gia'" sortable="'Nation'">
+                    <td title="'Quốc gia'" sortable="'Nation'" filter="{Nation: 'select'}" filter-data="nations">
                         {{row.Nation | cvNation}}
                     </td>
                     <td title="'Ngày phát hành'" filter="{'ReleaseDate': 'text'}" sortable="'ReleaseDate'">
                         {{row.ReleaseDate | jsDate | date : "dd-MM-yyyy"}}
                     </td>
-                    <td title="'Loại'" sortable="'isVip'">
+                    <td title="'Loại'" sortable="'isVip'" filter="{isVip: 'select'}" filter-data="isVips">
                         <label class="badge bg-yellow" ng-show="row.isVip">Vip</label>
                         <label class="badge bg-dark" ng-hide="row.isVip">Thường</label>
                     </td>
@@ -163,7 +163,7 @@
                                             <ui-select-match placeholder="Chọn hoặc tìm kiếm Album ...">
                                                 <span>{{$select.selected.AlbumName}} ({{$select.selected.ArtistName}})</span>
                                             </ui-select-match>
-                                            <ui-select-choices repeat="a in albums | propsFilter: {AlbumName: $select.search, ArtistName: $select.search}" group-by="firstLetterGroupAlbumFn">
+                                            <ui-select-choices repeat="a in albums | propsFilter: {AlbumName: $select.search, ArtistName: $select.search} | orderBy:'AlbumName'" group-by="firstLetterGroupAlbumFn">
                                                 <img src="~/assets/img/album/{{a.ALImage}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px; " alt="" />
                                                 <span>{{a.AlbumName}} ({{a.ArtistName}})</span>
                                             </ui-select-choices>
@@ -187,13 +187,13 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
-                                    <label>Nghệ sĩ:</label>
+                                    <label>Nghệ sĩ: ({{Song.Artists.length}})</label>
                                     <ui-select multiple ng-model="Song.Artists" close-on-select="false" title="Chọn các nghệ sĩ">
                                         <ui-select-match placeholder="Chọn hoặc tìm các nghệ sĩ">
                                             <img src="~/assets/img/artist/{{$item.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
                                             <span>{{$item.ArtistName}}</span>
                                         </ui-select-match>
-                                        <ui-select-choices repeat="a in artists | filter: {ArtistName : $select.search}" group-by="firstLetterGroupArtistFn">
+                                        <ui-select-choices repeat="a in artists | filter: {ArtistName : $select.search} | orderBy:'ArtistName'" group-by="firstLetterGroupArtistFn">
                                             <img src="~/assets/img/artist/{{a.Image}}" style="width: 30px; height: 30px; object-fit: cover; margin-right: 8px;" alt="" />
                                             <span>{{a.ArtistName}}</span>
                                         </ui-select-choices>
@@ -202,10 +202,10 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
-                                    <label>Thể loại:</label>
+                                    <label>Thể loại: ({{Song.Collections.length}})</label>
                                     <ui-select multiple ng-model="Song.Collections" close-on-select="false" title="Chọn các thể loại">
                                         <ui-select-match placeholder="Chọn hoặc tìm các thể loại">{{$item.CollectionName}}</ui-select-match>
-                                        <ui-select-choices repeat="c in collections | filter: {CollectionName : $select.search}" group-by="firstLetterGroupColFn">
+                                        <ui-select-choices repeat="c in collections | filter: {CollectionName : $select.search} | orderBy:'CollectionName'" group-by="firstLetterGroupColFn">
                                             <div>{{c.CollectionName}}</div>
                                         </ui-select-choices>
                                     </ui-select>

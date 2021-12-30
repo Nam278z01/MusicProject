@@ -8,5 +8,7 @@ namespace MusicBus
 {
     public interface IAlbumManaBus
     {
+        string GetAlbumsForMana();
+        List<string> GetArtistSongForAlbumMana();
     }
 }
