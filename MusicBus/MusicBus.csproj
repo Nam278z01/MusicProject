@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MusicBus</RootNamespace>
     <AssemblyName>MusicBus</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlbumBus.cs" />
+    <Compile Include="AlbumManaBus.cs" />
     <Compile Include="ArtistBus.cs" />
+    <Compile Include="ArtistManaBus.cs" />
     <Compile Include="CollectionBus.cs" />
     <Compile Include="Interface\IAdminManaBus.cs" />
     <Compile Include="Interface\IAlbumManaBus.cs" />

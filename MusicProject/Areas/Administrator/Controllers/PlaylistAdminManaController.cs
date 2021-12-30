@@ -8,7 +8,7 @@ using MusicObj;
 
 namespace MusicProject.Areas.Administrator.Controllers
 {
-    [Authorize]
+ 
     public class PlaylistAdminManaController : Controller
     {
         // GET: Administrator/PlaylistAdmin

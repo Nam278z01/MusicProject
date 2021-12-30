@@ -9,7 +9,6 @@
     $scope.openFileImage2 = function () {
         $('#file-img2').click();
     }
-
     //Table phân dữ liệu theo Anphabet
     $scope.firstLetterGroupArtistFn = function (item) {
         return item.ArtistName[0];

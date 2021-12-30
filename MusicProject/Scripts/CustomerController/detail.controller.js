@@ -167,6 +167,7 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
 
     //Get album of artist
     $scope.albumsofArtist = []
+    $scope.albums = []
     $scope.totalCountArtistAlbum = 0
     $scope.pageSizeArtistAlbum = 24
     $scope.maxSizeArtistAlbum = 5
@@ -193,6 +194,7 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
             params: { pageIndex: index, pageSize: $scope.pageSizeArtistAlbum, artistID: $routeParams.id }
         }).then(function (response) {
             $scope.albumsofArtist = response.data.albums
+            $scope.albums= response.data.albums
             $scope.totalCountArtistAlbum = response.data.totalCount
             $scope.loadSongSuccessfullArtistAlbum = true
             $scope.isGetSongsofArtistAlbum = true
@@ -203,14 +205,42 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
 })
 
 appMusic.controller('AlbumDetailsController', function ($scope, $rootScope, $http, $routeParams) {
+
     $http({
         method: 'get',
         url: '/Detail/GetAlbumDetail',
         params: { albumID: $routeParams.id }
     }).then(function (res) {
         $scope.album = JSON.parse(res.data)
-        console.log($scope.album)
     }, function (err) {
         alert("Failed to get album!")
+    })
+   
+      
+});
+appMusic.controller('AlbumController', function ($scope) {
+    var nation = localStorage.getItem("Nation") //;
+    $http({
+        method: "get",
+        url: '/Detail/GetAlbums',
+        params: { Nation: nation }
+    }).then(function success(d) {
+        alert("alo");
+        $scope.albums = JSON.parse(d.data);
+    }, function error(e) { alert("Error") });
+
+})
+appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $http, $routeParams, $location) {
+    //Sidebar tab, tab con hoạt động tắt hết đi
+    //$rootScope.currentIndex = -1
+    //$rootScope.currentSubIndex = -1
+    $http({
+        method: 'get',
+        url: ' /Detail/GetArtistDetail',
+        params: { artistID: $routeParams.id }
+    }).then(function (res) {
+        $rootScope.artist = JSON.parse(res.data)
+    }, function (error) {
+        alert('Failed to get the artist!')
     })
 })

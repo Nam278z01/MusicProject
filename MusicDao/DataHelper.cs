@@ -90,10 +90,15 @@ namespace MusicDao
 
         public DataTable FillDataTable(string sql)
         {
-            SqlDataAdapter da = new SqlDataAdapter(sql, con);
+            if (con.State == ConnectionState.Closed) con.Open();
             DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(sql, conStr);
             da.Fill(dt);
             return dt;
+            //SqlDataAdapter da = new SqlDataAdapter(sql, con);
+            //DataTable dt = new DataTable();
+            //da.Fill(dt);
+            //return dt;
         }
 
         public void InsertRow(DataTable dt, params object[] values)

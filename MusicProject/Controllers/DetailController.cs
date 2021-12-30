@@ -11,6 +11,7 @@ namespace MusicProject.Controllers
     public class DetailController : Controller
     {
         // GET: Detail
+        IAlbumBus sbus = new AlbumBus();
         public JsonResult GetSong(string songID)
         {
             ISongBus sbus = new SongBus();
@@ -48,7 +49,7 @@ namespace MusicProject.Controllers
         }
         public JsonResult GetAlbumDetail(string albumID)
         {
-            IAlbumBus sbus = new AlbumBus();
+           
             string album = sbus.GetAlbumDetail(albumID, GetUserName());
             return Json(album, JsonRequestBehavior.AllowGet);
         }
@@ -74,5 +75,19 @@ namespace MusicProject.Controllers
             }
             return accountName;
         }
+        public JsonResult GetArtistDetail(string artistID)
+        {
+            IArtistBus sbus = new ArtistBus();
+
+            string artist = sbus.GetArtistDetail(artistID);
+            return Json(artist, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetAblums( int nation)
+        {
+            string alb = sbus.GetAlbums(nation);
+            return Json(alb, JsonRequestBehavior.AllowGet);
+            
+        }
+       
     }
 }

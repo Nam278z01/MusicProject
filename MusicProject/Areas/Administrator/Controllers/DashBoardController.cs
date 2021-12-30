@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MusicProject.Areas.Administrator.Controllers
 {
-    [Authorize]
+   
     public class DashBoardController : Controller
     {
         // GET: Administrator/DashBoard

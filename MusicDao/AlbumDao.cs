@@ -1,5 +1,6 @@
 ﻿using MusicObj;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace MusicDao
@@ -89,5 +90,83 @@ namespace MusicDao
             }
             return albums;
         }
+        public string GetAlbumForMana()
+        {
+            SqlDataReader reader = dh.StoreReaders("GetAlbumForMana");
+            string album = Utility.ToStringForJson(reader);
+            dh.Close();
+            return album;
+        }
+        public List<string> GetArtistSongForAlbumMana()
+        {
+            
+                SqlDataReader reader = dh.StoreReaders("GetArtistSongForAlbumMana");
+                List<string> dataJson = new List<string>();
+                dataJson.Add(Utility.ToStringForJson(reader));
+                reader.NextResult();
+                dataJson.Add(Utility.ToStringForJson(reader));
+                dh.Close();
+                return dataJson;
+            
+        }
+            public string GetAlbumForMana_N()
+        {
+            SqlDataReader reader = dh.StoreReaders("GetAlbumForMana");
+            string albums = Utility.ToStringForJson(reader);
+            dh.Close();
+            return albums;
+        }
+        public string GetAlbums( int nation)
+        {
+            SqlDataReader reader = dh.StoreReaders("GetAlbums",nation);
+            string al = Utility.ToStringForJson(reader);
+            dh.Close();
+            return al;
+        }
+        //public List<Album> GetAlbums()
+        //{
+        //    DataTable dt = dh.FillDataTable("Select*from Album");
+        //    return ToList(dt);
+        //}
+        //public List<Album> ToList(DataTable dt)
+        //{
+        //    List<Album> al = new List<Album>();
+        //    foreach(DataRow dr in dt.Rows)
+        //    {
+        //        Album album = new Album();
+        //        album.AlbumID = dr["AlbumID"].ToString();
+        //        album.AlbumName = dr["AlbumName"].ToString();
+        //        album.Image = dr["Image"].ToString();
+        //        album.Liked = int.Parse(dr["Liked"].ToString());
+        //        album.Artist = new Artist();
+        //        album.Artist.ArtistID = dr["ArtistID"].ToString();
+        //        album.Artist.ArtistName = dr["ArtistName"].ToString();
+        //        al.Add(album);
+        //    }
+        //    return al;
+        //}
+        public string AddAlbum (Album al)
+        {
+            string sql = "INSERT into Album values('" + al.AlbumID + "', N'" + al.AlbumName + "',N'" + al.Description + "','" + al.Image + "',N'" + al.ArtistID+ "',N'" + al.ReleasedDate+ "')";
+            return dh.ExecuteNonQuery(sql);
+        }
+        public string DeleteAlbum(string albumid)
+        {
+            string st = "delete from Album where AlbumID='"+albumid+"'";
+            string s = dh.ExecuteNonQuery(st);
+            dh.Close();
+            return s;
+        }
+        public string EditAlbum(Album al)
+        {
+            string st = "update Album set " +
+                "AlbumName='" + al.AlbumName + "'," +
+                "Description='" + al.Description + "'," +
+                "Image='" + al.Image + "'," +
+                "ArtistID='" + al.ArtistID+ "'," +
+                "ReleasedDate='" + al.ReleasedDate + "'" + " where Album='" + al.AlbumID+ "'";
+            return dh.ExecuteNonQuery(st);
+        }
+
     }
 }

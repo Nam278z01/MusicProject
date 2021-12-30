@@ -27,5 +27,10 @@ namespace MusicBus
         {
             return atdao.GetArtistAll();
         }
+        public string GetArtistDetail(string artistID)
+        {
+            return atdao.GetArtistDetail(artistID);
+        }
+
     }
 }

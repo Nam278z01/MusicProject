@@ -4,50 +4,50 @@
             <div class="decorative"></div>
             <div class="decorative"></div>
             <div class="playlist-detail__img">
-                <img src="../../assets/img/album/{{album.Image}}" alt="{{album.albumName}}">
+                <img src="../../assets/img/album/{{album.Album.Image}}" alt="{{album.Album.Image}}">
                 <button class="btn btn--circle btn-play-detail" title="Phát tất cả" style="width: 40px; height: 40px">
                     <i class='bx bxs-right-arrow' style="font-size: 2.4rem"></i>
                 </button>
                 <button class="btn btn--circle btn-like" title="Yêu thích" style="top: calc(11% + 36px); left: 3%;">
-                    <i class='bx bx-heart' ng-if="playlist.Liked == 0"></i>
-                    <i class='bx bxs-heart' ng-if="playlist.Liked == 1" style="color: var(--main-color)"></i>
+                    <i class='bx bx-heart' ng-if="album.Liked == 0"></i>
+                    <i class='bx bxs-heart' ng-if="album.Liked == 1" style="color: var(--main-color)"></i>
                 </button>
                 <button class="btn  btn--more btn--circle" title="Khác" style="top: 10%; left: 3%;">
                     <i class='bx bx-dots-horizontal-rounded'></i>
                 </button>
             </div>
             <div class="playlist-detail__info">
-                <div class="song-detail__name">Playlist:<span>{{playlist.PlaylistAdmin.PlaylistName}}</span></div>
+                <div class="song-detail__name">Album:<span>{{album.Album.AlbumName}}</span></div>
                 <div class="song-detail__releasedate" style="justify-content: center">
                     <i class='bx bx-calendar'></i>
-                    <span> Ngày tạo:<span>{{playlist.PlaylistAdmin.DateCreated.replace('/Date(','').replace(')/','') | date : "dd/MM/yyyy"}}</span></span>
+                    <span> Ngày tạo:<span>{{album.Album.ReleasedDate.replace('/Date(','').replace(')/','') | date : "dd/MM/yyyy"}}</span></span>
                 </div>
                 <div class="released__artist-name" style="margin-top: 0.8rem; font-size: 1.4rem; margin-left: 0; display: flex; align-items: center; justify-content: center">
                     <i class='bx bx-category' style="font-size: 2rem; padding-right: 0.4rem;"></i>
                     <span style="padding-left: 0.4rem;">
                         Thể loại:
-                        <a href="#!/tuyen-tap?tt={{c.CollectionID}}" ng-repeat="c in playlist.Collections">{{c.CollectionName}}</a>
+                        <a href="#!/tuyen-tap?tt={{c.CollectionID}}" ng-repeat="c in album.Collections">{{c.CollectionName}}</a>
                     </span>
                 </div>
                 <div class="song-detail__view" style="justify-content: center">
                     <i class='bx bxs-heart'></i>
-                    <span>{{playlist.TotalLikes}} Yêu thích</span>
+                    <span>{{album.TotalLikes}} Yêu thích</span>
                 </div>
                 <div class="playlist__detail-creater">
-                    <p>Tạo bởi:<span>{{playlist.Admin.PersonName}}</span></p>
+                    <p>Tạo bởi:<span>{{album.Artits.ArtistName}}</span></p>
                 </div>
             </div>
         </div>
         <div class="songinplaylist">
             <div class="song-detail__desciption">
                 <span>
-                    Lời tựa: <span>{{playlist.PlaylistAdmin.Description}}</span>
+                    Lời tựa: <span>{{album.Album.Description}}</span>
                 </span>
             </div>
             <div class="listsonginplaylist">
                 <div class="grid">
                     <div class="row sm-gutter">
-                        <div class="col c-12" ng-repeat="s in playlist.Songs">
+                        <div class="col c-12" ng-repeat="s in album.Songs">
                             <div class="song__wraper">
                                 <div class="song top100">
                                     <div class="song__img">
@@ -123,21 +123,21 @@
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col c-6 m-3 l-2-4 sl-2" ng-repeat="p in playlists">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-repeat="a in album">
                         <div class="list-playlist__item" style="padding-bottom: 24px;">
                             <div class="decorative"></div>
                             <div class="decorative"></div>
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
+                                    <img src="../../assets/img/album/{{a.Image}}" alt="{{a.AlbumName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
-                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
+                                        <i class='bx bx-heart' ng-if="a.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="a.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play">
-                                        <button class="btn btn-outline btn--circle btn-listen" title="Phát tất cả">
+                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
                                             <i class='bx bxs-right-arrow'></i>
                                         </button>
                                     </div>
@@ -156,11 +156,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="{{p.PlaylistAdmin.PlaylistName}}">
-                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistAdmin.PlaylistID}}">{{p.PlaylistAdmin.PlaylistName}}</a>
+                            <div class="list-playlist__item-name" title="{{a.AlbumName}}">
+                                <a href="#!/chi-tiet/albumid?id={{a.AlbumID}}">{{a.AlbumName}}</a>
                             </div>
                             <div class="list-playlist__item-admin">
-                                <p>Tạo bởi:<span>{{p.Admin.PersonName}}</span></p>
+                                <p>Tạo bởi:<span>{{a.ArtistName}}</span></p>
                             </div>
                         </div>
                     </div>
