@@ -20,13 +20,13 @@
 </ul>
 
 <div class="rank-time">
-    <div class="rank-time-title">Tuần {{numbetOfWeek}}:</div>
+    <div class="rank-time-title">Tuần {{numberOfWeek}}:</div>
     <div class="rank-period-time">
-        <div class="rank-time-prev" ng-click="weekDecrease()" ng-class="{disable:numbetOfWeek == 1}">
+        <div class="rank-time-prev" ng-click="weekDecrease()">
             <i class='bx bx-chevron-left'></i>
         </div>
         <span>{{firstTime | date : "dd/MM/yyyy"}} - {{lastTime | date : "dd/MM/yyyy"}}</span>
-        <div class="rank-time-next" ng-click="weekIncrease()" ng-class="{disable:numbetOfWeek == limitupofWeek}">
+        <div class="rank-time-next" ng-click="weekIncrease()" ng-class="{'disable' : !activeIncrease}">
             <i class='bx bx-chevron-right'></i>
         </div>
     </div>

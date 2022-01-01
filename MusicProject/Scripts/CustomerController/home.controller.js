@@ -68,6 +68,7 @@ appMusic.controller('HomeController', function ($scope, $rootScope, $location, $
         // Return array of year and week number
         return [d.getUTCFullYear(), weekNo];
     }
+    let weekyearCurrent = getWeekNumber(new Date)
 
     $scope.pickedsongsVN
     $scope.pickedsongsUSUK
@@ -75,7 +76,7 @@ appMusic.controller('HomeController', function ($scope, $rootScope, $location, $
     $http({
         method: 'get',
         url: '/Home/Get3RankSongsofWeek',
-        params: { week: (getWeekNumber(new Date)[1] - 1)}
+        params: { quantity: 3, week: (weekyearCurrent[1] - 1), year: weekyearCurrent[0]}
     }).then(function (res) {
         $scope.songsVN = JSON.parse(res.data.songsVN)
         $scope.songsUSUK = JSON.parse(res.data.songsUSUK)

@@ -44,11 +44,10 @@ namespace MusicProject.Controllers
             List<PlaylistAdminwithAdmin> playlists = plbus.Get10PlaylistsRandom(GetUserName());
             return Json(playlists, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Get3RankSongsofWeek(int week)
+        public JsonResult Get3RankSongsofWeek(int quantity, int week, int year)
         {
             ISongBus sbus = new SongBus();
-            int quantity = 3;
-            List<string> dataJsonSong = sbus.Get3RankSongsofWeek(GetUserName(), quantity, week);
+            List<string> dataJsonSong = sbus.Get3RankSongsofWeek(GetUserName(), quantity, week, year);
             return Json(new {songsVN = dataJsonSong[0], songsUSUK = dataJsonSong[1], songsAS = dataJsonSong[2] }, JsonRequestBehavior.AllowGet);
         }
         public string GetUserName()

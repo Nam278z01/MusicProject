@@ -98,17 +98,17 @@ namespace MusicDao
             dh.Close();
             return songs;
         }
-        public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week)
+        public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week, int year)
         {
-            SqlDataReader reader = dh.StoreReaders("GetRankSongsofWeek", accountName, quantity, nation, week);
+            SqlDataReader reader = dh.StoreReaders("GetRankSongsofWeek", accountName, quantity, nation, week, year);
             string song = Utility.ToStringForJson(reader);
             dh.Close();
             return song;
         }
-        public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week)
+        public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week, int year)
         {
             List<string> dataJsonSong = new List<string>();
-            SqlDataReader reader = dh.StoreReaders("Get3RankSongsofWeek", accountName, quantity, week);
+            SqlDataReader reader = dh.StoreReaders("Get3RankSongsofWeek", accountName, quantity, week, year);
             dataJsonSong.Add(Utility.ToStringForJson(reader));
             reader.NextResult();
             dataJsonSong.Add(Utility.ToStringForJson(reader));
