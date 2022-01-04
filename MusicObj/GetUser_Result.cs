@@ -18,10 +18,8 @@ namespace MusicObj
         public byte Role { get; set; }
         public bool State { get; set; }
         public System.DateTime DateCreated { get; set; }
-        public Nullable<System.DateTime> DueOn { get; set; }
         public string PersonID { get; set; }
         public string Image { get; set; }
-        public int Money { get; set; }
         public string PersonName { get; set; }
         public Nullable<byte> Gender { get; set; }
         public string Email { get; set; }

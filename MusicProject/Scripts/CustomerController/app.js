@@ -378,12 +378,16 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             modal2.style.display = 'none'
         }
         if (e.target.closest('.btn-add-song-playlist')) {
-            modal2.style.display = 'block'
+            if ($rootScope.logged) {
+                modal2.style.display = 'block'
 
-            // Ẩn thanh cuộn và giữ vị trí
-            scrollTop2 = document.querySelector('html').scrollTop
-            document.body.classList.add('no-scroll')
-            document.body.style.top = -scrollTop2 + 'px'
+                // Ẩn thanh cuộn và giữ vị trí
+                scrollTop2 = document.querySelector('html').scrollTop
+                document.body.classList.add('no-scroll')
+                document.body.style.top = -scrollTop2 + 'px'
+            } else {
+                document.querySelector('#showlogin').click()
+            }
         }
     })
 
