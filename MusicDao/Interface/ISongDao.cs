@@ -24,5 +24,7 @@ namespace MusicDao
         string AddSong(string jsonSong);
         string EditSong(string jsonSong);
         string DeleteSong(string songID);
+        string LikeSong(string songID, string accountName);
+        string DislikeSong(string songID, string accountName);
     }
 }

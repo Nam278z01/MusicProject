@@ -177,6 +177,8 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.logged = false
     //Danh sách lấy playlist của tài khoản để thực hiện chức năng thêm song vào playlist
     $rootScope.playlistsforAdd = []
+    //Modal login
+    let btnLogin = document.querySelector('#showlogin')
 
     $rootScope.snackbarContent = "Hello!"
     var myTimeout
@@ -239,7 +241,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         //Nếu chưa đăng nhập
         } else {
             // Login - SignIn
-            let btnLogin = document.querySelector('#showlogin')
+            //let btnLogin = document.querySelector('#showlogin')
             let btnSignUp = document.querySelector('#showsignup')
             let modalLoginSignUp = document.querySelector('#modal-login-singup')
             let loginForm = document.querySelector('#loginForm')
@@ -386,7 +388,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 document.body.classList.add('no-scroll')
                 document.body.style.top = -scrollTop2 + 'px'
             } else {
-                document.querySelector('#showlogin').click()
+                btnLogin.click()
             }
         }
     })
@@ -442,10 +444,53 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             if (!res.data) {
                 $rootScope.showSnackbar('Thêm bài hát vào playlist thành công!')
             } else {
-                $rootScope.showSnackbar('Thêm bài hát vào playlist thất bại!')
+                $rootScope.showSnackbar('Đã tồn tại trong playlist này!')
             }
         }, function () {
             alert("Adding song to playlist failed!")
         })
+    }
+
+    $rootScope.LikeSong = function (s) {
+        if ($rootScope.logged) {
+            s.Liked = true
+            $http({
+                method: 'post',
+                url: '/Liked/LikeSong',
+                datatype: 'json',
+                data: { songID: s.Song.SongID }
+            }).then(function (res) {
+                if (!res.data) {
+                    $rootScope.showSnackbar('Đã thích!')
+                } else {
+                    alert("Like the song failed!")
+                }
+            }, function () {
+                alert("Like the song failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+    $rootScope.DislikeSong = function (s) {
+        if ($rootScope.logged) {
+            s.Liked = false
+            $http({
+                method: 'post',
+                url: '/Liked/DislikeSong',
+                datatype: 'json',
+                data: { songID: s.Song.SongID }
+            }).then(function (res) {
+                if (!res.data) {
+                    $rootScope.showSnackbar('Bỏ thích!')
+                } else {
+                    alert("Dislike the song failed!")
+                }
+            }, function () {
+                alert("Dislike the song failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
     }
 })

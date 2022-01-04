@@ -54,6 +54,14 @@ namespace MusicBus
         public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week, int year)
         {
             return sdao.Get3RankSongsofWeek(accountName, quantity, week, year);
-        }  
+        }
+        public string LikeSong(string songID, string accountName)
+        {
+            return sdao.LikeSong(songID, accountName);
+        }
+        public string DislikeSong(string songID, string accountName)
+        {
+            return sdao.DislikeSong(songID, accountName);
+        }
     }
 }

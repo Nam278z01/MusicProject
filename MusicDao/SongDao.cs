@@ -169,5 +169,71 @@ namespace MusicDao
                 return e.Message;
             }
         }
+        public string LikeSong(string songID, string accountName)
+        {
+            string sql = "insert into SongLiked values(@accountName, @songID, @DateLiked)";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@accountName",
+                Value = accountName,
+                SqlDbType = SqlDbType.Char,
+                Size = 30
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@songID",
+                Value = songID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@DateLiked",
+                Value = DateTime.Now,
+                SqlDbType = SqlDbType.DateTime,
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
+        }
+        public string DislikeSong(string songID, string accountName)
+        {
+            string sql = "delete from SongLiked where AccountName = @accountName and SongID = @songID";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@accountName",
+                Value = accountName,
+                SqlDbType = SqlDbType.Char,
+                Size = 30
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@songID",
+                Value = songID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
+        }
     }
 }
