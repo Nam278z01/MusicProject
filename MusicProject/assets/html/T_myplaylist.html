@@ -10,6 +10,7 @@
             <h3 class="list-playlist__name">
                 Playlist
             </h3>
+            <button class="btn btn--primary btn-outline btn-login" ng-click="showModalCrud()">Tạo playlist</button>
         </div>
         <div class="list-playlist__slide">
             <div class="grid">
@@ -70,3 +71,73 @@
         <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>
+
+<section class="modal3" style="display: flex" ng-show="isshowModalCrud">
+    <div class="modal__overlay"></div>
+    <div class="modal__body">
+        <form class="auth-form" novalidate id="playlist-crud" style="display: block">
+            <div class="auth-form__container">
+                <div class="auth-form__header" style="display: flex; justify-content: center">
+                    <h3 class="auth-form__heading">{{function}}</h3>
+                </div>
+                <div class="auth-form__form">
+                    <div class="auth-form__group" style="margin-top: 10px">
+                        <div class="image-upload">
+                            <label for="file-input" style="display: flex; justify-content: center; position: relative">
+                                <img src="../../assets/img/default/img_default.png" style="width: 100px; height: 100px; border-radius: 4px; object-fit: cover" id="img-upload"/>
+                                <span style="position: absolute; top: 50%; transform: translateY(-50%);" class="btn">
+                                    <i class='bx bx-image-add'></i>
+                                </span>
+                            </label>
+                            <input type="file" id="file-input" ngf-select="UploadImage($files)" ng-model="SelectedFileImage" accept="image/*"/>
+                        </div>
+                    </div>
+                    <div class="auth-form__group" style="margin-top: 20px">
+                        <div class="text-field">
+                            <label for="username3">Tên playlist</label>
+                            <input autocomplete="off" type="text" placeholder="Nhập tên playlist" />
+                        </div>
+                    </div>
+                    <div class="auth-form__group" style="margin-top: 20px">
+                        <div class="text-field">
+                            <label for="username3">Mô tả</label>
+                            <input autocomplete="off" type="text" placeholder="Nhập mô tả" />
+                        </div>
+                    </div>
+                    <div class="auth-form__group" style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 1.4rem; padding: 0 16px">
+                        <div>
+                            <p>Công khai</p>
+                            <p style="color: var(--text-color-blur); font-size: 1.2rem">Mọi người có thể nhìn thấy playlist này</p>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="mode" class="radio-input" />
+                            <label for="mode" class="radio-label"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="auth-form__controls" style="padding-bottom: 24px">
+                    <button type='button' class="btn btn-outline auth-form__controls-back" ng-click="hideModalCrud()">Hủy</button>
+                    <button type="submit" class="btn btn--primary btn-outline btn-login">Lưu</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img-upload').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-input").change(function () {
+        readURL(this);
+    });
+</script>

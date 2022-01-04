@@ -124,7 +124,7 @@
                             <div class="col-lg-6 col-md-6 row row-no-gutters">
                                 <div class="form-group">
                                     <label>File ảnh bài hát:</label>
-                                    <input type="file" id="file-img" class="form-control" style="display: none" ngf-select="UploadImage($files)" ng-model="SelectedFileImage">
+                                    <input type="file" id="file-img" class="form-control" style="display: none" ngf-select="UploadImage($files)" ng-model="SelectedFileImage" accept="image/*">
                                     <div class="input-group">
                                         <input type="text" class="form-control" disabled placeholder="Tải ảnh bài hát lên" ng-model="Song.Image">
                                         <span class="input-group-btn">
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>File(mp3) bài hát:</label>
-                                    <input type="file" id="file-img2" class="form-control" style="display: none" ngf-select="UploadMP3($files)" ng-model="SelectedFileMP3">
+                                    <input type="file" id="file-img2" class="form-control" style="display: none" ngf-select="UploadMP3($files)" ng-model="SelectedFileMP3" accept="audio/*">
                                     <div class="input-group">
                                         <input type="text" class="form-control" disabled placeholder="Tải bài hát lên" ng-model="Song.SongPath">
                                         <span class="input-group-btn">

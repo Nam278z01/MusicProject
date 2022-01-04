@@ -1,4 +1,4 @@
-var appMusic = angular.module("AppMusic", ['angularUtils.directives.dirPagination', 'ngRoute', 'ngSanitize']);
+var appMusic = angular.module("AppMusic", ['angularUtils.directives.dirPagination', 'ngRoute', 'ngSanitize', 'ngFileUpload']);
 
 appMusic.config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -58,29 +58,13 @@ appMusic.config(function ($routeProvider, $locationProvider) {
             templateUrl: "../../assets/html/T_user.html",
             controller: "UserController"
         })
-        .when("/da-thich/bai-hat", {
+        .when("/da-thich", {
             templateUrl: "../../assets/html/T_liked.html",
-            controller: "SongLikedController",
+            controller: "LikedController",
         })
-        .when("/da-thich/playlist", {
-            templateUrl: "../../assets/html/liked_playlist.html",
-            controller: "PlaylistLikedController"
-        })
-        .when("/da-thich/album", {
-            templateUrl: "../../assets/html/liked_album.html",
-            controller: "AlbumLikedController"
-        })
-        .when("/da-nghe/bai-hat", {
+        .when("/da-nghe", {
             templateUrl: "../../assets/html/T_listened.html",
-            controller: "SongListenedController"
-        })
-        .when("/da-nghe/playlist", {
-            templateUrl: "../../assets/html/listened_playlist.html",
-            controller: "PlaylistListenedController"
-        })
-        .when("/da-nghe/album", {
-            templateUrl: "../../assets/html/listened_album.html",
-            controller: "AlbumListenedController"
+            controller: "ListenedController"
         })
         .when("/bang-xep-hang", {
             templateUrl: "../../assets/html/rank.html",

@@ -1,12 +1,12 @@
 <div class="nav">
     <ul class="nav-list">
-        <li class="nav-item"><a href="#!/da-thích/bai-hat" class="nav-item-link active">Bài hát</a></li>
-        <li class="nav-item"><a href="#!/da-thich/playlist" class="nav-item-link">Playlist</a></li>
-        <li class="nav-item"><a href="#!/da-thich/album" class="nav-item-link">Album</a></li>
+        <li class="nav-item"><span class="nav-item-link active" ng-class="{active:checkActiveNav(1)}" ng-click="activeNav(1)">Bài hát</span></li>
+        <li class="nav-item"><span class="nav-item-link" ng-class="{active:checkActiveNav(2)}" ng-click="activeNav(2)">Playlist</span></li>
+        <li class="nav-item"><span class="nav-item-link" ng-class="{active:checkActiveNav(3)}" ng-click="activeNav(3)">Album</span></li>
     </ul>
 </div>
 
-<div class="content">
+<div class="content" ng-show="checkActiveNav(1)">
     <div class="list-playlist">
         <div class="list-playlist__header">
             <h3 class="list-playlist__name">
@@ -16,16 +16,99 @@
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col l-2" dir-paginate="s in songs | itemsPerPage: pageSize"
-                        total-items="totalCount" current-page="pageIndex">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="s in songsLiked | itemsPerPage: pageSizeSongLiked" total-items="totalCountSongLiked" current-page="pageIndexSongLiked" pagination-id="song">
                         <div class="list-playlist__item" style="margin-bottom: 24px">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
-                                    <img src="./assets/img/Song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+                                    <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+                                </div>
+                                <div class="ratioIn list-playlist__item-feature">
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="s.Liked == 0" ng-click="LikeSong(s)">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="s.Liked == 1" ng-click="DislikeSong(s)">
+                                        <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
+                                    </button>
+                                    <div class="list-playlist__item-play" ng-click="pickplayMusic(s)">
+                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
+                                            <i class='bx bxs-right-arrow'></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn btn--more btn--circle" title="Khác">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item btn-add-song-playlist" ng-click="getSongforAdd(s)">
+                                            <i class='bx bxs-playlist'></i>
+                                            <span>Thêm vào playlist</span>
+                                        </div>
+                                        <div class="feature__item" ng-click="addSongtoQueue(s)">
+                                            <i class='bx bx-add-to-queue'></i>
+                                            <span>Thêm vào chờ phát</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bxs-download'></i>
+                                            <span>Tải xuống</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<span class="song_vip" ng-show="s.Song.isVip">VIP</span>-->
+                            <div class="list-playlist__item-name" title="{{s.Song.SongName}}">
+                                <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
+                            </div>
+                            <div class="list-playlist__item-artist">
+                                <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!isGetSongsofSongLiked" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-layout">
+        <dir-pagination-controls pagination-id="song" max-size="maxSizeSongLiked" boundary-links="true" on-page-change="pageChangedSongLiked(newPageNumber)"></dir-pagination-controls>
+    </div>
+</div>
+
+<div class="content" ng-show="checkActiveNav(2)">
+    <div class="list-playlist">
+        <div class="list-playlist__header">
+            <h3 class="list-playlist__name">
+                Playlist
+            </h3>
+        </div>
+        <div class="list-playlist__slide">
+            <div class="grid">
+                <div class="row sm-gutter">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="p in playlists | itemsPerPage: pageSize" total-items="totalCount"
+                         current-page="pageIndex" pagination-id="playlist">
+                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                            <div class="decorative"></div>
+                            <div class="decorative"></div>
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd">
+                                    <img src="../../assets/img/playlist/admin/{{p.Image}}" ng-if="p.KindofPlaylist == 1" alt="{{p.PlaylistName}}">
+                                    <img src="../../assets/img/playlist/user/{{p.Image}}" ng-if="p.KindofPlaylist == 2" alt="{{p.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
                                     <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart'></i>
+                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -35,16 +118,31 @@
                                     <button class="btn btn--more btn--circle" title="Khác">
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="list-playlist__item-name" title="{{s.Song.SongName}}">
-                                <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}"
-                                    ng-click="GetSong(s.Song.SongID)">{{s.Song.SongName}}</a>
+                            <div class="list-playlist__item-name" title="{{p.PlaylistName}}">
+                                <a href="#!/chi-tiet/playlistad?id={{p.PlaylistID}}" ng-if="p.KindofPlaylist == 1">{{p.PlaylistName}}</a>
+                                <a href="#!/chi-tiet/playlistnd?id={{p.PlaylistID}}" ng-if="p.KindofPlaylist == 2">{{p.PlaylistName}}</a>
                             </div>
-                            <div class="list-playlist__item-artist">
-                                <a href="#" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
+                            <div class="list-playlist__item-admin">
+                                <p>Tạo bởi:<span>{{p.PersonName}}</span></p>
                             </div>
                         </div>
+                    </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
                     </div>
                 </div>
             </div>
@@ -52,7 +150,72 @@
     </div>
 
     <div class="wrap-layout">
-        <dir-pagination-controls max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)">
-        </dir-pagination-controls>
+        <dir-pagination-controls pagination-id="playlist" max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+    </div>
+</div>
+
+<div class="content" ng-show="checkActiveNav(3)">
+    <div class="list-playlist">
+        <div class="list-playlist__header">
+            <h3 class="list-playlist__name">
+                Album
+            </h3>
+        </div>
+        <div class="list-playlist__slide">
+            <div class="grid">
+                <div class="row sm-gutter">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in albums | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex" pagination-id="album">
+                        <div class="list-playlist__item" style="padding-bottom: 24px;">
+                            <div class="decorative"></div>
+                            <div class="decorative"></div>
+                            <div class="ratio1-1">
+                                <div class="ratioIn overflow-hd">
+                                    <img src="../../assets/img/album/{{a.Image}}" alt="{{a.AlbumName}}">
+                                </div>
+                                <div class="ratioIn list-playlist__item-feature">
+                                    <button class="btn btn-like btn--circle" title="Yêu thích">
+                                        <i class='bx bx-heart' ng-if="a.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="a.Liked == 1" style="color: var(--main-color)"></i>
+                                    </button>
+                                    <div class="list-playlist__item-play">
+                                        <button class="btn btn-outline btn--circle btn-listen" title="nghe">
+                                            <i class='bx bxs-right-arrow'></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn btn--more btn--circle" title="Khác">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                    <div class="feature__more">
+                                        <div class="feature__item">
+                                            <i class='bx bx-link-alt'></i>
+                                            <span>Sao chép link</span>
+                                        </div>
+                                        <div class="feature__item">
+                                            <i class='bx bx-share-alt'></i>
+                                            <span>Chia sẻ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-playlist__item-name" title="{{a.AlbumName}}">
+                                <a href="#!/chi-tiet/album?id={{a.AlbumID}}">{{a.AlbumName}}</a>
+                            </div>
+                            <div class="list-playlist__item-artist">
+                                <a href="#!/chi-tiet/nghe-si?id={{a.Artist.ArtistID}}">{{a.Artist.ArtistName}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                        <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
+                        <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-layout">
+        <dir-pagination-controls pagination-id="album" max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

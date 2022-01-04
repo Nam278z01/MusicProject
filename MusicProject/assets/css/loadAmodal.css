@@ -105,7 +105,7 @@
 }
 
 /* Login - Signup */
-.modal, .modal2 {
+.modal, .modal2, .modal3, .modal4 {
     position: fixed;
     top: 0;
     right: 0;
@@ -379,4 +379,61 @@
     font-size: 1.4rem;
     font-weight: 600;
     padding: 12px 32px;
+}
+
+/* Main code */
+
+.text-field {
+    position: relative;
+}
+
+    .text-field label {
+        display: inline-block;
+        color: #333;
+        font-weight: 600;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        background-color: white;
+        padding: 1px 5px;
+        font-size: 12px;
+        transform: translateY(-50%);
+        color: var(--main-color);
+    }
+
+    .text-field input {
+        padding: 15px;
+        display: block;
+        width: 100%;
+        color: #999;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+/* Main code */
+
+.radio-input {
+    display: none;
+}
+
+.radio-label {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: #eee;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 1rem;
+    box-shadow: 0 0 0 4px #eee;
+    transition: all 0.25s linear;
+}
+
+.radio-input:checked + .radio-label {
+    box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--main-color);
+    background-color: var(--main-color);
+}
+
+.image-upload > input {
+    display: none;
 }

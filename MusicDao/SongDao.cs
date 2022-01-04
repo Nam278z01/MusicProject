@@ -136,6 +136,19 @@ namespace MusicDao
             dh.Close();
             return dataJson;
         }
+        public List<SongwithArtist> GetLikedSong(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            totalCount = 0;
+            SqlDataReader reader = dh.StoreReaders("GetLikedSong", pageIndex, pageSize, accountName);
+            while (reader.Read())
+            {
+                totalCount = int.Parse(reader["totalCount"].ToString());
+            }
+            reader.NextResult();
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
+            dh.Close();
+            return songs;
+        }
         public string AddSong(string jsonSong)
         {
             string result = dh.ExecuteNonQueryStoreProcedure("AddSong", jsonSong);

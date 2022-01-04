@@ -6692,10 +6692,6 @@
     <Content Include="assets\html\detail_playlistadmin.html" />
     <Content Include="assets\html\detail_playlistuser.html" />
     <Content Include="assets\html\detail_song.html" />
-    <Content Include="assets\html\liked_album.html" />
-    <Content Include="assets\html\liked_playlist.html" />
-    <Content Include="assets\html\listened_album.html" />
-    <Content Include="assets\html\listened_playlist.html" />
     <Content Include="assets\html\N_collection.html" />
     <Content Include="assets\html\N_home.html" />
     <Content Include="assets\html\N_search.html" />

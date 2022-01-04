@@ -21,6 +21,7 @@ namespace MusicDao
         List<string> Get3RankSongsofWeek(string accountName, int quantity, int week, int year);
         string GetSongsForMana();
         List<string> GetAlbumsGenresArtistsForManaSong();
+        List<SongwithArtist> GetLikedSong(int pageIndex, int pageSize, string accountName, out int totalCount);
         string AddSong(string jsonSong);
         string EditSong(string jsonSong);
         string DeleteSong(string songID);

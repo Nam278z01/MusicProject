@@ -1,15 +1,12 @@
-appMusic.controller('SongListenedController', function ($scope, $rootScope, $location, $routeParams, $http) {
+appMusic.controller('ListenedController', function ($scope, $rootScope, $location, $routeParams, $http) {
     $rootScope.currentIndex = 7
-    $rootScope.title = "Bài hát đã nghe | My music"
-})
+    $rootScope.title = "Đã nghe | My music"
 
-appMusic.controller('PlaylistListenedController', function ($scope, $rootScope, $location, $routeParams, $http) {
-    $rootScope.currentIndex = 7
-    $rootScope.title = "Playlist đã nghe | My music"
+    $scope.isActiveNav = 1
+    $scope.activeNav = function (index) {
+        $scope.isActiveNav = index
+    }
+    $scope.checkActiveNav = function (index) {
+        return $scope.isActiveNav == index
+    }
 })
-
-appMusic.controller('AlbumListenedController', function ($scope, $rootScope, $location, $routeParams, $http) {
-    $rootScope.currentIndex = 7
-    $rootScope.title = "Album đã nghe | My music"
-})
-

@@ -3,6 +3,21 @@
     $rootScope.currentSubIndex = -1
     $rootScope.title = "My Playlist | My music"
 
+    $scope.isshowModalCrud = false
+    $scope.showModalCrud = function () {
+        $scope.isshowModalCrud = true
+    }
+    $scope.hideModalCrud = function () {
+        $scope.isshowModalCrud = false
+    }
+
+    $scope.Playlist = {}
+    $scope.UploadImage = function (file) {
+        $scope.Playlist.Image = file.length > 0 ? file[0].name : null
+        $scope.SelectedFileImage = file
+    }
+
+
     //Lấy về playlist của chính tài khoản đăng nhập
     $scope.playlists = []
     $scope.totalCount = 0

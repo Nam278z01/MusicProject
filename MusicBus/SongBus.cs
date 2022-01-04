@@ -63,5 +63,9 @@ namespace MusicBus
         {
             return sdao.DislikeSong(songID, accountName);
         }
+        public List<SongwithArtist> GetLikedSong(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            return sdao.GetLikedSong(pageIndex, pageSize, accountName, out totalCount);
+        }
     }
 }
