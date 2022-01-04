@@ -73,8 +73,8 @@
 </div>
 
 <section class="modal3" style="display: flex" ng-show="isshowModalCrud">
-    <div class="modal__overlay"></div>
-    <div class="modal__body">
+    <div class="modal__overlay" ng-click="hideModalCrud()"></div>
+    <div class="modal__body"style="width: unset; height: unset">
         <form class="auth-form" novalidate id="playlist-crud" style="display: block">
             <div class="auth-form__container">
                 <div class="auth-form__header" style="display: flex; justify-content: center">
