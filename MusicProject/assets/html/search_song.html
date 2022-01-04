@@ -36,6 +36,10 @@
                 <span>(Có {{totalCount | number:0}} kết quả)</span>
             </h3>
         </div>
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songs.length || songs.length == 0)  && loadSongSuccessfull">
+            <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+            <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+        </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">

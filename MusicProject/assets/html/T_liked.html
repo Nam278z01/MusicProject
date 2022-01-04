@@ -13,6 +13,10 @@
                 Bài hát
             </h3>
         </div>
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songsLiked.length || songsLiked.length == 0)  && isGetSongsofSongLiked">
+            <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+            <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+        </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
@@ -92,6 +96,10 @@
                 Playlist
             </h3>
         </div>
+        <div style="display: flex; align-items: center; flex-direction: column"  ng-if="(!songs.length || songs.length == 0)  && loadSongSuccessfull">
+            <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+            <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+        </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
@@ -161,10 +169,14 @@
                 Album
             </h3>
         </div>
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!albumsLiked.length || albumsLiked.length == 0)  && loadAlbumSuccessfullAlbumLiked">
+            <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+            <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+        </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in albums | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex" pagination-id="album">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in albumsLiked | itemsPerPage: pageSizeAlbumLiked" total-items="totalCountAlbumLiked" current-page="pageIndexAlbumLiked" pagination-id="album">
                         <div class="list-playlist__item" style="padding-bottom: 24px;">
                             <div class="decorative"></div>
                             <div class="decorative"></div>
@@ -173,9 +185,11 @@
                                     <img src="../../assets/img/album/{{a.Image}}" alt="{{a.AlbumName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="a.Liked == 0"></i>
-                                        <i class='bx bxs-heart' ng-if="a.Liked == 1" style="color: var(--main-color)"></i>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="a.Liked == 1" ng-click="DislikeAlbum(a)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="a.Liked == 0" ng-click="LikeAlbum(a)">
+                                        <i class='bx bx-heart'></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -205,7 +219,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadAlbumSuccessfullAlbumLiked" ng-repeat="n in getTimes(eleView) track by $index">
                         <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
                         <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
                         <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
@@ -216,6 +230,6 @@
     </div>
 
     <div class="wrap-layout">
-        <dir-pagination-controls pagination-id="album" max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+        <dir-pagination-controls pagination-id="album" max-size="maxSizeAlbumLiked" boundary-links="true" on-page-change="pageChangedAlbumLiked(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

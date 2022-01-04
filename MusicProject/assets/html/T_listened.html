@@ -13,10 +13,14 @@
                 Bài hát
             </h3>
         </div>
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songsListened.length || songsListened.length == 0)  && isGetSongsofSongListened">
+            <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+            <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+        </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="s in songsLiked | itemsPerPage: pageSizeSongLiked" total-items="totalCountSongLiked" current-page="pageIndexSongLiked" pagination-id="song">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="s in songsListened | itemsPerPage: pageSizeSongListened" total-items="totalCountSongListened" current-page="pageIndexSongListened" pagination-id="song">
                         <div class="list-playlist__item" style="margin-bottom: 24px">
                             <div class="ratio1-1">
                                 <div class="ratioIn overflow-hd">
@@ -70,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!isGetSongsofSongLiked" ng-repeat="n in getTimes(eleView) track by $index">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!isGetSongsofSongListened" ng-repeat="n in getTimes(eleView) track by $index">
                         <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
                         <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
                         <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
@@ -81,7 +85,7 @@
     </div>
 
     <div class="wrap-layout">
-        <dir-pagination-controls pagination-id="song" max-size="maxSizeSongLiked" boundary-links="true" on-page-change="pageChangedSongLiked(newPageNumber)"></dir-pagination-controls>
+        <dir-pagination-controls pagination-id="song" max-size="maxSizeSongListened" boundary-links="true" on-page-change="pageChangedSongListened(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>
 
@@ -161,10 +165,14 @@
                 Album
             </h3>
         </div>
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!albumsListened.length || albumsListened.length == 0)  && isGetSongsofAlbumListened">
+            <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+            <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+        </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in albums | itemsPerPage: pageSize" total-items="totalCount" current-page="pageIndex" pagination-id="album">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="a in albumsListened | itemsPerPage: pageSizeAlbumListened" total-items="totalCountAlbumListened" current-page="pageIndexAlbumListened" pagination-id="album">
                         <div class="list-playlist__item" style="padding-bottom: 24px;">
                             <div class="decorative"></div>
                             <div class="decorative"></div>
@@ -205,7 +213,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!isGetSongsofAlbumListened" ng-repeat="n in getTimes(eleView) track by $index">
                         <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
                         <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
                         <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
@@ -216,6 +224,6 @@
     </div>
 
     <div class="wrap-layout">
-        <dir-pagination-controls pagination-id="album" max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+        <dir-pagination-controls pagination-id="album" max-size="maxSize" boundary-links="true" on-page-change="pageChangedAlbumListened(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>

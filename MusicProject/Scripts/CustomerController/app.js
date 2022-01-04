@@ -281,14 +281,14 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             })
 
             // Nếu chưa đăng nhập mà vào các trang cần quyền của người dùng nhập nhập thì dẫn về trang home
-            var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
+            var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich', '/da-nghe']) != -1;
             if (restrictedPage) {
                 $location.path('/')
                 $location.search({})
             }
             // Dùng thêm cái này vì single page ko load, ko load thì bắt sự kiện thay đổi url để dẫn về trang home nếu chưa đăng nhập
             $rootScope.$on('$routeChangeStart', function (event, next, current) {
-                var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
+                var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich', '/da-nghe']) != -1;
                 if (restrictedPage) {
                     event.preventDefault()
                     $location.path('/')
@@ -437,7 +437,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
 
     $rootScope.LikeSong = function (s) {
         if ($rootScope.logged) {
-            s.Liked = true
+            s.Liked = 1
             $http({
                 method: 'post',
                 url: '/Liked/LikeSong',
@@ -458,7 +458,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     }
     $rootScope.DislikeSong = function (s) {
         if ($rootScope.logged) {
-            s.Liked = false
+            s.Liked = 0
             $http({
                 method: 'post',
                 url: '/Liked/DislikeSong',
@@ -472,6 +472,49 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 }
             }, function () {
                 alert("Dislike the song failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+
+    $rootScope.LikeAlbum = function (a) {
+        if ($rootScope.logged) {
+            a.Liked = 1
+            $http({
+                method: 'post',
+                url: '/Liked/LikeAlbum',
+                datatype: 'json',
+                data: { albumID: a.AlbumID }
+            }).then(function (res) {
+                if (!res.data) {
+                    $rootScope.showSnackbar('Đã thích!')
+                } else {
+                    alert("Like the album failed!")
+                }
+            }, function () {
+                alert("Like the album failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+    $rootScope.DislikeAlbum = function (a) {
+        if ($rootScope.logged) {
+            a.Liked = 0
+            $http({
+                method: 'post',
+                url: '/Liked/DislikeAlbum',
+                datatype: 'json',
+                data: { albumID: a.AlbumID }
+            }).then(function (res) {
+                if (!res.data) {
+                    $rootScope.showSnackbar('Bỏ thích!')
+                } else {
+                    alert("Dislike the album failed!")
+                }
+            }, function () {
+                alert("Dislike the album failed!")
             })
         } else {
             btnLogin.click()

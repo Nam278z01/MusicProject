@@ -67,5 +67,17 @@ namespace MusicBus
         {
             return sdao.GetLikedSong(pageIndex, pageSize, accountName, out totalCount);
         }
+        public List<SongwithArtist> GetListenedSong(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            return sdao.GetListenedSong(pageIndex, pageSize, accountName, out totalCount);
+        }
+        public string SongListened(string songID, string accountName)
+        {
+            return sdao.SongListened(songID, accountName);
+        }
+        public string IncreaseViews(string songID)
+        {
+            return sdao.IncreaseViews(songID);
+        }
     }
 }

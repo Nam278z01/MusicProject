@@ -22,10 +22,13 @@ namespace MusicDao
         string GetSongsForMana();
         List<string> GetAlbumsGenresArtistsForManaSong();
         List<SongwithArtist> GetLikedSong(int pageIndex, int pageSize, string accountName, out int totalCount);
+        List<SongwithArtist> GetListenedSong(int pageIndex, int pageSize, string accountName, out int totalCount);
         string AddSong(string jsonSong);
         string EditSong(string jsonSong);
         string DeleteSong(string songID);
         string LikeSong(string songID, string accountName);
         string DislikeSong(string songID, string accountName);
+        string SongListened(string songID, string accountName);
+        string IncreaseViews(string songID);
     }
 }
