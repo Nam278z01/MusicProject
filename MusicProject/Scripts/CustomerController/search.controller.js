@@ -42,7 +42,7 @@ appMusic.controller('SearchController', function ($scope, $rootScope, $location,
 })
 
 appMusic.controller('SongSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
-    $rootScope.title = $routeParams.q + " | Bài hát hay nhất " + $routeParams.q
+    $rootScope.title = $routeParams.q + " | Bài hát hay nhất "
     $rootScope.currentSubIndex = -1
 
     //Lấy về bài hát cần tìm kiếm
@@ -83,7 +83,7 @@ appMusic.controller('SongSearchController', function ($scope, $rootScope, $locat
 })
 
 appMusic.controller('ArtistSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
-    $rootScope.title = $routeParams.q + " | Tìm kiếm nghệ sĩ " + $routeParams.q
+    $rootScope.title = $routeParams.q + " | Tìm kiếm nghệ sĩ "
     $rootScope.currentSubIndex = 1
 
     //Lấy về nghệ sĩ cần tìm kiếm
@@ -118,7 +118,7 @@ appMusic.controller('ArtistSearchController', function ($scope, $rootScope, $loc
 
 
 appMusic.controller('AlbumSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
-    $rootScope.title = $routeParams.q + " | Tìm kiếm Album " + $routeParams.q
+    $rootScope.title = $routeParams.q + " | Tìm kiếm Album "
     $rootScope.currentSubIndex = -1
 
     //Lấy về album cần tìm kiếm
@@ -152,7 +152,7 @@ appMusic.controller('AlbumSearchController', function ($scope, $rootScope, $loca
 })
 
 appMusic.controller('PlaylistSearchController', function ($scope, $rootScope, $location, $routeParams, $http) {
-    $rootScope.title = $routeParams.q + " | Tìm kiếm Playlist " + $routeParams.q
+    $rootScope.title = $routeParams.q + " | Tìm kiếm Playlist "
     $rootScope.currentSubIndex = -1
 
     //Lấy về playlist cần tìm kiếm

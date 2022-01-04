@@ -51,10 +51,6 @@
                     <td title="'Ngày phát hành'" filter="{'ReleaseDate': 'text'}" sortable="'ReleaseDate'">
                         {{row.ReleaseDate | jsDate | date : "dd-MM-yyyy"}}
                     </td>
-                    <td title="'Loại'" sortable="'isVip'" filter="{isVip: 'select'}" filter-data="isVips">
-                        <label class="badge bg-yellow" ng-show="row.isVip">Vip</label>
-                        <label class="badge bg-dark" ng-hide="row.isVip">Thường</label>
-                    </td>
                     <td title="'Album'" sortable="'Album.AlbumID'">
                         {{row.Album.AlbumName}}
                     </td>
@@ -116,7 +112,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                            @*<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                 <div class="form-group">
                                     <label>Là bài hát Vip:</label>
                                     <select class="form-control" ng-model="Song.isVip">
@@ -124,7 +120,7 @@
                                         <option ng-value="{{ true }}">Có</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="col-lg-6 col-md-6 row row-no-gutters">
                                 <div class="form-group">
                                     <label>File ảnh bài hát:</label>

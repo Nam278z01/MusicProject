@@ -172,7 +172,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.currentSubIndex = -1
     // Thông tin user
     $rootScope.User = {}
-    $rootScope.UserVip = false
+    //$rootScope.UserVip = false
     //Kiểm tra đăng nhập chưa
     $rootScope.logged = false
     //Danh sách lấy playlist của tài khoản để thực hiện chức năng thêm song vào playlist
@@ -222,7 +222,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             $rootScope.User = res.data
             $rootScope.logged = true
             //Nếu thuộc tinh ngày hạn > hôm nay thì là tài khoản vip và ngược lại
-            $rootScope.UserVip = ($rootScope.User.user.DueOn || $rootScope.User.user.DueOn > new Date()) ? true : false
+            //$rootScope.UserVip = ($rootScope.User.user.DueOn || $rootScope.User.user.DueOn > new Date()) ? true : false
             //Loại bỏ giao diện đăng nhập - đăng ký
             document.querySelector('#modal-login-singup').remove()
             document.querySelector('.signin-singup').remove()

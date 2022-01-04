@@ -109,7 +109,7 @@ appMusic.controller('HomeController', function ($scope, $rootScope, $location, $
 
     //Mouse over hoặc click phần bài hát mới nhất thì show nó lên phần cần show đó và kích hoạt màu cho dễ nhận biết bài hát này đc chọn
     $scope.ispickedSongNewest = 0
-    $scope.pickedSongNewst = function (index, s) {
+    $scope.pickedSongNewst = function (index) {
         return $scope.ispickedSongNewest == index
     }
     $scope.pickSongNewst = function (index, s) {

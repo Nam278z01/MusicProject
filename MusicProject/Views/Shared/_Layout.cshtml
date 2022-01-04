@@ -51,13 +51,13 @@
             <img src="./assets/img/Default/loading-37.gif" alt="">
         </div>
         <nav class="sidebar" ng-controller="SidebarController">
-            <div class="sidebar__header">
+            <div class="sidebar__header" style="display: flex; justify-content: center">
                 <div class="sidebar__brand-name">
                     <span>M</span><span>M</span>
                 </div>
-                <a class="sidebar__upgrade btn btn--primary btn-outline" href="#">
+                @*<a class="sidebar__upgrade btn btn--primary btn-outline" href="#">
                     Nâng cấp
-                </a>
+                </a>*@
             </div>
             <div class="sidebar__userAset">
                 <a href="#!/nguoi-dung" class="sidebar__user" ng-click="changePage(-1)" ng-if="logged">
@@ -67,7 +67,7 @@
                     </div>
                     <div class="sidebar__user-name">
                         <span title="{{User.user.PersonName}}">{{User.user.PersonName}}</span>
-                        <span ng-show="UserVip">VIP</span>
+                        @*<span ng-show="UserVip">VIP</span>*@
                     </div>
                 </a>
                 <div class="signin-singup">
@@ -256,7 +256,7 @@
                     <div class="media-content">
                         <div class="song__name">
                             <a href="#!/chi-tiet/bai-hat?song={{songIsPlayed.Song.SongID}}">{{songIsPlayed.Song.SongName}}</a>
-                            <div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>
+                            @*<div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>*@
                         </div>
                         <div class="song__artist">
                             <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songIsPlayed.Artists">{{a.ArtistName}}</a>
@@ -365,7 +365,7 @@
                                                     <div class="song__info">
                                                         <div class="song__name">
                                                             <a href="#!/chi-tiet/bai-hat?song={{songIsPlayed.Song.SongID}}">{{songIsPlayed.Song.SongName}}</a>
-                                                            <div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>
+                                                            @*<div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>*@
                                                         </div>
                                                         <div class="song__artist">
                                                             <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songIsPlayed.Artists">{{a.ArtistName}}</a>
@@ -432,7 +432,7 @@
                                                     <div class="song__info">
                                                         <div class="song__name">
                                                             <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                                            <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
+                                                            @*<div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>*@
                                                         </div>
                                                         <div class="song__artist">
                                                             <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
@@ -499,7 +499,7 @@
                                                     <div class="song__info">
                                                         <div class="song__name">
                                                             <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                                            <div class="song_vip_horizontal" ng-show=s.Song.isVip>VIP</div>
+                                                            @*<div class="song_vip_horizontal" ng-show=s.Song.isVip>VIP</div>*@
                                                         </div>
                                                         <div class="song__artist">
                                                             <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
@@ -560,7 +560,7 @@
                                                         <div class="song__info">
                                                             <div class="song__name">
                                                                 <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                                                <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
+                                                                @*<div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>*@
                                                             </div>
                                                             <div class="song__artist">
                                                                 <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
