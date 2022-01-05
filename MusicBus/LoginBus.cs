@@ -21,7 +21,7 @@ namespace MusicBus
         {
             return udao.CheckUser(accountname, password);
         }
-        public AccountAdmin CheckAccount(string acc, string pass)
+        public CheckAccountAM_Result CheckAccount(string acc, string pass)
         {
             return addao.CheckAccount(acc, pass);
         }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="37eea08a7fbf4a2f83cfc9e837a6b854" Name="Diagram1">
+      <Diagram DiagramId="eb078f93a80246aab95afbc2896d559b" Name="Diagram1">
         <EntityTypeShape EntityType="MusicModel.AccountAdmin" Width="1.5" PointX="3.75" PointY="27.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicModel.AccountUser" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MusicModel.Admin" Width="1.5" PointX="1.5" PointY="27.875" IsExpanded="true" />

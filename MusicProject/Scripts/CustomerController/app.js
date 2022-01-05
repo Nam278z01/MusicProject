@@ -437,7 +437,6 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
 
     $rootScope.LikeSong = function (s) {
         if ($rootScope.logged) {
-            s.Liked = 1
             $http({
                 method: 'post',
                 url: '/Liked/LikeSong',
@@ -445,6 +444,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 data: { songID: s.Song.SongID }
             }).then(function (res) {
                 if (!res.data) {
+                    s.Liked = 1
                     $rootScope.showSnackbar('Đã thích!')
                 } else {
                     alert("Like the song failed!")
@@ -458,7 +458,6 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     }
     $rootScope.DislikeSong = function (s) {
         if ($rootScope.logged) {
-            s.Liked = 0
             $http({
                 method: 'post',
                 url: '/Liked/DislikeSong',
@@ -466,6 +465,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 data: { songID: s.Song.SongID }
             }).then(function (res) {
                 if (!res.data) {
+                    s.Liked = 0
                     $rootScope.showSnackbar('Bỏ thích!')
                 } else {
                     alert("Dislike the song failed!")
@@ -480,7 +480,6 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
 
     $rootScope.LikeAlbum = function (a) {
         if ($rootScope.logged) {
-            a.Liked = 1
             $http({
                 method: 'post',
                 url: '/Liked/LikeAlbum',
@@ -488,6 +487,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 data: { albumID: a.AlbumID }
             }).then(function (res) {
                 if (!res.data) {
+                    a.Liked = 1
                     $rootScope.showSnackbar('Đã thích!')
                 } else {
                     alert("Like the album failed!")
@@ -501,7 +501,6 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     }
     $rootScope.DislikeAlbum = function (a) {
         if ($rootScope.logged) {
-            a.Liked = 0
             $http({
                 method: 'post',
                 url: '/Liked/DislikeAlbum',
@@ -509,12 +508,55 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
                 data: { albumID: a.AlbumID }
             }).then(function (res) {
                 if (!res.data) {
+                    a.Liked = 0
                     $rootScope.showSnackbar('Bỏ thích!')
                 } else {
                     alert("Dislike the album failed!")
                 }
             }, function () {
                 alert("Dislike the album failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+    $rootScope.LikePlaylist = function (obj, p, k) {
+        if ($rootScope.logged) {
+            $http({
+                method: 'post',
+                url: '/Liked/LikePlaylist',
+                datatype: 'json',
+                data: { playlistID: p , kind: k}
+            }).then(function (res) {
+                if (!res.data) {
+                    obj.Liked = 1
+                    $rootScope.showSnackbar('Đã thích!')
+                } else {
+                    alert("Like the playlist failed!")
+                }
+            }, function () {
+                alert("Like the playlist failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+    $rootScope.DislikePlaylist = function (obj, p, k) {
+        if ($rootScope.logged) {
+            $http({
+                method: 'post',
+                url: '/Liked/DislikePlaylist',
+                datatype: 'json',
+                data: { playlistID: p, kind: k }
+            }).then(function (res) {
+                if (!res.data) {
+                    obj.Liked = 0
+                    $rootScope.showSnackbar('Bỏ thích!')
+                } else {
+                    alert("Dislike the playlist failed!")
+                }
+            }, function () {
+                alert("Dislike the playlist failed!")
             })
         } else {
             btnLogin.click()

@@ -6659,6 +6659,7 @@
     <Content Include="Areas\Administrator\assets\Administrator\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Areas\Administrator\assets\Administrator\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Areas\Administrator\assets\Administrator\starter.html" />
+    <Content Include="assets\img\admin\nam.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -8561,7 +8562,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Data\" />
-    <Folder Include="assets\img\admin\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Collection\" />
     <Folder Include="Views\Detail\" />

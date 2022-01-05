@@ -85,4 +85,42 @@ appMusic.controller('LikedController', function ($scope, $rootScope, $location, 
             alert('Failed to get the albums!')
         })
     }
+
+    //Get likedPlaylist
+    $scope.playlistsLiked = []
+    $scope.totalCountPlaylistLiked = 0
+    $scope.pageSizePlaylistLiked = 24
+    $scope.maxSizePlaylistLiked = 5
+    $scope.pageIndexPlaylistLiked = 1
+    $scope.loadAlbumSuccessfullPlaylistLiked = false // Dùng cho ẩn hiện phần loading item
+
+    // Nếu lấy dữ liệu rồi (khi click vào tabs đó rồi) thì ko cần lấy lại dư liệu nữa
+    $scope.isGetPlaylistLiked = false
+    $scope.getPlaylistLiked = function () {
+        if (!$scope.isGetPlaylistLiked) {
+            getResultsPagePlaylistLiked(1)
+        }
+    }
+
+    $scope.pageChangedPlaylistLiked = function (newPage) {
+        getResultsPagePlaylistLiked(newPage);
+    };
+
+    $scope.getPlaylistLiked()
+
+    function getResultsPagePlaylistLiked(index) {
+        $scope.pageIndexPlaylistLiked = index
+        $http({
+            method: 'get',
+            url: '/Liked/GetPlaylistsLiked',
+            params: { pageIndex: index, pageSize: $scope.pageSizePlaylistLiked }
+        }).then(function (response) {
+            $scope.playlistsLiked = response.data.playlists
+            $scope.totalCountPlaylistLiked = response.data.totalCount
+            $scope.loadAlbumSuccessfullPlaylistLiked = true
+            $scope.isGetSongsofPlaylistLiked = true
+        }, function (error) {
+            alert('Failed to get the playlist!')
+        })
+    }
 })

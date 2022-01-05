@@ -85,4 +85,42 @@ appMusic.controller('ListenedController', function ($scope, $rootScope, $locatio
             alert('Failed to get the albums!')
         })
     }
+
+    //Get listenedPlaylist
+    $scope.playlistsListened = []
+    $scope.totalCountPlaylistListened = 0
+    $scope.pageSizePlaylistListened = 24
+    $scope.maxSizePlaylistListened = 5
+    $scope.pageIndexPlaylistListened = 1
+    $scope.loadAlbumSuccessfullPlaylistListened = false // Dùng cho ẩn hiện phần loading item
+
+    // Nếu lấy dữ liệu rồi (khi click vào tabs đó rồi) thì ko cần lấy lại dư liệu nữa
+    $scope.isGetPlaylistListened = false
+    $scope.getPlaylistListened = function () {
+        if (!$scope.isGetPlaylistListened) {
+            getResultsPagePlaylistListened(1)
+        }
+    }
+
+    $scope.pageChangedPlaylistListened = function (newPage) {
+        getResultsPagePlaylistListened(newPage);
+    };
+
+    $scope.getPlaylistListened()
+
+    function getResultsPagePlaylistListened(index) {
+        $scope.pageIndexPlaylistListened = index
+        $http({
+            method: 'get',
+            url: '/Listened/GetPlaylistsListened',
+            params: { pageIndex: index, pageSize: $scope.pageSizePlaylistListened }
+        }).then(function (response) {
+            $scope.playlistsListened = response.data.playlists
+            $scope.totalCountPlaylistListened = response.data.totalCount
+            $scope.loadAlbumSuccessfullPlaylistListened = true
+            $scope.isGetSongsofPlaylistListened = true
+        }, function (error) {
+            alert('Failed to get the playlist!')
+        })
+    }
 })

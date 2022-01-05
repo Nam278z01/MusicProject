@@ -33,11 +33,29 @@ namespace MusicProject.Controllers
             string result = sbus.IncreaseViews(songID);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult AlbumListened(string albumID)
+        {
+            IAlbumBus albus = new AlbumBus();
+            string result = albus.AlbumListened(albumID, GetUserName());
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult GetAlbumsListened(int pageIndex, int pageSize)
         {
             IAlbumBus albus = new AlbumBus();
             List<Album> albums = albus.GetAlbumsListened(pageIndex, pageSize, GetUserName(), out int totalCount);
             return Json(new { albums, totalCount }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetPlaylistsListened(int pageIndex, int pageSize)
+        {
+            IPlaylistBus plbus = new PlaylistBus();
+            List<PlaylistwithPerson> playlists = plbus.GetPlaylistListened(pageIndex, pageSize, GetUserName(), out int totalCount);
+            return Json(new { playlists, totalCount }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ListenedPlaylist(string playlistID, int kind)
+        {
+            IPlaylistBus plbus = new PlaylistBus();
+            string result = plbus.ListenedPlaylist(playlistID, GetUserName(), kind);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         public string GetUserName()
         {

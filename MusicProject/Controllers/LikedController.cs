@@ -51,6 +51,24 @@ namespace MusicProject.Controllers
             List<Album> albums = albus.GetAlbumsLiked(pageIndex, pageSize, GetUserName(), out int totalCount);
             return Json(new { albums, totalCount }, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult GetPlaylistsLiked(int pageIndex, int pageSize)
+        {
+            IPlaylistBus plbus = new PlaylistBus();
+            List<PlaylistwithPerson> playlists = plbus.GetPlaylistLiked(pageIndex, pageSize, GetUserName(), out int totalCount);
+            return Json(new { playlists, totalCount }, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult LikePlaylist(string playlistiD, int kind)
+        {
+            IPlaylistBus plbus = new PlaylistBus();
+            string result = plbus.LikePlaylist(playlistiD, GetUserName(), kind);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult DislikePlaylist(string playlistID, int kind)
+        {
+            IPlaylistBus plbus = new PlaylistBus();
+            string result = plbus.DislikePlaylist(playlistID, GetUserName(), kind);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         public string GetUserName()
         {
             GetUser_Result user = (GetUser_Result)Session["user"];

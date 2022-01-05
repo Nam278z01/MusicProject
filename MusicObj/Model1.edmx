@@ -745,6 +745,16 @@
         </Function>
         <Function Name="GetAlbumsForMana" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAlbumsGenresArtistsForManaSong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAlbumsLiked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetAlbumsListened" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
         <Function Name="GetAlbumsNewAHot" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
           <Parameter Name="pageSize" Type="int" Mode="In" />
@@ -782,9 +792,29 @@
           <Parameter Name="textSearch" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetCollectionsSongsForManaPlaylistAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetLikedSong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetListenedSong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
         <Function Name="GetPlaylistAdminwithSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountName" Type="char" Mode="In" />
           <Parameter Name="playlistAdminID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetPlaylistLiked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="GetPlaylistListened" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
         <Function Name="GetPlaylistsByCollectionPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
@@ -802,6 +832,11 @@
           <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
         <Function Name="GetPlaylistsForMana" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetPlaylistsLiked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
         <Function Name="GetPlaylistsSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pageIndex" Type="int" Mode="In" />
           <Parameter Name="pageSize" Type="int" Mode="In" />
@@ -819,6 +854,12 @@
         <Function Name="GetPlaylistUserwithSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountName" Type="char" Mode="In" />
           <Parameter Name="playlistUserID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetRankSongsofDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="nation" Type="int" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
         </Function>
         <Function Name="GetRankSongsofWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountName" Type="char" Mode="In" />
@@ -866,6 +907,22 @@
         <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AccountName" Type="char" Mode="In" />
           <Parameter Name="PassWord" Type="char" Mode="In" />
+        </Function>
+        <Function Name="IncreaseViews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="songID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ListenedAlbum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="albumID" Type="varchar" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+        </Function>
+        <Function Name="ListenedPlaylist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="playlistID" Type="varchar" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
+          <Parameter Name="kind" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ListenedSong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="songID" Type="varchar" Mode="In" />
+          <Parameter Name="accountName" Type="char" Mode="In" />
         </Function>
         <EntityContainer Name="MusicModelStoreContainer">
           <EntitySet Name="AccountAdmin" EntityType="Self.AccountAdmin" Schema="dbo" store:Type="Tables" />
@@ -1827,7 +1884,7 @@
           <FunctionImport Name="AddSong" ReturnType="Collection(String)">
             <Parameter Name="jsonSong" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="CheckAccountAM" ReturnType="Collection(String)">
+          <FunctionImport Name="CheckAccountAM" ReturnType="Collection(MusicModel.CheckAccountAM_Result)">
             <Parameter Name="AccountName" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
@@ -1880,6 +1937,16 @@
           </FunctionImport>
           <FunctionImport Name="GetAlbumsForMana" ReturnType="Collection(String)" />
           <FunctionImport Name="GetAlbumsGenresArtistsForManaSong" ReturnType="Collection(String)" />
+          <FunctionImport Name="GetAlbumsLiked">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAlbumsListened">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="GetAlbumsNewAHot">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
@@ -1917,9 +1984,29 @@
             <Parameter Name="textSearch" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetCollectionsSongsForManaPlaylistAdmin" ReturnType="Collection(String)" />
+          <FunctionImport Name="GetLikedSong">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetListenedSong">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="GetPlaylistAdminwithSongs" ReturnType="Collection(String)">
             <Parameter Name="accountName" Mode="In" Type="String" />
             <Parameter Name="playlistAdminID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPlaylistLiked">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPlaylistListened">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPlaylistsByCollectionPage">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
@@ -1937,6 +2024,11 @@
             <Parameter Name="accountName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPlaylistsForMana" ReturnType="Collection(String)" />
+          <FunctionImport Name="GetPlaylistsLiked">
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="GetPlaylistsSearch">
             <Parameter Name="pageIndex" Mode="In" Type="Int32" />
             <Parameter Name="pageSize" Mode="In" Type="Int32" />
@@ -1954,6 +2046,12 @@
           <FunctionImport Name="GetPlaylistUserwithSongs" ReturnType="Collection(String)">
             <Parameter Name="accountName" Mode="In" Type="String" />
             <Parameter Name="playlistUserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetRankSongsofDay">
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="nation" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="GetRankSongsofWeek">
             <Parameter Name="accountName" Mode="In" Type="String" />
@@ -2002,7 +2100,36 @@
             <Parameter Name="AccountName" Mode="In" Type="String" />
             <Parameter Name="PassWord" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="IncreaseViews">
+            <Parameter Name="songID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ListenedAlbum">
+            <Parameter Name="albumID" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ListenedPlaylist">
+            <Parameter Name="playlistID" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+            <Parameter Name="kind" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ListenedSong">
+            <Parameter Name="songID" Mode="In" Type="String" />
+            <Parameter Name="accountName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="CheckAccountAM_Result">
+          <Property Type="String" Name="AccountName" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+          <Property Type="Byte" Name="Role" Nullable="false" />
+          <Property Type="Boolean" Name="State" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="23" />
+          <Property Type="String" Name="PersonID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Image" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="50" />
+          <Property Type="Byte" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="15" />
+        </ComplexType>
         <ComplexType Name="GetUser_Result">
           <Property Type="String" Name="AccountName" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
@@ -2283,7 +2410,23 @@
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="AddPlaylistAdmin" FunctionName="MusicModel.Store.AddPlaylistAdmin" />
           <FunctionImportMapping FunctionImportName="AddSong" FunctionName="MusicModel.Store.AddSong" />
-          <FunctionImportMapping FunctionImportName="CheckAccountAM" FunctionName="MusicModel.Store.CheckAccountAM" />
+          <FunctionImportMapping FunctionImportName="CheckAccountAM" FunctionName="MusicModel.Store.CheckAccountAM">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MusicModel.CheckAccountAM_Result">
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="EditPlaylistAdmin" FunctionName="MusicModel.Store.EditPlaylistAdmin" />
           <FunctionImportMapping FunctionImportName="EditSong" FunctionName="MusicModel.Store.EditSong" />
           <FunctionImportMapping FunctionImportName="Get10AlbumsRandom" FunctionName="MusicModel.Store.Get10AlbumsRandom" />
@@ -2298,6 +2441,8 @@
           <FunctionImportMapping FunctionImportName="GetAlbumsByArtist" FunctionName="MusicModel.Store.GetAlbumsByArtist" />
           <FunctionImportMapping FunctionImportName="GetAlbumsForMana" FunctionName="MusicModel.Store.GetAlbumsForMana" />
           <FunctionImportMapping FunctionImportName="GetAlbumsGenresArtistsForManaSong" FunctionName="MusicModel.Store.GetAlbumsGenresArtistsForManaSong" />
+          <FunctionImportMapping FunctionImportName="GetAlbumsLiked" FunctionName="MusicModel.Store.GetAlbumsLiked" />
+          <FunctionImportMapping FunctionImportName="GetAlbumsListened" FunctionName="MusicModel.Store.GetAlbumsListened" />
           <FunctionImportMapping FunctionImportName="GetAlbumsNewAHot" FunctionName="MusicModel.Store.GetAlbumsNewAHot" />
           <FunctionImportMapping FunctionImportName="GetAlbumsPage" FunctionName="MusicModel.Store.GetAlbumsPage" />
           <FunctionImportMapping FunctionImportName="GetAlbumsSearch" FunctionName="MusicModel.Store.GetAlbumsSearch" />
@@ -2306,14 +2451,20 @@
           <FunctionImportMapping FunctionImportName="GetArtistsPage" FunctionName="MusicModel.Store.GetArtistsPage" />
           <FunctionImportMapping FunctionImportName="GetArtistsSearch" FunctionName="MusicModel.Store.GetArtistsSearch" />
           <FunctionImportMapping FunctionImportName="GetCollectionsSongsForManaPlaylistAdmin" FunctionName="MusicModel.Store.GetCollectionsSongsForManaPlaylistAdmin" />
+          <FunctionImportMapping FunctionImportName="GetLikedSong" FunctionName="MusicModel.Store.GetLikedSong" />
+          <FunctionImportMapping FunctionImportName="GetListenedSong" FunctionName="MusicModel.Store.GetListenedSong" />
           <FunctionImportMapping FunctionImportName="GetPlaylistAdminwithSongs" FunctionName="MusicModel.Store.GetPlaylistAdminwithSongs" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistLiked" FunctionName="MusicModel.Store.GetPlaylistLiked" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistListened" FunctionName="MusicModel.Store.GetPlaylistListened" />
           <FunctionImportMapping FunctionImportName="GetPlaylistsByCollectionPage" FunctionName="MusicModel.Store.GetPlaylistsByCollectionPage" />
           <FunctionImportMapping FunctionImportName="GetPlaylistsByCollectionsPage" FunctionName="MusicModel.Store.GetPlaylistsByCollectionsPage" />
           <FunctionImportMapping FunctionImportName="GetPlaylistsForMana" FunctionName="MusicModel.Store.GetPlaylistsForMana" />
+          <FunctionImportMapping FunctionImportName="GetPlaylistsLiked" FunctionName="MusicModel.Store.GetPlaylistsLiked" />
           <FunctionImportMapping FunctionImportName="GetPlaylistsSearch" FunctionName="MusicModel.Store.GetPlaylistsSearch" />
           <FunctionImportMapping FunctionImportName="GetPlaylistsUser" FunctionName="MusicModel.Store.GetPlaylistsUser" />
           <FunctionImportMapping FunctionImportName="GetPlaylistsUserBySong" FunctionName="MusicModel.Store.GetPlaylistsUserBySong" />
           <FunctionImportMapping FunctionImportName="GetPlaylistUserwithSongs" FunctionName="MusicModel.Store.GetPlaylistUserwithSongs" />
+          <FunctionImportMapping FunctionImportName="GetRankSongsofDay" FunctionName="MusicModel.Store.GetRankSongsofDay" />
           <FunctionImportMapping FunctionImportName="GetRankSongsofWeek" FunctionName="MusicModel.Store.GetRankSongsofWeek" />
           <FunctionImportMapping FunctionImportName="GetSong" FunctionName="MusicModel.Store.GetSong" />
           <FunctionImportMapping FunctionImportName="GetSongsByArtistPage" FunctionName="MusicModel.Store.GetSongsByArtistPage" />
@@ -2340,6 +2491,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="IncreaseViews" FunctionName="MusicModel.Store.IncreaseViews" />
+          <FunctionImportMapping FunctionImportName="ListenedAlbum" FunctionName="MusicModel.Store.ListenedAlbum" />
+          <FunctionImportMapping FunctionImportName="ListenedPlaylist" FunctionName="MusicModel.Store.ListenedPlaylist" />
+          <FunctionImportMapping FunctionImportName="ListenedSong" FunctionName="MusicModel.Store.ListenedSong" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

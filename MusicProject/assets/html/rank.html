@@ -19,7 +19,7 @@
     <li class="sub-nav-item" ng-class="{active:isNationNav('ca')}" ng-click="changeNationNav('ca')"><p>Châu Á</p></li>
 </ul>
 
-<div class="rank-time">
+<div class="rank-time" ng-if="isActiveNav(underfine)">
     <div class="rank-time-title">Tuần {{numberOfWeek}}:</div>
     <div class="rank-period-time">
         <div class="rank-time-prev" ng-click="weekDecrease()">
@@ -32,7 +32,25 @@
     </div>
 </div>
 
-<div class="rank-show">
+<div class="rank-time" ng-if="isActiveNav('hn')">
+    <div class="rank-time-title">Ngày:</div>
+    <div class="rank-period-time">
+        <div class="rank-time-prev" ng-click="dayDecrease()">
+            <i class='bx bx-chevron-left'></i>
+        </div>
+        <span>{{dateSelected | date : "dd/MM/yyyy"}}</span>
+        <div class="rank-time-next" ng-click="dayIncrease()" ng-class="{'disable' : !activeIncrease}">
+            <i class='bx bx-chevron-right'></i>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songsBXH || songsBXH.length == 0)">
+    <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+    <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+</div>
+
+<div class="rank-show" ng-if="(songsBXH && songsBXH.length != 0)">
     <div class="rank-content">
         <div class="rank-img overflow-hd">
             <img src="../../assets/img/song/{{songBXHTop1.Song.Image}}" alt="{{songBXHTop1.Song.SongName}}" />
@@ -65,7 +83,7 @@
     </div>
 </div>
 
-<div class="rank-playorother">
+<div class="rank-playorother" ng-if="(songsBXH && songsBXH.length != 0)">
     <button class="btn btn--primary btn-outline btn-play-rank-all">Phát tất cả</button>
 </div>
 
@@ -73,7 +91,7 @@
     <div class="list-song-main">
         <div class="grid">
             <div class="row sm-gutter">
-                <div class="col c-12" ng-repeat="s in songsBXHofWeek">
+                <div class="col c-12" ng-repeat="s in songsBXH">
                     <div class="song__wraper">
                         <div class="song_order-number">
                             {{$index + 1}}
@@ -86,7 +104,6 @@
                                 <div class="song__info">
                                     <div class="song__name">
                                         <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                        <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
                                     </div>
                                     <div class="song__artist">
                                         <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>

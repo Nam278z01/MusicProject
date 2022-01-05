@@ -36,7 +36,7 @@
                 <span>(Có {{totalCount | number:0}} kết quả)</span>
             </h3>
         </div>
-        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songs.length || songs.length == 0)  && loadSongSuccessfull">
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songs || songs.length == 0)  && loadSongSuccessfull">
             <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
             <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
         </div>
@@ -51,8 +51,10 @@
                                     <img src="../../assets/img/Song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="s.Liked == 0" ng-click="LikeSong(s)">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="s.Liked == 1" ng-click="DislikeSong(s)">
                                         <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play" ng-click="pickplayMusic(s)">
@@ -64,11 +66,11 @@
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                     </button>
                                     <div class="feature__more">
-                                        <div class="feature__item">
+                                        <div class="feature__item btn-add-song-playlist" ng-click="getSongforAdd(s)">
                                             <i class='bx bxs-playlist'></i>
                                             <span>Thêm vào playlist</span>
                                         </div>
-                                        <div class="feature__item">
+                                        <div class="feature__item" ng-click="addSongtoQueue(s)">
                                             <i class='bx bx-add-to-queue'></i>
                                             <span>Thêm vào chờ phát</span>
                                         </div>

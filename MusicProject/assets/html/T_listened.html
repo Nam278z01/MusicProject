@@ -13,7 +13,7 @@
                 Bài hát
             </h3>
         </div>
-        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songsListened.length || songsListened.length == 0)  && isGetSongsofSongListened">
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songsListened || songsListened.length == 0)  && isGetSongsofSongListened">
             <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
             <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
         </div>
@@ -96,11 +96,15 @@
                 Playlist
             </h3>
         </div>
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!playlistsListened || playlistsListened.length == 0)  && loadAlbumSuccessfullPlaylistLiked">
+            <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+            <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+        </div>
         <div class="list-playlist__slide">
             <div class="grid">
                 <div class="row sm-gutter">
-                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="p in playlists | itemsPerPage: pageSize" total-items="totalCount"
-                         current-page="pageIndex" pagination-id="playlist">
+                    <div class="col c-6 m-3 l-2-4 sl-2" dir-paginate="p in playlistsListened | itemsPerPage: pageSizePlaylistListened" total-items="totalCountPlaylistListened"
+                         current-page="pageIndexPlaylistListened" pagination-id="playlist">
                         <div class="list-playlist__item" style="padding-bottom: 24px;">
                             <div class="decorative"></div>
                             <div class="decorative"></div>
@@ -110,9 +114,17 @@
                                     <img src="../../assets/img/playlist/user/{{p.Image}}" ng-if="p.KindofPlaylist == 2" alt="{{p.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
-                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="p.Liked == 1 && p.KindofPlaylist == 1" ng-click="DislikePlaylist(p, p.PlaylistID, 1)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="p.Liked == 0 && p.KindofPlaylist == 1" ng-click="LikePlaylist(p, p.PlaylistID, 1)">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="p.Liked == 1 && p.KindofPlaylist == 2" ng-click="DislikePlaylist(p, p.PlaylistID, 2)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="p.Liked == 0 && p.KindofPlaylist == 2" ng-click="LikePlaylist(p, p.PlaylistID, 2)">
+                                        <i class='bx bx-heart'></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -143,7 +155,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadSongSuccessfull" ng-repeat="n in getTimes(eleView) track by $index">
+                    <div class="col c-6 m-3 l-2-4 sl-2" ng-if="!loadAlbumSuccessfullPlaylistListened" ng-repeat="n in getTimes(eleView) track by $index">
                         <span class="MuiSkeleton-root MuiSkeleton-wave" style="width: 100%; position: relative; padding-top: 100%;"></span>
                         <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 80%; height: 14px;"></span>
                         <span class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse" style="width: 60%; height: 12px;"></span>
@@ -154,7 +166,7 @@
     </div>
 
     <div class="wrap-layout">
-        <dir-pagination-controls pagination-id="playlist" max-size="maxSize" boundary-links="true" on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+        <dir-pagination-controls pagination-id="playlist" max-size="maxSizePlaylistListened" boundary-links="true" on-page-change="pageChangedPlaylistListened(newPageNumber)"></dir-pagination-controls>
     </div>
 </div>
 
@@ -165,7 +177,7 @@
                 Album
             </h3>
         </div>
-        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!albumsListened.length || albumsListened.length == 0)  && isGetSongsofAlbumListened">
+        <div style="display: flex; align-items: center; flex-direction: column" ng-if="(!albumsListened || albumsListened.length == 0)  && isGetSongsofAlbumListened">
             <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
             <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
         </div>
@@ -181,9 +193,11 @@
                                     <img src="../../assets/img/album/{{a.Image}}" alt="{{a.AlbumName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="a.Liked == 0"></i>
-                                        <i class='bx bxs-heart' ng-if="a.Liked == 1" style="color: var(--main-color)"></i>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="a.Liked == 1" ng-click="DislikeAlbum(a)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="a.Liked == 0" ng-click="LikeAlbum(a)">
+                                        <i class='bx bx-heart'></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">

@@ -61,8 +61,10 @@
                                         </button>
                                     </div>
                                     <div class="song__like">
-                                        <button class="btn btn--circle btn-song-like">
-                                            <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                        <button class="btn btn-song-like btn--circle" title="Yêu thích" ng-if="s.Liked == 0" ng-click="LikeSong(s)">
+                                            <i class='bx bx-heart'></i>
+                                        </button>
+                                        <button class="btn btn-song-like btn--circle" title="Bỏ thích" ng-if="s.Liked == 1" ng-click="DislikeSong(s)">
                                             <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
                                         </button>
                                     </div>
@@ -77,11 +79,11 @@
                                         <span ng-if="s.Views < 1000">{{s.Views}}</span>
                                     </div>
                                     <div class="feature__more">
-                                        <div class="feature__item">
+                                        <div class="feature__item btn-add-song-playlist" ng-click="getSongforAdd(s)">
                                             <i class='bx bxs-playlist'></i>
                                             <span>Thêm vào playlist</span>
                                         </div>
-                                        <div class="feature__item">
+                                        <div class="feature__item" ng-click="addSongtoQueue(s)">
                                             <i class='bx bx-add-to-queue'></i>
                                             <span>Thêm vào chờ phát</span>
                                         </div>

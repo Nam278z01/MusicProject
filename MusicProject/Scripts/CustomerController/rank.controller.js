@@ -59,11 +59,46 @@
     function getRankSongofWeek() {
         $http({
             method: 'get',
-            url: 'Rank/GetRankSongsofWeek',
+            url: '/Rank/GetRankSongsofWeek',
             params: { nation: $routeParams.n, week: $scope.numberOfWeek, year: $scope.yearCurrent, quantity: 20 }
         }).then(function (res) {
-            $scope.songsBXHofWeek = JSON.parse(res.data)
-            $scope.songBXHTop1 = $scope.songsBXHofWeek[0]
+            $scope.songsBXH = JSON.parse(res.data)
+            $scope.songBXHTop1 = $scope.songsBXH[0]
+        }, function (err) {
+            alert('Failed to get songs!')
+        })
+    }
+
+    $scope.dateSelected = $routeParams.ngay ? new Date($routeParams.ngay) : new Date
+    $scope.activeDayIncrease = addDays($scope.dateSelected, -1) <= new Date ? true : false
+
+    //Tăng giảm thứ tự tuần
+    $scope.dayDecrease = function () {
+        $scope.dateSelected = addDays($scope.dateSelected, -1)
+
+        $location.search({ "ngay": $scope.dateSelected, 'n': $routeParams.n, 'k': $routeParams.k })
+    }
+    $scope.dayIncrease = function () {
+        if ($scope.activeDayIncrease) {
+            $scope.dateSelected = addDays($scope.dateSelected, 1)
+
+            $location.search({ "ngay": $scope.dateSelected, 'n': $routeParams.n, 'k': $routeParams.k })
+        }
+    }
+
+    //Lấy top Ngày
+    if ($routeParams.k == 'hn') {
+        getRankSongofDay()
+    }
+
+    function getRankSongofDay() {
+        $http({
+            method: 'get',
+            url: '/Rank/GetRankSongsofDay',
+            params: { nation: $routeParams.n, date: $scope.dateSelected, quantity: 20 }
+        }).then(function (res) {
+            $scope.songsBXH = JSON.parse(res.data)
+            $scope.songBXHTop1 = $scope.songsBXH[0]
         }, function (err) {
             alert('Failed to get songs!')
         })

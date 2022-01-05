@@ -68,7 +68,7 @@ namespace MusicObj
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("AddSong", jsonSongParameter);
         }
     
-        public virtual ObjectResult<string> CheckAccountAM(string accountName, string password)
+        public virtual ObjectResult<CheckAccountAM_Result> CheckAccountAM(string accountName, string password)
         {
             var accountNameParameter = accountName != null ?
                 new ObjectParameter("AccountName", accountName) :
@@ -78,7 +78,7 @@ namespace MusicObj
                 new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CheckAccountAM", accountNameParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CheckAccountAM_Result>("CheckAccountAM", accountNameParameter, passwordParameter);
         }
     
         public virtual int EditPlaylistAdmin(string jsonPlaylistAM)
@@ -243,6 +243,40 @@ namespace MusicObj
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetAlbumsGenresArtistsForManaSong");
         }
     
+        public virtual int GetAlbumsLiked(Nullable<int> pageIndex, Nullable<int> pageSize, string accountName)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAlbumsLiked", pageIndexParameter, pageSizeParameter, accountNameParameter);
+        }
+    
+        public virtual int GetAlbumsListened(Nullable<int> pageIndex, Nullable<int> pageSize, string accountName)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAlbumsListened", pageIndexParameter, pageSizeParameter, accountNameParameter);
+        }
+    
         public virtual int GetAlbumsNewAHot(Nullable<int> pageIndex, Nullable<int> pageSize, Nullable<int> time, string accountName)
         {
             var pageIndexParameter = pageIndex.HasValue ?
@@ -375,6 +409,40 @@ namespace MusicObj
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetCollectionsSongsForManaPlaylistAdmin");
         }
     
+        public virtual int GetLikedSong(Nullable<int> pageIndex, Nullable<int> pageSize, string accountName)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetLikedSong", pageIndexParameter, pageSizeParameter, accountNameParameter);
+        }
+    
+        public virtual int GetListenedSong(Nullable<int> pageIndex, Nullable<int> pageSize, string accountName)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetListenedSong", pageIndexParameter, pageSizeParameter, accountNameParameter);
+        }
+    
         public virtual ObjectResult<string> GetPlaylistAdminwithSongs(string accountName, string playlistAdminID)
         {
             var accountNameParameter = accountName != null ?
@@ -386,6 +454,40 @@ namespace MusicObj
                 new ObjectParameter("playlistAdminID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetPlaylistAdminwithSongs", accountNameParameter, playlistAdminIDParameter);
+        }
+    
+        public virtual int GetPlaylistLiked(Nullable<int> pageIndex, Nullable<int> pageSize, string accountName)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPlaylistLiked", pageIndexParameter, pageSizeParameter, accountNameParameter);
+        }
+    
+        public virtual int GetPlaylistListened(Nullable<int> pageIndex, Nullable<int> pageSize, string accountName)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPlaylistListened", pageIndexParameter, pageSizeParameter, accountNameParameter);
         }
     
         public virtual int GetPlaylistsByCollectionPage(Nullable<int> pageIndex, Nullable<int> pageSize, string collectionID, string accountName)
@@ -447,6 +549,23 @@ namespace MusicObj
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetPlaylistsForMana");
         }
     
+        public virtual int GetPlaylistsLiked(Nullable<int> pageIndex, Nullable<int> pageSize, string accountName)
+        {
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize) :
+                new ObjectParameter("pageSize", typeof(int));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPlaylistsLiked", pageIndexParameter, pageSizeParameter, accountNameParameter);
+        }
+    
         public virtual int GetPlaylistsSearch(Nullable<int> pageIndex, Nullable<int> pageSize, string textSearch, string accountName)
         {
             var pageIndexParameter = pageIndex.HasValue ?
@@ -505,6 +624,27 @@ namespace MusicObj
                 new ObjectParameter("playlistUserID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetPlaylistUserwithSongs", accountNameParameter, playlistUserIDParameter);
+        }
+    
+        public virtual int GetRankSongsofDay(string accountName, Nullable<int> quantity, Nullable<int> nation, Nullable<System.DateTime> date)
+        {
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("quantity", quantity) :
+                new ObjectParameter("quantity", typeof(int));
+    
+            var nationParameter = nation.HasValue ?
+                new ObjectParameter("nation", nation) :
+                new ObjectParameter("nation", typeof(int));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetRankSongsofDay", accountNameParameter, quantityParameter, nationParameter, dateParameter);
         }
     
         public virtual int GetRankSongsofWeek(string accountName, Nullable<int> quantity, Nullable<int> nation, Nullable<int> week, Nullable<int> year)
@@ -671,6 +811,58 @@ namespace MusicObj
                 new ObjectParameter("PassWord", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", accountNameParameter, passWordParameter);
+        }
+    
+        public virtual int IncreaseViews(string songID)
+        {
+            var songIDParameter = songID != null ?
+                new ObjectParameter("songID", songID) :
+                new ObjectParameter("songID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IncreaseViews", songIDParameter);
+        }
+    
+        public virtual int ListenedAlbum(string albumID, string accountName)
+        {
+            var albumIDParameter = albumID != null ?
+                new ObjectParameter("albumID", albumID) :
+                new ObjectParameter("albumID", typeof(string));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ListenedAlbum", albumIDParameter, accountNameParameter);
+        }
+    
+        public virtual int ListenedPlaylist(string playlistID, string accountName, Nullable<int> kind)
+        {
+            var playlistIDParameter = playlistID != null ?
+                new ObjectParameter("playlistID", playlistID) :
+                new ObjectParameter("playlistID", typeof(string));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            var kindParameter = kind.HasValue ?
+                new ObjectParameter("kind", kind) :
+                new ObjectParameter("kind", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ListenedPlaylist", playlistIDParameter, accountNameParameter, kindParameter);
+        }
+    
+        public virtual int ListenedSong(string songID, string accountName)
+        {
+            var songIDParameter = songID != null ?
+                new ObjectParameter("songID", songID) :
+                new ObjectParameter("songID", typeof(string));
+    
+            var accountNameParameter = accountName != null ?
+                new ObjectParameter("accountName", accountName) :
+                new ObjectParameter("accountName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ListenedSong", songIDParameter, accountNameParameter);
         }
     }
 }
