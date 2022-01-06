@@ -70,7 +70,7 @@
     }
 
     $scope.dateSelected = $routeParams.ngay ? new Date($routeParams.ngay) : new Date
-    $scope.activeDayIncrease = addDays($scope.dateSelected, -1) <= new Date ? true : false
+    $scope.activeDayIncrease = $scope.dateSelected < new Date ? true : false
 
     //Tăng giảm thứ tự tuần
     $scope.dayDecrease = function () {
