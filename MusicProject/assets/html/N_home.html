@@ -88,9 +88,11 @@
                                     <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
-                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="p.Liked == 1" ng-click="DislikePlaylist(p, p.PlaylistAdmin.PlaylistID, 1)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="p.Liked == 0" ng-click="LikePlaylist(p, p.PlaylistAdmin.PlaylistID, 1)">
+                                        <i class='bx bx-heart'></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -156,9 +158,11 @@
                                     <img src="../../assets/img/playlist/admin/{{p.PlaylistAdmin.Image}}" alt="{{p.PlaylistAdmin.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
-                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="p.Liked == 1" ng-click="DislikePlaylist(p, p.PlaylistAdmin.PlaylistID, 1)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="p.Liked == 0" ng-click="LikePlaylist(p, p.PlaylistAdmin.PlaylistID, 1)">
+                                        <i class='bx bx-heart'></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -224,9 +228,11 @@
                                     <img src="../../assets/img/album/{{a.Image}}" alt="{{a.AlbumName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="a.Liked == 0"></i>
-                                        <i class='bx bxs-heart' ng-if="a.Liked == 1" style="color: var(--main-color)"></i>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="a.Liked == 1" ng-click="DislikeAlbum(a)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="a.Liked == 0" ng-click="LikeAlbum(a)">
+                                        <i class='bx bx-heart'></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
@@ -429,8 +435,10 @@
                                 </button>
                             </div>
                             <div class="song__like">
-                                <button class="btn btn--circle btn-song-like">
-                                    <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                <button class="btn btn-song-like btn--circle" title="Yêu thích" ng-if="s.Liked == 0" ng-click="LikeSong(s)">
+                                    <i class='bx bx-heart'></i>
+                                </button>
+                                <button class="btn btn-song-like btn--circle" title="Bỏ thích" ng-if="s.Liked == 1" ng-click="DislikeSong(s)">
                                     <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
                                 </button>
                             </div>

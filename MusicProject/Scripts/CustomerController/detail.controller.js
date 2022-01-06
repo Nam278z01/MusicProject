@@ -9,8 +9,16 @@
         url: '/Detail/GetSong',
         params: { songID: $routeParams.song }
     }).then(function (response) {
-        $scope.song = response.data.song
-        $scope.songs = response.data.songs
+        $scope.song = response.data
+        $http({
+            method: 'get',
+            url: '/Detail/Get10SongsRandomCollection',
+            params: { songID: $routeParams.song, collectionID: $scope.song.Collections[0].CollectionID }
+        }).then(function (response) {
+            $scope.songs = response.data
+        }, function (error) {
+            alert('Failed to get the songs!')
+        })
         //start: Title
         $rootScope.title = $scope.song.Song.SongName + " | "
         var length = $scope.song.Artists.length

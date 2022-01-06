@@ -1,4 +1,4 @@
-﻿appMusic.controller('PlayMusicController', function ($scope, $rootScope, $timeout) {
+﻿appMusic.controller('PlayMusicController', function ($scope, $rootScope, $timeout, $http) {
     // Chạy slide (background) ...
     let indexBackgroundImage = 0
     let backgroundImage = document.querySelectorAll('.background img')
@@ -111,11 +111,41 @@
         $rootScope.showSnackbar('Thêm bài hát vào danh sách chờ thành công!')
     }
 
-    //$scope.$watch('$root.songIsPlayed', function () {
-    //    $timeout(function () {
-    //        audio.play()
-    //    }, 0)
-    //})
+    $scope.$watch('$root.songIsPlayed', function () {
+        console.log($rootScope.songIsPlayed.Song.SongID)
+        $timeout(function () {
+            if ($rootScope.logged) {
+                $http({
+                    method: 'post',
+                    url: '/Listened/SongListened',
+                    datatype: 'json',
+                    data: { songID: $rootScope.songIsPlayed.Song.SongID }
+                }).then(function (res) {
+                    if (!res.data) {
+                        //$rootScope.showSnackbar('Đã nghe!')
+                    } else {
+                        alert("Listened the playlist failed!")
+                    }
+                }, function () {
+                    alert("Listened the playlist failed!")
+                })
+            }
+            $http({
+                method: 'post',
+                url: '/Listened/IncreaseViews',
+                datatype: 'json',
+                data: { songID: $rootScope.songIsPlayed.Song.SongID }
+            }).then(function (res) {
+                if (!res.data) {
+                    //$rootScope.showSnackbar('Đã nghe nè!')
+                } else {
+                    alert("Like the playlist failed!")
+                }
+            }, function () {
+                alert("Like the playlist failed!")
+            })
+        }, 0)
+    })
 
     function handleEvents () {
         // Xử lý khi click play

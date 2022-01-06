@@ -231,8 +231,8 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="~/Areas/Administrator/assets/Administrator/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <img src="~/assets/img/admin/{{admin.Image}}" class="user-image" alt="{{admin.PersonName}}">
+                                <span class="hidden-xs">{{admin.PersonName}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -287,10 +287,10 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="~/Areas/Administrator/assets/Administrator/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="~/assets/img/admin/{{admin.Image}}" class="img-circle" alt="{{admin.PersonName}}">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p>{{admin.PersonName}}</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -344,7 +344,7 @@
                             <li ng-class="{active:isActiveSubNav(6)}"><a href="~/Administrator/UserMana/Index"><i class="fa fa-circle-o"></i>Người dùng</a></li>
                         </ul>
                     </li>
-                    <li class="treeview" ng-class="{active:isActiveNav(3)}">
+                    @*<li class="treeview" ng-class="{active:isActiveNav(3)}">
                         <a href="#">
                             <i class="fa fa-laptop"></i>
                             <span>Dịch vụ</span>
@@ -356,7 +356,7 @@
                             <li ng-class="{active:isActiveSubNav(7)}"><a href="~/Administrator/ServiceVipMana/Index"><i class="fa fa-circle-o"></i>Dịch vụ Vip</a></li>
                             <li ng-class="{active:isActiveSubNav(8)}"><a href="~/Administrator/PaymentHistoryMana/Index"><i class="fa fa-circle-o"></i>Lịch sử giao dịch</a></li>
                         </ul>
-                    </li>
+                    </li>*@
                     @*<li class="header">LABELS</li>
                         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
                         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

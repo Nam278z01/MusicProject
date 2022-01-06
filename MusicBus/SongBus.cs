@@ -47,13 +47,41 @@ namespace MusicBus
         {
             return sdao.GetSongsNewAHot(pageIndex, pageSize, accountName, time, out totalCount);
         }
-        public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week)
+        public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week, int year)
         {
-            return sdao.GetRankSongsofWeek(accountName, quantity, nation, week);
+            return sdao.GetRankSongsofWeek(accountName, quantity, nation, week, year);
         }
-        public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week)
+        public string GetRankSongsofDay(string accountName, int quantity, int nation, DateTime date)
         {
-            return sdao.Get3RankSongsofWeek(accountName, quantity, week);
-        }  
+            return sdao.GetRankSongsofDay(accountName, quantity, nation, date);
+        }
+        public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week, int year)
+        {
+            return sdao.Get3RankSongsofWeek(accountName, quantity, week, year);
+        }
+        public string LikeSong(string songID, string accountName)
+        {
+            return sdao.LikeSong(songID, accountName);
+        }
+        public string DislikeSong(string songID, string accountName)
+        {
+            return sdao.DislikeSong(songID, accountName);
+        }
+        public List<SongwithArtist> GetLikedSong(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            return sdao.GetLikedSong(pageIndex, pageSize, accountName, out totalCount);
+        }
+        public List<SongwithArtist> GetListenedSong(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            return sdao.GetListenedSong(pageIndex, pageSize, accountName, out totalCount);
+        }
+        public string SongListened(string songID, string accountName)
+        {
+            return sdao.SongListened(songID, accountName);
+        }
+        public string IncreaseViews(string songID)
+        {
+            return sdao.IncreaseViews(songID);
+        }
     }
 }

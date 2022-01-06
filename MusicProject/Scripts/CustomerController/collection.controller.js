@@ -4,6 +4,7 @@
     $rootScope.currentIndex = 3
     //Sidebar tab con (của khám phá & nghe gì hôm nay) hoạt động là trang tuyển tập
     $rootScope.currentSubIndex = 5
+    //Lấy danh sách colletion cho trang tuyển tập
 
     // Cần interval vì thỉnh thoảng lấy data hơi lâu làm cho trang tuyển tập ko hiển thị collection và phải chạy lại trang mới hiển thị
     let myInterval = $interval(getSuccessCol, 1000)
@@ -86,6 +87,8 @@
             params: { pageIndex: $scope.pageIndex, pageSize: $scope.pageSize, genre: $routeParams.tl, mood: $routeParams.tt, scene: $routeParams.kc, topic: $routeParams.cd }
         }).then(function (response) {
             $scope.playlistAdmins = response.data.playlistAdmins
+            console.log(JSON.stringify($scope.playlistAdmins))
+            console.log(JSON.stringify(JSON.stringify($scope.playlistAdmins)))
             $scope.totalCount = response.data.totalCount
             $scope.loadSongSuccessfull = true
         }, function (error) {

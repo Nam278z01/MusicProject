@@ -33,10 +33,8 @@ namespace MusicObj
         public byte Role { get; set; }
         public bool State { get; set; }
         public System.DateTime DateCreated { get; set; }
-        public Nullable<System.DateTime> DueOn { get; set; }
         public string PersonID { get; set; }
         public string Image { get; set; }
-        public int Money { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AlbumLiked> AlbumLikeds { get; set; }

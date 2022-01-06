@@ -16,5 +16,10 @@ namespace MusicDao
         string GetAlbumDetail(string albumID, string accountName);
         string GetAlbumsForMana();
         List<string> GetArtistSongForAlbumMana();
+        string LikeAlbum(string albumID, string accountName);
+        string DislikeAlbum(string albumID, string accountName);
+        List<Album> GetAlbumsLiked(int pageIndex, int pageSize, string accountName, out int totalCount);
+        List<Album> GetAlbumsListened(int pageIndex, int pageSize, string accountName, out int totalCount);
+        string AlbumListened(string albumID, string accountName);
     }
 }

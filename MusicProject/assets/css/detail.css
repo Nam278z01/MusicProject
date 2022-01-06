@@ -223,6 +223,12 @@
 
 }
 
+    .artist__detail-img img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
 .artist_detail-thumbnail {
     position: absolute;
     bottom: 10%;

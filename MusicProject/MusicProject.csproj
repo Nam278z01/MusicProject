@@ -135,7 +135,6 @@
     <Compile Include="Areas\Administrator\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Administrator\Controllers\LoginController.cs" />
     <Compile Include="Areas\Administrator\Controllers\PlaylistAdminManaController.cs" />
-    <Compile Include="Areas\Administrator\Controllers\ServiceVipManaController.cs" />
     <Compile Include="Areas\Administrator\Controllers\SongManaController.cs" />
     <Compile Include="Areas\Administrator\Controllers\UserManaController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
@@ -6660,6 +6659,7 @@
     <Content Include="Areas\Administrator\assets\Administrator\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Areas\Administrator\assets\Administrator\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Areas\Administrator\assets\Administrator\starter.html" />
+    <Content Include="assets\img\admin\nam.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -6693,10 +6693,6 @@
     <Content Include="assets\html\detail_playlistadmin.html" />
     <Content Include="assets\html\detail_playlistuser.html" />
     <Content Include="assets\html\detail_song.html" />
-    <Content Include="assets\html\liked_album.html" />
-    <Content Include="assets\html\liked_playlist.html" />
-    <Content Include="assets\html\listened_album.html" />
-    <Content Include="assets\html\listened_playlist.html" />
     <Content Include="assets\html\N_collection.html" />
     <Content Include="assets\html\N_home.html" />
     <Content Include="assets\html\N_search.html" />
@@ -7687,10 +7683,8 @@
     <Content Include="Areas\Administrator\assets\Administrator\README.md" />
     <Content Include="Areas\Administrator\assets\Administrator\yarn.lock" />
     <Content Include="Areas\Administrator\Views\SongMana\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\ServiceVipMana\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\UserMana\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\PlaylistAdminMana\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\PaymentHistoryMana\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\DashBoard\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\CollectionMana\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\ArtistMana\Index.cshtml" />
@@ -8568,7 +8562,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Data\" />
-    <Folder Include="assets\img\admin\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Collection\" />
     <Folder Include="Views\Detail\" />

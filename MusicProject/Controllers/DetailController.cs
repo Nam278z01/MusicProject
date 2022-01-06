@@ -15,8 +15,13 @@ namespace MusicProject.Controllers
         {
             ISongBus sbus = new SongBus();
             SongwithArtist song = sbus.GetSong(songID, GetUserName());
-            List<SongwithArtist> songs = sbus.Get10SongsRandomCollection(GetUserName(), song.Collections[0].CollectionID, songID);
-            return Json( new { song, songs}, JsonRequestBehavior.AllowGet);
+            return Json(song, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Get10SongsRandomCollection(string songID, string collectionID)
+        {
+            ISongBus sbus = new SongBus();
+            List<SongwithArtist> songs = sbus.Get10SongsRandomCollection(GetUserName(), collectionID, songID);
+            return Json(songs, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetPlaylistAdminwithSongs(string playlistID)
         {

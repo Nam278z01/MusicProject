@@ -11,17 +11,22 @@ namespace MusicDao
 {
     public class AdminDao : IAdminDao
     {
-        DataHelper dh;
+        MusicEntities dtc;
         public AdminDao()
         {
-            dh = new DataHelper();
+            dtc = new MusicEntities();
         }
-        public AccountAdmin CheckAccount(string acc, string pass)
+        public CheckAccountAM_Result CheckAccount(string acc, string pass)
         {
-            SqlDataReader reader = dh.StoreReaders("CheckAccountAM", acc, pass);
-            AccountAdmin admin = Utility.ToList<AccountAdmin>(reader);
-            dh.Close();
-            return admin;
+            List<CheckAccountAM_Result> admin = dtc.CheckAccountAM(acc, pass).ToList<CheckAccountAM_Result>();
+            if (admin.Count > 0)
+            {
+                return admin[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

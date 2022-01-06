@@ -27,8 +27,8 @@ namespace MusicObj
         public string Description { get; set; }
         public string Image { get; set; }
         public string ArtistID { get; set; }
-        public int Liked { get; set; }
         public System.DateTime ReleasedDate { get; set; }
+        public int Liked { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AlbumLiked> AlbumLikeds { get; set; }

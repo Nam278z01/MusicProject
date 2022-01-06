@@ -98,17 +98,24 @@ namespace MusicDao
             dh.Close();
             return songs;
         }
-        public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week)
+        public string GetRankSongsofWeek(string accountName, int quantity, int nation, int week, int year)
         {
-            SqlDataReader reader = dh.StoreReaders("GetRankSongsofWeek", accountName, quantity, nation, week);
+            SqlDataReader reader = dh.StoreReaders("GetRankSongsofWeek", accountName, quantity, nation, week, year);
             string song = Utility.ToStringForJson(reader);
             dh.Close();
             return song;
         }
-        public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week)
+        public string GetRankSongsofDay(string accountName, int quantity, int nation, DateTime date)
+        {
+            SqlDataReader reader = dh.StoreReaders("GetRankSongsofDay", accountName, quantity, nation, date);
+            string song = Utility.ToStringForJson(reader);
+            dh.Close();
+            return song;
+        }
+        public List<string> Get3RankSongsofWeek(string accountName, int quantity, int week, int year)
         {
             List<string> dataJsonSong = new List<string>();
-            SqlDataReader reader = dh.StoreReaders("Get3RankSongsofWeek", accountName, quantity, week);
+            SqlDataReader reader = dh.StoreReaders("Get3RankSongsofWeek", accountName, quantity, week, year);
             dataJsonSong.Add(Utility.ToStringForJson(reader));
             reader.NextResult();
             dataJsonSong.Add(Utility.ToStringForJson(reader));
@@ -135,6 +142,32 @@ namespace MusicDao
             dataJson.Add(Utility.ToStringForJson(reader));
             dh.Close();
             return dataJson;
+        }
+        public List<SongwithArtist> GetLikedSong(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            totalCount = 0;
+            SqlDataReader reader = dh.StoreReaders("GetLikedSong", pageIndex, pageSize, accountName);
+            while (reader.Read())
+            {
+                totalCount = int.Parse(reader["totalCount"].ToString());
+            }
+            reader.NextResult();
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
+            dh.Close();
+            return songs;
+        }
+        public List<SongwithArtist> GetListenedSong(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            totalCount = 0;
+            SqlDataReader reader = dh.StoreReaders("GetListenedSong", pageIndex, pageSize, accountName);
+            while (reader.Read())
+            {
+                totalCount = int.Parse(reader["totalCount"].ToString());
+            }
+            reader.NextResult();
+            List<SongwithArtist> songs = Utility.ToList<List<SongwithArtist>>(reader);
+            dh.Close();
+            return songs;
         }
         public string AddSong(string jsonSong)
         {
@@ -168,6 +201,82 @@ namespace MusicDao
             {
                 return e.Message;
             }
+        }
+        public string LikeSong(string songID, string accountName)
+        {
+            string sql = "insert into SongLiked values(@accountName, @songID, @DateLiked)";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@accountName",
+                Value = accountName,
+                SqlDbType = SqlDbType.Char,
+                Size = 30
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@songID",
+                Value = songID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@DateLiked",
+                Value = DateTime.Now,
+                SqlDbType = SqlDbType.DateTime,
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
+        }
+        public string DislikeSong(string songID, string accountName)
+        {
+            string sql = "delete from SongLiked where AccountName = @accountName and SongID = @songID";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@accountName",
+                Value = accountName,
+                SqlDbType = SqlDbType.Char,
+                Size = 30
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@songID",
+                Value = songID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
+        }
+        public string SongListened(string songID, string accountName)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("ListenedSong", songID, accountName);
+            return result;
+        }
+        public string IncreaseViews(string songID)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("IncreaseViews", songID);
+            return result;
         }
     }
 }

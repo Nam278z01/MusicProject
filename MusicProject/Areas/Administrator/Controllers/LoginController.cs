@@ -21,15 +21,22 @@ namespace MusicProject.Areas.Administrator.Controllers
         public JsonResult Login(string accountname, string password)
         {
             ILoginBus lgbus = new LoginBus();
-            AccountAdmin admin = lgbus.CheckAccount(accountname, password);
+            CheckAccountAM_Result admin = lgbus.CheckAccount(accountname, password);
             if (admin != null)
             {
+                admin.Password = "";
+                Session["admin"] = admin;
                 FormsAuthentication.SetAuthCookie(accountname, false);
             }
             return Json(admin, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult GetAdmin()
+        {
+            return Json(Session["admin"], JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Logout()
         {
+            Session.Clear();
             FormsAuthentication.SignOut();
             return Redirect("/Administrator/Login/Index");
         }
