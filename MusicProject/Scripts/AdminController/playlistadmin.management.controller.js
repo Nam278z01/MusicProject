@@ -77,8 +77,8 @@
         $scope.feature = 'Thêm playlist'
         $scope.Playlist = {}
         $scope.Playlist.PlaylistID = $rootScope.create_UUID()
-        $scope.Playlist.AccountName = "binhanvio@gmail.com"
-        $scope.Playlist.PersonName = "Bình An"
+        $scope.Playlist.AccountName = $rootScope.admin.AccountName
+        $scope.Playlist.PersonName = $rootScope.admin.PersonName
         let date = $filter('date')(new Date(), "MM/dd/yyyy")
         $('#datepicker').val(date)
         $scope.Playlist.isPublic = false

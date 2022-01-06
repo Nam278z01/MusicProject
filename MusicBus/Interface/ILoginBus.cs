@@ -10,6 +10,6 @@ namespace MusicBus
     public interface ILoginBus
     {
         GetUser_Result CheckUser(string accountname, string password);
-        AccountAdmin CheckAccount(string acc, string pass);
+        CheckAccountAM_Result CheckAccount(string acc, string pass);
     }
 }

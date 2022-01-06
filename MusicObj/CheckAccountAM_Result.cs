@@ -10,16 +10,19 @@
 namespace MusicObj
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class PaymentHistory
+    public partial class CheckAccountAM_Result
     {
-        public long PaymentID { get; set; }
-        public System.DateTime PaymentDate { get; set; }
-        public byte OnSale { get; set; }
-        public Nullable<double> Total { get; set; }
-        public string Note { get; set; }
-        public string ServiceVipID { get; set; }
         public string AccountName { get; set; }
+        public string Password { get; set; }
+        public byte Role { get; set; }
+        public bool State { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public string PersonID { get; set; }
+        public string Image { get; set; }
+        public string PersonName { get; set; }
+        public Nullable<byte> Gender { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 }

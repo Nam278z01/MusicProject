@@ -1,8 +1,10 @@
-﻿using MusicObj;
+﻿using System;
+using MusicObj;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using MusicObj;
 
 namespace MusicDao
 {
@@ -156,6 +158,32 @@ namespace MusicDao
             dh.Close();
             return dataJson;
         }
+        public List<Album> GetAlbumsLiked(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            totalCount = 0;
+            SqlDataReader dr = dh.StoreReaders("GetAlbumsLiked", pageIndex, pageSize, accountName);
+            while (dr.Read())
+            {
+                totalCount = int.Parse(dr["totalCount"].ToString());
+            }
+            dr.NextResult();
+            List<Album> albums = AlbumToList(dr);
+            dh.Close();
+            return albums;
+        }
+        public List<Album> GetAlbumsListened(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            totalCount = 0;
+            SqlDataReader dr = dh.StoreReaders("GetAlbumsListened", pageIndex, pageSize, accountName);
+            while (dr.Read())
+            {
+                totalCount = int.Parse(dr["totalCount"].ToString());
+            }
+            dr.NextResult();
+            List<Album> albums = AlbumToList(dr);
+            dh.Close();
+            return albums;
+        }
         public List<Album> AlbumToList(SqlDataReader dr)
         {
             List<Album> albums = new List<Album>();
@@ -172,6 +200,77 @@ namespace MusicDao
                 albums.Add(album);
             }
             return albums;
+        }
+        public string LikeAlbum(string albumID, string accountName)
+        {
+            string sql = "insert into AlbumLiked values(@accountName, @albumID, @DateLiked)";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@accountName",
+                Value = accountName,
+                SqlDbType = SqlDbType.Char,
+                Size = 30
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@albumID",
+                Value = albumID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@DateLiked",
+                Value = DateTime.Now,
+                SqlDbType = SqlDbType.DateTime,
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
+        }
+        public string DislikeAlbum(string albumID, string accountName)
+        {
+            string sql = "delete from AlbumLiked where AccountName = @accountName and AlbumID = @albumID";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@accountName",
+                Value = accountName,
+                SqlDbType = SqlDbType.Char,
+                Size = 30
+            });
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@albumID",
+                Value = albumID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
+        }
+        public string AlbumListened(string albumID, string accountName)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("AlbumListened", albumID, accountName);
+            return result;
         }
     }
 }

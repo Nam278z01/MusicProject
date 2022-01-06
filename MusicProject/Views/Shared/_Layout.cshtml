@@ -18,6 +18,7 @@
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-sanitize.min.js"></script>
     <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/ng-file-upload.min.js"></script>
     @Scripts.Render("~/Scripts/js")
     <style>
         /*Toast / Snackbar*/
@@ -51,13 +52,13 @@
             <img src="./assets/img/Default/loading-37.gif" alt="">
         </div>
         <nav class="sidebar" ng-controller="SidebarController">
-            <div class="sidebar__header">
+            <div class="sidebar__header" style="display: flex; justify-content: center">
                 <div class="sidebar__brand-name">
                     <span>M</span><span>M</span>
                 </div>
-                <a class="sidebar__upgrade btn btn--primary btn-outline" href="#">
+                @*<a class="sidebar__upgrade btn btn--primary btn-outline" href="#">
                     Nâng cấp
-                </a>
+                </a>*@
             </div>
             <div class="sidebar__userAset">
                 <a href="#!/nguoi-dung" class="sidebar__user" ng-click="changePage(-1)" ng-if="logged">
@@ -67,7 +68,7 @@
                     </div>
                     <div class="sidebar__user-name">
                         <span title="{{User.user.PersonName}}">{{User.user.PersonName}}</span>
-                        <span ng-show="UserVip">VIP</span>
+                        @*<span ng-show="UserVip">VIP</span>*@
                     </div>
                 </a>
                 <div class="signin-singup">
@@ -163,14 +164,14 @@
                         </a>
                     </li>
                     <li class="sidebar__navigation-item" ng-show="logged">
-                        <a href="#!/da-thich/bai-hat" class="sidebar__navigation-link" ng-class="{active:isActive(6)}"
+                        <a href="#!/da-thich" class="sidebar__navigation-link" ng-class="{active:isActive(6)}"
                            ng-click="changePage(6)">
                             <i class='bx bx-heart'></i>
                             <span>Yêu thích</span>
                         </a>
                     </li>
                     <li class="sidebar__navigation-item" ng-show="logged">
-                        <a href="#!/da-nghe/bai-hat" class="sidebar__navigation-link" ng-class="{active:isActive(7)}"
+                        <a href="#!/da-nghe" class="sidebar__navigation-link" ng-class="{active:isActive(7)}"
                            ng-click="changePage(7)">
                             <i class='bx bx-history'></i>
                             <span>Lịch sử nghe</span>
@@ -227,7 +228,7 @@
                     </div>
                 </div>
                 <div class="infor">
-                    <p>Website được xây dựng dựa trên Nhaccuatui.com bởi 3 thành viên: An, Nam, Tuyết</p>
+                    <p>Website được xây dựng dựa trên nhaccuatui.com bởi 3 thành viên: An, Nam, Tuyết</p>
                 </div>
             </div>
         </section>
@@ -256,7 +257,7 @@
                     <div class="media-content">
                         <div class="song__name">
                             <a href="#!/chi-tiet/bai-hat?song={{songIsPlayed.Song.SongID}}">{{songIsPlayed.Song.SongName}}</a>
-                            <div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>
+                            @*<div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>*@
                         </div>
                         <div class="song__artist">
                             <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songIsPlayed.Artists">{{a.ArtistName}}</a>
@@ -365,7 +366,7 @@
                                                     <div class="song__info">
                                                         <div class="song__name">
                                                             <a href="#!/chi-tiet/bai-hat?song={{songIsPlayed.Song.SongID}}">{{songIsPlayed.Song.SongName}}</a>
-                                                            <div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>
+                                                            @*<div class="song_vip_horizontal" ng-show="songIsPlayed.Song.isVip">VIP</div>*@
                                                         </div>
                                                         <div class="song__artist">
                                                             <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songIsPlayed.Artists">{{a.ArtistName}}</a>
@@ -432,7 +433,7 @@
                                                     <div class="song__info">
                                                         <div class="song__name">
                                                             <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                                            <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
+                                                            @*<div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>*@
                                                         </div>
                                                         <div class="song__artist">
                                                             <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
@@ -499,7 +500,7 @@
                                                     <div class="song__info">
                                                         <div class="song__name">
                                                             <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                                            <div class="song_vip_horizontal" ng-show=s.Song.isVip>VIP</div>
+                                                            @*<div class="song_vip_horizontal" ng-show=s.Song.isVip>VIP</div>*@
                                                         </div>
                                                         <div class="song__artist">
                                                             <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
@@ -560,7 +561,7 @@
                                                         <div class="song__info">
                                                             <div class="song__name">
                                                                 <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                                                <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
+                                                                @*<div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>*@
                                                             </div>
                                                             <div class="song__artist">
                                                                 <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
@@ -665,13 +666,19 @@
                         </div>
                         <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <input type="email" class="auth-form__input" name="EmailLogin" placeholder="Email của bạn" ng-model="EmailLogin"
+                                <div class="text-field">
+                                    <label for="EmailLogin">Email</label>
+                                    <input type="email" id="EmailLogin" class="auth-form__input" name="EmailLogin" placeholder="Email của bạn" ng-model="EmailLogin"
                                        ng-class="{'warning': warningEmail}" ng-focus="warningEmail=false; isLoginSubmit=true" ng-blur="warningEmail=LoginForm.EmailLogin.$error.email" required>
+                                </div>
                                 <p class="input-warning" ng-show="warningEmail">Email không hợp lệ!</p>
                             </div>
                             <div class="auth-form__group">
-                                <input type="password" class="auth-form__input" name="PassLogin" placeholder="Mật khẩu của bạn" ng-model="PassLogin"
+                                <div class="text-field">
+                                    <label for="PassLogin">Mật khẩu</label>
+                                    <input type="password" id="PassLogin" class="auth-form__input" name="PassLogin" placeholder="Mật khẩu của bạn" ng-model="PassLogin"
                                        ng-class="{'warning': warningPass}" ng-focus="warningPass=false; isLoginSubmit=true" ng-blur="warningPass=LoginForm.PassLogin.$error.required" required>
+                                </div>
                                 <p class="input-warning" ng-show="warningPass">Không được bỏ trống!</p>
                             </div>
                             <p class="input-warning" ng-hide="isLoginSubmit" style="text-align: center; margin-top: 4px;">Tài khoản hoặc mật khẩu không chính xác!</p>

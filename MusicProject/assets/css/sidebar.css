@@ -37,7 +37,7 @@
     color: var(--main-color);
     font-size: 2.4rem;
     font-weight: bold;
-    padding: 3px 0 0 15px;
+    padding: 3px 0 0 0px;
     text-shadow: 1px 1px 2px var(--main-color);
 }
 
@@ -155,7 +155,7 @@
     font-weight: 600;
     width: 85px;
 }
-
+/*
     .sidebar__user-name span:last-child {
         display: inline-block;
         line-height: 1.5rem;
@@ -164,7 +164,7 @@
         font-weight: 700;
         background-image: linear-gradient( 45deg, rgb(24, 216, 204) 0%, rgb(210, 23, 83) 33%, rgb(24, 216, 204) 66%, rgb(210, 23, 83) 100% );
         color: var(--bg-color);
-    }
+    }*/
 
     .sidebar__user-name span:first-child {
         display: -webkit-box;

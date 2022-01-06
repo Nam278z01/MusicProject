@@ -18,7 +18,13 @@ namespace MusicBus
         List<SongwithArtist> GetSongsByArtistPage(int pageIndex, int pageSize, string artistID, string accountName, out int totalCount);
         List<SongwithArtist> GetSongsNewAHot(int pageIndex, int pageSize, string accountName, int time, out int totalCount);
         string GetRankSongsofWeek(string accountName, int quantity, int nation, int week, int year);
-        string GetRankSongsofDay(string accountName, int quantity, int nation, DateTime day);
-        List<string> Get3RankSongsofWeek(string accountName, int quantity, int week);
+        string GetRankSongsofDay(string accountName, int quantity, int nation, DateTime date);
+        List<string> Get3RankSongsofWeek(string accountName, int quantity, int week, int year);
+        List<SongwithArtist> GetLikedSong(int pageIndex, int pageSize, string accountName, out int totalCount);
+        List<SongwithArtist> GetListenedSong(int pageIndex, int pageSize, string accountName, out int totalCount);
+        string LikeSong(string songID, string accountName);
+        string DislikeSong(string songID, string accountName);
+        string SongListened(string songID, string accountName);
+        string IncreaseViews(string songID);
     }
 }

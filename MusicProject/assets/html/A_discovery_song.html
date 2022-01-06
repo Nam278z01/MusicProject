@@ -55,8 +55,10 @@
                                     <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="s.Liked == 0" ng-click="LikeSong(s)">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="s.Liked == 1" ng-click="DislikeSong(s)">
                                         <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
                                     </button>
                                     <div class="list-playlist__item-play" ng-click="pickplayMusic(s)">
@@ -91,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="song_vip" ng-show="s.Song.isVip">VIP</span>
+                            <!--<span class="song_vip" ng-show="s.Song.isVip">VIP</span>-->
                             <div class="list-playlist__item-name" title="{{s.Song.SongName}}">
                                 <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
                             </div>

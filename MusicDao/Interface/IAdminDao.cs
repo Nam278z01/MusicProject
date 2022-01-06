@@ -9,6 +9,6 @@ namespace MusicDao
 {
     public interface IAdminDao
     {
-        AccountAdmin CheckAccount(string acc, string pass);
+        CheckAccountAM_Result CheckAccount(string acc, string pass);
     }
 }

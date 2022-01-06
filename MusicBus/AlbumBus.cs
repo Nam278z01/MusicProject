@@ -47,5 +47,25 @@ namespace MusicBus
         {
             return aldao.AddAlbum(jsonAlbum);
         }
+        public string LikeAlbum(string albumID, string accountName)
+        {
+            return aldao.LikeAlbum(albumID, accountName);
+        }
+        public string DislikeAlbum(string albumID, string accountName)
+        {
+            return aldao.DislikeAlbum(albumID, accountName);
+        }
+        public List<Album> GetAlbumsListened(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            return aldao.GetAlbumsListened(pageIndex, pageSize, accountName, out totalCount);
+        }
+        public List<Album> GetAlbumsLiked(int pageIndex, int pageSize, string accountName, out int totalCount)
+        {
+            return aldao.GetAlbumsLiked(pageIndex, pageSize, accountName, out totalCount);
+        }
+        public string AlbumListened(string albumID, string accountName)
+        {
+            return aldao.AlbumListened(albumID, accountName);
+        }
     }
 }

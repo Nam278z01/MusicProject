@@ -11,14 +11,13 @@ namespace MusicProject.Controllers
     public class RankController : Controller
     {
         // GET: Rank
-        public JsonResult GetRankSongsofWeek(string nation, int week, int year)
+        public JsonResult GetRankSongsofWeek(string nation, int quantity, int week, int year)
         {
             ISongBus sbus = new SongBus();
-            int quantity = 20;
             string songs = sbus.GetRankSongsofWeek(GetUserName(), quantity, Nation(nation), week, year);
             return Json(songs, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetRankSongsofDay(string nation, DateTime day)
+        public JsonResult GetRankSongsofDay(string nation, int quantity, DateTime date)
         {
             ISongBus sbus = new SongBus(); 
             int quantity = 20;

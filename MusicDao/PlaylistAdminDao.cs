@@ -129,8 +129,6 @@ namespace MusicDao
         //    return playlistAdmins;
         //}
 
-        
-
         public List<string> GetCollectionsSongsForManaPlaylistAdmin()
         {
             List<string> dataJson = new List<string>();

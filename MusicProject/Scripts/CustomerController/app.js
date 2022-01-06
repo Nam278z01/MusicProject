@@ -1,4 +1,4 @@
-var appMusic = angular.module("AppMusic", ['angularUtils.directives.dirPagination', 'ngRoute', 'ngSanitize']);
+var appMusic = angular.module("AppMusic", ['angularUtils.directives.dirPagination', 'ngRoute', 'ngSanitize', 'ngFileUpload']);
 
 appMusic.config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -58,29 +58,13 @@ appMusic.config(function ($routeProvider, $locationProvider) {
             templateUrl: "../../assets/html/T_user.html",
             controller: "UserController"
         })
-        .when("/da-thich/bai-hat", {
+        .when("/da-thich", {
             templateUrl: "../../assets/html/T_liked.html",
-            controller: "SongLikedController",
+            controller: "LikedController",
         })
-        .when("/da-thich/playlist", {
-            templateUrl: "../../assets/html/liked_playlist.html",
-            controller: "PlaylistLikedController"
-        })
-        .when("/da-thich/album", {
-            templateUrl: "../../assets/html/liked_album.html",
-            controller: "AlbumLikedController"
-        })
-        .when("/da-nghe/bai-hat", {
+        .when("/da-nghe", {
             templateUrl: "../../assets/html/T_listened.html",
-            controller: "SongListenedController"
-        })
-        .when("/da-nghe/playlist", {
-            templateUrl: "../../assets/html/listened_playlist.html",
-            controller: "PlaylistListenedController"
-        })
-        .when("/da-nghe/album", {
-            templateUrl: "../../assets/html/listened_album.html",
-            controller: "AlbumListenedController"
+            controller: "ListenedController"
         })
         .when("/bang-xep-hang", {
             templateUrl: "../../assets/html/rank.html",
@@ -172,11 +156,13 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
     $rootScope.currentSubIndex = -1
     // Thông tin user
     $rootScope.User = {}
-    $rootScope.UserVip = false
+    //$rootScope.UserVip = false
     //Kiểm tra đăng nhập chưa
     $rootScope.logged = false
     //Danh sách lấy playlist của tài khoản để thực hiện chức năng thêm song vào playlist
     $rootScope.playlistsforAdd = []
+    //Modal login
+    let btnLogin = document.querySelector('#showlogin')
 
     $rootScope.snackbarContent = "Hello!"
     var myTimeout
@@ -222,7 +208,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             $rootScope.User = res.data
             $rootScope.logged = true
             //Nếu thuộc tinh ngày hạn > hôm nay thì là tài khoản vip và ngược lại
-            $rootScope.UserVip = ($rootScope.User.user.DueOn || $rootScope.User.user.DueOn > new Date()) ? true : false
+            //$rootScope.UserVip = ($rootScope.User.user.DueOn || $rootScope.User.user.DueOn > new Date()) ? true : false
             //Loại bỏ giao diện đăng nhập - đăng ký
             document.querySelector('#modal-login-singup').remove()
             document.querySelector('.signin-singup').remove()
@@ -239,7 +225,7 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         //Nếu chưa đăng nhập
         } else {
             // Login - SignIn
-            let btnLogin = document.querySelector('#showlogin')
+            //let btnLogin = document.querySelector('#showlogin')
             let btnSignUp = document.querySelector('#showsignup')
             let modalLoginSignUp = document.querySelector('#modal-login-singup')
             let loginForm = document.querySelector('#loginForm')
@@ -295,14 +281,14 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             })
 
             // Nếu chưa đăng nhập mà vào các trang cần quyền của người dùng nhập nhập thì dẫn về trang home
-            var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
+            var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich', '/da-nghe']) != -1;
             if (restrictedPage) {
                 $location.path('/')
                 $location.search({})
             }
             // Dùng thêm cái này vì single page ko load, ko load thì bắt sự kiện thay đổi url để dẫn về trang home nếu chưa đăng nhập
             $rootScope.$on('$routeChangeStart', function (event, next, current) {
-                var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich/bai-hat', '/da-thich/playlist', '/da-thich/album', '/da-nghe/playlist', '/da-nghe/bai-hat', '/da-thich/album']) != -1;
+                var restrictedPage = $.inArray($location.path(), ['/my-playlist', '/nguoi-dung', '/da-thich', '/da-nghe']) != -1;
                 if (restrictedPage) {
                     event.preventDefault()
                     $location.path('/')
@@ -378,12 +364,16 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             modal2.style.display = 'none'
         }
         if (e.target.closest('.btn-add-song-playlist')) {
-            modal2.style.display = 'block'
+            if ($rootScope.logged) {
+                modal2.style.display = 'block'
 
-            // Ẩn thanh cuộn và giữ vị trí
-            scrollTop2 = document.querySelector('html').scrollTop
-            document.body.classList.add('no-scroll')
-            document.body.style.top = -scrollTop2 + 'px'
+                // Ẩn thanh cuộn và giữ vị trí
+                scrollTop2 = document.querySelector('html').scrollTop
+                document.body.classList.add('no-scroll')
+                document.body.style.top = -scrollTop2 + 'px'
+            } else {
+                btnLogin.click()
+            }
         }
     })
 
@@ -438,10 +428,138 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
             if (!res.data) {
                 $rootScope.showSnackbar('Thêm bài hát vào playlist thành công!')
             } else {
-                $rootScope.showSnackbar('Thêm bài hát vào playlist thất bại!')
+                $rootScope.showSnackbar('Đã tồn tại trong playlist này!')
             }
         }, function () {
             alert("Adding song to playlist failed!")
         })
+    }
+
+    $rootScope.LikeSong = function (s) {
+        if ($rootScope.logged) {
+            $http({
+                method: 'post',
+                url: '/Liked/LikeSong',
+                datatype: 'json',
+                data: { songID: s.Song.SongID }
+            }).then(function (res) {
+                if (!res.data) {
+                    s.Liked = 1
+                    $rootScope.showSnackbar('Đã thích!')
+                } else {
+                    alert("Like the song failed!")
+                }
+            }, function () {
+                alert("Like the song failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+    $rootScope.DislikeSong = function (s) {
+        if ($rootScope.logged) {
+            $http({
+                method: 'post',
+                url: '/Liked/DislikeSong',
+                datatype: 'json',
+                data: { songID: s.Song.SongID }
+            }).then(function (res) {
+                if (!res.data) {
+                    s.Liked = 0
+                    $rootScope.showSnackbar('Bỏ thích!')
+                } else {
+                    alert("Dislike the song failed!")
+                }
+            }, function () {
+                alert("Dislike the song failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+
+    $rootScope.LikeAlbum = function (a) {
+        if ($rootScope.logged) {
+            $http({
+                method: 'post',
+                url: '/Liked/LikeAlbum',
+                datatype: 'json',
+                data: { albumID: a.AlbumID }
+            }).then(function (res) {
+                if (!res.data) {
+                    a.Liked = 1
+                    $rootScope.showSnackbar('Đã thích!')
+                } else {
+                    alert("Like the album failed!")
+                }
+            }, function () {
+                alert("Like the album failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+    $rootScope.DislikeAlbum = function (a) {
+        if ($rootScope.logged) {
+            $http({
+                method: 'post',
+                url: '/Liked/DislikeAlbum',
+                datatype: 'json',
+                data: { albumID: a.AlbumID }
+            }).then(function (res) {
+                if (!res.data) {
+                    a.Liked = 0
+                    $rootScope.showSnackbar('Bỏ thích!')
+                } else {
+                    alert("Dislike the album failed!")
+                }
+            }, function () {
+                alert("Dislike the album failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+    $rootScope.LikePlaylist = function (obj, p, k) {
+        if ($rootScope.logged) {
+            $http({
+                method: 'post',
+                url: '/Liked/LikePlaylist',
+                datatype: 'json',
+                data: { playlistID: p , kind: k}
+            }).then(function (res) {
+                if (!res.data) {
+                    obj.Liked = 1
+                    $rootScope.showSnackbar('Đã thích!')
+                } else {
+                    alert("Like the playlist failed!")
+                }
+            }, function () {
+                alert("Like the playlist failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
+    }
+    $rootScope.DislikePlaylist = function (obj, p, k) {
+        if ($rootScope.logged) {
+            $http({
+                method: 'post',
+                url: '/Liked/DislikePlaylist',
+                datatype: 'json',
+                data: { playlistID: p, kind: k }
+            }).then(function (res) {
+                if (!res.data) {
+                    obj.Liked = 0
+                    $rootScope.showSnackbar('Bỏ thích!')
+                } else {
+                    alert("Dislike the playlist failed!")
+                }
+            }, function () {
+                alert("Dislike the playlist failed!")
+            })
+        } else {
+            btnLogin.click()
+        }
     }
 })

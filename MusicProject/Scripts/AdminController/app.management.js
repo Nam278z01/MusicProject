@@ -106,6 +106,15 @@ appMusic.run(function ($rootScope, $http, $window, $location) {
         })
     }
 
+    $http({
+        method: 'get',
+        url: '/Administrator/Login/GetAdmin'
+    }).then(function (res) {
+        $rootScope.admin = res.data
+    }, function (err) {
+        alert('Failed to get admin!')
+    })
+
     $rootScope.create_UUID = function () {
         var dt = new Date().getTime();
         var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

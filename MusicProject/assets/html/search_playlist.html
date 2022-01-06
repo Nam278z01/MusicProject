@@ -50,9 +50,17 @@
                                     <img src="../../assets/img/playlist/user/{{p.Image}}" ng-if="p.KindofPlaylist == 2" alt="{{p.PlaylistName}}">
                                 </div>
                                 <div class="ratioIn list-playlist__item-feature">
-                                    <button class="btn btn-like btn--circle" title="Yêu thích">
-                                        <i class='bx bx-heart' ng-if="p.Liked == 0"></i>
-                                        <i class='bx bxs-heart' ng-if="p.Liked == 1" style="color: var(--main-color)"></i>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="p.Liked == 1 && p.KindofPlaylist == 1" ng-click="DislikePlaylist(p, p.PlaylistID, 1)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="p.Liked == 0 && p.KindofPlaylist == 1" ng-click="LikePlaylist(p, p.PlaylistID, 1)">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Bỏ thích" ng-if="p.Liked == 1 && p.KindofPlaylist == 2" ng-click="DislikePlaylist(p, p.PlaylistID, 2)">
+                                        <i class='bx bxs-heart' style="color: var(--main-color)"></i>
+                                    </button>
+                                    <button class="btn btn-like btn--circle" title="Yêu thích" ng-if="p.Liked == 0 && p.KindofPlaylist == 2" ng-click="LikePlaylist(p, p.PlaylistID, 2)">
+                                        <i class='bx bx-heart'></i>
                                     </button>
                                     <div class="list-playlist__item-play">
                                         <button class="btn btn-outline btn--circle btn-listen" title="nghe">
