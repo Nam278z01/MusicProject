@@ -105,9 +105,9 @@ namespace MusicDao
             dh.Close();
             return song;
         }
-        public string GetRankSongsofDay(string accountName, int quantity, int nation, DateTime date)
+        public string GetRankSongsofDay(string accountName, int quantity, int nation, DateTime day)
         {
-            SqlDataReader reader = dh.StoreReaders("GetRankSongsofDay", accountName, quantity, nation, date);
+            SqlDataReader reader = dh.StoreReaders("GetRankSongsofDay", accountName, quantity, nation, day);
             string song = Utility.ToStringForJson(reader);
             dh.Close();
             return song;

@@ -19,9 +19,8 @@ namespace MusicProject.Controllers
         }
         public JsonResult GetRankSongsofDay(string nation, int quantity, DateTime date)
         {
-            ISongBus sbus = new SongBus(); 
-            int quantity = 20;
-            string songs = sbus.GetRankSongsofDay(GetUserName(), quantity, Nation(nation), day);
+            ISongBus sbus = new SongBus();
+            string songs = sbus.GetRankSongsofDay(GetUserName(), quantity, Nation(nation), date);
             return Json(songs, JsonRequestBehavior.AllowGet);
         }
         public int Nation(string nation)

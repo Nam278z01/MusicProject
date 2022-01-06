@@ -1,14 +1,13 @@
-﻿﻿<div class="nav">
-   
+﻿<div class="nav">
     <ul class="nav-list">
         <li class="nav-item">
-            <a href="#!/bang-xep-hang?n=vn" ng-class="{active:isActiveNav(undefined)};" class="nav-item-link">
+            <a href="#!/bang-xep-hang?n=vn" ng-class="{active:isActiveNav(undefined)}" class="nav-item-link">
                 BXH Tuần
             </a>
         </li>
         <li class="nav-item">
-            <a href="#!/bang-xep-hang?k=hn&n=vn" ng-class="{active:isActiveNav('hn')};"class="nav-item-link">
-                Hôm nay
+            <a href="#!/bang-xep-hang?k=hn&n=vn" ng-class="{active:isActiveNav('hn')}" class="nav-item-link">
+                BXH Ngày
             </a>
         </li>
     </ul>
@@ -19,303 +18,166 @@
     <li class="sub-nav-item" ng-class="{active:isNationNav('usuk')}" ng-click="changeNationNav('usuk')"><p>Âu Mỹ</p></li>
     <li class="sub-nav-item" ng-class="{active:isNationNav('ca')}" ng-click="changeNationNav('ca')"><p>Châu Á</p></li>
 </ul>
-<div class="content" ng-show="isActiveNav(undefined)">
-    <div class="rank-time">
-        <div class="rank-time-title">Tuần {{numberOfWeek}}:</div>
-        <div class="rank-period-time">
-            <div class="rank-time-prev" ng-click="weekDecrease()">
-                <i class='bx bx-chevron-left'></i>
-            </div>
-            <span>{{firstTime | date : "dd/MM/yyyy"}} - {{lastTime | date : "dd/MM/yyyy"}}</span>
-            <div class="rank-time-next" ng-click="weekIncrease()" ng-class="{'disable' : !activeIncrease}">
-                <i class='bx bx-chevron-right'></i>
-            </div>
+
+<div class="rank-time" ng-if="isActiveNav(underfine)">
+    <div class="rank-time-title">Tuần {{numberOfWeek}}:</div>
+    <div class="rank-period-time">
+        <div class="rank-time-prev" ng-click="weekDecrease()">
+            <i class='bx bx-chevron-left'></i>
+        </div>
+        <span>{{firstTime | date : "dd/MM/yyyy"}} - {{lastTime | date : "dd/MM/yyyy"}}</span>
+        <div class="rank-time-next" ng-click="weekIncrease()" ng-class="{'disable' : !activeIncrease}">
+            <i class='bx bx-chevron-right'></i>
         </div>
     </div>
+</div>
 
-    <div class="rank-show">
-        <div class="rank-content">
-            <div class="rank-img overflow-hd">
-                <img src="../../assets/img/song/{{songBXHTop1.Song.Image}}" alt="{{songBXHTop1.Song.SongName}}" />
-            </div>
-            <div class="rank-info">
-                <div class="song-detail__name">Bài hát:<a href="#!/chi-tiet/bai-hat?song={{songBXHTop1.Song.SongID}}">{{songBXHTop1.Song.SongName}}</a></div>
-                <div class="song-detail__artist released__artist">
-                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" class="released__artist-img" ng-repeat="a in songBXHTop1.Artists" title="{{a.ArtistName}}" ng-style="{'z-index': {{ 10 - $index}}}">
-                        <img src="../../assets/img/artist/{{a.Image}}" alt="{{a.ArtistName}}">
-                    </a>
-                    <div class="released__artist-name">
-                        <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songBXHTop1.Artists">{{a.ArtistName}}</a>
-                    </div>
-                </div>
-                <div class="rank-detail">
-                    <div class="rank-detail-item">
-                        <div class="rank-number" style="color: #FFC40E;">{{songBXHTop1.RankDetail.RankCurrent}}</div>
-                        <div class="rank-title">Trong tuần</div>
-                    </div>
-                    <div class="rank-detail-item">
-                        <div class="rank-number" style="color: #2DAAED;">{{songBXHTop1.RankDetail.MaxACount.Max}}</div>
-                        <div class="rank-title">Cao nhất</div>
-                    </div>
-                    <div class="rank-detail-item">
-                        <div class="rank-number" style="color: #95D96D;">{{songBXHTop1.RankDetail.MaxACount.Count}}</div>
-                        <div class="rank-title">Tuần trong BXH</div>
-                    </div>
-                </div>
-            </div>
+<div class="rank-time" ng-if="isActiveNav('hn')">
+    <div class="rank-time-title">Ngày</div>
+    <div class="rank-period-time">
+        <div class="rank-time-prev" ng-click="dayDecrease()">
+            <i class='bx bx-chevron-left'></i>
+        </div>
+        <span>{{dateSelected | date : "dd/MM/yyyy"}}</span>
+        <div class="rank-time-next" ng-click="dayIncrease()" ng-class="{'disable' : !activeIncrease}">
+            <i class='bx bx-chevron-right'></i>
         </div>
     </div>
+</div>
 
-    <div class="rank-playorother">
-        <button class="btn btn--primary btn-outline btn-play-rank-all">Phát tất cả</button>
-    </div>
+<div style="display: flex; align-items: center; flex-direction: column" ng-if="(!songsBXH || songsBXH.length == 0)">
+    <img src="../../assets/img//default/nodata.png" alt="Không có dữ liệu" style="width: 160px; height: 160px; object-fit: cover" />
+    <span style="font-size: 1.4rem">Không có dữ liệu để hiển thị!</span>
+</div>
 
-    <div class="top100-main" style="margin-bottom: 70px;">
-        <div class="list-song-main">
-            <div class="grid">
-                <div class="row sm-gutter">
-                    <div class="col c-12" ng-repeat="s in songsBXHofWeek">
-                        <div class="song__wraper">
-                            <div class="song_order-number">
-                                {{$index + 1}}
-                            </div>
-                            <div class="song-rank-wrap">
-                                <div class="song top100" style="background-color: unset; margin-bottom: 0px;">
-                                    <div class="song__img">
-                                        <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
-                                    </div>
-                                    <div class="song__info">
-                                        <div class="song__name">
-                                            <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                            <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
-                                        </div>
-                                        <div class="song__artist">
-                                            <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
-                                        </div>
-                                    </div>
-                                    <div class="song__mv">
-                                        <button class="btn btn--circle btn-song-mv">
-                                            <i class='bx bxs-videos'></i>
-                                        </button>
-                                    </div>
-                                    <div class="song__like">
-                                        <button class="btn btn--circle btn-song-like">
-                                            <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
-                                            <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
-                                        </button>
-                                    </div>
-                                    <div class="song__more">
-                                        <button class="btn btn--circle btn-song-more">
-                                            <i class='bx bx-dots-vertical-rounded'></i>
-                                        </button>
-                                    </div>
-                                    <div class="show-rank-prev">
-                                        <button class="btn btn--circle" style="color: #95D96D;" ng-if="s.RankDetail.RankPrev.Rank && (s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent) > 0">
-                                            <i class='bx bx-caret-up' style="font-size: 1.4rem"></i>
-                                            <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent}}</span>
-                                        </button>
-                                        <button class="btn btn--circle" style="color: #F44336;" ng-if="s.RankDetail.RankPrev.Rank && (s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent) < 0">
-                                            <i class='bx bx-caret-down' style="font-size: 1.4rem"></i>
-                                            <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent}}</span>
-                                        </button>
-                                        <button class="btn btn--circle" ng-if="!s.RankDetail.RankPrev.Rank || s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent == 0">
-                                            <i class='bx bx-minus' style="font-size: 1.4rem"></i>
-                                        </button>
-                                    </div>
-                                    <div class="show-rank">
-                                        <button class="btn btn--circle btn-show-rank">
-                                            <i class='bx bx-chevron-up'></i>
-                                        </button>
-                                    </div>
-                                    <div class="feature__more">
-                                        <div class="feature__item btn-add-song-playlist">
-                                            <i class='bx bxs-playlist'></i>
-                                            <span>Thêm vào playlist</span>
-                                        </div>
-                                        <div class="feature__item" ng-click="getSongforAdd(s)">
-                                            <i class='bx bx-add-to-queue'></i>
-                                            <span>Thêm vào chờ phát</span>
-                                        </div>
-                                        <div class="feature__item">
-                                            <i class='bx bxs-download'></i>
-                                            <span>Tải xuống</span>
-                                        </div>
-                                        <div class="feature__item">
-                                            <i class='bx bx-link-alt'></i>
-                                            <span>Sao chép link</span>
-                                        </div>
-                                        <div class="feature__item">
-                                            <i class='bx bx-share-alt'></i>
-                                            <span>Chia sẻ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rank-detail" style="border: none; padding-top: 4px; margin: 2px 16px 10px">
-                                    <div class="rank-detail-item">
-                                        <div class="rank-number" style="color: #FFC40E;">{{s.RankDetail.RankCurrent}}</div>
-                                        <div class="rank-title">Trong tuần</div>
-                                    </div>
-                                    <div class="rank-detail-item">
-                                        <div class="rank-number" style="color: #2DAAED;">{{s.RankDetail.MaxACount.Max}}</div>
-                                        <div class="rank-title">Cao nhất</div>
-                                    </div>
-                                    <div class="rank-detail-item">
-                                        <div class="rank-number" style="color: #95D96D;">{{s.RankDetail.MaxACount.Count}}</div>
-                                        <div class="rank-title">Tuần trong BXH</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="rank-show" ng-if="(songsBXH && songsBXH.length != 0)">
+    <div class="rank-content">
+        <div class="rank-img overflow-hd">
+            <img src="../../assets/img/song/{{songBXHTop1.Song.Image}}" alt="{{songBXHTop1.Song.SongName}}" />
+        </div>
+        <div class="rank-info">
+            <div class="song-detail__name">Bài hát:<a href="#!/chi-tiet/bai-hat?song={{songBXHTop1.Song.SongID}}">{{songBXHTop1.Song.SongName}}</a></div>
+            <div class="song-detail__artist released__artist">
+                <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" class="released__artist-img" ng-repeat="a in songBXHTop1.Artists" title="{{a.ArtistName}}" ng-style="{'z-index': {{ 10 - $index}}}">
+                    <img src="../../assets/img/artist/{{a.Image}}" alt="{{a.ArtistName}}">
+                </a>
+                <div class="released__artist-name">
+                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songBXHTop1.Artists">{{a.ArtistName}}</a>
+                </div>
+            </div>
+            <div class="rank-detail">
+                <div class="rank-detail-item">
+                    <div class="rank-number" style="color: #FFC40E;">{{songBXHTop1.RankDetail.RankCurrent}}</div>
+                    <div class="rank-title">Trong tuần</div>
+                </div>
+                <div class="rank-detail-item">
+                    <div class="rank-number" style="color: #2DAAED;">{{songBXHTop1.RankDetail.MaxACount.Max}}</div>
+                    <div class="rank-title">Cao nhất</div>
+                </div>
+                <div class="rank-detail-item">
+                    <div class="rank-number" style="color: #95D96D;">{{songBXHTop1.RankDetail.MaxACount.Count}}</div>
+                    <div class="rank-title">Tuần trong BXH</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="rank-playorother" ng-if="(songsBXH && songsBXH.length != 0)">
+    <button class="btn btn--primary btn-outline btn-play-rank-all">Phát tất cả</button>
+</div>
 
-<div class="content" ng-show="isActiveNav('hn')">
-    <div class="rank-time">
-        <div class="rank-time-title">Tuần {{numberOfWeek}}:</div>
-        <div class="rank-period-time">
-            <div class="rank-time-prev" ng-click="dayDecrease()">
-                <i class='bx bx-chevron-left'></i>
-            </div>
-            <span>{{dateCurrent | date : "dd/MM/yyyy"}}</span>
-            <div class="rank-time-next" ng-click="dayIncrease()" ng-class="{'disable' : !activeIncrease}">
-                <i class='bx bx-chevron-right'></i>
-            </div>
-        </div>
-    </div>
-    <div class="rank-show">
-        <div class="rank-content">
-            <div class="rank-img overflow-hd">
-                <img src="../../assets/img/song/{{songBXHTop1.Song.Image}}" alt="{{songBXHTop1.Song.SongName}}" />
-            </div>
-            <div class="rank-info">
-                <div class="song-detail__name">Bài hát:<a href="#!/chi-tiet/bai-hat?song={{songBXHTop1.Song.SongID}}">{{songBXHTop1.Song.SongName}}</a></div>
-                <div class="song-detail__artist released__artist">
-                    <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" class="released__artist-img" ng-repeat="a in songBXHTop1.Artists" title="{{a.ArtistName}}" ng-style="{'z-index': {{ 10 - $index}}}">
-                        <img src="../../assets/img/artist/{{a.Image}}" alt="{{a.ArtistName}}">
-                    </a>
-                    <div class="released__artist-name">
-                        <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in songBXHTop1.Artists">{{a.ArtistName}}</a>
-                    </div>
-                </div>
-                <div class="rank-detail">
-                    <div class="rank-detail-item">
-                        <div class="rank-number" style="color: #FFC40E;">{{songBXHTop1.RankDetail.RankCurrent}}</div>
-                        <div class="rank-title">Trong Ngày</div>
-                    </div>
-                    <div class="rank-detail-item">
-                        <div class="rank-number" style="color: #2DAAED;">{{songBXHTop1.RankDetail.MaxACount.Max}}</div>
-                        <div class="rank-title">Cao nhất</div>
-                    </div>
-                    <div class="rank-detail-item">
-                        <div class="rank-number" style="color: #95D96D;">{{songBXHTop1.RankDetail.MaxACount.Count}}</div>
-                        <div class="rank-title">Ngày trong BXH</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="rank-playorother">
-        <button class="btn btn--primary btn-outline btn-play-rank-all">Phát tất cả</button>
-    </div>
-
-    <div class="top100-main" style="margin-bottom: 70px;">
-        <div class="list-song-main">
-            <div class="grid">
-                <div class="row sm-gutter">
-                    <div class="col c-12" ng-repeat="s in songsBXHofday">
-                        <div class="song__wraper">
-                            <div class="song_order-number">
-                                {{$index + 1}}
-                            </div>
-                            <div class="song-rank-wrap">
-                                <div class="song top100" style="background-color: unset; margin-bottom: 0px;">
-                                    <div class="song__img">
-                                        <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+<div class="top100-main" style="margin-bottom: 70px;">
+    <div class="list-song-main">
+        <div class="grid">
+            <div class="row sm-gutter">
+                <div class="col c-12" ng-repeat="s in songsBXH">
+                    <div class="song__wraper">
+                        <div class="song_order-number">
+                            {{$index + 1}}
+                        </div>
+                        <div class="song-rank-wrap">
+                            <div class="song top100" style="background-color: unset; margin-bottom: 0px;">
+                                <div class="song__img">
+                                    <img src="../../assets/img/song/{{s.Song.Image}}" alt="{{s.Song.SongName}}" />
+                                </div>
+                                <div class="song__info">
+                                    <div class="song__name">
+                                        <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
                                     </div>
-                                    <div class="song__info">
-                                        <div class="song__name">
-                                            <a href="#!/chi-tiet/bai-hat?song={{s.Song.SongID}}">{{s.Song.SongName}}</a>
-                                            <div class="song_vip_horizontal" ng-show="s.Song.isVip">VIP</div>
-                                        </div>
-                                        <div class="song__artist">
-                                            <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
-                                        </div>
-                                    </div>
-                                    <div class="song__mv">
-                                        <button class="btn btn--circle btn-song-mv">
-                                            <i class='bx bxs-videos'></i>
-                                        </button>
-                                    </div>
-                                    <div class="song__like">
-                                        <button class="btn btn--circle btn-song-like">
-                                            <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
-                                            <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
-                                        </button>
-                                    </div>
-                                    <div class="song__more">
-                                        <button class="btn btn--circle btn-song-more">
-                                            <i class='bx bx-dots-vertical-rounded'></i>
-                                        </button>
-                                    </div>
-                                    <div class="show-rank-prev">
-                                        <button class="btn btn--circle" style="color: #95D96D;" ng-if="s.RankDetail.RankPrev.Rank && (s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent) > 0">
-                                            <i class='bx bx-caret-up' style="font-size: 1.4rem"></i>
-                                            <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent}}</span>
-                                        </button>
-                                        <button class="btn btn--circle" style="color: #F44336;" ng-if="s.RankDetail.RankPrev.Rank && (s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent) < 0">
-                                            <i class='bx bx-caret-down' style="font-size: 1.4rem"></i>
-                                            <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent}}</span>
-                                        </button>
-                                        <button class="btn btn--circle" ng-if="!s.RankDetail.RankPrev.Rank || s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent == 0">
-                                            <i class='bx bx-minus' style="font-size: 1.4rem"></i>
-                                        </button>
-                                    </div>
-                                    <div class="show-rank">
-                                        <button class="btn btn--circle btn-show-rank">
-                                            <i class='bx bx-chevron-up'></i>
-                                        </button>
-                                    </div>
-                                    <div class="feature__more">
-                                        <div class="feature__item btn-add-song-playlist">
-                                            <i class='bx bxs-playlist'></i>
-                                            <span>Thêm vào playlist</span>
-                                        </div>
-                                        <div class="feature__item" ng-click="getSongforAdd(s)">
-                                            <i class='bx bx-add-to-queue'></i>
-                                            <span>Thêm vào chờ phát</span>
-                                        </div>
-                                        <div class="feature__item">
-                                            <i class='bx bxs-download'></i>
-                                            <span>Tải xuống</span>
-                                        </div>
-                                        <div class="feature__item">
-                                            <i class='bx bx-link-alt'></i>
-                                            <span>Sao chép link</span>
-                                        </div>
-                                        <div class="feature__item">
-                                            <i class='bx bx-share-alt'></i>
-                                            <span>Chia sẻ</span>
-                                        </div>
+                                    <div class="song__artist">
+                                        <a href="#!/chi-tiet/nghe-si?id={{a.ArtistID}}" ng-repeat="a in s.Artists">{{a.ArtistName}}</a>
                                     </div>
                                 </div>
-                                <div class="rank-detail" style="border: none; padding-top: 4px; margin: 2px 16px 10px">
-                                    <div class="rank-detail-item">
-                                        <div class="rank-number" style="color: #FFC40E;">{{s.RankDetail.RankCurrent}}</div>
-                                        <div class="rank-title">Trong Ngày</div>
+                                <div class="song__mv">
+                                    <button class="btn btn--circle btn-song-mv">
+                                        <i class='bx bxs-videos'></i>
+                                    </button>
+                                </div>
+                                <div class="song__like">
+                                    <button class="btn btn--circle btn-song-like">
+                                        <i class='bx bx-heart' ng-if="s.Liked == 0"></i>
+                                        <i class='bx bxs-heart' ng-if="s.Liked == 1" style="color: var(--main-color)"></i>
+                                    </button>
+                                </div>
+                                <div class="song__more">
+                                    <button class="btn btn--circle btn-song-more">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                </div>
+                                <div class="show-rank-prev">
+                                    <button class="btn btn--circle" style="color: #95D96D;" ng-if="s.RankDetail.RankPrev.Rank && (s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent) > 0">
+                                        <i class='bx bx-caret-up' style="font-size: 1.4rem"></i>
+                                        <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent}}</span>
+                                    </button>
+                                    <button class="btn btn--circle" style="color: #F44336;" ng-if="s.RankDetail.RankPrev.Rank && (s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent) < 0">
+                                        <i class='bx bx-caret-down' style="font-size: 1.4rem"></i>
+                                        <span style="font-size: 1.2rem; padding-left: 0">{{s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent}}</span>
+                                    </button>
+                                    <button class="btn btn--circle" ng-if="!s.RankDetail.RankPrev.Rank || s.RankDetail.RankPrev.Rank - s.RankDetail.RankCurrent == 0">
+                                        <i class='bx bx-minus' style="font-size: 1.4rem"></i>
+                                    </button>
+                                </div>
+                                <div class="show-rank">
+                                    <button class="btn btn--circle btn-show-rank">
+                                        <i class='bx bx-chevron-up'></i>
+                                    </button>
+                                </div>
+                                <div class="feature__more">
+                                    <div class="feature__item btn-add-song-playlist">
+                                        <i class='bx bxs-playlist'></i>
+                                        <span>Thêm vào playlist</span>
                                     </div>
-                                    <div class="rank-detail-item">
-                                        <div class="rank-number" style="color: #2DAAED;">{{s.RankDetail.MaxACount.Max}}</div>
-                                        <div class="rank-title">Cao nhất</div>
+                                    <div class="feature__item" ng-click="getSongforAdd(s)">
+                                        <i class='bx bx-add-to-queue'></i>
+                                        <span>Thêm vào chờ phát</span>
                                     </div>
-                                    <div class="rank-detail-item">
-                                        <div class="rank-number" style="color: #95D96D;">{{s.RankDetail.MaxACount.Count}}</div>
-                                        <div class="rank-title">Số lần trong BXH</div>
+                                    <div class="feature__item">
+                                        <i class='bx bxs-download'></i>
+                                        <span>Tải xuống</span>
                                     </div>
+                                    <div class="feature__item">
+                                        <i class='bx bx-link-alt'></i>
+                                        <span>Sao chép link</span>
+                                    </div>
+                                    <div class="feature__item">
+                                        <i class='bx bx-share-alt'></i>
+                                        <span>Chia sẻ</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rank-detail" style="border: none; padding-top: 4px; margin: 2px 16px 10px">
+                                <div class="rank-detail-item">
+                                    <div class="rank-number" style="color: #FFC40E;">{{s.RankDetail.RankCurrent}}</div>
+                                    <div class="rank-title">Trong tuần</div>
+                                </div>
+                                <div class="rank-detail-item">
+                                    <div class="rank-number" style="color: #2DAAED;">{{s.RankDetail.MaxACount.Max}}</div>
+                                    <div class="rank-title">Cao nhất</div>
+                                </div>
+                                <div class="rank-detail-item">
+                                    <div class="rank-number" style="color: #95D96D;">{{s.RankDetail.MaxACount.Count}}</div>
+                                    <div class="rank-title">Tuần trong BXH</div>
                                 </div>
                             </div>
                         </div>

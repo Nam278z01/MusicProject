@@ -1,4 +1,4 @@
-﻿appMusic.controller('RankController', function ($scope, $rootScope, $routeParams, $location, $http, $filter) {
+﻿appMusic.controller('RankController', function ($scope, $rootScope, $routeParams, $location, $http) {
     //Sidebar tab hoạt động là khám phá
     $rootScope.currentIndex = 4
     $rootScope.title = 'Bảng xếp hạng | My playlist'
@@ -10,10 +10,6 @@
         } else {
             return false
         }
-    }
-
-    $scope.activeNav = function (index) {
-        $scope.isActiveNav = index
     }
     $scope.isNationNav = function (n) {
         if ($routeParams.n == n) {
@@ -29,13 +25,12 @@
     let numberofWk = getWeekNumber(addDays(new Date, -7))
     $scope.yearCurrent = $routeParams.nam || numberofWk[0]
     $scope.numberOfWeek = $routeParams.tuan || numberofWk[1]
-    console.log(numberofWk)
-    console.log($scope.numberOfWeek)
 
     let firstAlast = getFirstALastTime($scope.yearCurrent, $scope.numberOfWeek, 1)
     $scope.firstTime = new Date(firstAlast[0])
     $scope.lastTime = new Date(firstAlast[1])
     $scope.activeIncrease = addDays($scope.firstTime, 7) < new Date ? true : false
+
     //Tăng giảm thứ tự tuần
     $scope.weekDecrease = function () {
         $scope.firstTime = addDays($scope.firstTime, -7)
@@ -60,60 +55,53 @@
     if (!$routeParams.k) {
         getRankSongofWeek()
     }
+
     function getRankSongofWeek() {
         $http({
             method: 'get',
-            url: 'Rank/GetRankSongsofWeek',
-            params: { nation: $routeParams.n, week: $scope.numberOfWeek, year: $scope.yearCurrent,quanity:20 }
+            url: '/Rank/GetRankSongsofWeek',
+            params: { nation: $routeParams.n, week: $scope.numberOfWeek, year: $scope.yearCurrent, quantity: 20 }
         }).then(function (res) {
-            console.log(res.data)
-            $scope.songsBXHofWeek = JSON.parse(res.data)
-            console.log($scope.songsBXHofWeek)
-            console.log($scope.songsBXHofWeek[0].RankDetail.MaxACount.Max)
-            $scope.songBXHTop1 = $scope.songsBXHofWeek[0]
+            $scope.songsBXH = JSON.parse(res.data)
+            $scope.songBXHTop1 = $scope.songsBXH[0]
         }, function (err) {
             alert('Failed to get songs!')
         })
     }
 
-    console.log($scope.numberOfWeek)
-    $scope.dateCurrent = $routeParams.day || new Date
-    $scope.activeIncreaseDay = $scope.dateCurrent <= new Date ? true : false
-    //Tăng giảm thứ tự ngày
-    $scope.dayDecrease = function () { 
-        $scope.dateCurrent = addDays($scope.dateCurrent, -1)
-        //$scope.yearCurrent = numberofWkNew[0]
-        //$scope.numberOfWeek = numberofWkNew[1]
+    $scope.dateSelected = $routeParams.ngay ? new Date($routeParams.ngay) : new Date
+    $scope.activeDayIncrease = $scope.dateSelected < new Date ? true : false
 
-        $location.search({ "day": $scope.dateCurrent, 'n': $routeParams.n, 'k': $routeParams.k })
+
+    //Tăng giảm thứ tự tuần
+    $scope.dayDecrease = function () {
+        $scope.dateSelected = addDays($scope.dateSelected, -1)
+
+        $location.search({ "ngay": $scope.dateSelected, 'n': $routeParams.n, 'k': $routeParams.k })
     }
     $scope.dayIncrease = function () {
-        if ($scope.activeIncreaseDay) {
-            $scope.dateCurrent = addDays($scope.dateCurrent, 1)
-            //let numberofWkNew = getWeekNumber($scope.firstTime)
-            //$scope.yearCurrent = numberofWkNew[0]
-            //$scope.numberOfWeek = numberofWkNew[1]
-            /*  $location.search({ "tuan": $scope.numberOfWeek, 'nam': $scope.yearCurrent, 'n': $routeParams.n })*/
-            $location.search({ "day": $scope.dateCurrent, 'n': $routeParams.n, 'k': $routeParams.k})
+        if ($scope.activeDayIncrease) {
+            $scope.dateSelected = addDays($scope.dateSelected, 1)
+
+            $location.search({ "ngay": $scope.dateSelected, 'n': $routeParams.n, 'k': $routeParams.k })
         }
     }
-    console.log($scope.dateCurrent)
+
     //Lấy top Ngày
-    if ($routeParams.k) {
+    if ($routeParams.k == 'hn') {
         getRankSongofDay()
     }
+
     function getRankSongofDay() {
         $http({
             method: 'get',
             url: '/Rank/GetRankSongsofDay',
-            params: { nation: $routeParams.n, day: $scope.dateCurrent }
+            params: { nation: $routeParams.n, date: $scope.dateSelected, quantity: 20 }
         }).then(function (res) {
-            $scope.songsBXHofday= JSON.parse(res.data)
-            console.log($scope.songsBXHofday)
-            console.log($scope.songsBXHofday[0].RankDetail.MaxACount.Max)
-            $scope.songBXHTop1 = $scope.songsBXHofday[0]
+            $scope.songsBXH = JSON.parse(res.data)
+            $scope.songBXHTop1 = $scope.songsBXH[0]
         }, function (err) {
-            alert('Failed to get songs by day!')
+            alert('Failed to get songs!')
         })
     }
 
@@ -123,6 +111,7 @@
         copy.setDate(date.getDate() + days)
         return copy
     }
+
     function getWeekNumber(d) {
         // Copy date so don't modify original
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -160,7 +149,4 @@
 
         return [new Date(year, 0, days), addDays(new Date(year, 0, days), 6)]
     }
-  
 })
-
-
