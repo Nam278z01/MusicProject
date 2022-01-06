@@ -38,7 +38,7 @@
         $scope.yearCurrent = numberofWkNew[0]
         $scope.numberOfWeek = numberofWkNew[1]
 
-        $location.search({ "tuan": $scope.numberOfWeek, 'nam': $scope.yearCurrent, 'n': $routeParams.n})
+        $location.search({ "tuan": $scope.numberOfWeek, 'nam': $scope.yearCurrent, 'n': $routeParams.n })
     }
     $scope.weekIncrease = function () {
         if ($scope.activeIncrease) {
@@ -47,7 +47,7 @@
             $scope.yearCurrent = numberofWkNew[0]
             $scope.numberOfWeek = numberofWkNew[1]
 
-            $location.search({ "tuan": $scope.numberOfWeek, 'nam': $scope.yearCurrent, 'n': $routeParams.n})
+            $location.search({ "tuan": $scope.numberOfWeek, 'nam': $scope.yearCurrent, 'n': $routeParams.n })
         }
     }
 

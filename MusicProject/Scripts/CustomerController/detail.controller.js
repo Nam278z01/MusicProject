@@ -137,6 +137,18 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
         return $scope.isActiveNav == index
     }
 
+    $http({
+        method: 'get',
+        url: ' /Detail/GetArtistDetail',
+        params: { artistID: $routeParams.id }
+    }).then(function (res) {
+        $scope.artist = JSON.parse(res.data)
+        console.log($scope.artist);
+
+    }, function (error) {
+        alert('Failed to get the artist!')
+    })
+
     //Get songs of artist
     $scope.songsofArtist = []
     $scope.totalCountArtist = 0
@@ -209,7 +221,7 @@ appMusic.controller('ArtistDetailsController', function ($scope, $rootScope, $ht
         })
     }
 })
-
+// lấy chi tiết album, album bạn có thể thích theo nation
 appMusic.controller('AlbumDetailsController', function ($scope, $rootScope, $http, $routeParams) {
     $http({
         method: 'get',
@@ -217,8 +229,19 @@ appMusic.controller('AlbumDetailsController', function ($scope, $rootScope, $htt
         params: { albumID: $routeParams.id }
     }).then(function (res) {
         $scope.album = JSON.parse(res.data)
-        console.log($scope.album)
+        console.log($scope.album.Artits.Nation)
+        $http({
+            method: 'get',
+            url: '/Detail/GetAlbumNation',
+            params: { nation: $scope.album.Artits.Nation, albumID: $scope.album.Album.AlbumID }
+        }).then(function success(res) {
+            $scope.albums = JSON.parse(res.data)
+            console.log($scope.albums)
+        }, function (err) {
+            alert("Failed to get album!")
+        })
     }, function (err) {
         alert("Failed to get album!")
     })
 })
+

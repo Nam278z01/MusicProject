@@ -211,7 +211,6 @@
             })
         }
     }
-
     $scope.agreetodeletePlaylist = function () {
         $http({
             method: 'post',
