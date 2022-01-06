@@ -270,7 +270,7 @@ namespace MusicDao
         }
         public string SongListened(string songID, string accountName)
         {
-            string result = dh.ExecuteNonQueryStoreProcedure("SongListened", songID, accountName);
+            string result = dh.ExecuteNonQueryStoreProcedure("ListenedSong", songID, accountName);
             return result;
         }
         public string IncreaseViews(string songID)
