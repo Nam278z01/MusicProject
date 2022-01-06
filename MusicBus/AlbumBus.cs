@@ -35,5 +35,17 @@ namespace MusicBus
         {
             return aldao.GetAlbumDetail(albumID, accountName);
         }
+        public string GetAlbumNation(int nation, string albumID)
+        {
+            return aldao.GetAlbumNation(nation, albumID);
+        }
+        public List<Album> GetAlbumNation_T(int nation)
+        {
+            return aldao.GetAlbumNation_T(nation);
+        }
+        public string AddAlbum(string jsonAlbum)
+        {
+            return aldao.AddAlbum(jsonAlbum);
+        }
     }
 }

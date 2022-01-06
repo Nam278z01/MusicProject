@@ -1,4 +1,4 @@
-﻿var appMusic = angular.module("AppMusic", ['ngSanitize', 'ngTable', 'ui.select', 'ngFileUpload']);
+﻿var appMusic = angular.module("AppMusic", ['ngSanitize', 'ngTable', 'ui.select', 'ngFileUpload', 'angularUtils.directives.dirPagination']);
 
 appMusic.filter("jsDate", function () {
     return function (x) {

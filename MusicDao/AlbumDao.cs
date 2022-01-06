@@ -1,5 +1,7 @@
 ﻿using MusicObj;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace MusicDao
@@ -72,6 +74,71 @@ namespace MusicDao
             dh.Close();
             return album;
         }
+        public string AddAlbum(string jsonAlbum)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("AddAlbum", jsonAlbum);
+            return result;
+        }
+       
+        public string EditAlbum(string jsonAlbum)
+        {
+            string result = dh.ExecuteNonQueryStoreProcedure("EditAlbum", jsonAlbum);
+            return result;
+        }
+        public string DeleteAlbum(string albumID)
+        {
+            string sql = "delete from Album where AlbumID = @albumID";
+            dh.Open();
+            SqlCommand cm = new SqlCommand(sql, dh.Con);
+            cm.Parameters.Add(new SqlParameter
+            {
+                ParameterName = "@albumID",
+                Value = albumID,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50
+            });
+            try
+            {
+                cm.ExecuteNonQuery();
+                dh.Close();
+                return "";
+            }
+            catch (SqlException e)
+            {
+                return e.Message;
+            }
+        }
+        public List<Album>GetAlbumNation_T(int nation)
+        {
+            string sqlselect;
+            sqlselect= "select a.*,ar.ArtistName from  Album a inner join Artist  ar on a.ArtistID=ar.ArtistID  where ar.Nation = '" + nation + "'";
+            DataTable dt = dh.FillDataTable(sqlselect);
+            return ToList(dt);
+        }
+        public List<Album>ToList(DataTable dt)
+        {
+            List<Album> al = new List<Album>();
+            foreach( DataRow dr in dt.Rows)
+            {
+                Album album = new Album();
+                album.AlbumID = dr["AlbumID"].ToString();
+                album.AlbumName = dr["AlbumName"].ToString();
+                album.Description = dr["Description"].ToString();
+                album.Image = dr["Image"].ToString();
+                album.ArtistID = dr["ArtistID"].ToString();
+                album.ReleasedDate = DateTime.Parse(dr["ReleasedDate"].ToString());
+                al.Add(album);
+            }
+            return al;
+        }
+        public string GetAlbumNation(int nation, string albumID)
+        {
+            SqlDataReader reader = dh.StoreReaders("GetAlbumNation", nation, albumID);
+            string album = Utility.ToStringForJson(reader);
+            dh.Close();
+            return album;
+        }
+
         public string GetAlbumsForMana()
         {
             SqlDataReader reader = dh.StoreReaders("GetAlbumsForMana");

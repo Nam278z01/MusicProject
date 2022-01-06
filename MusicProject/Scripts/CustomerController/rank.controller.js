@@ -1,4 +1,4 @@
-﻿appMusic.controller('RankController', function ($scope, $rootScope, $routeParams, $location, $http) {
+﻿appMusic.controller('RankController', function ($scope, $rootScope, $routeParams, $location, $http, $filter) {
     //Sidebar tab hoạt động là khám phá
     $rootScope.currentIndex = 4
     $rootScope.title = 'Bảng xếp hạng | My playlist'
@@ -11,6 +11,10 @@
             return false
         }
     }
+
+    $scope.activeNav = function (index) {
+        $scope.isActiveNav = index
+    }
     $scope.isNationNav = function (n) {
         if ($routeParams.n == n) {
             return true
@@ -22,23 +26,33 @@
         $location.search('n', n)
     }
 
-    let numberofWk = getWeekNumber(new Date)
-    $scope.limitupofWeek = numberofWk[1]
-    $scope.numbetOfWeek = $routeParams.tuan || $scope.limitupofWeek - 1
+    let numberofWk = getWeekNumber(addDays(new Date, -7))
+    $scope.yearCurrent = $routeParams.nam || numberofWk[0]
+    $scope.numberOfWeek = $routeParams.tuan || numberofWk[1]
+    console.log(numberofWk)
+    console.log($scope.numberOfWeek)
 
-    let firstAlast = getFirstALastTime(numberofWk[0], $scope.numbetOfWeek)
+    let firstAlast = getFirstALastTime($scope.yearCurrent, $scope.numberOfWeek, 1)
     $scope.firstTime = new Date(firstAlast[0])
     $scope.lastTime = new Date(firstAlast[1])
-
+    $scope.activeIncrease = addDays($scope.firstTime, 7) < new Date ? true : false
     //Tăng giảm thứ tự tuần
     $scope.weekDecrease = function () {
-        if ($scope.numbetOfWeek > 1) {
-            $location.search("tuan", $scope.numbetOfWeek - 1)
-        }
+        $scope.firstTime = addDays($scope.firstTime, -7)
+        let numberofWkNew = getWeekNumber($scope.firstTime)
+        $scope.yearCurrent = numberofWkNew[0]
+        $scope.numberOfWeek = numberofWkNew[1]
+
+        $location.search({ "tuan": $scope.numberOfWeek, 'nam': $scope.yearCurrent, 'n': $routeParams.n })
     }
     $scope.weekIncrease = function () {
-        if ($scope.numbetOfWeek < $scope.limitupofWeek) {
-            $location.search("tuan", $scope.numbetOfWeek + 1)
+        if ($scope.activeIncrease) {
+            $scope.firstTime = addDays($scope.firstTime, 7)
+            let numberofWkNew = getWeekNumber($scope.firstTime)
+            $scope.yearCurrent = numberofWkNew[0]
+            $scope.numberOfWeek = numberofWkNew[1]
+
+            $location.search({ "tuan": $scope.numberOfWeek, 'nam': $scope.yearCurrent, 'n': $routeParams.n })
         }
     }
 
@@ -46,13 +60,13 @@
     if (!$routeParams.k) {
         getRankSongofWeek()
     }
-
     function getRankSongofWeek() {
         $http({
             method: 'get',
             url: 'Rank/GetRankSongsofWeek',
-            params: { nation: $routeParams.n, week: $scope.numbetOfWeek }
+            params: { nation: $routeParams.n, week: $scope.numberOfWeek, year: $scope.yearCurrent,quanity:20 }
         }).then(function (res) {
+            console.log(res.data)
             $scope.songsBXHofWeek = JSON.parse(res.data)
             console.log($scope.songsBXHofWeek)
             console.log($scope.songsBXHofWeek[0].RankDetail.MaxACount.Max)
@@ -62,6 +76,53 @@
         })
     }
 
+    console.log($scope.numberOfWeek)
+    $scope.dateCurrent = $routeParams.day || new Date
+    $scope.activeIncreaseDay = $scope.dateCurrent <= new Date ? true : false
+    //Tăng giảm thứ tự ngày
+    $scope.dayDecrease = function () { 
+        $scope.dateCurrent = addDays($scope.dateCurrent, -1)
+        //$scope.yearCurrent = numberofWkNew[0]
+        //$scope.numberOfWeek = numberofWkNew[1]
+
+        $location.search({ "day": $scope.dateCurrent, 'n': $routeParams.n, 'k': $routeParams.k })
+    }
+    $scope.dayIncrease = function () {
+        if ($scope.activeIncreaseDay) {
+            $scope.dateCurrent = addDays($scope.dateCurrent, 1)
+            //let numberofWkNew = getWeekNumber($scope.firstTime)
+            //$scope.yearCurrent = numberofWkNew[0]
+            //$scope.numberOfWeek = numberofWkNew[1]
+            /*  $location.search({ "tuan": $scope.numberOfWeek, 'nam': $scope.yearCurrent, 'n': $routeParams.n })*/
+            $location.search({ "day": $scope.dateCurrent, 'n': $routeParams.n, 'k': $routeParams.k})
+        }
+    }
+    console.log($scope.dateCurrent)
+    //Lấy top Ngày
+    if ($routeParams.k) {
+        getRankSongofDay()
+    }
+    function getRankSongofDay() {
+        $http({
+            method: 'get',
+            url: '/Rank/GetRankSongsofDay',
+            params: { nation: $routeParams.n, day: $scope.dateCurrent }
+        }).then(function (res) {
+            $scope.songsBXHofday= JSON.parse(res.data)
+            console.log($scope.songsBXHofday)
+            console.log($scope.songsBXHofday[0].RankDetail.MaxACount.Max)
+            $scope.songBXHTop1 = $scope.songsBXHofday[0]
+        }, function (err) {
+            alert('Failed to get songs by day!')
+        })
+    }
+
+    //add Day
+    function addDays(date, days) {
+        const copy = new Date(Number(date))
+        copy.setDate(date.getDate() + days)
+        return copy
+    }
     function getWeekNumber(d) {
         // Copy date so don't modify original
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -76,20 +137,30 @@
         return [d.getUTCFullYear(), weekNo];
     }
 
-    function getFirstALastTime(year, week) {
-        // first date of year
-        let firstDateOfYear = new Date(year, 0, 1);
-        // get the day of first date in the year
-        let firstDayOfYear = firstDateOfYear.getDay();
+    function getFirstALastTime(year, week, weekDay = 0) {
+        const getZeroBasedIsoWeekDay = date => (date.getDay() + 6) % 7;
+        const getIsoWeekDay = date => getZeroBasedIsoWeekDay(date) + 1;
+        const zeroBasedWeek = week - 1;
+        const zeroBasedWeekDay = weekDay - 1;
+        let days = (zeroBasedWeek * 7) + zeroBasedWeekDay;
+        // Dates start at 2017-01-01 and not 2017-01-00
+        days += 1;
 
-        let timeofOneDay = 60 * 60 * 24 * 1000;
-        let timeofOneWeek = 60 * 60 * 24 * 7 * 1000;
-        // last day of the week, 6 days later
-        let timeof6Day = 60 * 60 * 24 * 6 * 1000;
+        const firstDayOfYear = new Date(year, 0, 1);
+        const firstIsoWeekDay = getIsoWeekDay(firstDayOfYear);
+        const zeroBasedFirstIsoWeekDay = getZeroBasedIsoWeekDay(firstDayOfYear);
 
-        // if week start from Monday
-        let timeOfFirstDay = firstDateOfYear.getTime() - (timeofOneDay * (firstDayOfYear - 1)) + timeofOneWeek * (week - 1);
-        let timeOfLastDay = timeOfFirstDay + timeof6Day;
-        return [timeOfFirstDay, timeOfLastDay]
+        // If year begins with W52 or W53
+        if (firstIsoWeekDay > 4) {
+            days += 8 - firstIsoWeekDay;
+            // Else begins with W01
+        } else {
+            days -= zeroBasedFirstIsoWeekDay;
+        }
+
+        return [new Date(year, 0, days), addDays(new Date(year, 0, days), 6)]
     }
+  
 })
+
+

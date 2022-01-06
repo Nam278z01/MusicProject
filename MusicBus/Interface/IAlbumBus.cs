@@ -14,5 +14,10 @@ namespace MusicBus
         List<Album> GetAlbumsByArtist(int pageIndex, int pageSize, string artistID, string accountName, out int totalCount);
         List<Album> GetAlbumsNewAHot(int pageIndex, int pageSize, int time, string accountName, out int totalCount);
         string GetAlbumDetail(string albumID, string accountName);
+        string GetAlbumNation(int nation, string albumID);
+        string AddAlbum(string jsonAlbum);
+        List<Album> GetAlbumNation_T(int nation);
+
+
     }
 }

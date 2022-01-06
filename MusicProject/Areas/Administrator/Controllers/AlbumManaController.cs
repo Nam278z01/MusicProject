@@ -28,5 +28,24 @@ namespace MusicProject.Areas.Administrator.Controllers
             List<string> data = albus.GetArtistSongForAlbumMana();
             return Json(new {artists = data[0], songs = data[1]}, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult AddAlbum(string jsonData)
+        {
+            IAlbumManaBus sbus = new AlbumManaBus();
+            string result = sbus.AddAlbum(jsonData);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult EditAlbum(string jsonData)
+        {
+            IAlbumManaBus sbus = new AlbumManaBus();
+            string result = sbus.EditAlbum(jsonData);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult DeleteAlbum(string albumID)
+        {
+            IAlbumManaBus sbus = new AlbumManaBus();
+            string result = sbus.DeleteAlbum(albumID);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

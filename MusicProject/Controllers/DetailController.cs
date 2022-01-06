@@ -52,6 +52,20 @@ namespace MusicProject.Controllers
             string album = sbus.GetAlbumDetail(albumID, GetUserName());
             return Json(album, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetAlbumNation(int nation, string albumID)
+        {
+            IAlbumBus sbus = new AlbumBus();
+            string alnation = sbus.GetAlbumNation(nation, albumID);
+            return Json(alnation, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetArtistDetail(string artistID)
+        {
+            IArtistBus sbus = new ArtistBus();
+            string artist = sbus.GetArtistDetail(artistID);
+            return Json(artist, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult GetSongsByArtistPage(int pageIndex, int pageSize, string artistID)
         {
             ISongBus sbus = new SongBus();
@@ -73,6 +87,13 @@ namespace MusicProject.Controllers
                 accountName = user.AccountName;
             }
             return accountName;
+        }
+      
+        public JsonResult GetAlbumNation_T(int nation)
+        {
+            IAlbumBus sbus = new AlbumBus();
+            List<Album> al = sbus.GetAlbumNation_T(nation);
+            return Json(al, JsonRequestBehavior.AllowGet);
         }
     }
 }

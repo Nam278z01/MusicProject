@@ -23,5 +23,20 @@ namespace MusicBus
         {
             return aldao.GetArtistSongForAlbumMana();
         }
+        public string AddAlbum(string jsonAlbum)
+        {
+            return aldao.AddAlbum(jsonAlbum);
+        }
+
+        public string EditAlbum(string jsonAlbum)
+        {
+            return aldao.EditAlbum(jsonAlbum);
+        }
+        public string DeleteAlbum(string albumID)
+        {
+            return aldao.DeleteAlbum(albumID);
+        }
+       
+
     }
 }
